@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GenerationStandards>
-  <DefaultConfigurationXMLPath>C:\Program Files\Accelerator for .NET\Master\CodeFactory\\DefaultStandardsConfiguration.xml</DefaultConfigurationXMLPath>
+  <DefaultConfigurationXMLPath>C:\Program Files\Accelerator for .NET\v8_0\CodeFactory\DefaultStandardsConfiguration.xml</DefaultConfigurationXMLPath>
   <UpgradeScriptsLogPath></UpgradeScriptsLogPath>
   <SystemGenerationPath></SystemGenerationPath>
   <AcceleratorExportPath></AcceleratorExportPath>
@@ -29,7 +29,7 @@
   <GenerateAsPartialClasses>false</GenerateAsPartialClasses>
   <UseTableAliases>false</UseTableAliases>
   <UseWizardDefaultSettingsComponent>true</UseWizardDefaultSettingsComponent>
-  <WizardDefaultSettingsComponentLocation>C:\SurroundCore\AcceleratorOpenGenerationWizardPlugin\bin\Debug\GenerationWizardPlugin.dll</WizardDefaultSettingsComponentLocation>
+  <WizardDefaultSettingsComponentLocation>C:\Surround\AcceleratorOpenGenerationWizardPlugin\bin\Debug\GenerationWizardPlugin.dll</WizardDefaultSettingsComponentLocation>
   <WizardDefaultSettingsComponentNamespace>GenerationWizardPlugin</WizardDefaultSettingsComponentNamespace>
   <WizardDefaultSettingsComponentClassName>EasyBuyWizardDefaults_DB2Modern</WizardDefaultSettingsComponentClassName>
   <RunDependencyTool>true</RunDependencyTool>
@@ -137,12 +137,12 @@
   <BPAcceleratorWebServiceAddress>http://localhost:57592/</BPAcceleratorWebServiceAddress>
   <BPWebServicePort>19743</BPWebServicePort>
   <CompanyName>EasyBuy Cycles Distributors</CompanyName>
-  <CompanyImageName>C:\SurroundCore\AcceleratorSolutionDemo_EasyBuyCycles\Development Resources\images\EasyBuyDistributors48x200.png</CompanyImageName>
+  <CompanyImageName>C:\Surround\EasyBuyCycles\Development Resources\images\EasyBuyDistributors48x200.png</CompanyImageName>
   <SystemVersion>Version 1.0.0.0</SystemVersion>
-  <LogonImageName>C:\SurroundCore\AcceleratorSolutionDemo_EasyBuyCycles\Development Resources\images\EasyBuyv4Logo_256_256_32.png</LogonImageName>
-  <SplashImageName>C:\SurroundCore\AcceleratorSolutionDemo_EasyBuyCycles\Development Resources\images\easybuyv4horiz90h.png</SplashImageName>
+  <LogonImageName>C:\Surround\EasyBuyCycles\Development Resources\images\EasyBuyv4Logo_256_256_32.png</LogonImageName>
+  <SplashImageName>C:\Surround\EasyBuyCycles\Development Resources\images\easybuyv4horiz90h.png</SplashImageName>
   <ImagesRelativePath>/images/</ImagesRelativePath>
-  <ImagesPathToCopy>C:\SurroundCore\AcceleratorSolutionDemo_EasyBuyCycles\Development Resources\images\</ImagesPathToCopy>
+  <ImagesPathToCopy>C:\Surround\EasyBuyCycles\Development Resources\images\</ImagesPathToCopy>
   <TechnologyService>SURROUND:XML_SVC</TechnologyService>
   <BPSystemConnectionType>WebServices</BPSystemConnectionType>
   <DALSystemConnectionType>Direct</DALSystemConnectionType>
