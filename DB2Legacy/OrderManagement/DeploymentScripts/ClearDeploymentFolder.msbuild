@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	ToolsVersion="$(ToolsVersion)"
+	DefaultTargets="ClearDeploymentFolder">
+	
+	<Target Name="ClearDeploymentFolder">
+		<Exec Command="rmdir $(DeploymentFolder) /s /q" />
+	</Target>
+</Project>

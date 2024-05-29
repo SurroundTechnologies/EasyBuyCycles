@@ -1,0 +1,85 @@
+﻿@model A4DN.Core.MVC.AccountRegistration.AB_AccountRegistrationModel
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>@ViewBag.SUBJECT</title>
+
+    <style type="text/css">
+        table {
+            margin-bottom:30px;
+        }
+         
+        th {
+            background:#5f9be3;
+            color:#fff;
+            text-align:left;
+            font-weight:bold; 
+            padding:5px 10px 5px 5px;  
+            margin:0px;
+        }
+         
+        td {
+            padding:5px 5px 5px 10px;
+            margin:0px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Accelerator Demo App User Confirmation</h1>
+    
+    <h2>Form Fields:</h2>
+    <table>
+        <tr>
+            <th>Application: </th><td>@ViewBag.APPLICATION</td>
+        </tr>
+        <tr>
+            <th>Home Page of Demo: </th><td>@ViewBag.HOMEURL</td>
+        </tr>
+        <tr>
+            <th>Windows Application Installation Download: </th><td>@ViewBag.WINAPPINSTALL</td>
+        </tr>
+        <tr>
+            <th>User Name: </th><td>@ViewBag.USERNAME</td>
+        </tr>
+        <tr>
+            <th>Full Name: </th><td>@Model.FullName</td>
+        </tr>
+        <tr>
+            <th>Company: </th><td>@Model.CompanyName</td>
+        </tr>
+        <tr>
+            <th>Job Title: </th><td>@Model.JobTitle</td>
+        </tr>
+        <tr>
+            <th>Email: </th><td>@Model.Email</td>
+        </tr>
+        <tr>
+            <th>Phone: </th><td>@Model.Phone</td>
+        </tr>
+        <tr>
+            <th>Website: </th><td>@Model.Website</td>
+        </tr>
+        <tr>
+            <th>Address: </th><td><pre>@Model.MailingAddress</pre></td>
+        </tr>
+    </table>
+    
+    <h2>Browser Fields:</h2>
+    <table>
+        <tr>
+            <th>Browser IP:</th><td><a href="http://whatismyipaddress.com/ip/@ViewBag.BROWSERIP">@ViewBag.BROWSERIP</a></td>
+        </tr>
+        <tr>
+            <th>User Agent:</th><td>@ViewBag.USERAGENT</td>
+        </tr>
+        <tr>
+            <th>Referrer:</th><td>@ViewBag.REFERER</td>
+        </tr>
+    </table>
+    
+    <p>Message Sent on @DateTime.Now.ToString("M/d/yyyy at h:mm:ss tt zzz").</p>
+</body>
+</html>

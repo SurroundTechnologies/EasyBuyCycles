@@ -1,0 +1,76 @@
+﻿@model AB_FoldersModel
+
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.BOS.FrameworkEntity
+
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+
+    var isFolderSelection = Model.ap_FolderType == "FOLDER" ? true : false;
+}
+
+@foreach (var item in Model.ap_FoldersRecords)
+{
+    if (item.FolderType == "FOLDER")
+    {
+        if (Model.ap_IsFirstLevel)
+        {
+
+            @_folderSpans(item, isFolderSelection)
+        }
+        else
+        {
+            <li class="a4dn-tree-list-folder">
+                <div class="tree a4dn-tree a4dn-folders-tree">
+                    <ul>
+                        <li>
+                            @_folderSpans(item, isFolderSelection)
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        }
+
+    }
+    if (item.FolderType == "RECORD")
+    {
+        var mod = fh.am_GetModuleByModuleNumber((int)item.ModuleNumber);
+        if (mod != null)
+        {
+            
+        var command = fh.am_GetCommandBarElement(mod.ModuleNumber, "OPEN") != null ? "OPEN" : "DISPLAY";
+
+            <li class="a4dn-tree-list-item">
+                <img class="a4dn-mod-image" src="@Url.Content(fh.am_GetImageURL(mod.Image))" />
+                <a class="a4dn-detail-link" href="@Url.Action("GetModuleDetailHtmlView", mod.MVCControllerName, new { pSysNo = item.SystemNumber, pAppNo = item.ApplicationNumber, pModNo = item.ModuleNumber})"
+                   data-a4dn-app-number="@item.ApplicationNumber" data-a4dn-mod-number="@item.ModuleNumber" data-a4dn-unique-name="@item.FileObjectName" data-a4dn-unique-key="@item.FileObjectKey.am_ToBase64String()" data-a4dn-command-id="@command">@item.Title</a>
+                <a class="a4dn-remove a4dn-remove-btn a4dn-remove-item" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.Remove" rel="tooltip" data-placement="left"
+                   data-a4dn-remove-href="@Url.Action("am_RemoveFolder", "AB_Framework", new {folderID = item.FolderID, folderName = item.Title})"><i class="fa fa-times"></i></a>
+            </li>
+        }
+    }
+}
+
+@helper _folderSpans(AB_FoldersFavoritesEntity item, bool isFolderSelection)
+{
+    <span class="a4dn-folder-span" data-a4dn-folder-id="@item.FolderID">
+        <i class="fa fa-lg fa-plus-circle"></i><i class="fa fa-folder a4dn-grp-mod-image"></i><span class="a4dn-folder-name">@item.FolderName</span> <input class="a4dn-folder-rename hidden" type="text" value="@item.FolderName" />
+        @if (isFolderSelection)
+    {
+            <a class="a4dn-folder-select-btn pull-right btn btn-default" title="" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.SelectFolder" rel="tooltip" data-placement="left">
+                <i class="fa fa-check"></i> @Resources.DescriptionResource.Select
+            </a>
+        }
+        else
+        {
+            <a class="a4dn-folder-options-btn pull-right" title="" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.FolderOptions" rel="tooltip" data-placement="left" data-a4dn-add-href="@Url.Action("am_AddFolder", "AB_Framework", new { isFavorite = Model.ap_IsFavorite, parentFolderID = item.FolderID, folderName = Resources.DescriptionResource.NewFolder, isFirstLevel = false  })" data-a4dn-rename-href="@Url.Action("am_RenameFolder", "AB_Framework", new { folderID = item.FolderID })" data-a4dn-remove-href="@Url.Action("am_RemoveFolder", "AB_Framework", new { folderID = item.FolderID, folderName = item.FolderName })">
+                <i class="fa fa-cog"></i>
+            </a>
+        }
+    </span>
+    <ul class="a4dn-tree-list" data-a4dn-key="@item.FolderID" data-a4dn-loaded="false" data-a4dn-expanded="false" data-a4dn-href="@Url.Action("am_GetFolders", "AB_Framework", new { isFavorite = Model.ap_IsFavorite, parentFolderID = item.FolderID, folderType = Model.ap_FolderType })"></ul>
+
+}

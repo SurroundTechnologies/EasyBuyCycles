@@ -1,0 +1,215 @@
+﻿@model AB_ModuleExplorerModel
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using A4DN.Core.BOS.Base
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+    var moduleEntity = fh.am_GetModuleByModuleNumber(Model.ap_ModuleNumber);
+
+    var moduleType = moduleEntity.ModuleType.ToLower().Replace(" ", "-");
+    if (moduleType == "property-table-explorer")
+    {
+        moduleType = "search-explorer";
+    }
+
+    var guid = string.IsNullOrEmpty(Model.ap_Guid) ? "g" + Guid.NewGuid().ToString() : Model.ap_Guid;
+
+    var modImage = fh.am_GetImageURL(moduleEntity.Image);
+
+    ViewBag.EditorTemplateType = "Search";
+    ViewBag.ModuleModel = Model;
+    ViewBag.Guid = guid;
+
+    if (Model.ap_ComponentRole == A4DN.Core.BOS.Base.AB_ComponentRole.Browser)
+    {
+
+        ViewBag.CommandBarLocation = "MODULE";
+    }
+    if (Model.ap_ComponentRole == A4DN.Core.BOS.Base.AB_ComponentRole.SubBrowser)
+    {
+
+        ViewBag.CommandBarLocation = "SUB-MODULE";
+    }
+
+    ViewBag.ModuleEntity = moduleEntity;
+    ViewBag.ModuleImage = modImage;
+    ViewBag.ShowDetailInPreview = Model.ap_ShowDetailInPreview;
+
+    var borderTop = Model.ap_IsHeaderVisible ? null : "a4dn-border-top";
+
+    var moduleScript = @"~/scripts/Modules/" + moduleEntity.MVCControllerName + ".js";
+    var callBackNamespace = moduleEntity.MVCControllerName + "ExplorerComandCallBackFunctions";
+
+}
+
+<script>
+    a4dn.core.mvc.am_LoadModuleJavascript('@Url.am_CacheAwareContent(moduleScript)', false, true);   // Not async (so callback scripts below work), use Cache to avoid loading every time
+</script>
+
+@if (Model.ap_TableMarkupOnly || Model.ap_TableMarkupOnly_IncludeToolbars || Model.ap_TableMarkupOnly_IncludeSearch)
+{
+    @Html.Partial(Model.ap_PartialView_ModuleTableHeader, Model)
+    @Html.Partial(Model.ap_PartialView_DataTablesScript, Model)
+
+    if (Model.ap_TableMarkupOnly_IncludeToolbars)
+    {
+        @Html.Partial(Model.ap_PartialView_Toolbar, Model)
+        @Html.Partial(Model.ap_PartialView_ToolbarFooter, Model)
+
+        <script>
+            if (typeof @callBackNamespace == 'object') {
+                var callBackNamespace = @callBackNamespace;
+            }
+            a4dn.core.mvc.am_InitializeModuleExplorerToolbar("@guid", callBackNamespace );
+        </script>
+    }
+    if (Model.ap_TableMarkupOnly_IncludeSearch)
+    {
+        <div class="hidden" id="a4dn-search-modal-label-@guid">@Resources.DescriptionResource.Search - @moduleEntity.ModuleName</div>
+        <div class="hidden" id="a4dn-search-modal-body-@guid"><div class="a4dn-search-form">@Html.EditorFor(m => Model.ap_Entity, "", "")</div></div>
+        @*<div class="hidden" id="a4dn-search-modal-body-@guid"><div class="a4dn-search-form" id="a4dn-search-modal-body-@(guid)__form" data-a4dn-guid="@guid">@Html.EditorFor(m => Model.ap_Entity, "", "")</div></div>*@
+        <script>
+            $(function () {
+                a4dn.core.mvc.am_MoveModalSearchTemplateToStorage('@guid');
+            });
+        </script>
+    }
+
+    return;
+}
+
+<div id="a4dn-module-@guid" data-a4dn-guid="@guid" data-a4dn-type="@moduleType" data-a4dn-app-number="@moduleEntity.ApplicationNumber" data-a4dn-mod-number="@moduleEntity.ModuleNumber" data-a4dn-mod-name="@moduleEntity.ModuleName" data-a4dn-image-src="@Url.Content(modImage)"
+     data-a4dn-component-role="@Model.ap_ComponentRole" data-a4dn-component-location="@Model.ap_ComponentLocation" data-a4dn-view-ref-ext="@Model.ap_ViewReferenceExt" data-a4dn-parent-guid="@Model.ap_ParentGuid" data-a4dn-anchortowindow="@Model.ap_AnchorToWindow"
+     data-a4dn-splitter-direction="@Model.ap_SplitterDirection" data-a4dn-max-init-splitter-cnt="@Model.ap_MaxInitializeSplitterCount" data-a4dn-enable-preview="@Model.ap_EnablePreview" data-a4dn-preview-init-visible="@Model.ap_IsPreviewInitiallyVisible"
+     data-a4dn-module-controller-base-url="@Url.Action("", moduleEntity.MVCControllerName)" data-a4dn-commandcallbacknamespace="@callBackNamespace" data-a4dn-ignore-item-selected-submodule-count="@Model.ap_IgnoreItemSelectedSubmoduleCount"
+     class="a4dn-module a4dn-module-explorer a4dn-@moduleType">
+
+    <!--Module Explorer Main Content Pane-->
+    <div class="a4dn-splitter-pane-1">
+
+        @if (moduleType == "search-explorer")
+        {
+            <div class="a4dn-module-content a4dn-module-explorer-content">
+                <!--widget grid -->
+                <section id="a4dn-widget-section-@guid" class="a4dn-module-explorer-widget-section">
+
+                    <!-- row -->
+                    <div class="row">
+
+                        <!-- NEW WIDGET START -->
+                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <!-- Widget ID -->
+                            <div class="jarviswidget jarviswidget-color-darken a4dn-main-content @borderTop" id="a4dn-widget-id-@guid" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-fullscreenButton="false">
+
+                                @if (Model.ap_IsHeaderVisible)
+                                {
+                                    var isFavorite = fh.am_IsNavigatorFavorite(Model.ap_ApplicationNumber, Model.ap_ModuleNumber) ? "a4dn-isfavorite" : "";
+                                    <header class="a4dn-widget-header">
+                                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                        <div class="a4dn-loading hidden"><i class="fa fa-refresh fa-lg fa-spin margin-top-10 pull-right"></i><span class="sr-only">@Resources.DescriptionResource.Loading</span></div>
+                                        <h2>
+                                            <span class="a4dn-module-Exp-title a4dn-truncate" data-a4dn-module-Name="@moduleEntity.ModuleName">
+                                                @moduleEntity.ModuleName
+                                                <a id="a4dn-favorites-link-@guid" class="a4dn-favorites-link @isFavorite" data-a4dn-app-number="@moduleEntity.ApplicationNumber" data-a4dn-module-number="@moduleEntity.ModuleNumber" data-a4dn-add-href="@Url.Action("am_AddNavigatorFavorite", "AB_Framework", new { pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber })"
+                                                   data-a4dn-remove-href="@Url.Action("am_RemoveNavigatorFavorite", "AB_Framework", new { pAppNo = moduleEntity.ApplicationNumber, pModNo = moduleEntity.ModuleNumber })"
+                                                   data-original-title="@Resources.DescriptionResource.ToggleFavorite" rel="tooltip" data-placement="right"
+                                                   href="javascript:void(0);"><i class="fa fa-lg a4dn-fa-favorites"></i></a>
+                                            </span>
+                                        </h2>
+                                    </header>
+                                }
+                                <!-- widget div-->
+                                <div>
+
+                                    <!-- widget edit box -->
+                                    <div class="jarviswidget-editbox">
+                                        <!-- This area used as dropdown edit box -->
+                                    </div>
+                                    <!-- end widget edit box -->
+                                    <!-- widget content -->
+
+                                    <div class="a4dn-datatable-container widget-body no-padding">
+
+                                        @if (Model.ap_ViewColumns == null)
+                                        {
+                                            <div class="alert alert-danger">View Columns are not defined or accessible; cannot display module explorer. Check view for Module @Model.ap_ModuleNumber, Reference @Model.ap_ViewReferenceExt.</div>
+                                        }
+                                        else
+                                        {
+                                            @Html.Partial(Model.ap_PartialView_ModuleTableHeader)
+                                            @Html.Partial(Model.ap_PartialView_Toolbar, Model)
+                                            @Html.Partial(Model.ap_PartialView_ToolbarFooter, Model)
+                                            @Html.Partial(Model.ap_PartialView_DataTablesScript, Model)
+                                        }
+                                    </div>
+
+                                    <!-- end widget content -->
+                                </div>
+                                <!-- end widget div -->
+                            </div>
+                            <!-- end widget -->
+                        </article>
+                        <!-- WIDGET END -->
+                    </div>
+                </section>
+                <!-- end widget grid -->
+            </div>
+        }
+        @if (moduleType == "custom-explorer" || moduleType == "web-explorer")
+        {
+            <div class="a4dn-module-content a4dn-module-explorer-content a4dn-module-custom-explorer-content">
+                <div class="a4dn-scroll-body">
+                    @if (string.IsNullOrWhiteSpace(Model.ap_PartialView_CustomExplorer))
+                    {
+                        throw (new HttpCompileException("No partial view specified. Set variable moduleExplorerModel.ap_PartialView_CustomExplorer in method GetModuleExplorerHtmlView."));
+                    }
+                    else
+                    {
+                        @Html.Partial(Model.ap_PartialView_CustomExplorer, Model)
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <!--Module Explorer Content Preview Pane-->
+    <div class="a4dn-splitter-pane-2">
+
+        <div class="a4dn-module-preview a4dn-module-explorer-content-preview hidden">
+            @{
+                Model.ap_ComponentLocation = AB_ComponentLocation.PreviewPane;
+
+            }
+            @if (moduleType == "search-explorer")
+            {
+                @Html.Partial(Model.ap_PartialView_ModuleExplorerContentPreview, Model)
+            }
+        </div>
+    </div>
+</div>
+
+@if (moduleType == "search-explorer")
+{
+
+    <div class="hidden" id="a4dn-search-modal-label-@guid">@Resources.DescriptionResource.Search - @moduleEntity.ModuleName</div>
+    <div class="hidden" id="a4dn-search-modal-body-@guid"><div class="a4dn-search-form">@Html.EditorFor(m => Model.ap_Entity, "", "")</div></div>
+    @*<div class="hidden" id="a4dn-search-modal-body-@guid"><div class="a4dn-search-form" id="a4dn-search-modal-body-@(guid)__form" data-a4dn-guid="@guid">@Html.EditorFor(m => Model.ap_Entity, "", "")</div></div>*@
+    <script>
+        $(function () {
+            a4dn.core.mvc.am_MoveModalSearchTemplateToStorage('@guid');
+        });
+    </script>
+}
+
+<script>
+    if (typeof @callBackNamespace == 'object') {
+        var callBackNamespace = @callBackNamespace;
+    }
+    @{ 
+        var showExplorerBarOnStartup = Model.ap_ShowExplorerBarOnStartup && string.IsNullOrWhiteSpace(Model.ap_InitialSearchData);
+    }
+     a4dn.core.mvc.am_SetupModuleExplorer({ guid: "@guid", commandCallBackNamespace: callBackNamespace, showExplorerBarOnStartup: "@showExplorerBarOnStartup" });
+</script>

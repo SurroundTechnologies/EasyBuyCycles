@@ -1,0 +1,112 @@
+﻿@using A4DN.Core.BOS.Base.ModuleExtensions
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@{
+    var fh = Html.ap_FrameworkHelper();
+}
+
+<nav class="a4dn-nav">
+    <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+    Please note that these links work a bit different than
+    traditional href="" links. See documentation for details.
+    -->
+
+    <ul>
+
+        @foreach (var app in fh.ap_Applications.Where(m => m.EnableForWeb == true))
+        {
+            if (app.Modules.Where(m => m.ShowInNavigatorForApp && m.EnableForWeb == true).Count() == 0)
+            {
+                continue;
+            }
+            <li class="a4dn-nav-application">
+                <a href="#">
+                    <img class="a4dn-nav-image margin-right-5" src="@Url.Content(fh.am_GetImageURL(app.OpenImage))" /><span class="menu-item-parent">@app.ApplicationName</span>
+                </a>
+                <ul class="a4dn-nav-modules">
+
+                    @foreach (var mod in app.Modules.Where(m => m.ShowInNavigatorForApp && m.EnableForWeb == true))
+                    {
+                        if (string.IsNullOrWhiteSpace(mod.MVCControllerName))
+                        {
+                            continue;
+                        }
+
+                        var isFavorite = fh.am_IsNavigatorFavorite(mod.ApplicationNumber, mod.ModuleNumber) ? "a4dn-isfavorite" : "";
+                        var modImage = fh.am_GetImageURL(mod.Image);
+
+                        string target = null;
+                        string url = null;
+
+                        // Look for a non-search-explorer url to use
+                        if (mod.ap_ExplorerComponentAttributes != null)
+                        {
+                            var extAttr = mod.ap_ExplorerComponentAttributes;
+                            if (extAttr is AB_WebPageExplorerAttributes)
+                            {
+                                target = (extAttr as AB_WebPageExplorerAttributes).Target;
+                                url = (extAttr as AB_WebPageExplorerAttributes).Url ?? mod.Path;
+                            }
+                            else if (extAttr is AB_PDFExplorerAttributes)
+                            {
+                                target = (extAttr as AB_PDFExplorerAttributes).Target;
+                                url = (extAttr as AB_PDFExplorerAttributes).Url ?? mod.Path;
+                            }
+
+                            if (url != null && url.StartsWith("~/"))
+                            {
+                                url = Url.am_AbsoluteContent(url);
+                            }
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(target))
+                        {
+                            <li class="@Html.RouteIf(mod.MVCControllerName, "active")">
+                                <img class="a4dn-nav-image" src="@Url.Content(modImage)" />
+                                <a class="a4dn-module-link"
+                                   data-a4dn-app-number="@mod.ApplicationNumber"
+                                   data-a4dn-modnum="@mod.ModuleNumber"
+                                   data-a4dn-modnam="@mod.ModuleName"
+                                   target="@target"
+                                   data-a4dn-title="@mod.am_GetTitle(mod.ap_TitleMode, mod.ModuleName)"
+                                   data-a4dn-image-src="@Url.Content(modImage)"
+                                   href="@url">@mod.ModuleName <i class="fa fa-external-link"></i></a>
+                                <a class="a4dn-favorites-link @isFavorite" data-a4dn-app-number="@mod.ApplicationNumber" data-a4dn-module-number="@mod.ModuleNumber" data-a4dn-add-href="@Url.Action("am_AddNavigatorFavorite", "AB_Framework", new { pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber })"
+                                   data-a4dn-remove-href="@Url.Action("am_RemoveNavigatorFavorite", "AB_Framework", new { pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber })"
+                                   data-original-title="@Resources.DescriptionResource.ToggleFavorite" rel="tooltip" data-placement="left"
+                                   href="javascript:void(0);"><i class="fa fa-lg a4dn-fa-favorites"></i></a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="@Html.RouteIf(mod.MVCControllerName, "active")">
+                                <img class="a4dn-nav-image" src="@Url.Content(modImage)" />
+                                <a class="a4dn-module-link"
+                                   data-a4dn-app-number="@mod.ApplicationNumber"
+                                   data-a4dn-modnum="@mod.ModuleNumber"
+                                   data-a4dn-modnam="@mod.ModuleName"
+                                   data-a4dn-dtl-view-href="@Url.Action("GetModuleDetailHtmlView", mod.MVCControllerName, new { pSysNo = mod.SystemNumber, pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber })"
+                                   data-a4dn-title="@mod.am_GetTitle(mod.ap_TitleMode, mod.ModuleName)"
+                                   data-a4dn-image-src="@Url.Content(modImage)"
+                                   href="@Url.Action("GetModuleExplorerHtmlView", mod.MVCControllerName, new { pSysNo = mod.SystemNumber, pAppNo = app.ApplicationNumber, pModNo = mod.ModuleNumber })">@mod.ModuleName</a>
+                                <a class="a4dn-favorites-link @isFavorite" data-a4dn-app-number="@mod.ApplicationNumber" data-a4dn-module-number="@mod.ModuleNumber" data-a4dn-add-href="@Url.Action("am_AddNavigatorFavorite", "AB_Framework", new { pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber })"
+                                   data-a4dn-remove-href="@Url.Action("am_RemoveNavigatorFavorite", "AB_Framework", new { pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber })"
+                                   data-original-title="@Resources.DescriptionResource.ToggleFavorite" rel="tooltip" data-placement="left"
+                                   href="javascript:void(0);"><i class="fa fa-lg a4dn-fa-favorites"></i></a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</nav>
+<span class="minifyme" data-action="minifyMenu">
+    <i class="fa fa-arrow-circle-left hit"></i>
+</span>
+
+<script>
+    $(document).ready(function () {
+        a4dn.core.mvc.am_InitializeNavigator();
+    });
+</script>

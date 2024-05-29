@@ -1,0 +1,145 @@
+﻿@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@{
+    var fh = Html.ap_FrameworkHelper();
+
+    var trackUserSessions = fh.ap_TrackUserSessions;
+    var recordLockingEnabled = fh.ap_IsRecordLockingEnabled;
+    var systemNumber = fh.ap_ViewModel.ap_UserJobLogEntity != null ? fh.ap_ViewModel.ap_UserJobLogEntity.SystemNumber : null;
+    var userID = fh.ap_ViewModel.ap_UserJobLogEntity != null ? fh.ap_ViewModel.ap_UserJobLogEntity.UserID : null;
+    var activityInterval = fh.ap_ViewModel.ap_UserJobLogEntity != null ? fh.ap_ViewModel.ap_UserJobLogEntity.ActivityIntervalSeconds : null;
+
+}
+<!-- a4dn-main-content -->
+<div id="a4dn-main-content" class="a4dn-hidden"
+     data-a4dn-lang-closetab="@Resources.DescriptionResource.CloseTab" data-a4dn-lang-togglepin="@Resources.DescriptionResource.TogglePin"
+     data-a4dn-lang-notification-validation-error="@Resources.DescriptionResource.NotificationValidationError"
+     data-a4dn-lang-notification-error="@Resources.DescriptionResource.NotificationError" data-a4dn-lang-notification-success="@Resources.DescriptionResource.NotificationSuccess"
+     data-a4dn-lang-notification-info="@Resources.DescriptionResource.NotificationInformation" data-a4dn-lang-notification-warning="@Resources.DescriptionResource.NotificationWarning"
+     data-a4dn-lang-notification-dismiss="@Resources.DescriptionResource.NotificationDismiss" data-a4dn-lang-notification-save-title="@Resources.DescriptionResource.NotificationSaveTitle"
+     data-a4dn-lang-notification-save-content="@Resources.DescriptionResource.NotificationSaveContent" data-a4dn-lang-notification-delete-title="@Resources.DescriptionResource.NotificationDeleteTitle"
+     data-a4dn-lang-notification-delete-content="@Resources.DescriptionResource.NotificationDeleteContent" data-a4dn-lang-no="@Resources.DescriptionResource.No" data-a4dn-lang-yes="@Resources.DescriptionResource.Yes"
+     data-a4dn-lang-cancel="@Resources.DescriptionResource.Cancel" data-a4dn-lang-notification-removeall-title="@Resources.DescriptionResource.NotificationRemoveAllTitle"
+     data-a4dn-lang-notification-removefav-title="@Resources.DescriptionResource.NotificationRemoveFavoriteTitle" data-a4dn-lang-notification-removerec-title="@Resources.DescriptionResource.NotificationRemoveRecentTitle"
+     data-a4dn-userjoblog-track-user-sessions="@trackUserSessions"
+     data-a4dn-userjoblog-record-locking-enabled="@recordLockingEnabled"
+     data-a4dn-userjoblog-activity-interval="@activityInterval"
+     data-a4dn-userjoblog-update-href="@Url.Action("am_UpdateUserJobLog", "AB_Framework", new { userID = userID, systemNumber = systemNumber})"
+     data-a4dn-userjoblog-create-record-lock-href="@Url.Action("am_CreateRecordLock", "AB_Framework")"
+     data-a4dn-userjoblog-release-record-lock-href="@Url.Action("am_ReleaseRecordLock", "AB_Framework")">
+    <div class="widget-body">
+        <section id="widget-grid" class="">
+
+            <!-- a4dn-main-content row -->
+            <div id="page-content-wrapper" class="row">
+
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (a4dn-main-content-widget)-->
+                    <div class="a4dn-main-content-widget">
+                        <header>
+
+                            <ul id="a4dn-main-module-explorer-tabs" class="nav nav-tabs hidden-xs">
+                                <li id="a4dn-new-explorer-tab" class="a4dn-new-explorer-tab"> <a class="a4dn-new-explorer-tab-link" data-a4dn-modnum="0" data-a4dn-modnam="@Resources.DescriptionResource.NewTab" data-toggle="tab" href="@Url.Action("am_GetModuleExplorerNewTabHtmlView", "AB_Framework")" data-original-title="@Resources.DescriptionResource.NewTab" rel="tooltip" data-placement="bottom"><i class="fa fa-lg fa-plus"></i></a></li>
+                            </ul>
+
+                            <div class="dropdown a4dn-nav-dropdown-div hidden-sm hidden-md hidden-lg">
+                                <button class="btn btn-default dropdown-toggle a4dn-nav-dropdown-btn" type="button" data-toggle="dropdown">
+                                    <div class="a4dn-module-dropdown-btn">
+                                        <span id="a4dn-main-module-explorer-dropdown-text" class="a4dn-module-dropdown-text"></span>
+                                        <span class="caret a4dn-module-dropdown-caret"></span>
+                                    </div>
+                                </button>
+                                <ul id="a4dn-main-module-explorer-dropdown" class="dropdown-menu"></ul>
+                            </div>
+                        </header>
+
+                        <div id="a4dn-main-module-explorer-tab-content" class="tab-content a4dn-tab-content">
+
+                            <div class="a4dn-main-module-loading a4dn-center"><img src="~/Content/img/ajax-loader3.gif" /></div>
+                        </div>
+                    </div>
+                    <!-- end Widget ID (a4dn-main-content-widget) -->
+                </article>
+            </div>
+            <!-- end a4dn-main-content row -->
+        </section>
+    </div>
+</div>
+<!-- end a4dn-main-content -->
+<!-- Modal Search -->
+<div class="modal fade" id="a4dn-search-modal" tabindex="-1" role="dialog" aria-labelledby="Search">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>
+                    <img class="a4dn-command-image margin-right-5" src="@Url.Content(fh.am_GetImageURL("VB_SRCH"))">
+                    <span class="modal-title" id="a4dn-search-modal-label"> @Resources.DescriptionResource.Search</span>
+                </h4>
+            </div>
+
+            <div class="modal-body" id="a4dn-search-modal-body">
+            </div>
+
+            <div class="modal-footer">
+                <button id="a4dn-search-model-close-btn" type="button" class="btn btn-default" data-dismiss="modal">@Resources.DescriptionResource.Close</button>
+                <button id="a4dn-search-model-reset-btn" class="btn btn-default" type="reset" value="Reset">@Resources.DescriptionResource.Reset</button>
+                <button id="a4dn-search-model-search-btn" class="btn btn-primary" type="button" value="Search">@Resources.DescriptionResource.Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Folder Selector -->
+<div class="modal fade" id="a4dn-select-folder-modal" tabindex="-1" role="dialog" aria-labelledby="Select Folder">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>
+                    <span><i class="fa fa-folder"></i></span>
+                    <span class="modal-title" id="a4dn-select-folder-modal-label"> @Resources.DescriptionResource.SelectFolder</span>
+                </h4>
+            </div>
+
+            <div class="modal-body" id="a4dn-select-folder-modal-body">
+                <div class="a4dn-shortcuts-options">
+                    <div class="a4dn-folders-options a4dn-options" data-a4dn-get-href="@Url.Action("am_GetFolders", "AB_Framework")" data-a4dn-add-href="@Url.Action("am_AddFolderRecord", "AB_Framework")">
+                        <form class="smart-form">
+                            <section>
+
+                                <div class="inline-group a4dn-folders-radio-group a4dn-radio-group a4dn-center">
+
+                                    <label class="radio">
+                                        <input type="radio" name="a4dn-folders-type" checked="checked" data-a4dn-isfavorite="true" data-a4dn-parent-id="0" data-a4dn-nr-msg="@Resources.DescriptionResource.NoMyFolderShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.MyFoldersRemoveAllMessage">
+                                        <i></i>@Resources.DescriptionResource.MyFolders
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="a4dn-folders-type" data-a4dn-isfavorite="false" data-a4dn-parent-id="0" data-a4dn-nr-msg="@Resources.DescriptionResource.NoSharedFolderShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.SharedFoldersRemoveAllMessage">
+                                        <i></i>@Resources.DescriptionResource.SharedFolders
+                                    </label>
+                                </div>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+                <div class="ajax-notifications custom-scroll a4dn-shortcuts-content">
+
+                    <div class="a4dn-folders-content a4dn-content">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="a4dn-shortcuts-footer">
+                    <span class="a4dn-shortcuts-loading pull-left hidden"><i class="fa fa-refresh fa-lg fa-spin"></i><span> @Resources.DescriptionResource.Loading</span></span>
+                    <button id="a4dn-select-folder-modal-close-btn" type="button" class="btn btn-default" data-dismiss="modal">@Resources.DescriptionResource.Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

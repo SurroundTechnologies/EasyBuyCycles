@@ -1,0 +1,44 @@
+@model A4DN.Core.MVC.AccountRegistration.AB_AccountRegistrationModel
+
+<div id="content" class="container">
+    <div class="row">
+        @{ Html.RenderPartial("_LoginText"); }
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+            <div class="well no-padding">
+                @Html.EditorForModel()
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#content").on("change", "#security-question-suggestions", function (e) {
+            var $select = $(this),
+                $input = $($select.data("for")),
+                value = $select.val();
+            // Copy the select's value to the input control
+            $input.val(value);
+
+            if (value === "") {
+                $select.addClass("no-selection");
+            }
+            else {
+                $select.removeClass("no-selection");
+            }
+        });
+    });
+</script>
+<style>
+    #security-question-suggestions.no-selection {
+        color: #999;
+    }
+
+    #security-question-suggestions option {
+        color: #000;
+        padding: 5px 10px;
+    }
+
+        #security-question-suggestions option[value=''] {
+            color: #999;
+        }
+</style>

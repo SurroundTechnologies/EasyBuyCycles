@@ -1,0 +1,302 @@
+<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="../A4DNReference.msbuild" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B596C4B7-BF56-4578-8750-F17162F9B803}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPF.OrderManagement.Views</RootNamespace>
+    <AssemblyName>WPF.OrderManagement.Views</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup Label="A4DNItems">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Folder Include="Customer\" />
+    <Folder Include="Customer\" />
+    <Page Include="Customer\CustomerResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Customer\CustomerDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Customer\CustomerDetail.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>CustomerDetail.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Customer\CustomerDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Customer\CustomerDropDown.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>CustomerDropDown.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Customer\CustomerExpBarSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Customer\CustomerExpBarSearch.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>CustomerExpBarSearch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Customer\CustomerExpContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Customer\CustomerExpContent.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>CustomerExpContent.xaml</DependentUpon>
+    </Compile>
+    <Folder Include="OrderItem\" />
+    <Folder Include="OrderItem\" />
+    <Page Include="OrderItem\OrderItemResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OrderItem\OrderItemDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="OrderItem\OrderItemDetail.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderItemDetail.xaml</DependentUpon>
+    </Compile>
+    <Page Include="OrderItem\OrderItemDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="OrderItem\OrderItemDropDown.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderItemDropDown.xaml</DependentUpon>
+    </Compile>
+    <Page Include="OrderItem\OrderItemExpBarSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="OrderItem\OrderItemExpBarSearch.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderItemExpBarSearch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="OrderItem\OrderItemExpContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="OrderItem\OrderItemExpContent.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderItemExpContent.xaml</DependentUpon>
+    </Compile>
+    <Folder Include="Order\" />
+    <Folder Include="Order\" />
+    <Page Include="Order\OrderResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Order\OrderDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Order\OrderDetail.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderDetail.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Order\OrderDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Order\OrderDropDown.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderDropDown.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Order\OrderExpBarSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Order\OrderExpBarSearch.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderExpBarSearch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Order\OrderExpContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Order\OrderExpContent.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OrderExpContent.xaml</DependentUpon>
+    </Compile>
+    <Folder Include="Product\" />
+    <Folder Include="Product\" />
+    <Page Include="Product\ProductResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Product\ProductDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Product\ProductDetail.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ProductDetail.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Product\ProductDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Product\ProductDropDown.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ProductDropDown.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Product\ProductExpBarSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Product\ProductExpBarSearch.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ProductExpBarSearch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Product\ProductExpContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Product\ProductExpContent.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ProductExpContent.xaml</DependentUpon>
+    </Compile>
+    <Folder Include="ShippingAddress\" />
+    <Folder Include="ShippingAddress\" />
+    <Page Include="ShippingAddress\ShippingAddressResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ShippingAddress\ShippingAddressDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ShippingAddress\ShippingAddressDetail.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ShippingAddressDetail.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ShippingAddress\ShippingAddressDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ShippingAddress\ShippingAddressDropDown.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ShippingAddressDropDown.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ShippingAddress\ShippingAddressExpBarSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ShippingAddress\ShippingAddressExpBarSearch.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ShippingAddressExpBarSearch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ShippingAddress\ShippingAddressExpContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ShippingAddress\ShippingAddressExpContent.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ShippingAddressExpContent.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup Label="A4DNReferences">
+    <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.DataController, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.DataController.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.ViewModel, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.WPF.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.WPF.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.FrameworkEntity, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.FrameworkEntity.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj">
+      <Project>{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}</Project>
+      <Name>BOS.OrderManagement.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BOS.OrderManagement\BOS.OrderManagement.csproj">
+      <Project>{454BC523-D124-4A39-89AA-498FA3F40C86}</Project>
+      <Name>BOS.OrderManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BOS.OrderManagement.ViewModels\BOS.OrderManagement.ViewModels.csproj">
+      <Project>{A7D867AC-5E72-42E0-85BE-A7E734355528}</Project>
+      <Name>BOS.OrderManagement.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj">
+      <Project>{4E80F0A5-0783-4292-A79D-CF79914AD903}</Project>
+      <Name>WPF.OrderManagement.Shared</Name>
+    </ProjectReference>
+    <Reference Include="Dragablz">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)Dragablz.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

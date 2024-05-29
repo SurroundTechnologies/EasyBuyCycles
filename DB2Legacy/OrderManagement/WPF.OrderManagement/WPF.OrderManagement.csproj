@@ -1,0 +1,352 @@
+<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="../A4DNReference.msbuild" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{461CCA97-8B34-40B2-9B95-05104F04A680}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPF.OrderManagement</RootNamespace>
+    <AssemblyName>WPF.OrderManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>C:\Deployments\OrderManagement\_Publish</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Order Management</ProductName>
+    <PublisherName>EasyBuy Cycles Distributors</PublisherName>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>1.0.0.0</MinimumRequiredVersion>
+    <WebPage>publish.htm</WebPage>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>EasyBuyv4Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup Label="A4DNItems">
+    <Resource Include="EasyBuyv4Logo.ico" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Browser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Browser.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>Browser.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Logon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Logon.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>Logon.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Splash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Splash.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+    <None Include="App.config" />
+    <Content Include="..\ServiceHost.OrderManagement.BP\Services.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Services.config</Link>
+    </Content>
+    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ConnectionParms.config</Link>
+    </None>
+    <Content Include="..\ServiceHost.OrderManagement.BP\Services.DEV.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Services.DEV.config</Link>
+    </Content>
+    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.DEV.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ConnectionParms.DEV.config</Link>
+    </None>
+    <Content Include="..\ServiceHost.OrderManagement.BP\Services.TST.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Services.TST.config</Link>
+    </Content>
+    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.TST.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ConnectionParms.TST.config</Link>
+    </None>
+    <Content Include="..\ServiceHost.OrderManagement.BP\Services.PRO.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Services.PRO.config</Link>
+    </Content>
+    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.PRO.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ConnectionParms.PRO.config</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="IBM.Data.DB2">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="IBM.Data.DB2.iSeries">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.VisualStudio.OLE.Interop">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.Web.Infrastructure">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.Mvc">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.Razor">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.WebPages">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.WebPages.Deployment">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.WebPages.Razor">
+      <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <Group></Group>
+      <TargetPath></TargetPath>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- This sets the MinimumRequiredVersion to the ApplicationVersion.  Needed if the ApplicationVersion is auto updated. -->
+  <Target Name="AutoSetMinimumRequiredVersion" BeforeTargets="GenerateDeploymentManifest">
+    <FormatVersion Version="$(ApplicationVersion)" Revision="$(ApplicationRevision)">
+      <Output PropertyName="MinimumRequiredVersion" TaskParameter="OutputVersion" />
+    </FormatVersion>
+    <FormatVersion Version="$(ApplicationVersion)" Revision="$(ApplicationRevision)">
+      <Output PropertyName="_DeploymentBuiltMinimumRequiredVersion" TaskParameter="OutputVersion" />
+    </FormatVersion>
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup Label="A4DNReferences">
+    <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.DataController, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.DataController.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.ViewModel, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.Logging, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.WPF.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.WPF.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.WPF.LogonBase, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.WPF.LogonBase.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.SharedResources, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.SharedResources.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj">
+      <Project>{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}</Project>
+      <Name>BOS.OrderManagement.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj">
+      <Project>{4E80F0A5-0783-4292-A79D-CF79914AD903}</Project>
+      <Name>WPF.OrderManagement.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj">
+      <Project>{B596C4B7-BF56-4578-8750-F17162F9B803}</Project>
+      <Name>WPF.OrderManagement.Views</Name>
+    </ProjectReference>
+    <Reference Include="A4DN.Extensions.WPF.Security, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.RecordLocking, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.RecordLocking.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.Remarks, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Remarks.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.PropertyCodes, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.PropertyCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.Options, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.SpoolFiles, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.SpoolFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.Attachments, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Attachments.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.Queries, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Queries.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.JobMonitor, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.JobMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.JobManagement, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.JobManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.Workflow, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Workflow.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.CustomField, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.CustomField.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Extensions.WPF.Message, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)A4DN.Extensions.WPF.Message.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

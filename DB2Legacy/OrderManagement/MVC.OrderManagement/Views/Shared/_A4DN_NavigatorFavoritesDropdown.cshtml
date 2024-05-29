@@ -1,0 +1,28 @@
+﻿@model AB_NavigatorFavoritesModel
+
+@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+}
+
+@foreach (var mod in Model.ap_Modules)
+{
+
+    <li>
+
+        <img class="a4dn-nav-image" src="@Url.Content(fh.am_GetImageURL(mod.Image))" />
+        <a class="a4dn-module-link" data-a4dn-modnum="@mod.ModuleNumber" data-a4dn-modnam="@mod.ModuleName" href="@Url.Action("GetModuleExplorerHtmlView", mod.MVCControllerName, new {pSysNo = mod.SystemNumber, pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber})">@mod.ModuleName</a>
+        <a class="a4dn-remove a4dn-remove-btn a4dn-remove-favorite" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.Remove" rel="tooltip" data-placement="right"
+           data-a4dn-app-number="@mod.ApplicationNumber" data-a4dn-module-number="@mod.ModuleNumber" data-a4dn-remove-href="@Url.Action("am_RemoveNavigatorFavorite", "AB_Framework", new {pAppNo = mod.ApplicationNumber, pModNo = mod.ModuleNumber})"><i class="fa fa-times"></i></a>
+    </li>
+}
+<li class="divider"></li>
+<li>
+    <a class="a4dn-remove a4dn-remove-all-btn a4dn-remove-all-favorites" href="javascript:void(0);" data-a4dn-remove-href="@Url.Action("am_RemoveAllNavigatorFavorites", "AB_Framework")"><i class=""></i> @Resources.DescriptionResource.RemoveAllFavorites</a>
+</li>
+
+<script>
+    pageSetUp();
+</script>

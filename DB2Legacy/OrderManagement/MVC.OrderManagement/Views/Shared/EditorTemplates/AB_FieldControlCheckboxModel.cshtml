@@ -1,0 +1,73 @@
+﻿@using A4DN.Core.BOS.Base
+@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers.SmartAdmin
+@model A4DN.Core.MVC.Shared.Models.AB_FieldControlCheckboxModel
+@{
+    var fieldModel = ViewBag.FieldControlModel as AB_FieldControlModel;
+
+    var readonlyProp = fieldModel.ap_IsReadOnly == true ? "readonly" : null;
+    var disabledProp = (fieldModel.ap_IsDisabled == true || fieldModel.ap_IsReadOnly == true) ? "disabled" : null;
+    var readonlyClass = fieldModel.ap_IsReadOnly == true ? "readonly a4dn-readonly" : null;
+    var disabledClass = fieldModel.ap_IsDisabled == true ? "disabled a4dn-disabled" : null;
+    var disabledLabelClass = fieldModel.ap_IsDisabled == true ? "state-disabled" : null;
+    var hiddenClass = fieldModel.ap_IsHidden == true ? "hidden" : null;
+    var hiddenLabelClass = fieldModel.ap_IsLabelHidden == true ? "hidden" : null;
+
+    // DEBUG
+    //Model.ap_LabelAlignment = AB_CheckboxDisplay.LABEL_ALIGN.Left;
+    //Model.ap_CheckboxStyle = AB_CheckboxDisplay.CHECKBOX_STYLE.Checkbox;
+
+    var labelClass = Model.ap_CheckboxStyle == AB_CheckboxDisplay.CHECKBOX_STYLE.Checkbox ? "checkbox" : "toggle";
+    var labelPadding = Model.ap_CheckboxStyle == AB_CheckboxDisplay.CHECKBOX_STYLE.Checkbox ? "25px" : "61px";
+}
+
+@helper RenderCheckbox(AB_FieldControlModel fieldModel, string disabledClass, string readonlyClass, string disabledProp, string readonlyProp)
+{
+    <input type="checkbox" name="@fieldModel.ap_PropertyName" class="a4dn-field-control @disabledClass @readonlyClass @fieldModel.ap_FieldClass" @disabledProp @readonlyProp @Html.am_AttributeCollection(fieldModel.ap_FieldDataAttributes) data-a4dn-original-value="@fieldModel.ap_Value" value="@fieldModel.ap_Value" @(Model.ap_IsChecked == true ? "checked" : "") @fieldModel.ap_UnobtrusiveValidationAttributesFor />
+}
+@helper RenderCheckboxIcon()
+{
+    var iconStyle = Model.ap_LabelAlignment == AB_CheckboxDisplay.LABEL_ALIGN.Left ? "left: auto; left: unset; right: 0;" : "right: auto; right: unset; left: 0;";
+    switch (Model.ap_CheckboxStyle)
+    {
+        case AB_CheckboxDisplay.CHECKBOX_STYLE.Checkbox:
+                <i style="@iconStyle"></i>
+                break;
+        case AB_CheckboxDisplay.CHECKBOX_STYLE.Toggle:
+                <i style="@iconStyle" data-swchon-text="@Model.ap_ToggleLabelOn" data-swchoff-text="@Model.ap_ToggleLabelOff"></i>
+            break;
+    }
+}
+
+@switch (Model.ap_LabelAlignment)
+{
+    case AB_CheckboxDisplay.LABEL_ALIGN.Left:
+    <label class="@labelClass @readonlyClass" style="@(fieldModel.ap_IsLabelHidden == true ? "" : "display: inline-block;") padding-left: 0; padding-right: @labelPadding;">
+        @if (fieldModel.ap_IsLabelHidden != true)
+        {
+            @fieldModel.ap_DisplayName
+        }
+        @RenderCheckbox(fieldModel, disabledClass, readonlyClass, disabledProp, readonlyProp)
+        @RenderCheckboxIcon()
+    </label>
+        break;
+    case AB_CheckboxDisplay.LABEL_ALIGN.Right:
+        <label class="@labelClass @readonlyClass" style="@(fieldModel.ap_IsLabelHidden == true ? "" : "display: inline-block;") padding-right: 0; padding-left: @labelPadding;">
+            @RenderCheckbox(fieldModel, disabledClass, readonlyClass, disabledProp, readonlyProp)
+            @RenderCheckboxIcon()
+            @if (fieldModel.ap_IsLabelHidden != true)
+            {
+                @fieldModel.ap_DisplayName
+            }
+        </label>
+        break;
+    case AB_CheckboxDisplay.LABEL_ALIGN.Above:
+        <label class="label a4dn-field-control-label @hiddenLabelClass @fieldModel.ap_LabelClass" for="@fieldModel.ap_PropertyName">@fieldModel.ap_DisplayName</label>
+        <label class="@labelClass">
+            @RenderCheckbox(fieldModel, disabledClass, readonlyClass, disabledProp, readonlyProp)
+            @RenderCheckboxIcon()
+        </label>
+        break;
+}
+
+@fieldModel.ap_ValidationMessageFor

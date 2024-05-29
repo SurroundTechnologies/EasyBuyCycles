@@ -1,0 +1,20 @@
+<!--
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="VS.Project.WCFServiceHost.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+-->
+<access-policy>
+  <cross-domain-access>
+    <policy>
+      <allow-from http-request-headers="SOAPAction">
+        <domain uri="*" />
+      </allow-from>
+      <grant-to>
+        <resource path="/" include-subpaths="true" />
+      </grant-to>
+    </policy>
+  </cross-domain-access>
+</access-policy>

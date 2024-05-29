@@ -1,0 +1,129 @@
+﻿@model  AB_FieldControlModel
+
+@using A4DN.Core.BOS.FrameworkEntity
+@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@{
+    var ModuleModel = ViewBag.ModuleModel as AB_ModuleModelBase;
+
+    var MVCControllerName = ViewBag.MVCControllerName as string;
+    var DisplayMember = Model.ap_DropdownModel.ap_DisplayMemberTemplate ?? ViewBag.DisplayMember as string;
+    var SearchMember = ViewBag.SearchMember as string ?? DisplayMember;
+    var ViewReferenceExtension = ViewBag.ViewReferenceExtension;
+
+    var fh = Html.ap_FrameworkHelper();
+
+    AB_ModuleEntity moduleEntity = null;
+    AB_ModuleExplorerViewEntity viewEntity = null;
+    foreach (var mod in fh.ap_NavigatorModules.Where(m => m.MVCControllerName.Equals(MVCControllerName)))
+    {
+        // Loop through modules to find first module with view reference using the ViewReferenceExtension
+        moduleEntity = mod;
+        viewEntity = fh.am_GetDefaultViewForModuleNumber(moduleEntity.ModuleNumber, ViewReferenceExtension);
+
+        if (viewEntity != null)
+        {
+            break;
+        }
+    }
+
+    if (moduleEntity == null)
+    {
+        throw new NullReferenceException("Module " + MVCControllerName + " could not be found for dropdown " + ViewReferenceExtension + ". Access issue?");
+    }
+
+    var viewName = viewEntity == null ? "" : viewEntity.ViewName;
+
+    var searchCommandElement = fh.am_GetCommandBarElement(moduleEntity.ModuleNumber, "SEARCH");
+    var openCommandElement = fh.am_GetCommandBarElement(moduleEntity.ModuleNumber, "OPEN");
+    var displayCommandElement = fh.am_GetCommandBarElement(moduleEntity.ModuleNumber, "DISPLAY");
+    var newCommandElement = fh.am_GetCommandBarElement(moduleEntity.ModuleNumber, "NEW");
+
+    var dropdownModuleImage = fh.am_GetImageURL(moduleEntity.Image);
+
+    if (ModuleModel != null && string.IsNullOrWhiteSpace(ModuleModel.ap_FilterKeys) )
+    {
+        ModuleModel.ap_FilterKeys = Model.ap_DropdownModel.ap_FilterKeys;
+    }
+
+    var modExpHtmlViewUrl = Url.Action("GetModuleExplorerHtmlView", MVCControllerName,
+        new
+        {
+            pSysNo = moduleEntity.SystemNumber,
+            pAppNo = moduleEntity.ApplicationNumber,
+            pModNo = moduleEntity.ModuleNumber,
+            pTblOnlySrch = true,
+            pTblDfrLoad = false,
+            pTblSetFirstRowFocus = false,
+            pVwNm = viewName,
+            pFilterKeys = (ModuleModel == null ? null : ModuleModel.ap_FilterKeys)
+        });
+
+    var detailHtmlViewUrl = Url.Action("GetModuleDetailHtmlView", MVCControllerName,
+        new
+        {
+            pSysNo = moduleEntity.SystemNumber,
+            pAppNo = moduleEntity.ApplicationNumber,
+            pModNo = moduleEntity.ModuleNumber,
+            pRetMarkup = true
+        });
+
+    var keyMappings = Model.ap_DropdownModel.ap_JsonKeyPropertyMappings;
+    var additionalMappings = Model.ap_DropdownModel.ap_JsonAdditionalPropertyMappings;
+    var moduleTitle = moduleEntity.ModuleName;
+    var moduleImageSource = Url.Content(dropdownModuleImage);
+    var applicationNumber = moduleEntity.ApplicationNumber;
+    var moduleNumber = moduleEntity.ModuleNumber;
+}
+
+@if (Model.ap_IsReadOnly != true && Model.ap_IsDisabled != true)
+{
+    <button type="button" tabindex="-1" class="btn btn-default dropdown-toggle a4dn-dropdown-toggle-btn a4dn-dropdown-btn" data-toggle="dropdown"><span class="caret"></span></button>
+
+}
+@if (searchCommandElement != null && Model.ap_DropdownModel.ap_ShowSearchButton && Model.ap_IsReadOnly != true && Model.ap_IsDisabled != true)
+{
+    var searchImage = fh.am_GetImageURL(searchCommandElement.Command.CommandImage);
+    <button type="button" tabindex="-1" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state a4dn-dropdown-search-btn a4dn-dropdown-btn" data-toggle="modal" data-target="#a4dn-search-modal" data-a4dn-command-id="SEARCH" data-a4dn-is-checked-btn="False" data-a4dn-checked-state="false" data-original-title="Search" data-a4dn-zero-state="E" data-a4dn-one-state="E" data-a4dn-multiple-state="E" rel="tooltip" data-placement="bottom"><img class="a4dn-command-image" src="@Url.Content(searchImage)"></button>
+}
+@if (openCommandElement != null && Model.ap_DropdownModel.ap_ShowOpenButton && Model.ap_IsDisabled != true)
+{
+    var openImage = fh.am_GetImageURL(openCommandElement.Command.CommandImage);
+    <button type="button" tabindex="-1" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state a4dn-dropdown-open-btn a4dn-dropdown-btn" data-a4dn-command-id="OPEN" data-a4dn-is-checked-btn="False" data-a4dn-checked-state="false" data-original-title="Open" data-a4dn-zero-state="D" data-a4dn-one-state="E" data-a4dn-multiple-state="D" rel="tooltip" data-placement="bottom"><img class="a4dn-command-image" src="@Url.Content(openImage)"></button>
+
+}
+else if (displayCommandElement != null && Model.ap_DropdownModel.ap_ShowOpenButton && Model.ap_IsDisabled != true)
+{
+
+    var displayImage = fh.am_GetImageURL(displayCommandElement.Command.CommandImage);
+    <button type="button" tabindex="-1" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state a4dn-dropdown-open-btn a4dn-dropdown-btn" data-a4dn-command-id="DISPLAY" data-a4dn-is-checked-btn="False" data-a4dn-checked-state="false" data-original-title="Open" data-a4dn-zero-state="D" data-a4dn-one-state="E" data-a4dn-multiple-state="D" rel="tooltip" data-placement="bottom"><img class="a4dn-command-image" src="@Url.Content(displayImage)"></button>
+
+}
+@if (newCommandElement != null && Model.ap_DropdownModel.ap_ShowNewButton && Model.ap_IsReadOnly != true && Model.ap_IsDisabled != true)
+{
+    var newImage = fh.am_GetImageURL(newCommandElement.Command.CommandImage);
+    <button type="button" tabindex="-1" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state a4dn-dropdown-new-btn a4dn-dropdown-btn" data-a4dn-command-id="NEW" data-a4dn-is-checked-btn="False" data-a4dn-checked-state="false" data-original-title="New" data-a4dn-new-state="E" data-a4dn-open-state="E" data-a4dn-display-state="E" rel="tooltip" data-placement="bottom"><img class="a4dn-command-image" src="@Url.Content(newImage)"></button>
+
+}
+<div class="hidden a4dn-val-error-display-rule" data-a4dn-show-error-for="@Model.ap_PropertyName" data-a4dn-when-in-error="@Model.ap_DropdownModel.ap_JsonKeys" data-a4dn-error-message="@Model.ap_DropdownModel.ap_ErrorMessage"></div>
+
+<div class="hidden a4dn-ab_dropdown-configuration" 
+     data-mod_exp_html_view_url="@modExpHtmlViewUrl"
+     data-detail_html_view_url="@detailHtmlViewUrl"
+     data-display_member="@DisplayMember"
+     data-search_member="@SearchMember"
+     data-key_mappings="@keyMappings"
+     data-additional_mappings="@additionalMappings"
+     data-module_title="@moduleTitle"
+     data-module_image_source="@moduleImageSource"
+     data-application_number="@applicationNumber"
+     data-module_number="@moduleNumber"
+     data-filter_keys="@(ModuleModel == null ? "" : ModuleModel.ap_FilterKeys)"></div>
+
+@if (viewEntity == null)
+{
+    <script>
+        a4dn.core.mvc.am_Notification("smallBox", "Warning", "No ViewEntity defined for @moduleEntity.ModuleName, @ViewReferenceExtension");
+    </script>
+}

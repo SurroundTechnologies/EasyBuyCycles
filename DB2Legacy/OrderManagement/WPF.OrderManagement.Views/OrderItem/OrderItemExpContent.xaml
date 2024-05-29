@@ -1,0 +1,29 @@
+<base:AB_ContentWindowBase x:Class="WPF.OrderItem.OrderItemExpContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
+    xmlns:DataPresentation="clr-namespace:A4DN.Core.WPF.Base.DataPresentation;assembly=A4DN.Core.WPF.Base"
+    xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+	xmlns:vm="clr-namespace:BOS.OrderItemViewModel;assembly=BOS.OrderManagement.ViewModels" >
+   
+   <base:AB_ContentWindowBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/OrderItem/OrderItemResourceDictionary.xaml"/>
+                <!-- Merge the higher level DataPresentationResources in order to extend styles defined in it -->
+                <ResourceDictionary Source="/A4DN.Core.WPF.Base;component/DataPresentation/AB_DataPresentationResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <vm:OrderItemVM x:Key="OrderItemVM"/>
+        </ResourceDictionary>
+    </base:AB_ContentWindowBase.Resources>
+	<base:AB_ContentWindowBase.ap_DataContainers>
+        <base:AB_DataGrid ap_Style="{DynamicResource AB_DataGridDefaultStyle}" base:AB_ContentWindow.ap_IsDefaultContainer="True" base:AB_ContentWindow.ap_IsDefaultSearchAndSelectContainer="True" base:AB_ContentWindow.ap_IsDefaultFilterContainer="True" />
+		<base:AB_ListBox ap_Style="{StaticResource DefaultCardStyle}"/>
+		<base:AB_ListBox ap_Style="{StaticResource AlbumCardStyle}"/>
+    </base:AB_ContentWindowBase.ap_DataContainers>
+    <!--<base:AB_ContentWindowBase.ap_DataPresentationStyles>
+        <base:AB_StyleHolder ap_Style="{DynamicResource AB_DataGridDefaultStyle}" ap_IsDefault="True" />
+        <base:AB_StyleHolder ap_Style="{StaticResource DefaultCardStyle}" />
+        <base:AB_StyleHolder ap_Style="{StaticResource AlbumCardStyle}" />
+    </base:AB_ContentWindowBase.ap_DataPresentationStyles>-->
+</base:AB_ContentWindowBase>

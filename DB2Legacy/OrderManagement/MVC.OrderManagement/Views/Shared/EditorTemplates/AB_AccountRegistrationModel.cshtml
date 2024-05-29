@@ -1,0 +1,103 @@
+﻿@using A4DN.Core.MVC.Shared
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@model A4DN.Core.MVC.AccountRegistration.AB_AccountRegistrationModel
+@{
+    Model.ConfirmPassword = null;  // Don't prepopulate the ConfirmPassword field
+}
+<style>
+    label.required::after {
+        content: "*";
+        color: #ff0000;
+        padding-left: 0.25em;
+    }
+</style>
+@helper RenderField(string fieldName, string icon, string fieldType, string placeholder, string autocomplete, bool isRequired)
+{
+    <section>
+        <label class="label @(isRequired ? "required" : "")">@Html.DisplayName(fieldName)</label>
+        <label class="@(fieldType == "textarea" ? "textarea" : "input")">
+            <i class="icon-append fa @icon"></i>
+            @if (fieldType == "textarea")
+            {
+                <textarea rows="3" name="@Html.Name(fieldName)" placeholder="@placeholder" autocomplete="@autocomplete" @Html.am_UnobtrusiveValidationAttributes(fieldName)>@Html.Value(fieldName)</textarea>
+            }
+            else
+            {
+                <input type="@fieldType" name="@Html.Name(fieldName)" placeholder="@placeholder" autocomplete="@autocomplete" value="@Html.Value(fieldName)" @Html.am_UnobtrusiveValidationAttributes(fieldName)>
+            }
+            @Html.ValidationMessage(fieldName)
+        </label>
+    </section>
+}
+@using (Html.BeginForm("Register", "SYS_Account", FormMethod.Post, new { @class = "smart-form client-form", role = "form", id = "registration-form" }))
+{
+    <input type="hidden" name="@Html.NameFor(m => m.ap_StageNumber)" value="@Html.ValueFor(m => m.ap_StageNumber)" />
+
+    <header>@Resources.DescriptionResource.Registration</header>
+    @Html.AntiForgeryToken()
+    @Html.ValidationBootstrap()
+
+    if (!string.IsNullOrWhiteSpace(Model.ap_ErrorMessage))
+    {
+        <div class="alert alert-danger @Model.ap_ErrorLevel">
+            @Model.ap_ErrorMessage
+        </div>
+    }
+
+    if (Model.ap_StageNumber == 0)
+    {
+        <fieldset>
+            @RenderField("UserID", "fa-user", "text", Resources.DescriptionResource.EnterYourDesiredUsername, "username", true)
+            @RenderField("FullName", "fa-user", "text", Resources.DescriptionResource.EnterYourFullName, "name", true)
+            @RenderField("CompanyName", "fa-building", "text", Resources.DescriptionResource.EnterYourCompanyName, "organization", true)
+            @RenderField("JobTitle", "fa-briefcase", "text", Resources.DescriptionResource.EnterYourJobTitle, "organization-title", false)
+            @RenderField("Phone", "fa-phone", "tel", Resources.DescriptionResource.EnterYourContactPhoneNumber, "tel", true)
+            @RenderField("Email", "fa-envelope", "email", Resources.DescriptionResource.EnterYourEmailAddress, "email", true)
+            @RenderField("ConfirmEmail", "fa-envelope", "email", Resources.DescriptionResource.EnterYourEmailAddress, "off", true)
+            @RenderField("Website", "fa-link", "text", Resources.DescriptionResource.EnterYourWebsite, "url", false)
+            @RenderField("MailingAddress", "fa-map-marker", "textarea", Resources.DescriptionResource.EnterYourAddress, "street-address", false)
+        </fieldset>
+        <footer>
+            <button type="submit" class="btn btn-primary">@Resources.DescriptionResource.Submit</button>
+        </footer>
+    }
+    else if (Model.ap_StageNumber == 1)
+    {
+        <div class="alert alert-block alert-success">
+            <h4 class="alert-heading"><i class="fa fa-check-square-o"></i>@Resources.DescriptionResource.AlmostThere<br />@Resources.DescriptionResource.DonotCloseBrowserYet</h4>
+            <p>@Resources.DescriptionResource.CheckYourEmailForVerificationCode</p>
+        </div>
+        <fieldset>
+            @RenderField("ap_UserSuppliedCode", "fa-pencil", "text", Resources.DescriptionResource.EnterCodeFromRegistrationEmail, "off", true)
+            @RenderField("Password", "fa-lock", "password", "", "new-password", true)
+            @RenderField("ConfirmPassword", "fa-lock", Resources.DescriptionResource.PASSWORD, "", "off", true)
+            @RenderField("SecurityQuestion", "fa-question", "text", Resources.DescriptionResource.EnterQuestionIdPasswordRecovery, "off", true)
+            <section style="margin-top: -10px;">
+                @{
+                    var questions = AB_FrameworkHelper.ap_SecurityQuestions;
+                }
+                @if (questions.Count > 0)
+                {
+                    <label class="select">
+                        <select id="security-question-suggestions" class="@(String.IsNullOrWhiteSpace(Model.SecurityQuestion) ? "no-selection" : null)" data-for="[name='@Html.NameFor(m => m.SecurityQuestion)']">
+                            @if (!questions.Any(q => q.Value == ""))
+                            {
+                                <option value="">@Resources.DescriptionResource.OrChooseQuestion</option>
+                            }
+                            @foreach (var sli in questions)
+                            {
+                                <option value="@sli.Value" @(sli.Selected ? "selected" : null)>@sli.Text</option>
+                            }
+                        </select>
+                        <i></i>
+                    </label>
+                }
+            </section>
+            @RenderField("SecurityAnswer", "fa-pencil", "text", Resources.DescriptionResource.EnterAnswerToSecurityQuestion, "off", true)
+        </fieldset>
+        <footer>
+            <a class="btn btn-default pull-left" href="@Url.Action("Register", "SYS_Account", new { rs = 1 })">@Resources.DescriptionResource.Back</a>
+            <button type="submit" class="btn btn-primary">@Resources.DescriptionResource.Register</button>
+        </footer>
+                        }
+                    }

@@ -1,0 +1,3 @@
+# List of folders to ignore for build; one per line and relative to root folder
+# If needed, use \\ as a folder separator
+NuGetPackages

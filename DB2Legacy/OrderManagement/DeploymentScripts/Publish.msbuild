@@ -1,0 +1,122 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	ToolsVersion="$(ToolsVersion)"
+	DefaultTargets="AllLayers">
+
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(ToolsVersion)\Web\Microsoft.Web.Publishing.targets" />
+	
+	<Choose>
+		<When Condition=" '$(SigningManifestPassword)' != '' ">
+			<PropertyGroup>
+				<SigningPasswordParm>-Password $(SigningManifestPassword)</SigningPasswordParm>
+			</PropertyGroup>
+		</When>
+		<When Condition=" '$(SigningManifestPassword)' == '' ">
+			<PropertyGroup>
+				<SigningPasswordParm> </SigningPasswordParm>
+			</PropertyGroup>
+		</When>
+	</Choose>
+	
+	<!-- Promotion Variables -->
+	<PropertyGroup>
+		<DeploymentClickOncePath>$(DeploymentFolder)\installer</DeploymentClickOncePath>
+		<DeploymentClickOnceFiles>$(DeploymentClickOncePath)\Application Files\WPF.$(SolutionSystemName)_$(ApplicationVersion.Replace('.','_'))</DeploymentClickOnceFiles>
+		<DeploymentBin>$(DeploymentFolder)\bin</DeploymentBin>
+		<ApplicationManifestFileName>$(DeploymentClickOncePath)\WPF.$(SolutionSystemName).application</ApplicationManifestFileName>
+		<DeploymentManifestFileName>$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest</DeploymentManifestFileName>	
+		<DeploymentAppConfigFileName>$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.config.deploy</DeploymentAppConfigFileName>		
+		<CertFilePath>$(SolutionFolder)\System\WPF.$(SolutionSystemName)\WPF.$(SolutionSystemName).$(EnvID).pfx</CertFilePath>
+		<PathToApplicationManifestTransform>ApplicationManifestTransform.$(EnvID).xml</PathToApplicationManifestTransform>
+		<LatestArchiveFolder>$(LatestArchiveFolder)</LatestArchiveFolder>
+		<PathToMage>$(MagePath)</PathToMage>
+		<PathTo7Zip>$(SevenZipPath)</PathTo7Zip>
+		<WebServicesUrl>$(InstallationFolderURL)</WebServicesUrl>
+		<ClickOnceIcon>$(ClickOnceIconPath)</ClickOnceIcon>
+		
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<!-- Create an item which we can use to bundle all the transformations which are needed -->
+		<AppConfigUpdates Include="$(DeploymentAppConfigFileName)">
+			<AppConfigXPath>/configuration/appSettings/add[@key='EnvironmentID']/@value</AppConfigXPath>
+			<AppConfigValue>$(EnvID)</AppConfigValue>
+		</AppConfigUpdates>
+	</ItemGroup>
+	
+	<Target Name="UpdateApplicationEnviromentID">
+		<Message Text="Updating config file at $(DeploymentAppConfigFileName)" />
+		<!-- Now let's execute all the XML transformations -->
+		<XmlPoke XmlInputPath="$(DeploymentAppConfigFileName)"
+			Query="%(AppConfigUpdates.AppConfigXPath)"
+			Value="%(AppConfigUpdates.AppConfigValue)"/>
+	</Target>
+	
+	<Target Name="UpdateAndResignManifests">
+		<!-- <Message Text="$(MagePath)" />
+		<Message Text="$(SevenZipPath)" /> -->
+		<!-- Add .deploy extension to manifest file -->
+		<Copy SourceFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest" DestinationFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest.deploy" />
+		<CreateItem Include="$(DeploymentClickOnceFiles)\**\*.*" >
+		  <Output TaskParameter="Include" ItemName="AllFilesInDotDeployFolder"/>
+		</CreateItem>
+		<!-- Copy all files and remove .deploy extension  -->
+		<Copy SourceFiles="@(AllFilesInDotDeployFolder)" DestinationFiles="@(AllFilesInDotDeployFolder->'$(DeploymentClickOnceFiles)\%(RecursiveDir)%(Filename)')" ContinueOnError="false"   />
+		<!-- Fix issue where WPF.$(SolutionSystemName).exe gets overwritten by manifest file -->
+		<Copy SourceFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.deploy" DestinationFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe" />
+		<CreateItem Include="$(DeploymentClickOnceFiles)\**\*.deploy" >
+		  <Output TaskParameter="Include" ItemName="OnlyDotDeployFilesInDotDeployFolder"/>
+		</CreateItem>
+		<!-- Delete existing .deploy files -->
+		<Delete Files="@(OnlyDotDeployFilesInDotDeployFolder)" ContinueOnError="false"  />
+		<!-- Re-sign deployment manifest -->
+		<Exec Command="&quot;$(PathToMage)&quot; -Update &quot;$(DeploymentManifestFileName)&quot; -CertFile &quot;$(CertFilePath)&quot; $(SigningPasswordParm)"   />
+		<CreateItem Include="$(DeploymentClickOnceFiles)\**\*.*" >
+		  <Output TaskParameter="Include" ItemName="AllNonDotDeployFilesInDotDeployDir"/>
+		</CreateItem>
+		<!-- Copy everything to temp dir and add .deploy extension  -->
+		<Copy SourceFiles="@(AllNonDotDeployFilesInDotDeployDir)" DestinationFiles="@(AllNonDotDeployFilesInDotDeployDir->'$(DeploymentClickOncePath)\Temp\%(RecursiveDir)%(Filename)%(Extension).deploy')" />
+		<!-- Delete all files in deployment directory-->
+		<Delete Files="@(AllNonDotDeployFilesInDotDeployDir)"  />
+		<CreateItem Include="$(DeploymentClickOncePath)\Temp\**\*.*" >
+		  <Output TaskParameter="Include" ItemName="TempFilesWithDotDeploy"/>
+		</CreateItem>
+		<!-- Copy files with .deploy back to deployment director -->
+		<Copy SourceFiles="@(TempFilesWithDotDeploy)" DestinationFiles="@(TempFilesWithDotDeploy->'$(DeploymentClickOnceFiles)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<!-- Remove .deploy ext from manifest -->
+		<Copy SourceFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest.deploy" DestinationFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest" />
+		<Delete Files="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest.deploy" />
+		<!-- Remove Temp Dir -->
+		<RemoveDir Directories="$(DeploymentClickOncePath)\Temp" />
+		<!-- Rename Product for environment (create copy due to file locking issue -->
+		<Copy SourceFiles="$(ApplicationManifestFileName)" DestinationFiles="$(ApplicationManifestFileName).Copy" />
+		<TransformXml Source="$(ApplicationManifestFileName).Copy"
+					  Transform="$(PathToApplicationManifestTransform)"
+					  Destination="$(ApplicationManifestFileName)"  />
+		<!-- Update and re-sign .application file -->
+		<Exec Command="&quot;$(PathToMage)&quot; -Update &quot;$(ApplicationManifestFileName)&quot; -ProviderURL &quot;$(WebServicesUrl)WPF.$(SolutionSystemName).application&quot; -AppManifest &quot;$(DeploymentManifestFileName)&quot;  -CertFile &quot;$(CertFilePath)&quot; $(SigningPasswordParm) -Publisher &quot;$(PublisherName)&quot;"   />
+		<!-- Clean up .copy file -->
+		<Delete Files="$(ApplicationManifestFileName).Copy" ContinueOnError="true"  />
+		
+		<!-- Update the setup.exe to point to the correct url -->
+		<Exec Command="$(DeploymentClickOncePath)\setup.exe /url=$(WebServicesUrl)" />
+	</Target>
+	
+	<Target Name="SetConfigForEnvironment" DependsOnTargets="SetConfigForWeb;SetConfigForWpfApp" />
+	
+	<Target Name="SetConfigForWeb">
+		<!-- <Copy SourceFiles="$(DeploymentFolder)\Web.$(EnvID).config" DestinationFiles="$(DeploymentFolder)\Web.config" /> -->
+		<Copy SourceFiles="$(DeploymentBin)\ConnectionParms.$(EnvID).config" DestinationFiles="$(DeploymentBin)\ConnectionParms.config" />
+		<Copy SourceFiles="$(DeploymentBin)\Services.$(EnvID).config" DestinationFiles="$(DeploymentBin)\Services.config" />
+	</Target>
+
+	<Target Name="SetConfigForWpfApp">
+        <!-- <Copy SourceFiles="$(DeploymentClickOnceFiles)\App.$(EnvID).config.deploy" DestinationFiles="$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.config.deploy" /> -->
+		<Copy SourceFiles="$(DeploymentClickOnceFiles)\Services.$(EnvID).config.deploy" DestinationFiles="$(DeploymentClickOnceFiles)\Services.config.deploy" />
+    <Copy SourceFiles="$(ClickOnceIcon)" DestinationFiles="$(DeploymentClickOnceFiles)\$(ClickOnceIconName).deploy" />
+	</Target>
+	
+	<Target Name="CompressOutput">	
+		<Exec Command="&quot;$(PathTo7Zip)&quot; a -tzip $(DeploymentFolder)\..\$(SolutionSystemName)_$(EnvID)_$(ApplicationVersion.Replace('.','_')).zip $(DeploymentFolder)\* " IgnoreExitCode="true"/>
+	</Target>
+  
+</Project>

@@ -1,0 +1,10 @@
+<base:AB_Browser x:Class="WPF.OrderManagement.Browser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
+    xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+    Height="750" Width="1020" WindowStartupLocation="CenterScreen">
+    <Grid>
+        
+    </Grid>
+</base:AB_Browser>

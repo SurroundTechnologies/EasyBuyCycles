@@ -1,0 +1,42 @@
+﻿@model ExceptionContext
+
+@{
+var guid = "g" + Guid.NewGuid().ToString();
+}
+
+<div id="a4dn-module-@guid" data-a4dn-guid="@guid" data-a4dn-type="exception" class="a4dn-exception a4dn-module">
+
+    <!--Module Detail Main Content Pane-->
+    <div class="a4dn-splitter-pane-1">
+        <div class="a4dn-module-content a4dn-module-detail-content">
+          
+            <div class="a4dn-scroll-body">
+                <div class="a4dn-exception-header"><i class="fa fa-frown-o fa-3x" aria-hidden="true"><span class="margin-left-5"> @Resources.DescriptionResource.ExceptionHeader</span></i></div>
+
+                <div class="display-label">Controller</div>
+                <div class="display-field">@Model.Controller</div>
+                        <div>
+                            @Html.DisplayFor(m => Model.Exception)
+
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+
+    <!--Module Detail Content Preview Pane-->
+    <div class="a4dn-splitter-pane-2">
+
+        <div class="a4dn-module-preview a4dn-module-detail-content-preview hidden">
+
+          
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    a4dn.core.mvc.am_SetupExceptionError({ guid: "@guid" });
+
+</script>

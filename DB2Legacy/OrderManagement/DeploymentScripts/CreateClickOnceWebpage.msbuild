@@ -1,0 +1,358 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	ToolsVersion="$(ToolsVersion)"
+	DefaultTargets="AllLayers">
+	<PropertyGroup>
+	  <Title>$(ClickOnceInstallPageTitle)</Title>
+	  <Publisher>$(Publisher)</Publisher>
+	  <Company>$(Company)</Company>
+	  <ApplicationName>$(ApplicationName)</ApplicationName>
+	  <VersionNumber>$(ApplicationVersion)</VersionNumber>
+	  <DeploymentClickOncePath>$(DeploymentFolder)\Installer</DeploymentClickOncePath>
+	  <ClickOnceWebPageName>$(ClickOnceWebPageName)</ClickOnceWebPageName>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PublishHtmFileContents Include="%3CHTML%3E"/>
+	  <PublishHtmFileContents Include="%3CHEAD%3E"/>
+	  <PublishHtmFileContents Include="%3CTITLE%3E$(Title)%3C%2FTITLE%3E"/>
+	  <PublishHtmFileContents Include="%3CMETA HTTP-EQUIV%3D%22Content-Type%22 CONTENT%3D%22text%2Fhtml%3B charset%3Dutf-8%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3CSTYLE TYPE%3D%22text%2Fcss%22%3E"/>
+	  <PublishHtmFileContents Include="%3C%21--"/>
+	  <PublishHtmFileContents Include="BODY%7Bmargin-top%3A20px%3B margin-left%3A20px%3B margin-right%3A20px%3B color%3A%23000000%3B font-family%3ATahoma%3B background-color%3Awhite%7D"/>
+	  <PublishHtmFileContents Include="A%3Alink %7Bfont-weight%3Anormal%3B color%3A%23000066%3B text-decoration%3Anone%7D"/>
+	  <PublishHtmFileContents Include="A%3Avisited %7Bfont-weight%3Anormal%3B color%3A%23000066%3B text-decoration%3Anone%7D"/>
+	  <PublishHtmFileContents Include="A%3Aactive %7Bfont-weight%3Anormal%3B text-decoration%3Anone%7D"/>
+	  <PublishHtmFileContents Include="A%3Ahover %7Bfont-weight%3Anormal%3B color%3A%23FF6600%3B text-decoration%3Anone%7D"/>
+	  <PublishHtmFileContents Include="P %7Bmargin-top%3A0px%3B margin-bottom%3A12px%3B color%3A%23000000%3B font-family%3ATahoma%7D"/>
+	  <PublishHtmFileContents Include="PRE %7Bborder-right%3A%23f0f0e0 1px solid%3B padding-right%3A5px%3B border-top%3A%23f0f0e0 1px solid%3B margin-top%3A-5px%3B padding-left%3A5px%3B font-size%3Ax-small%3B padding-bottom%3A5px%3B border-left%3A%23f0f0e0 1px solid%3B padding-top%3A5px%3B border-bottom%3A%23f0f0e0 1px solid%3B font-family%3ACourier New%3B background-color%3A%23e5e5cc%7D"/>
+	  <PublishHtmFileContents Include="TD %7Bfont-size%3A12px%3B color%3A%23000000%3B font-family%3ATahoma%7D"/>
+	  <PublishHtmFileContents Include="H2 %7Bborder-top%3A %23003366 1px solid%3B margin-top%3A25px%3B font-weight%3Abold%3B font-size%3A1.5em%3B margin-bottom%3A10px%3B margin-left%3A-15px%3B color%3A%23003366%7D"/>
+	  <PublishHtmFileContents Include="H3 %7Bmargin-top%3A10px%3B font-size%3A 1.1em%3B margin-bottom%3A 10px%3B margin-left%3A -15px%3B color%3A %23000000%7D"/>
+	  <PublishHtmFileContents Include="UL %7Bmargin-top%3A10px%3B margin-left%3A20px%7D"/>
+	  <PublishHtmFileContents Include="OL %7Bmargin-top%3A10px%3B margin-left%3A20px%7D"/>
+	  <PublishHtmFileContents Include="LI %7Bmargin-top%3A10px%3B color%3A %23000000%7D"/>
+	  <PublishHtmFileContents Include="FONT.value %7Bfont-weight%3Abold%3B color%3Adarkblue%7D"/>
+	  <PublishHtmFileContents Include="FONT.key %7Bfont-weight%3A bold%3B color%3A darkgreen%7D"/>
+	  <PublishHtmFileContents Include=".divTag %7Bborder%3A1px%3B border-style%3Asolid%3B background-color%3A%23FFFFFF%3B text-decoration%3Anone%3B height%3Aauto%3B width%3Aauto%3B background-color%3A%23cecece%7D"/>
+	  <PublishHtmFileContents Include=".BannerColumn %7Bbackground-color%3A%23000000%7D"/>
+	  <PublishHtmFileContents Include=".Banner %7Bborder%3A0%3B padding%3A0%3B height%3A8px%3B margin-top%3A0px%3B color%3A%23ffffff%3B filter%3Aprogid%3ADXImageTransform.Microsoft.Gradient(GradientType%3D1,StartColorStr%3D'%231c5280',EndColorStr%3D'%23FFFFFF')%3B%7D"/>
+	  <PublishHtmFileContents Include=".BannerTextCompany %7Bfont%3Abold%3B font-size%3A18pt%3B color%3A%23cecece%3B font-family%3ATahoma%3B height%3A0px%3B margin-top%3A0%3B margin-left%3A8px%3B margin-bottom%3A0%3B padding%3A0px%3B white-space%3Anowrap%3B filter%3Aprogid%3ADXImageTransform.Microsoft.dropshadow(OffX%3D2,OffY%3D2,Color%3D'black',Positive%3D'true')%3B%7D"/>
+	  <PublishHtmFileContents Include=".BannerTextApplication %7Bfont%3Abold%3B font-size%3A18pt%3B font-family%3ATahoma%3B height%3A0px%3B margin-top%3A0%3B margin-left%3A8px%3B margin-bottom%3A0%3B padding%3A0px%3B white-space%3Anowrap%3B filter%3Aprogid%3ADXImageTransform.Microsoft.dropshadow(OffX%3D2,OffY%3D2,Color%3D'black',Positive%3D'true')%3B%7D"/>
+	  <PublishHtmFileContents Include=".BannerText %7Bfont%3Abold%3B font-size%3A18pt%3B font-family%3ATahoma%3B height%3A0px%3B margin-top%3A0%3B margin-left%3A8px%3B margin-bottom%3A0%3B padding%3A0px%3B filter%3Aprogid%3ADXImageTransform.Microsoft.dropshadow(OffX%3D2,OffY%3D2,Color%3D'black',Positive%3D'true')%3B%7D"/>
+	  <PublishHtmFileContents Include=".BannerSubhead %7Bborder%3A0%3B padding%3A0%3B height%3A16px%3B margin-top%3A0px%3B margin-left%3A10px%3B color%3A%23ffffff%3B filter%3Aprogid%3ADXImageTransform.Microsoft.Gradient(GradientType%3D1,StartColorStr%3D'%234B3E1A',EndColorStr%3D'%23FFFFFF')%3B%7D"/>
+	  <PublishHtmFileContents Include=".BannerSubheadText %7Bfont%3Abold%3B height%3A11px%3B font-size%3A11px%3B font-family%3ATahoma%3B margin-top%3A1%3B margin-left%3A10%3B filter%3Aprogid%3ADXImageTransform.Microsoft.dropshadow(OffX%3D2,OffY%3D2,Color%3D'black',Positive%3D'true')%3B%7D"/>
+	  <PublishHtmFileContents Include=".FooterRule %7Bborder%3A0%3B padding%3A0%3B height%3A1px%3B margin%3A0px%3B color%3A%23ffffff%3B filter%3Aprogid%3ADXImageTransform.Microsoft.Gradient(GradientType%3D1,StartColorStr%3D'%234B3E1A',EndColorStr%3D'%23FFFFFF')%3B%7D"/>
+	  <PublishHtmFileContents Include=".FooterText %7Bfont-size%3A11px%3B font-weight%3Anormal%3B text-decoration%3Anone%3B font-family%3ATahoma%3B margin-top%3A10%3B margin-left%3A0px%3B margin-bottom%3A2%3B padding%3A0px%3B color%3A%23999999%3B white-space%3Anowrap%7D"/>
+	  <PublishHtmFileContents Include=".FooterText A%3Alink %7Bfont-weight%3Anormal%3B color%3A%23999999%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".FooterText A%3Avisited %7Bfont-weight%3Anormal%3B color%3A%23999999%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".FooterText A%3Aactive %7Bfont-weight%3Anormal%3B color%3A%23999999%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".FooterText A%3Ahover %7Bfont-weight%3Anormal%3B color%3A%23FF6600%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".ClickOnceInfoText %7Bfont-size%3A11px%3B font-weight%3Anormal%3B text-decoration%3Anone%3B font-family%3ATahoma%3B margin-top%3A0%3B margin-right%3A2px%3B margin-bottom%3A0%3B padding%3A0px%3B color%3A%23000000%7D"/>
+	  <PublishHtmFileContents Include=".InstallTextStyle %7Bfont%3Abold%3B font-size%3A14pt%3B font-family%3ATahoma%3B a%3A%23FF0000%3B text-decoration%3ANone%7D"/>
+	  <PublishHtmFileContents Include=".DetailsStyle %7Bmargin-left%3A30px%7D"/>
+	  <PublishHtmFileContents Include=".ItemStyle %7Bmargin-left%3A-15px%3B font-weight%3Abold%7D"/>
+	  <PublishHtmFileContents Include=".StartColorStr %7Bbackground-color%3A%234B3E1A%7D"/>
+	  <PublishHtmFileContents Include=".JustThisApp A%3Alink %7Bfont-weight%3Anormal%3B color%3A%23000066%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".JustThisApp A%3Avisited %7Bfont-weight%3Anormal%3B color%3A%23000066%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".JustThisApp A%3Aactive %7Bfont-weight%3Anormal%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include=".JustThisApp A%3Ahover %7Bfont-weight%3Anormal%3B color%3A%23FF6600%3B text-decoration%3Aunderline%7D"/>
+	  <PublishHtmFileContents Include="--%3E"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%3C%2FSTYLE%3E"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%3C%2FHEAD%3E"/>
+	  <PublishHtmFileContents Include="%3CBODY%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTABLE WIDTH%3D%22100%%22 CELLPADDING%3D%220%22 CELLSPACING%3D%222%22 BORDER%3D%220%22%3E"/>
+
+	  <PublishHtmFileContents Include="%20"/>
+
+	  <PublishHtmFileContents Include="%3C%21-- Begin Banner --%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTABLE CELLPADDING%3D%222%22 CELLSPACING%3D%220%22 BORDER%3D%220%22 BGCOLOR%3D%22%23cecece%22 WIDTH%3D%22100%%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTABLE BGCOLOR%3D%22%231c5280%22 WIDTH%3D%22100%%22 CELLPADDING%3D%220%22 CELLSPACING%3D%220%22 BORDER%3D%220%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD CLASS%3D%22Banner%22 %2F%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD CLASS%3D%22Banner%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CSPAN CLASS%3D%22BannerTextCompany%22%3E$(Company)%3C%2FSPAN%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD CLASS%3D%22Banner%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CSPAN CLASS%3D%22BannerTextApplication%22%3E$(ApplicationName)%3C%2FSPAN%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD CLASS%3D%22Banner%22 ALIGN%3D%22RIGHT%22 %2F%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%21-- End Banner --%3E"/>
+
+	  <PublishHtmFileContents Include="%20"/>
+
+	  <PublishHtmFileContents Include="%20"/>
+
+	  <PublishHtmFileContents Include="%3C%21-- Begin Dialog --%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD ALIGN%3D%22LEFT%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTABLE CELLPADDING%3D%222%22 CELLSPACING%3D%220%22 BORDER%3D%220%22 WIDTH%3D%22540%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%22496%22%3E"/>
+
+	  <PublishHtmFileContents Include="%20"/>
+
+	  <PublishHtmFileContents Include="%3C%21-- Begin AppInfo --%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTABLE%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD COLSPAN%3D%223%22%3E%26nbsp%3B%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CB%3EName%3A%3C%2FB%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%225%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 WIDTH%3D%2210%22 %2F%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E$(ApplicationName)%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD COLSPAN%3D%223%22%3E%26nbsp%3B%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CB%3EVersion%3A%3C%2FB%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%225%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 WIDTH%3D%2210%22 %2F%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E$(VersionNumber)%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD COLSPAN%3D%223%22%3E%26nbsp%3B%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CB%3EPublisher%3A%3C%2FB%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%225%22%3E"/>
+
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 WIDTH%3D%2210%22 %2F%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTD%3E$(Publisher)%3C%2FTD%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+
+	  <PublishHtmFileContents Include="%3Ctr%3E"/>
+
+	  <PublishHtmFileContents Include="%3Ctd colspan%3D%223%22%3E%26nbsp%3B%3C%2Ftd%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2Ftr%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+
+	  <PublishHtmFileContents Include="%3C%21-- End AppInfo --%3E"/>
+
+	  <PublishHtmFileContents Include="%20"/>
+
+	  <PublishHtmFileContents Include="%20"/>
+
+	  <PublishHtmFileContents Include="%3C%21-- Begin Prerequisites --%3E"/>
+
+	  <PublishHtmFileContents Include="%3CTABLE ID%3D%22BootstrapperSection%22 BORDER%3D%220%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD COLSPAN%3D%222%22%3EThe following prerequisites are required%3A%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%2210%22%3E%26nbsp%3B%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+	  <PublishHtmFileContents Include="%3CUL%3E"/>
+	  <PublishHtmFileContents Include="%3CLI%3EWindows Installer 4.5%3C%2FLI%3E"/>
+	  <PublishHtmFileContents Include="%3CLI%3EMicrosoft .NET Framework 4.5.2 (x86 and x64)%3C%2FLI%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FUL%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD COLSPAN%3D%222%22%3E"/>
+	  <PublishHtmFileContents Include="If these components are already installed, you can %3CSPAN CLASS%3D%22JustThisApp%22%3E"/>
+	  <PublishHtmFileContents Include="%3CA HREF%3D%22CsodOfflinePlayer.application%22%3Elaunch%3C%2FA%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FSPAN%3E the application now. Otherwise, click the button below to install the prerequisites and run the application."/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD COLSPAN%3D%222%22%3E%26nbsp%3B%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%21-- End Prerequisites --%3E"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%21-- Begin Buttons --%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD ALIGN%3D%22LEFT%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTABLE CELLPADDING%3D%222%22 CELLSPACING%3D%220%22 BORDER%3D%220%22 WIDTH%3D%22540%22 STYLE%3D%22cursor%3Ahand%22 ONCLICK%3D%22window.navigate(InstallButton.href)%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD ALIGN%3D%22LEFT%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTABLE CELLPADDING%3D%221%22 BGCOLOR%3D%22%23333333%22 CELLSPACING%3D%220%22 BORDER%3D%220%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+	  <PublishHtmFileContents Include="%3CTABLE CELLPADDING%3D%221%22 BGCOLOR%3D%22%23cecece%22 CELLSPACING%3D%220%22 BORDER%3D%220%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+	  <PublishHtmFileContents Include="%3CTABLE CELLPADDING%3D%221%22 BGCOLOR%3D%22%23efefef%22 CELLSPACING%3D%220%22 BORDER%3D%220%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%2220%22%3E"/>
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 WIDTH%3D%2220%22 HEIGHT%3D%221%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+	  <PublishHtmFileContents Include="%3CA ID%3D%22InstallButton%22 HREF%3D%22setup.exe%22%3EInstall%3C%2FA%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3CTD width%3D%2220%22%3E"/>
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 WIDTH%3D%2220%22 HEIGHT%3D%221%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3CTD WIDTH%3D%2215%%22 ALIGN%3D%22right%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%21-- End Buttons --%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%21-- End Dialog --%3E"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%3C%21-- Spacer Row --%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD%3E%26nbsp%3B%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%21-- Begin Footer --%3E"/>
+	  <PublishHtmFileContents Include="%3CTABLE WIDTH%3D%22100%%22 CELLPADDING%3D%220%22 CELLSPACING%3D%220%22 BORDER%3D%220%22 BGCOLOR%3D%22%23ffffff%22%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD HEIGHT%3D%225%22%3E"/>
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 HEIGHT%3D%225%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD CLASS%3D%22FooterText%22 ALIGN%3D%22center%22%3E"/>
+	  <PublishHtmFileContents Include="%3CA HREF%3D%22http%3A%2F%2Fgo.microsoft.com%2Ffwlink%2F%3FLinkId%3D154571%22%3EClickOnce and .NET Framework Resources%3C%2FA%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD HEIGHT%3D%225%22%3E"/>
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 HEIGHT%3D%225%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTR%3E"/>
+	  <PublishHtmFileContents Include="%3CTD HEIGHT%3D%221%22 bgcolor%3D%22%23cecece%22%3E"/>
+	  <PublishHtmFileContents Include="%3CSPACER TYPE%3D%22block%22 HEIGHT%3D%221%22 %2F%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%21-- End Footer --%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTD%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FTR%3E"/>
+	  <PublishHtmFileContents Include="%20"/>
+	  <PublishHtmFileContents Include="%3C%2FTABLE%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FBODY%3E"/>
+	  <PublishHtmFileContents Include="%3C%2FHTML%3E"/>
+	</ItemGroup>
+
+
+	<Target Name="CreatePublishWebPage">
+		<WriteLinesToFile Lines="@(PublishHtmFileContents)" File="$(DeploymentClickOncePath)\$(ClickOnceWebPageName)" Overwrite="true"/>
+	</Target>
+	
+</Project>

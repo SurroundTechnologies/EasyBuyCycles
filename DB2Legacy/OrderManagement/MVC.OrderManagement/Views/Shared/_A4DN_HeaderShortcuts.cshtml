@@ -1,0 +1,131 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <span id="a4dn-shortcuts" class="btn-header">
+        <span> <a href="javascript:void(0);" title="@Resources.DescriptionResource.Shortcuts"><i class="fa fa-external-link-square "></i></a> </span>
+    </span>
+
+        <!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+    <div id="a4dn-shortcuts-dropdown" class="ajax-dropdown" data-a4dn-loaded="false">
+
+        <div class="a4dn-shortcuts-radio btn-group btn-group-justified" data-toggle="buttons">
+            <label class="btn btn-default active">
+                <img class="a4dn-command-image" src="@Url.Content("~/Content/img/a4dn/MyHistory_small.png")" />
+                <input type="radio" name="a4dn-shortcuts" checked="checked" data-a4dn-shortcut="a4dn-history">
+                @Resources.DescriptionResource.History
+            </label>
+            <label class="btn btn-default">
+                <img class="a4dn-command-image" src="@Url.Content("~/Content/img/a4dn/SharedFolders_small.png")">
+                <input type="radio" name="a4dn-shortcuts" data-a4dn-shortcut="a4dn-folders">
+                @Resources.DescriptionResource.Folders
+            </label>
+            <label class="btn btn-default">
+                <img class="a4dn-command-image" src="@Url.Content("~/Content/img/a4dn/HotList_small.png")" />
+                <input type="radio" name="a4dn-shortcuts" data-a4dn-shortcut="a4dn-hotlist">
+                @Resources.DescriptionResource.Hotlist
+            </label>
+        </div>
+
+        <!-- Taskpane Options -->
+        <div class="a4dn-shortcuts-options">
+            <div class="a4dn-history-options a4dn-options" data-a4dn-loaded="false" data-a4dn-get-href="@Url.Action("am_GetHistoryByGroup", "AB_Framework")" data-a4dn-add-href="@Url.Action("am_AddHistory", "AB_Framework")" data-a4dn-remove-href="@Url.Action("am_PurgeHistory", "AB_Framework", new {action = "All" })">
+                <form class="smart-form">
+                    <section>
+
+                        <div class="inline-group a4dn-history-radio-group a4dn-radio-group a4dn-center">
+
+                            <label class="radio">
+                                <input type="radio" name="a4dn-history-groupby" checked="checked" data-a4dn-groupby="ByDate" data-a4dn-nr-msg="@Resources.DescriptionResource.NoHistoryShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.HistoryShortcutsRemoveAllMessage">
+                                <i></i>@Resources.DescriptionResource.HistoryByDate
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="a4dn-history-groupby" data-a4dn-groupby="ByModule" data-a4dn-nr-msg="@Resources.DescriptionResource.NoHistoryShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.HistoryShortcutsRemoveAllMessage">
+                                <i></i>@Resources.DescriptionResource.HistoryByModule
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="a4dn-history-groupby" data-a4dn-groupby="ByMostRecent" data-a4dn-nr-msg="@Resources.DescriptionResource.NoHistoryShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.HistoryShortcutsRemoveAllMessage">
+                                <i></i>@Resources.DescriptionResource.HistoryByMostRecent
+                            </label>
+                        </div>
+                    </section>
+                </form>
+            </div>
+
+            <div class="a4dn-folders-options a4dn-options" data-a4dn-loaded="false" data-a4dn-get-href="@Url.Action("am_GetFolders", "AB_Framework")" data-a4dn-add-href="@Url.Action("am_AddFolderRecord", "AB_Framework")">
+                <form class="smart-form">
+                    <section>
+
+                        <div class="inline-group a4dn-folders-radio-group a4dn-radio-group a4dn-center">
+
+                            <label class="radio">
+                                <input type="radio" name="a4dn-folders-type" checked="checked" data-a4dn-isfavorite="true" data-a4dn-parent-id="0" data-a4dn-nr-msg="@Resources.DescriptionResource.NoMyFolderShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.MyFoldersRemoveAllMessage">
+                                <i></i>@Resources.DescriptionResource.MyFolders
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="a4dn-folders-type" data-a4dn-isfavorite="false" data-a4dn-parent-id="0" data-a4dn-nr-msg="@Resources.DescriptionResource.NoSharedFolderShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.SharedFoldersRemoveAllMessage">
+                                <i></i>@Resources.DescriptionResource.SharedFolders
+                            </label>
+                        </div>
+                    </section>
+                </form>
+            </div>
+
+            <div class="a4dn-hotlist-options a4dn-options" data-a4dn-loaded="false" data-a4dn-get-href="@Url.Action("am_GetHotList", "AB_Framework")" data-a4dn-add-href="@Url.Action("am_AddHotList", "AB_Framework")" data-a4dn-remove-href="@Url.Action("am_PurgeHotList", "AB_Framework")">
+                <form class="smart-form hidden">
+                    <section>
+
+                        <div class="inline-group a4dn-hotlist-radio-group a4dn-radio-group a4dn-center">
+
+                            <label class="radio">
+                                <input type="radio" name="a4dn-hotlist-type" checked="checked" data-a4dn-nr-msg="@Resources.DescriptionResource.NoHotListShortcuts" data-a4dn-rmv-all-msg="@Resources.DescriptionResource.HotlistRemoveAllMessage">
+                                <i></i>@Resources.DescriptionResource.MyHotList
+                            </label>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+
+        <!-- Taskpane content -->
+        <div class="ajax-notifications custom-scroll a4dn-shortcuts-content">
+            <div class="a4dn-history-content a4dn-content">
+            </div>
+            <div class="a4dn-folders-content a4dn-content">
+            </div>
+            <div class="a4dn-hotlist-content a4dn-content">
+            </div>
+        </div>
+        <!-- end Taskpane content -->
+        <!-- footer-->
+        <div class="a4dn-shortcuts-footer">
+            <span class="a4dn-shortcuts-loading hidden"><i class="fa fa-refresh fa-lg fa-spin"></i><span> @Resources.DescriptionResource.Loading</span></span>
+            <button type="button" class="btn btn-xs btn-default pull-right a4dn-shortcuts-refresh">
+                <i class="fa fa-refresh"></i>
+            </button>
+            <button type="button" class="btn btn-xs btn-default pull-right margin-right-10 a4dn-shortcuts-remove-all ">
+                <i class="fa fa-times"></i><span> @Resources.DescriptionResource.RemoveAll</span>
+            </button>
+            <button type="button" class="btn btn-xs btn-default pull-right margin-right-10 a4dn-folders-new-btn hidden">
+                <i class="fa fa-file"></i><span> @Resources.DescriptionResource.NewFolder</span>
+            </button>
+        </div>
+        <!-- end footer -->
+    </div>
+            <!-- END AJAX-DROPDOWN -->
+}
+
+<!-- Folder Options Menu -->
+<ul id="a4dn-folder-options-menu" class="a4dn-folder-options-menu dropdown-menu" role="menu">
+    <li><a class="a4dn-folder-add" href="javascript:void(0);"><i class="fa fa-plus" aria-hidden="true"></i>@Resources.DescriptionResource.AddFolder</a></li>
+    <li><a class="a4dn-folder-rename" href="javascript:void(0);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>@Resources.DescriptionResource.Rename</a></li>
+    <li class="divider"></li>
+    <li><a class="a4dn-folder-remove" href="javascript:void(0);"><i class="fa fa-times" aria-hidden="true"></i>@Resources.DescriptionResource.Remove</a></li>
+</ul>
+
+<script>
+
+    $(document).ready(function () {
+
+        a4dn.core.mvc.am_InitializeShortcuts();
+
+    });
+</script>

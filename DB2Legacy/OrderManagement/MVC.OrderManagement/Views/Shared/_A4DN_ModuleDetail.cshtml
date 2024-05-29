@@ -1,0 +1,159 @@
+﻿@model AB_ModuleDetailModel
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using A4DN.Core.BOS.Base
+@using A4DN.Core.BOS.ViewModel
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+    var moduleEntity = fh.am_GetModuleByModuleNumber(Model.ap_ModuleNumber);
+    var subModuleCollection = Model.ap_SBInterfaceReferenceExt == null ? fh.am_GetSubBrowsersForModuleNumber(Model.ap_ModuleNumber) : fh.am_GetSubBrowsersForModuleNumber(Model.ap_ModuleNumber, Model.ap_SBInterfaceReferenceExt);
+
+    var guid = "g" + Guid.NewGuid().ToString();
+
+    var title = Model.ap_Entity.am_GetTitle(Model.ap_TitleMode, moduleEntity.ModuleName);
+
+    if (!string.IsNullOrWhiteSpace(Model.ap_ParentTitle))
+    {
+        title = string.Format("{0} For {1}", title, Model.ap_ParentTitle.Replace("Detail", ""));
+
+    }
+
+    var modImage = fh.am_GetImageURL(moduleEntity.Image);
+
+    Model.ap_EnablePreview = (Model.ap_RecordMode == AB_RecordMode.New || Model.ap_RecordMode == AB_RecordMode.Preview) ? false : true;
+    Model.ap_SplitterDirection = AB_SplitterDirections.Vertical;
+
+    ViewBag.EditorTemplateType = "Detail";
+    ViewBag.ModuleModel = Model;
+
+    ViewBag.VisualModelInitArgs = Model.ap_VisualModelInitArgs;
+    ViewBag.ComandBars = Model.ap_VisualModelInitArgs.ap_CommandBars;
+    ViewBag.CommandStates = Model.ap_CommandStates;
+
+    ViewBag.SetAllReadOnly = Model.ap_IsReadOnly;
+    ViewBag.Guid = guid;
+    ViewBag.ModuleEntity = moduleEntity;
+    ViewBag.CommandBarLocation = "DETAIL";
+
+    var moduleScript = @"~/scripts/Modules/" + moduleEntity.MVCControllerName + ".js";
+    var callBackNamespace = moduleEntity.MVCControllerName + "DetailComandCallBackFunctions";
+}
+
+<script>
+    a4dn.core.mvc.am_LoadModuleJavascript('@Url.am_CacheAwareContent(moduleScript)', false, true);   // Not async (so callback scripts below work), use Cache to avoid loading every time
+</script>
+
+<div id="a4dn-module-content-header-@guid" class="a4dn-module-content-header a4dn-phone-preview-dropdown hidden-sm hidden-md hidden-lg">
+
+    <div class="dropdown a4dn-nav-dropdown-div  ad4n-dropdown-menu-attach-to-body">
+        <button class="btn btn-default dropdown-toggle a4dn-nav-dropdown-btn " type="button" data-toggle="dropdown">
+            <div class="a4dn-module-dropdown-btn">
+                <span id="a4dn-submodule-dropdown-text-@guid" class="a4dn-module-dropdown-text"><span class="a4dn-tab-image"><img src="@Url.Content(modImage)" /></span> <span class="a4dn-tab-title">@Resources.DescriptionResource.DETAILTABTEXT</span></span>
+                <span class="caret a4dn-module-dropdown-caret"></span>
+            </div>
+        </button>
+        <ul id="a4dn-submodule-dropdown-@guid" class="dropdown-menu a4dn-submodule-dropdown">
+
+            <li class="active"> <a href="#Detail" data-toggle="tab"><span class="a4dn-tab-image"><img src="@Url.Content(modImage)" /></span> <span class="a4dn-tab-title">@Resources.DescriptionResource.DETAILTABTEXT</span></a></li>
+
+            @foreach (var item in subModuleCollection)
+            {
+                var submodImage = fh.am_GetImageURL(item.Image);
+
+                <li> <a data-a4dn-modulenumber="@item.ModuleNumber" href="#a4dn-tc-@item.ModuleNumber-@item.Sequence-@guid" data-toggle="tab"><span class="a4dn-tab-info"><span class="a4dn-tab-image"><img src="@Url.Content(submodImage)" /></span> <span class="a4dn-tab-title">@item.Name</span></span> <span class="badge a4dn-badge a4dn-record-count">?</span></a></li>
+            }
+        </ul>
+    </div>
+</div>
+
+<div id="a4dn-module-@guid" data-a4dn-guid="@guid" data-a4dn-type="detail" data-a4dn-is-newlook="@Model.ap_IsNewlookModule" data-a4dn-app-number="@moduleEntity.ApplicationNumber" data-a4dn-mod-number="@moduleEntity.ModuleNumber" data-a4dn-mod-name="@moduleEntity.ModuleName" data-a4dn-record-mode="@Model.ap_RecordMode" data-a4dn-commandid="@Model.ap_CommandID"
+     data-a4dn-title-mode="@Model.ap_TitleMode" data-a4dn-image-src="@Url.Content(modImage)" data-a4dn-unique-name="@Model.ap_Entity.ap_UniqueName" data-a4dn-unique-key="@Model.ap_UniqueKey.am_ToBase64String()"
+     data-a4dn-title="@title" data-a4dn-newfor-parent-title="@Model.ap_ParentTitle" data-a4dn-newfor-parent-keys="@Model.ap_ParentKeys" data-a4dn-anchortowindow="@Model.ap_AnchorToWindow"
+     data-a4dn-splitter-direction="@Model.ap_SplitterDirection" data-a4dn-max-init-splitter-cnt="@Model.ap_MaxInitializeSplitterCount" data-a4dn-enable-preview="@Model.ap_EnablePreview" data-a4dn-preview-init-visible="@Model.ap_IsPreviewInitiallyVisible"
+     data-a4dn-module-controller-base-url="@Url.Action("", moduleEntity.MVCControllerName)" data-a4dn-commandcallbacknamespace="@callBackNamespace"
+     class="a4dn-module a4dn-module-detail a4dn-module-detail-@Model.ap_RecordMode.ToString().ToLower()"
+     data-a4dn-fetch-href="@Url.Action("FetchWithUniqueKey",moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pUNm = @Model.ap_Entity.ap_UniqueName,  pUKy = @Model.ap_UniqueKey.am_ToBase64String() })">
+
+    <!--Module Detail Main Content Pane-->
+    <div class="a4dn-splitter-pane-1">
+
+        <div class="a4dn-module-content a4dn-module-detail-content">
+            <div class="a4dn-detail-loading a4dn-center hidden"><i class="fa fa-circle-o-notch fa-2x fa-spin"></i><span class="margin-left-5">@Resources.DescriptionResource.Processing</span></div>
+            @*<div class="a4dn-detail-loading a4dn-center hidden"><img class="a4dn-detail-loading-image" src="~/Content/img/ajax-loader3.gif" /></div>*@
+
+            <!-- widget grid -->
+            <section id="a4dn-widget-section-@guid" class="a4dn-module-detail-widget-section">
+
+                <!-- START ROW -->
+
+                <div class="row">
+
+                    <!-- NEW COL START -->
+                    <article class="col-sm-12 col-md-12 col-lg-12">
+
+                        <!-- Widget ID (each widget will need unique ID)-->
+                        <div class="jarviswidget jarviswidget-color-darken a4dn-main-content" id="a4dn-widget-id-@guid" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-fullscreenButton="false">
+
+                            <header class="a4dn-widget-header">
+                                <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                                <div class="a4dn-loading hidden"><i class="fa fa-refresh fa-lg fa-spin margin-top-10 pull-right"></i><span class="sr-only">@Resources.DescriptionResource.Loading</span></div>
+                                <h2 class="a4dn-title" name="ap_Title">@title </h2>
+                            </header>
+
+                            <!-- widget div-->
+                            <div>
+                                @if (Model.ap_RecordMode != AB_RecordMode.Preview)
+                                {
+                                    <div class="a4dn-toolbar a4dn-detail-toobar">
+                                        <div class="a4dn-toolbar-tray">
+
+                                            @Html.Partial(Model.ap_PartialView_Toolbar, Model)
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- widget edit box -->
+                                <div class="jarviswidget-editbox">
+                                    <!-- This area used as dropdown edit box -->
+                                </div>
+                                <!-- end widget edit box -->
+                                <!-- widget content -->
+
+                                @Html.Partial(Model.ap_PartialView_ModuleDetailForm, Model)
+
+                                <!-- end widget content -->
+                            </div>
+                            <!-- end widget div -->
+                        </div>
+                        <!-- end widget -->
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!--Module Detail Content Preview Pane-->
+    <div class="a4dn-splitter-pane-2">
+
+        <div class="a4dn-module-preview a4dn-module-detail-content-preview hidden">
+
+            @if (Model.ap_RecordMode == AB_RecordMode.Open || Model.ap_RecordMode == AB_RecordMode.Display)
+            {
+
+                Model.ap_ComponentLocation = AB_ComponentLocation.Detail;
+
+                @Html.Partial(Model.ap_PartialView_ModuleExplorerContentPreview)
+
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    if (typeof @callBackNamespace == 'object') {
+        var callBackNamespace = @callBackNamespace;
+    }
+    a4dn.core.mvc.am_SetupModuleDetail({ guid: "@guid", commandCallBackNamespace: callBackNamespace});
+</script>

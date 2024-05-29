@@ -1,0 +1,50 @@
+﻿html.a4dn-newlook-embedded-session, .a4dn-newlook-embedded-session #PageBody, .a4dn-newlook-embedded-session #Content {
+    min-width: 640px;
+}
+
+.a4dn-newlook-embedded-session #TitleBarPanel, .a4dn-newlook-embedded-session #FunctionKeyPanel {
+	display: none;
+}
+
+.a4dn-newlook-embedded-session #ContentScreen{
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.a4dn-newlook-embedded-session #StatusBarPanel {
+    
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.a4dn-newlook-embedded-session .look-default-pagebody {
+    background-color: transparent;
+}
+
+.a4dn-newlook-embedded-session .look-entryfield{
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif !important;
+	font-size: 11px !important;
+}
+
+.a4dn-newlook-embedded-session div.inner-container > span{
+	
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif !important;
+	font-size: 11px !important;
+	white-space: nowrap;
+}
+
+.a4dn-newlook-embedded-session #PageBody.look-sessiondestroyed-pagebody{
+	
+		display: none;
+	
+}
+
+.a4dn-newlook-embedded-session #PageBody{
+
+    overflow-y: auto;
+	overflow-x: auto;
+    -webkit-overflow-scrolling: touch !important;
+}

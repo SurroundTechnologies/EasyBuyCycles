@@ -1,0 +1,23 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.System.Views._ViewStart.cshtml.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+@model A4DN.AM.BOS.PC_PropertyCodeValueDataEntity.PC_PropertyCodeValueEntity
+
+@switch (ViewBag.EditorTemplateType as string)
+{
+    case "Detail":
+        @Html.Partial("_PC_PropertyCodeValueDetail", Model)
+        break;
+
+    case "Search":
+        @Html.Partial("_PC_PropertyCodeValueExpBarSearch", Model)
+        break;
+
+    default:
+        break;
+}

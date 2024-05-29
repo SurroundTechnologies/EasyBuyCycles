@@ -1,0 +1,37 @@
+﻿@using A4DN.Core.BOS.FrameworkEntity
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using System.IO
+@{
+    var fh = Html.ap_FrameworkHelper();
+    var moduleControllerNames = new List<string>();
+    var moduleUrls = new List<string>();
+}
+@foreach (var mod in fh.ap_NavigatorModules.Where(m => m.EnableForWeb == true))
+{
+    if (string.IsNullOrWhiteSpace(mod.MVCControllerName) || moduleControllerNames.Contains(mod.MVCControllerName))
+    {
+        continue;
+    }
+
+    moduleControllerNames.Add(mod.MVCControllerName);
+
+    var jsPath = "~/scripts/Modules/" + mod.MVCControllerName + ".js";  // Must be case-senstive match to similar code in ModuleExplorer/Detail Razor templates
+    var jsFilePath = HttpContext.Current.Server.MapPath(jsPath);
+    if (File.Exists(jsFilePath))
+    {
+        var jsUrl = Url.am_CacheAwareContent(jsPath, true);
+        moduleUrls.Add(jsUrl);
+        <script defer src="@jsUrl"></script>
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        // Flag these scripts as already-loaded, so they won't be loaded again when module is opened.
+        @foreach (var url in moduleUrls)
+        {
+        <text>a4dn.core.mvc.ap_LoadedModules.push('@url');</text>
+        }
+    });
+</script>

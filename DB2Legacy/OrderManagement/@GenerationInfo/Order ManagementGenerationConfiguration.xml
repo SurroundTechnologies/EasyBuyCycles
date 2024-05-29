@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenerationStandards>
+  <SystemGenerationPath>C:\Surround\EasyBuyCycles\DB2Legacy\OrderManagement</SystemGenerationPath>
+  <GenerateSilverlight>false</GenerateSilverlight>
+  <GenerateWPF>true</GenerateWPF>
+  <GenerateMVC>true</GenerateMVC>
+  <GroupSolutionsByApplication>false</GroupSolutionsByApplication>
+  <BPAcceleratorWebServiceAddress>http://services.surroundtech.com/Provisions/SurroundTech_Paul_v8_0_0_0_34881/</BPAcceleratorWebServiceAddress>
+  <AcceleratorExportPath>C:\Surround\EasyBuyCycles\DB2Legacy\OrderManagement\@GenerationInfo\Order Management.xml</AcceleratorExportPath>
+  <ShowImageAndTextOnLogonAndSplash>true</ShowImageAndTextOnLogonAndSplash>
+  <CompanyName>EasyBuy Cycles Distributors</CompanyName>
+  <CompanyImageName>EasyBuyDistributors48x200.png</CompanyImageName>
+  <SystemVersion>Version 1.0.0.0</SystemVersion>
+  <LogonImageName>EasyBuyv4Logo_256_256_32.png</LogonImageName>
+  <SplashImageName>easybuyv4horiz90h.png</SplashImageName>
+  <WebServiceURI>http://localhost:</WebServiceURI>
+  <DALWebServicePortForLANSA>19741</DALWebServicePortForLANSA>
+  <DALWebServicePortForSQL>19742</DALWebServicePortForSQL>
+  <BPWebServicePort>19743</BPWebServicePort>
+  <DALAcceleratorWebServiceAddress>http://services.surroundtech.com/Provisions/SurroundTech_Paul_v8_0_0_0_34881/</DALAcceleratorWebServiceAddress>
+  <ImagesPathToCopy>C:\Surround\EasyBuyCycles\Development Resources\images\</ImagesPathToCopy>
+  <SQLServerType>ISeries</SQLServerType>
+  <SQLDataSource>st8.surroundtech.com</SQLDataSource>
+  <SQLDatabase />
+  <SQLUserID>devin</SQLUserID>
+  <SQLPassword>rfv5tgb</SQLPassword>
+  <SQLCollection>EasyBuyDem</SQLCollection>
+  <GenerateForReNew>false</GenerateForReNew>
+  <ExecuteApplication>true</ExecuteApplication>
+  <UseObjectNamesInsteadOfDescriptions>false</UseObjectNamesInsteadOfDescriptions>
+  <UseMSSQLObjectNamesInsteadOfDescriptions>false</UseMSSQLObjectNamesInsteadOfDescriptions>
+  <NL_iniSettingsFile>@renew\renewTemplate.ini</NL_iniSettingsFile>
+  <NL_LoggingAndTraceRelativePath>@renew\Logs\</NL_LoggingAndTraceRelativePath>
+  <NL_ConnectionName>DeveloperDisplay</NL_ConnectionName>
+  <NL_SignonToMainMenuTransaction>renew_SignonToMainMenu</NL_SignonToMainMenuTransaction>
+  <NL_SignofffromMainMenuTransaction>renew_SignoffFromMainMenu</NL_SignofffromMainMenuTransaction>
+  <NL_ReturnToMainMenuMacro>renew_ReturnToMainMenu.F3</NL_ReturnToMainMenuMacro>
+  <NL_MaxSessionsAllowed>8</NL_MaxSessionsAllowed>
+  <NL_NumPreConnectSessions>0</NL_NumPreConnectSessions>
+  <DefaultDALType>SQL</DefaultDALType>
+  <GenerateDALForLANSA>false</GenerateDALForLANSA>
+</GenerationStandards>

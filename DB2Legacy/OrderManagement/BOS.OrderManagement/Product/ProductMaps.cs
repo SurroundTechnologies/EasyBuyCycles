@@ -1,0 +1,88 @@
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="BOS.Module.DataMaps.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+using System.Collections.Generic;
+using A4DN.Core.BOS.Base;
+using SharedSystemProperties = BOS.OrderManagement.Shared.Properties;
+using BOS.ProductDataEntity;
+
+namespace BOS.ProductDataMaps
+{
+	public class ProductMaps : AB_DataMaps
+	{
+		private const string YD1PTableName = "YD1P";
+
+		public ProductMaps() : base() { }
+		public ProductMaps(string qualifier) : base(qualifier) { }
+		  
+		/// <summary>
+		/// Loads maps to join two database files.
+		/// </summary>
+		public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
+		{            
+			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
+		   
+			// TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
+			// AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
+			// TODO: Table Relationships Step 2 - Add Joins for each relationship
+			// Two field Relationship 
+			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
+			// Single Field to Constant Relationship
+			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
+			// relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
+		 
+			return relationshipMap;
+		}
+		
+
+		/// <summary>
+		/// Defines the maps for the Data Source Field Names and Entity Properties for module.
+		/// </summary>
+		public override Dictionary<string,AB_DataSourcePropertyReference> am_LoadFieldMaps(string qualifier)
+		{	
+			// Set the Primary File Name, Foreign fields will have to be mapped on a case-by-case basis
+			ap_PrimaryTable = YD1PTableName;
+			//Create a dictionary to hold the maps
+			var maps = new AB_DataMapsDictionary(ap_PrimaryTable, qualifier);
+		 
+			maps.am_AddDataMap("YD1PIID", ProductEntity.ProductInternalIDProperty);
+			maps.am_AddDataMap("YD1PCD", ProductEntity.CodeProperty);
+			maps.am_AddDataMap("YD1PNM", ProductEntity.NameProperty);
+			maps.am_AddDataMap("YD1PDS", ProductEntity.DescriptionProperty);
+			maps.am_AddDataMap("YD1PCT", ProductEntity.CategoryProperty);
+			maps.am_AddDataMap("YD1PSTCS", ProductEntity.StandardCostProperty);
+			maps.am_AddDataMap("YD1PLSPR", ProductEntity.ListPriceProperty);
+			maps.am_AddDataMap("YD1PROLV", ProductEntity.ReorderLevelProperty);
+			maps.am_AddDataMap("YD1PTGLV", ProductEntity.TargetLevelProperty);
+			maps.am_AddDataMap("YD1PMRQT", ProductEntity.MinimumReorderQuantityProperty);
+			maps.am_AddDataMap("YD1PDC", ProductEntity.DiscontinuedProperty);
+			maps.am_AddDataMap("YD1PM1", ProductEntity.MemoProperty);
+			maps.am_AddDataMap("YD1PIMPT", ProductEntity.ImagePathProperty);
+			maps.am_AddDataMap("YD1PCRDT", ProductEntity.CreateDateProperty, databaseFieldType: AB_EntityFieldType.Decimal);
+			maps.am_AddDataMap("YD1PCRTM", ProductEntity.CreateTimeProperty, databaseFieldType: AB_EntityFieldType.Decimal);
+			maps.am_AddDataMap("YD1PCRUS", ProductEntity.CreateUserProperty);
+			maps.am_AddDataMap("YD1PCRJB", ProductEntity.CreateJobProperty);
+			maps.am_AddDataMap("YD1PCRJN", ProductEntity.CreateJobNumberProperty);
+			maps.am_AddDataMap("YD1PLCDT", ProductEntity.LastChangeDateProperty, databaseFieldType: AB_EntityFieldType.Decimal);
+			maps.am_AddDataMap("YD1PLCTM", ProductEntity.LastChangeTimeProperty, databaseFieldType: AB_EntityFieldType.Decimal);
+			maps.am_AddDataMap("YD1PLCUS", ProductEntity.LastChangeUserProperty);
+			maps.am_AddDataMap("YD1PLCJB", ProductEntity.LastChangeJobProperty);
+			maps.am_AddDataMap("YD1PLCJN", ProductEntity.LastChangeJobNumberProperty);
+
+			//TODO: ProductMaps Real Field Example
+			//maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
+			//TODO: ProductMaps Virtual Field Example
+			//maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>, isVirtual: true);
+			//TODO: ProductMaps Foreign Field Example
+			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ProductEntity.<Property Name>, targetTable: "<Target Table Name>"); 
+			//TODO: ProductMaps Configure Example (for setting options not available as constructor arguments)
+			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+		  
+			return maps;
+		}
+
+	}
+}
