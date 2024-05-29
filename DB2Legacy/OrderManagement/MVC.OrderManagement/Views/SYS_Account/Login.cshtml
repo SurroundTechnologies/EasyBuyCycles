@@ -1,0 +1,22 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.System.Global.asax.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+@{
+    ViewBag.PageId = "extr-page";
+    ViewBag.PageClass = "animated fadeInDown";
+}
+
+@section topright{
+    <span id="extr-page-header-space"> <span class="hidden-mobile">@Resources.DescriptionResource.NeedAnAccount</span> <a href="@Url.Action("register", "sys_account", new { rs = 1 })" class="btn btn-danger">@Resources.DescriptionResource.CreateAccount</a> </span>
+}
+
+@{ Html.RenderPartial("_A4DN_AccountLogin"); }
+
+@section pagespecific {
+    @{ Html.RenderPartial("_A4DN_AccountLoginValidation"); }
+}

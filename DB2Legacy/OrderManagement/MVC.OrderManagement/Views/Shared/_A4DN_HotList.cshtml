@@ -1,0 +1,22 @@
+﻿@model AB_HotListModel
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.BOS.Base
+@using A4DN.Core.MVC.Shared.Models
+
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+
+}
+<div class="a4dn-hotlist-data a4dn-data">
+    <div class="a4dn-tree a4dn-hotlist-tree">
+        <ul class="a4dn-tree-single-list">
+            @Html.Partial("_A4DN_HotListListItems", Model)
+        </ul>
+    </div>
+</div>
+
+<script>
+
+    a4dn.core.mvc.am_InitializeShortcutData();
+</script>

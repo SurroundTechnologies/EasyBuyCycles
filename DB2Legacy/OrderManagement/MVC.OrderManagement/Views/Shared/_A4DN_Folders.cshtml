@@ -1,0 +1,33 @@
+﻿@model AB_FoldersModel
+
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.BOS.Base
+@using A4DN.Core.MVC.Shared.Models
+
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+
+}
+@if (!Model.ap_IsFirstLevel)
+{
+    @Html.Partial("_A4DN_FoldersListItems", Model)
+}
+else
+{
+    <div class="a4dn-folders-data a4dn-data" data-a4dn-add-href="@Url.Action("am_AddFolder", "AB_Framework", new { isFavorite = Model.ap_IsFavorite, parentFolderID = Model.ap_ParentFolderID, folderName = Resources.DescriptionResource.NewFolder, isFirstLevel = true })">
+
+        <div class="tree a4dn-tree">
+            <ul>
+                <li class="a4dn-tree-list-top-folder">
+                    @Html.Partial("_A4DN_FoldersListItems", Model)
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        a4dn.core.mvc.am_InitializeShortcutData();
+    </script>
+
+}

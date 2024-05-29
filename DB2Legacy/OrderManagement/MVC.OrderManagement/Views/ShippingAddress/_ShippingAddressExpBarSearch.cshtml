@@ -1,0 +1,40 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.Module.Views.SearchExplorerBar.cshtml.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers.SmartAdmin
+@using A4DN.Core.MVC.Shared.Models
+
+@model BOS.ShippingAddressDataEntity.ShippingAddressEntity
+
+@using (Html.BeginForm(null, null, FormMethod.Get))
+{
+	ViewBag.AppendClearButtonToAll = true;
+
+	<div class="smart-form">
+		<fieldset>
+			@Html.am_FieldControl(model => model.ShippingAddressInternalID)
+			@Html.am_FieldControl(model => model.CustomerInternalID)
+			@Html.am_FieldControl(model => model.Name)
+			@Html.am_FieldControl(model => model.ContactLastName)
+			@Html.am_FieldControl(model => model.ContactFirstName)
+			@Html.am_FieldControl(model => model.ContactMiddleName)
+			@Html.am_FieldControl(model => model.ContactNickName)
+			@Html.am_FieldControl(model => model.Address1)
+			@Html.am_FieldControl(model => model.Address2)
+			@Html.am_FieldControl(model => model.Address3)
+			@Html.am_FieldControl(model => model.PostalCode)
+			@Html.am_FieldControl(model => model.Country)
+			@Html.am_FieldControl(model => model.Telephone)
+			@Html.am_FieldControl(model => model.Email)
+			@Html.am_FieldControl(model => model.PurchasePoints)
+			@Html.am_FieldControl(model => model.CustomerName)
+			
+		</fieldset>
+	</div>
+
+}

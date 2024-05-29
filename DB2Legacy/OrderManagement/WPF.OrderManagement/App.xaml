@@ -1,0 +1,7 @@
+<base:AB_Application x:Class="WPF.OrderManagement.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base ="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
+    xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared">
+   
+</base:AB_Application>

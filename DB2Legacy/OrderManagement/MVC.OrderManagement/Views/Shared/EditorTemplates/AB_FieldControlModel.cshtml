@@ -1,0 +1,72 @@
+﻿@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.BOS.Base;
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers.SmartAdmin
+@using Newtonsoft.Json
+@model  A4DN.Core.MVC.Shared.Models.AB_FieldControlModel
+@{
+    var readonlyProp = Model.ap_IsReadOnly == true ? "readonly" : null;
+    var disabledProp = Model.ap_IsDisabled == true ? "disabled" : null;
+    var readonlyClass = Model.ap_IsReadOnly == true ? "readonly a4dn-readonly" : null;
+    var disabledClass = Model.ap_IsDisabled == true ? "disabled a4dn-disabled" : null;
+    var disabledLabelClass = Model.ap_IsDisabled == true ? "state-disabled" : null;
+    var hiddenClass = Model.ap_IsHidden == true ? "hidden" : null;
+    var hiddenLabelClass = Model.ap_IsLabelHidden == true ? "hidden" : null;
+    var receivedTagNames = Model.ap_ReceivedTagNames != null && Model.ap_ReceivedTagNames.Length > 0 
+        ? JsonConvert.SerializeObject(Model.ap_ReceivedTagNames)
+        : null;
+    var maxLength = Model.ap_LengthIsForDecimal == true ? null : Model.ap_MaxLength;
+    var minLength = Model.ap_LengthIsForDecimal == true ? null : Model.ap_MinLength;
+    var maxValue = Model.ap_MaxValue;
+    var minValue = Model.ap_MinValue;
+    var dropdownClass = Model.ap_IsDropdown == true ? "a4dn-dropdown" : null;
+}
+<label class="label a4dn-field-control-label @hiddenLabelClass @Model.ap_LabelClass" for="@Model.ap_PropertyName">@Model.ap_DisplayName</label>
+
+<label class="@Model.ap_LabelFieldClass @disabledLabelClass">
+    <span class="a4dn-display-flex ">
+        @if (!string.IsNullOrWhiteSpace(@Model.ap_IconPrepend))
+        {
+            <i class="icon-prepend @Model.ap_IconPrepend"></i>
+        }
+        @if (Model.ap_AppendClearButton == true)
+        {
+            <i data-a4dn-clear-input-name="@Model.ap_PropertyName" class="icon-append fa fa-times a4dn-clear-input-button" aria-hidden="true"></i>
+        }
+
+        @Model.ap_FieldPrependHTML
+
+        @switch (Model.ap_FieldHTMLTag)
+        {
+            case AB_FieldControlModel.AB_FieldHTMLTags.textarea:
+                <textarea name="@Model.ap_PropertyName" class="a4dn-field-control @disabledClass @readonlyClass @Model.ap_FieldClass" @disabledProp @readonlyProp placeholder="@Model.ap_PlaceHolderText" @Html.am_AttributeCollection(Model.ap_FieldDataAttributes) data-a4dn-received-tag-names="@receivedTagNames" data-a4dn-original-value="@Model.ap_Value" value="@Model.ap_Value" @Model.ap_UnobtrusiveValidationAttributesFor maxlength="@maxLength" minlength="@minLength">@Model.ap_Value</textarea>
+                break;
+
+            case AB_FieldControlModel.AB_FieldHTMLTags.img:
+                <img name="@Model.ap_PropertyName" class="a4dn-field-control @Model.ap_FieldClass" data-a4dn-bind-prop="@Model.ap_PropertyName" data-a4dn-bind-target="src" src="@Model.ap_Value" />
+                break;
+
+            case AB_FieldControlModel.AB_FieldHTMLTags.select:
+                <select name="@Model.ap_PropertyName" class="a4dn-field-control @disabledClass @readonlyClass @Model.ap_FieldClass" @disabledProp @readonlyProp @Html.am_AttributeCollection(Model.ap_FieldDataAttributes) data-a4dn-received-tag-names='@receivedTagNames' data-a4dn-original-value="@Model.ap_Value" @Model.ap_UnobtrusiveValidationAttributesFor>
+                @Model.ap_FieldInnerHTML
+                </select> <i></i>
+                break;
+
+            default:
+                <input type="@Model.ap_InputType" name="@Model.ap_PropertyName" class="a4dn-field-control @dropdownClass @disabledClass @readonlyClass @Model.ap_FieldClass" @disabledProp @readonlyProp placeholder="@Model.ap_PlaceHolderText" @Html.am_AttributeCollection(Model.ap_FieldDataAttributes) data-a4dn-received-tag-names='@receivedTagNames' data-a4dn-original-value="@Model.ap_Value" value="@Model.ap_Value" @Model.ap_UnobtrusiveValidationAttributesFor maxlength="@maxLength" minlength="@minLength" max="@maxValue" min="@minValue" />
+                if (Model.ap_IsDropdown)
+                {
+                    @Html.Partial(Model.ap_DropdownModel.ap_PartialView)
+                }
+                break;
+        }
+
+        @if (Model.ap_AppendClearButton != true && !string.IsNullOrWhiteSpace(@Model.ap_IconAppend))
+        {
+            <span class="input-group-addon"><i class="@Model.ap_IconAppend"></i></span>
+        }
+
+        @Model.ap_FieldAppendHTML
+    </span>
+
+    @Model.ap_ValidationMessageFor
+</label>

@@ -1,0 +1,108 @@
+﻿@model AB_ModuleExplorerModel
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.BOS.FrameworkEntity
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using System.Threading
+@using Newtonsoft.Json
+
+@{
+    var guid = ViewBag.Guid;
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+    var callBackNamespace = moduleEntity.MVCControllerName + "DataTablesCallBackFunctions";
+    var counter = 0;
+
+    var searchData = Model.ap_InitialSearchData;
+    if (searchData != null)
+    {
+        searchData = searchData.am_FromBase64String();
+    }
+
+    /*https://datatables.net/plug-ins/i18n/*/
+    var languageURL = ""; // Default is English
+    var culture = Thread.CurrentThread.CurrentCulture.ToString();
+    switch (culture)
+    {
+        case "es-ES":
+            //Spanish
+            languageURL = @"//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json";
+            break;
+        case "fr-FR":
+            //French
+            languageURL = @"//cdn.datatables.net/plug-ins/1.10.13/i18n/French.json";
+            break;
+        case "ja-JP":
+            //Japanese
+            languageURL = @"//cdn.datatables.net/plug-ins/1.10.13/i18n/Japanese.json";
+            break;
+        case "pt-BR-JP":
+            //Portuguese
+            languageURL = @"//cdn.datatables.net/plug-ins/1.10.13/i18n/Portuguese.json";
+            break;
+        case "zh-CN":
+            //Chinese
+            languageURL = @"//cdn.datatables.net/plug-ins/1.10.13/i18n/Chinese-traditional.json";
+            //languageURL = @"//cdn.datatables.net/plug-ins/1.10.13/i18n/Chinese.json";
+            break;
+        default:
+            break;
+    }
+
+    var columns = AB_DataTableViewColumn.am_GetViewColumns(Model.ap_ViewColumns);
+    var sortColumns = AB_DataTableViewColumn.am_GetSortColumns(Model.ap_ViewColumns);
+}
+
+<script>
+    var columns = @Html.Raw(JsonConvert.SerializeObject(columns));
+    var order = @Html.Raw(JsonConvert.SerializeObject(sortColumns));
+
+    @*DataTable rendered Cell CallBack Function*@
+    var renderedCellCallBackFunction = function (data, type, full, meta) {
+        @foreach (var col in Model.ap_ViewColumns) {
+            if (!string.IsNullOrWhiteSpace(col.Entity.WebMarkupTDInnerHTML)) {
+                <text>
+                if (meta.col == @counter)
+                {
+                    return @Html.Raw(col.Entity.WebMarkupTDInnerHTML);
+                }
+                </text>
+            }
+
+            counter += 1;
+        }
+
+        return data;
+    };
+
+    @*DataTable Created Row CallBack Function*@
+    var createdRowCallBackFunction = function (row, data, dataIndex) {
+    };
+
+    @*DataTable Created Cell CallBack Function*@
+    var createdCellCallBackFunction =  function (td, cellData, rowData, row, col) {
+    };
+
+    if (typeof @callBackNamespace == 'object') {
+        var callBackNamespace = @callBackNamespace;
+    }
+    a4dn.core.mvc.am_InitializeDataTable({
+        guid: "@guid",
+        parentGuid: "@Model.ap_ParentGuid",
+        tableId: "a4dn-table-@guid",
+        systemNumber: @Model.ap_SystemNumber,
+        applicationNumber:  @Model.ap_ApplicationNumber,
+        moduleNumber:  @Model.ap_ModuleNumber,
+        columns: columns,
+        order: order,
+        ajax: "@Url.Action("Search", moduleEntity.MVCControllerName)",
+        createdRowCallBackFunction: createdRowCallBackFunction,
+        createdCellCallBackFunction: createdCellCallBackFunction,
+        pageLength: @Model.ap_MaxCount,
+        deferLoading:  "@(Model.ap_TableDeferLoading == true && string.IsNullOrWhiteSpace(searchData))",
+        callBackNamespace: callBackNamespace,
+        renderedCellCallBackFunction: renderedCellCallBackFunction,
+        languageURL: "@languageURL",
+        viewName: "@Model.ap_ViewName",
+        filterKeys: "@Model.ap_FilterKeys",
+        searchData: "@Html.Raw(searchData)"
+    });
+</script>

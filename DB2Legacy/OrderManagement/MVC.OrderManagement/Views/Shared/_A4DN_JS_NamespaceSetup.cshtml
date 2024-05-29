@@ -1,0 +1,21 @@
+﻿@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+<script type="text/javascript">
+    var a4dn;
+    if (typeof a4dn == "undefined") {
+      a4dn = {};
+    } else if (typeof a4dn != 'object') {
+      throw new Error("a4dn already exists and is not an object.");
+    }
+    if (!a4dn.core) {
+      a4dn.core = {};
+    } else if (typeof a4dn.core != 'object') {
+      throw new Error("a4dn.core already exists and is not an object.");
+    }
+    if (!a4dn.core.mvc) {
+      a4dn.core.mvc = {};
+    } else if (typeof a4dn.core.mvc != 'object') {
+      throw new Error("a4dn.core.mvc already exists and is not an object.");
+    }
+
+    a4dn.core.mvc.ap_RootDir = "@Url.am_AbsoluteContent("~/")";
+</script>

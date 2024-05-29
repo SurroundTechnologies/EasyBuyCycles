@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <A4DNVersion>8.0.0.0</A4DNVersion>
+    <A4DNCoreHintPath>C:\Program Files\Accelerator for .NET\Master\Core\DotNet\</A4DNCoreHintPath>
+    <A4DNSilverlightHintPath>C:\Program Files\Accelerator for .NET\Master\Core\Silverlight\</A4DNSilverlightHintPath>
+    <A4DNMaintenanceHintPath>C:\Program Files\Accelerator for .NET\Master\Maintenance\</A4DNMaintenanceHintPath>
+    <A4DNCodeFactoryHintPath>C:\Program Files\Accelerator for .NET\Master\CodeFactory\Wizards\</A4DNCodeFactoryHintPath>
+    <A4DNJobMonitorHintPath>C:\Program Files\Accelerator for .NET\Master\JobMonitor\</A4DNJobMonitorHintPath>
+  </PropertyGroup>
+</Project>

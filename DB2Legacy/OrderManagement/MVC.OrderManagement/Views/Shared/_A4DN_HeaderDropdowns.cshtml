@@ -1,0 +1,30 @@
+﻿@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+
+@if (Request.IsAuthenticated)
+{
+    var fh = Html.ap_FrameworkHelper();
+
+    <!-- start modules dropdown -->
+    <!--Favorite Modules dropdown -->
+    <div class="a4dn-nav-favorites project-context hidden-xs">
+        <span class="label"></span>
+        <span class="a4dn-nav-favorites-selector project-selector dropdown-toggle" data-toggle="dropdown">@Resources.DescriptionResource.Favorites<i class="fa fa-angle-down"></i></span>
+
+        <ul class="a4dn-nf-dropdown-menu a4dn-nav-favorites-modules dropdown-menu " data-a4dn-dataloaded="false" data-a4dn-view-href="@Url.Action("am_GetNavigatorFavorites", "AB_Framework", new { partialView = "_A4DN_NavigatorFavoritesDropdown" })"></ul>
+    </div>
+    <!-- Recent Modules dropdown -->
+    <div class="a4dn-nav-recent project-context hidden-xs">
+        <span class="label"></span>
+        <span class="a4dn-nav-recent-selector project-selector dropdown-toggle" data-toggle="dropdown">@Resources.DescriptionResource.RecentlyUsed<i class="fa fa-angle-down"></i></span>
+
+        <ul class="a4dn-nf-dropdown-menu a4dn-nav-recent-modules dropdown-menu" data-a4dn-dataloaded="false" data-a4dn-view-href="@Url.Action("am_GetNavigatorRecent", "AB_Framework", new { partialView = "_A4DN_NavigatorRecentDropdown" })"></ul>
+    </div>
+      
+    <!-- end modules dropdown -->
+
+    <script>
+        $(document).ready(function () {
+            a4dn.core.mvc.am_InitializeModuleRecentAndFavorites();
+        });
+    </script>
+}

@@ -1,0 +1,27 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:WPF.OrderItem">
+    
+    <!-- Module Specific Resources should go in here.  If you wish to override a resource just for this module, define it here. -->
+
+
+    <!-- /////// Card Content Templates /////// -->
+    
+    <!-- Define your content for the header of the card in this control template -->
+    <ControlTemplate x:Key="AB_HeaderField" TargetType="{x:Type UserControl}">
+        <TextBlock Text="{Binding Path=ap_Title}" Width="250" TextTrimming="CharacterEllipsis" Foreground="White" Margin="2,0,0,0" FontWeight="Bold" FontSize="16"/>
+    </ControlTemplate>
+    
+    <!-- Define fields or content that you want to appear in the main content area of the card in this control template -->
+    <ControlTemplate x:Key="AB_ContentFields" TargetType="{x:Type UserControl}">
+        <StackPanel Orientation="Vertical">
+            <!--Other Databound text blocks can put here to display additional data-->
+          <TextBlock Text="{Binding Path=OrderItemInternalID}" Foreground="White"/>
+          <TextBlock Text="{Binding Path=OrderInternalID}" Foreground="White"/>
+          <TextBlock Text="{Binding Path=ProductInternalID}" Foreground="White"/>
+          <TextBlock Text="{Binding Path=Quantity}" Foreground="White"/>
+          <TextBlock Text="{Binding Path=UnitPrice}" Foreground="White"/>
+          <TextBlock Text="{Binding Path=DiscountPercent}" Foreground="White"/>
+        </StackPanel>
+    </ControlTemplate>
+</ResourceDictionary>

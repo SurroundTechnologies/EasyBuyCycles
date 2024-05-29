@@ -1,0 +1,46 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.System.Views._ViewStart.cshtml.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers.SmartAdmin
+@using A4DN.Core.MVC.Shared.Models
+
+@model A4DN.AM.BOS.PC_ObjectsDataEntity.PC_ObjectsEntity
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+	ViewBag.AutoAppendIconForKnownDataTypes = true;
+
+	@Html.AntiForgeryToken()
+
+	<div class="smart-form">
+		<fieldset>
+			@Html.am_FieldControl(model => model.ObjectId, new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.ObjectName)
+			@Html.am_FieldControl(model => model.ObjectDescription)
+			@Html.am_FieldControl(model => model.CreateDate,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.CreateTime,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.CreateUser,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.CreateSystemUser,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.CreateJob,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.CreateJobNumber,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.LastChangeDate,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.LastChangeTime,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.LastChangeUser,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.LastChangeSystemUser,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.LastChangeJob,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.LastChangeJobNumber,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteFlag,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteDate,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteTime,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteUser,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteSystemUser,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteJob,new AB_FieldControlModel() { ap_IsHidden = true })
+			@Html.am_FieldControl(model => model.DeleteJobNumber,new AB_FieldControlModel() { ap_IsHidden = true })
+		</fieldset>
+	</div>
+}

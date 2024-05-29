@@ -1,0 +1,101 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC.OrderManagement", "MVC.OrderManagement\MVC.OrderManagement.csproj", "{C6C6B613-1049-4E07-9F0B-0AED603D2D66}"
+	ProjectSection(ProjectDependencies) = postProject
+		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+		{a7d867ac-5e72-42e0-85be-a7e734355528} = {a7d867ac-5e72-42e0-85be-a7e734355528}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement", "WPF.OrderManagement\WPF.OrderManagement.csproj", "{461CCA97-8B34-40B2-9B95-05104F04A680}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+		{4e80f0a5-0783-4292-a79d-cf79914ad903} = {4e80f0a5-0783-4292-a79d-cf79914ad903}
+		{b596c4b7-bf56-4578-8750-f17162f9b803} = {b596c4b7-bf56-4578-8750-f17162f9b803}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement.Views", "WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj", "{B596C4B7-BF56-4578-8750-F17162F9B803}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+		{a7d867ac-5e72-42e0-85be-a7e734355528} = {a7d867ac-5e72-42e0-85be-a7e734355528}
+		{4e80f0a5-0783-4292-a79d-cf79914ad903} = {4e80f0a5-0783-4292-a79d-cf79914ad903}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement.Shared", "WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj", "{4E80F0A5-0783-4292-A79D-CF79914AD903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost.OrderManagement.BP", "ServiceHost.OrderManagement.BP\ServiceHost.OrderManagement.BP.csproj", "{85E41EBA-6787-49FA-ABA5-2F1596ADB819}"
+	ProjectSection(ProjectDependencies) = postProject
+		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost.OrderManagement.DALForSQL", "ServiceHost.OrderManagement.DALForSQL\ServiceHost.OrderManagement.DALForSQL.csproj", "{CA597C2E-348B-42E5-ABFE-83C88902B126}"
+	ProjectSection(ProjectDependencies) = postProject
+		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement.ViewModels", "BOS.OrderManagement.ViewModels\BOS.OrderManagement.ViewModels.csproj", "{A7D867AC-5E72-42E0-85BE-A7E734355528}"
+	ProjectSection(ProjectDependencies) = postProject
+		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement", "BOS.OrderManagement\BOS.OrderManagement.csproj", "{454BC523-D124-4A39-89AA-498FA3F40C86}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement.Shared", "BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj", "{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}"
+EndProject
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6C6B613-1049-4E07-9F0B-0AED603D2D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C6B613-1049-4E07-9F0B-0AED603D2D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C6B613-1049-4E07-9F0B-0AED603D2D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C6B613-1049-4E07-9F0B-0AED603D2D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461CCA97-8B34-40B2-9B95-05104F04A680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461CCA97-8B34-40B2-9B95-05104F04A680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461CCA97-8B34-40B2-9B95-05104F04A680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461CCA97-8B34-40B2-9B95-05104F04A680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B596C4B7-BF56-4578-8750-F17162F9B803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B596C4B7-BF56-4578-8750-F17162F9B803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B596C4B7-BF56-4578-8750-F17162F9B803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B596C4B7-BF56-4578-8750-F17162F9B803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E80F0A5-0783-4292-A79D-CF79914AD903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E80F0A5-0783-4292-A79D-CF79914AD903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E80F0A5-0783-4292-A79D-CF79914AD903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E80F0A5-0783-4292-A79D-CF79914AD903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85E41EBA-6787-49FA-ABA5-2F1596ADB819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85E41EBA-6787-49FA-ABA5-2F1596ADB819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85E41EBA-6787-49FA-ABA5-2F1596ADB819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85E41EBA-6787-49FA-ABA5-2F1596ADB819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA597C2E-348B-42E5-ABFE-83C88902B126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA597C2E-348B-42E5-ABFE-83C88902B126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA597C2E-348B-42E5-ABFE-83C88902B126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA597C2E-348B-42E5-ABFE-83C88902B126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D867AC-5E72-42E0-85BE-A7E734355528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D867AC-5E72-42E0-85BE-A7E734355528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D867AC-5E72-42E0-85BE-A7E734355528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D867AC-5E72-42E0-85BE-A7E734355528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{454BC523-D124-4A39-89AA-498FA3F40C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454BC523-D124-4A39-89AA-498FA3F40C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454BC523-D124-4A39-89AA-498FA3F40C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454BC523-D124-4A39-89AA-498FA3F40C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal
+

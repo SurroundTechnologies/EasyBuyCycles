@@ -1,0 +1,11 @@
+﻿@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@{
+    var fh = Html.ap_FrameworkHelper();
+    var accountSettingModule = fh.am_GetModuleByControllerName("AccountSettings");
+}
+<li>
+    @if (accountSettingModule != null)
+    {
+        <a data-a4dn-modnum="@accountSettingModule.ModuleNumber" data-a4dn-modnam="@accountSettingModule.ModuleName" data-a4dn-allow-only-one="true" data-a4dn-open-in-new-tab="true" href="javascript:void(0);" data-a4dn-href="@Url.Action("GetModuleExplorerHtmlView", accountSettingModule.MVCControllerName, new {pSysNo =accountSettingModule.SystemNumber, pAppNo = accountSettingModule.ApplicationNumber, pModNo = accountSettingModule.ModuleNumber})" class="a4dn-module-link jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>@accountSettingModule.ModuleName</span> </span> </a>
+    }
+</li>

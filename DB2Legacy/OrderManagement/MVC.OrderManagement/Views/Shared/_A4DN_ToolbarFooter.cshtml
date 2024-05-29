@@ -1,0 +1,60 @@
+﻿@model AB_ModuleModelBase
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.BOS.FrameworkEntity
+
+@{
+    var guid = ViewBag.Guid;
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+
+    var fh = Html.ap_FrameworkHelper();
+
+    var viewCollection = fh.am_GetViewsForModuleNumber(Model.ap_ModuleNumber, Model.ap_ViewReferenceExt);
+    var callBackNamespace = moduleEntity.MVCControllerName + "ExplorerComandCallBackFunctions";
+}
+
+@if (viewCollection.Count() > 0)
+{
+    <div id="a4dn-toolbar-footer-commands-@guid" class="a4dn-toolbar-footer-commands btn-toolbar" role="toolbar">
+
+        <div class="dropup ad4n-dropdown-menu-attach-to-body">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                @Resources.DescriptionResource.Views
+                <span class="caret"></span>
+            </button>
+            <ul id="a4dn-view-dropdown-@guid" class="dropdown-menu a4dn-dropdown-check a4dn-view-dropdown" data-a4dn-view-columns-href="@Url.Action("GetModuleExplorerHtmlView", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, ppGuid = Model.ap_ParentGuid, pGuid = guid, pTblOnlyTool = true })">
+                @foreach (var view in viewCollection)
+                {
+                    var selectedView = "";
+                    if (view.ap_ModuleExplorerViewEntity.ViewName == Model.ap_ViewName)
+                    {
+                        selectedView = "selected";
+                    }
+                    <li><a class="@selectedView a4dn-view" data-a4dn-view-name="@view.ap_ModuleExplorerViewEntity.ViewName" href="javascript:void(0);"><i class="fa fa-check"></i> @view.ap_ModuleExplorerViewEntity.ViewDescription</a></li>
+                }
+               
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+        $('#a4dn-view-dropdown-@guid > li > a').click(function (e) {
+
+            $('#a4dn-view-dropdown-@guid > li > a').removeClass('selected');
+            $(this).addClass('selected');
+            if (typeof @callBackNamespace == 'object') {
+                var callBackNamespace = @callBackNamespace;
+            }
+            a4dn.core.mvc.am_SwitchView("@guid", $(this).data('a4dn-view-name'), $('#a4dn-view-dropdown-@guid').data("a4dn-view-columns-href"), callBackNamespace);
+        });
+
+        $("#a4dn-view-dropdown-@guid").mouseleave(function () {
+
+            $('div.ad4n-dropdown-menu-attach-to-body.open > button.dropdown-toggle').click();
+        });
+        
+    </script>
+
+}

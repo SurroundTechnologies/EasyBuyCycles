@@ -1,0 +1,20 @@
+﻿@using A4DN.Core.MVC.Shared.Models
+@model  AB_FieldControlModel
+@{
+    ViewBag.FieldControlModel = Model;
+    var hiddenClass = Model.ap_IsHidden == true ? "hidden" : null;
+}
+<section class="a4dn-field-control-group @Model.ap_OuterClass @hiddenClass">
+    @if (Model.ap_IsCheckbox)
+    {
+        @Html.EditorFor(m => m.ap_CheckboxModel)
+    }
+    else if (Model.ap_IsRadioGroup)
+    {
+        @Html.EditorFor(m => m.ap_RadioGroupModel)
+    }
+    else
+    {
+        @Html.EditorForModel()
+    }
+</section>

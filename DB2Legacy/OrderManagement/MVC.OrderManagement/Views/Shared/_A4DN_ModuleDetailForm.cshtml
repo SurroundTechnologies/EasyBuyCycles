@@ -1,0 +1,65 @@
+﻿@model AB_ModuleDetailModel
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using A4DN.Core.BOS.FrameworkEntity
+@{
+
+    var guid = ViewBag.Guid;
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+    var stayOnScreen = false;
+    var subTitle = Model.ap_Entity.am_GetTitle(A4DN.Core.BOS.Base.AB_TitleMode.Subbrowser, moduleEntity.ModuleName);
+
+    if (Model.ap_IsNewlookModule)
+    {
+        if (string.IsNullOrWhiteSpace(Model.ap_NewlookSource))
+        {
+            Model.ap_NewlookSource = System.Configuration.ConfigurationManager.AppSettings["Newlook.iFrameSourceURL"];
+
+        }
+        else
+        {
+            // Keep session on same screen
+            stayOnScreen = true;
+            Model.ap_NewlookSource = Model.ap_NewlookSource.am_FromBase64String();
+
+        }
+    }
+}
+
+<div id="a4dn-form-@guid" data-a4dn-guid="@guid" data-a4dn-propertychangedajaxtrigger="@Model.ap_PropertyChangedAjaxTrigger" data-a4dn-isvalid="@Model.ap_IsValid" data-a4dn-record-mode="@Model.ap_RecordMode" data-a4dn-title-mode="@Model.ap_TitleMode" data-a4dn-isreadonly="@Model.ap_IsReadOnly" data-a4dn-on-search-broadcast-keys="@Model.ap_OnSearchBroadcastKeys" data-a4dn-on-preload-broadcast-keys="@Model.ap_OnPreloadBroadcastKeys" data-a4dn-sub-title="@subTitle" class="widget-body a4dn-form a4dn-detail-form a4dn-scroll-body"
+     data-a4dn-dtl-view-href="@Url.Action("GetModuleDetailHtmlView", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String(), pRetMarkup = true })"
+     data-a4dn-update-href="@Url.Action("Update", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pModNm = moduleEntity.ModuleName, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String(), pRetMarkup = true })"
+     data-a4dn-insert-href="@Url.Action("Insert", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pModNm = moduleEntity.ModuleName, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String(), pRetMarkup = true })"
+     data-a4dn-delete-href="@Url.Action("DeleteWithUniqueKey", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pModNm = moduleEntity.ModuleName, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String() })"
+     data-a4dn-process-request-href="@Url.Action("ProcessRequest", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pModNm = moduleEntity.ModuleName, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String() })"
+     data-a4dn-property-changed-href="@Url.Action("am_PropertyChanged", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pModNm = moduleEntity.ModuleName, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String() })"
+     data-a4dn-newlook-src="@Model.ap_NewlookSource" data-a4dn-refresh-table-on-update="@Model.ap_RefreshTableOnUpdate" data-a4dn-ignore-item-selected-submodule-count="@Model.ap_IgnoreItemSelectedSubmoduleCount">
+
+    @if (Model.ap_IsNewlookModule)
+    {
+
+        <div class="hidden">
+            @Html.EditorFor(m => Model.ap_Entity, "", "")
+        </div>
+
+        <div id="a4dn-newlook-iframe-navigating-@guid" class="a4dn-main-module-loading a4dn-center"><img src="~/Content/img/ajax-loader3.gif" /></div>
+        <iframe id="a4dn-newlook-iframe-@guid" src="@Model.ap_NewlookSource" class="a4dn-newlook-iframe hidden" data-a4dn-loaded="false" data-a4dn-stayonscreen="@stayOnScreen" data-a4dn-guid="@guid"></iframe>
+
+        <script type="text/javascript">
+
+            var $iframe = $('#a4dn-newlook-iframe-@guid');
+            $iframe.removeData("AB_Newlook");
+            $iframe.AB_Newlook({
+            });
+        </script>
+
+    }
+    else
+    {
+        @Html.EditorFor(m => Model.ap_Entity, "", "")
+
+        <script>
+            a4dn.core.mvc.am_InitializeDateTimePickers($("#a4dn-form-@guid"));
+        </script>
+    }
+</div>

@@ -1,0 +1,117 @@
+﻿@model AB_ModuleModelBase
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.BOS.FrameworkEntity
+@using Newtonsoft.Json
+
+@{
+
+    var idIncrement = ViewBag.IDIncrement == null ? "" : ViewBag.IDIncrement;
+    var tabHeaderAdditionalClass = ViewBag.TabHeaderAdditionalClass == null ? "" : ViewBag.TabHeaderAdditionalClass;
+
+    var fh = Html.ap_FrameworkHelper();
+    var subModuleCollection = Model.ap_SBInterfaceReferenceExt == null ? fh.am_GetSubBrowsersForModuleNumber(Model.ap_ModuleNumber) : fh.am_GetSubBrowsersForModuleNumber(Model.ap_ModuleNumber, Model.ap_SBInterfaceReferenceExt);
+
+    var guid = ViewBag.Guid;
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+
+    var modImage = ViewBag.ModuleImage as string;
+    var showDetail = ViewBag.ShowDetailInPreview as bool?;
+
+    var eventElement = Model.ap_ComponentLocation == A4DN.Core.BOS.Base.AB_ComponentLocation.Detail ? "#a4dn-form-" + guid : "#a4dn-table-" + guid;
+
+    var viewReferenecExt = Model.ap_ComponentLocation == A4DN.Core.BOS.Base.AB_ComponentLocation.Detail ? moduleEntity.ContentWindowComponent.Replace("ExpContent", "Detail") : moduleEntity.ContentWindowComponent;
+}
+
+<div id="a4dn-preview-unavailable-@guid@idIncrement" class="a4dn-preview-unavailable hidden">@Resources.DescriptionResource.NoPreviewAvailable </div>
+
+@if (subModuleCollection.Count > 0 || showDetail == true)
+{
+    <div class="widget-body">
+
+        <section id="a4dn-preview-widget-grid-@guid@idIncrement" class="hidden">
+
+            <!-- row -->
+            <div id="a4dn-preview-page-content-wrapper-@guid@idIncrement" class="row">
+
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget a4dn-main-content" id="a4dn-preview-wid-id-@guid@idIncrement" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-custombutton="false" data-widget-sortable="false" data-widget-fullscreenButton="false">
+
+                        <header class="a4dn-widget-header a4dn-preview-header hidden-xs @tabHeaderAdditionalClass">
+
+                            <ul id="a4dn-submoduletabs-@guid@idIncrement" class="nav nav-tabs a4dn-submoduletabs">
+
+                                @if (showDetail == true)
+                                {
+
+                                    <li> <a data-a4dn-modulenumber="@Model.ap_ModuleNumber" data-a4dn-type="Detail" data-a4dn-parent-guid="@guid" data-a4dn-html-view-href="@Url.Action("GetModuleDetailHtmlView", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pCmdID="PREVIEW" })" data-a4dn-fetch-href="@Url.Action("FetchWithUniqueKey",moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber})" href="#a4dn-tc-@Model.ap_ModuleNumber-@guid" data-toggle="tab"><img class="a4dn-module-image margin-right-5" src="@Url.Content(modImage)" />@Resources.DescriptionResource.DETAILTABTEXT</a></li>
+                                }
+
+                                @foreach (var item in subModuleCollection)
+                                {
+                                    var subModImage = fh.am_GetImageURL(item.Image);
+
+                                    var module = fh.am_GetModuleByModuleNumber(item.ModuleNumber);
+
+                                    <li> <a data-a4dn-modulenumber="@item.ModuleNumber" data-a4dn-type="Explorer" data-a4dn-parent-guid="@guid" data-a4dn-html-view-href="@Url.Action("GetModuleExplorerHtmlView", module.MVCControllerName, new { pSysNo = item.SystemNumber, pAppNo = item.ApplicationNumber, pModNo = item.ModuleNumber, pLoc = Model.ap_ComponentLocation, pVwRefExt = viewReferenecExt, pRole = "SubBrowser", pPGuid = guid })" data-a4dn-count-href="@Url.Action("Search", module.MVCControllerName, new { pSysNo = item.SystemNumber, pAppNo = item.ApplicationNumber, pModNo = item.ModuleNumber, pLoc = Model.ap_ComponentLocation, pVwRefExt = viewReferenecExt, pPGuid = guid, pRetCnt = true })" href="#a4dn-tc-@item.ModuleNumber-@item.Sequence-@guid" data-toggle="tab"><img class="a4dn-module-image margin-right-5" src="@Url.Content(subModImage)" />@item.Name <span class="badge a4dn-badge a4dn-record-count">?</span></a></li>
+                                }
+                            </ul>
+                        </header>
+
+                        <div id="a4dn-submoduletabcontent-@guid@idIncrement" class="a4dn-tab-content tab-content">
+
+                            <div class="a4dn-sub-module-loading a4dn-center hidden"><img src="~/Content/img/ajax-loader3.gif" /></div>
+
+                            @if (showDetail == true)
+                            {
+
+                                <div class="a4dn-tab-pane tab-pane fade" id="a4dn-tc-@Model.ap_ModuleNumber-@guid" data-a4dn-modulenumber="@Model.ap_ModuleNumber" data-a4dn-tab="a4dn-submoduletabs-@guid"> </div>
+                            }
+
+                            @foreach (var item in subModuleCollection)
+                            {
+                                <div class="a4dn-tab-pane tab-pane fade" id="a4dn-tc-@item.ModuleNumber-@item.Sequence-@guid" data-a4dn-modulenumber="@item.ModuleNumber" data-a4dn-tab="a4dn-submoduletabs-@guid"> </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- end widget content -->
+                </article>
+            </div>
+            <!-- end widget div -->
+        </section>
+    </div>
+
+    <script>
+
+        $("#a4dn-module-@guid").on("itemSelectedCount", "@eventElement", function (event, parentKeys) {
+            let $target = $(event.target),
+                ignore = $target.data('a4dn-guid') !== "@guid";
+
+            // Ignore bubbled events from dropdowns; the parentKeys are for the DD source module, not this module
+            if (ignore) return;
+
+            @if (subModuleCollection.Count > 0 || showDetail == true)
+            {
+                <text>
+                $('#a4dn-preview-unavailable-' + "@guid" + "@idIncrement").addClass("hidden");
+                $('#a4dn-preview-widget-grid-' + "@guid" + "@idIncrement").removeClass("hidden");
+                </text>
+            }
+
+            let submoduleTabs = @Html.Raw(JsonConvert.SerializeObject(subModuleCollection.Select(s => new { guid, moduleNumber = s.ModuleNumber }).ToArray()));
+            a4dn.core.mvc.am_SetRecordCountsOnSubModules(submoduleTabs, parentKeys, "@Model.ap_ComponentLocation");
+
+        });
+
+        $("#a4dn-module-@guid").on("zeroRecordsSelected", "@eventElement", function (event) {
+
+            $('#a4dn-preview-unavailable-' + "@guid" + "@idIncrement").removeClass("hidden");
+            $('#a4dn-preview-widget-grid-' + "@guid" + "@idIncrement").addClass("hidden");
+
+        });
+    </script>
+
+}

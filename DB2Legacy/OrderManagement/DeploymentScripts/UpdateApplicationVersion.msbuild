@@ -1,0 +1,44 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"	ToolsVersion="$(ToolsVersion)"	DefaultTargets="UpdateApplicationVersion">
+	<PropertyGroup>
+		<NewConfigApplicationVersion>Version $(ApplicationVersion)</NewConfigApplicationVersion>
+		<Major>$(ApplicationVersion.Split('.')[0])</Major>
+		<Minor>$(ApplicationVersion.Split('.')[1])</Minor>
+		<Build>$(ApplicationVersion.Split('.')[2])</Build>
+		<Patch>$(ApplicationVersion.Split('.')[3])</Patch>
+		<NewWPFApplicationVersion>$(Major).$(Minor).$(Build).$(Patch)</NewWPFApplicationVersion>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<!-- Create an item which we can use to bundle all the transformations which are needed -->
+		<AppConfigUpdates Include="$(WPFAppConfigLocation)">
+			<AppConfigXPath>/configuration/appSettings/add[@key='Version']/@value</AppConfigXPath>
+			<AppConfigValue>$(NewConfigApplicationVersion)</AppConfigValue>
+		</AppConfigUpdates>
+		
+		<WpfConfigUpdates Include="$(WPFProjectLocation)">
+			<!-- The X is needed in the path because of the xml translation otherwise the nodes will not be found -->
+			<ApplicationVersionXPath>/x:Project/x:PropertyGroup/x:ApplicationVersion</ApplicationVersionXPath>
+			<ApplicationVersionValue>$(NewWPFApplicationVersion)</ApplicationVersionValue>
+			
+			<ApplicationRevisionXPath>/x:Project/x:PropertyGroup/x:ApplicationRevision</ApplicationRevisionXPath>
+			<ApplicationRevisionValue>0</ApplicationRevisionValue>
+		</WpfConfigUpdates>
+	</ItemGroup>
+	
+	<Target Name="UpdateApplicationVersion">
+		<Message Text="Updating config file at $(WPFAppConfigLocation)" />
+		<!-- Now let's execute all the XML transformations -->
+		<XmlPoke XmlInputPath="$(WPFAppConfigLocation)"
+			Query="%(AppConfigUpdates.AppConfigXPath)"
+			Value="%(AppConfigUpdates.AppConfigValue)"/>
+		
+		<Message Text="Updating config file at $(WPFProjectLocation)" />
+		<!-- Now let's execute all the XML transformations -->
+		<XmlPoke XmlInputPath="$(WPFProjectLocation)"
+			Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/developer/msbuild/2003'/&gt;"
+			Query="%(WpfConfigUpdates.ApplicationVersionXPath)"
+			Value="%(WpfConfigUpdates.ApplicationVersionValue)">
+		</XmlPoke>
+		
+	</Target>
+</Project>

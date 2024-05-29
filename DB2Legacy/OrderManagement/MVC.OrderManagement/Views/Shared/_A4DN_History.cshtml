@@ -1,0 +1,78 @@
+﻿@model AB_HistoryModel
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.BOS.Base
+@using A4DN.Core.MVC.Shared.Models
+
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+
+}
+<div class="a4dn-history-data a4dn-data" >
+
+    @switch (Model.ap_HistoryGroup)
+    {
+        case AB_HistoryGroups.ByDate:
+
+            <div class="tree a4dn-tree a4dn-history-tree">
+                <ul>
+                    <li>
+                        @foreach (var item in Model.ap_HistoryRecords)
+                        {
+                            var date = item.LastVisitedDate ?? DateTime.Now;
+                            <span class="a4dn-folder-span"><i class="fa fa-lg fa-plus-circle"></i><i class="fa  fa-calendar a4dn-grp-mod-image"></i> @date.ToString("D")  <a class="a4dn-remove a4dn-remove-btn a4dn-remove-group pull-right" title="" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.Remove" rel="tooltip" data-placement="left" data-a4dn-remove-href="@Url.Action("am_RemoveHistoryForDate", "AB_Framework", new {date = item.LastVisitedDate })"><i class="fa fa-times"></i></a></span>
+                            <ul class="a4dn-tree-list" data-a4dn-key="@date.ToShortDateString()" data-a4dn-loaded="false" data-a4dn-expanded="false" data-a4dn-href="@Url.Action("am_GetHistory", "AB_Framework", new { LastVisitedDate = item.LastVisitedDate })"></ul>
+                        }
+                    </li>
+                </ul>
+            </div>
+
+            break;
+
+        case AB_HistoryGroups.ByModule:
+
+            <div class="tree a4dn-tree a4dn-history-tree">
+                <ul>
+                    <li>
+
+                        @foreach (var item in Model.ap_HistoryRecords)
+                        {
+                            var mod = fh.am_GetModuleByModuleNumber((int)item.ModuleNumber);
+                            if (mod != null)
+                            {
+                                <span class="a4dn-folder-span"><i class="fa fa-lg fa-plus-circle"></i><img class="a4dn-grp-mod-image" src="@Url.Content(fh.am_GetImageURL(mod.Image))"/> @mod.ModuleName <a class="a4dn-remove a4dn-remove-btn a4dn-remove-group  pull-right" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.Remove" rel="tooltip" data-placement="left" data-a4dn-remove-href="@Url.Action("am_RemoveHistoryForModule", "AB_Framework", new {moduleNumber = item.ModuleNumber, moduleName = mod.ModuleName})"><i class="fa fa-times"></i></a></span>
+                                <ul class="a4dn-tree-list" data-a4dn-key="@item.ModuleNumber" data-a4dn-loaded="false" data-a4dn-expanded="false" data-a4dn-href="@Url.Action("am_GetHistory", "AB_Framework", new {ModuleNumber = item.ModuleNumber})"></ul>
+                            }
+                        }
+                    </li>
+                </ul>
+            </div>
+
+            break;
+
+        case AB_HistoryGroups.ByMostRecent:
+
+            <div class="a4dn-tree a4dn-history-tree">
+                <ul class="a4dn-tree-single-list">
+                    @Html.Partial("_A4DN_HistoryListItems", Model)
+                </ul>
+            </div>
+            break;
+
+        default:
+            break;
+    }
+</div>
+<script>
+  
+    a4dn.core.mvc.am_InitializeShortcutData();
+
+   @if (Model.ap_HistoryGroup == AB_HistoryGroups.ByDate)
+   {
+        // expand first Node
+    <text>
+    $('.a4dn-tree > ul > li > span').first().trigger('click');
+    </text>
+   }
+   
+</script>

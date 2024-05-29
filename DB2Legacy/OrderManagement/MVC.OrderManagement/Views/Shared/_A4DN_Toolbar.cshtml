@@ -1,0 +1,212 @@
+﻿@model AB_ModuleModelBase
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using System.Collections.ObjectModel
+@using A4DN.Core.BOS.Base
+@using A4DN.Core.BOS.FrameworkEntity
+
+
+@{
+    var guid = ViewBag.Guid;
+    var commandBarLocation = ViewBag.CommandBarLocation as string;
+
+
+    var commandStates = ViewBag.CommandStates as ObservableCollection<AB_CommandState>;
+    var commandBarCollection = ViewBag.ComandBars as ObservableCollection<AB_CommandBarEntity>;
+    var fh = Html.ap_FrameworkHelper();
+    if (commandBarCollection == null)
+    {
+
+        commandBarCollection = fh.am_GetCommandBars(Model.ap_ModuleNumber, commandBarLocation);
+
+    }
+
+}
+
+@if (commandBarCollection.Count > 0)
+{
+    <div id="a4dn-toolbar-commands-@guid" class="a4dn-toolbar-commands btn-toolbar" role="toolbar">
+
+        <div class="btn-group">
+
+            @foreach (var cb in commandBarCollection)
+            {
+                foreach (var cbe in cb.CommandBarElements)
+                {
+                    var checkedState = false;
+                    var newState = cbe.NewState;
+                    var openState = cbe.OpenState;
+                    var displayState = cbe.DisplayState;
+
+                    if (commandStates != null)
+                    {
+                        var cmdState = commandStates.Where(s => s.ap_CommandID == cbe.CommandID).FirstOrDefault();
+                        if (cmdState != null)
+                        {
+                            if (cmdState.ap_IsChecked == true)
+                            {
+                                checkedState = true;
+                            }
+                            if (cmdState.ap_IsEnabled == false)
+                            {
+                                newState = "D";
+                                openState = "D";
+                                displayState = "D";
+                            }
+
+                            if (cmdState.ap_IsVisibile == false)
+                            {
+                                newState = "H";
+                                openState = "H";
+                                displayState = "H";
+                            }
+                        }
+                    }
+
+                    cbe.Command.CommandDescription = cbe.Command.CommandDescription.Replace("_", "");
+
+                    var showText = cbe.ShowText;
+                    var showImage = cbe.ShowImage;
+                    var cmdImage = fh.am_GetImageURL(cbe.Command.CommandImage);
+
+                    if (string.IsNullOrWhiteSpace(cmdImage) && cbe.Command.CommandImage.EndsWith("_16_16_32.png"))
+                    {
+                        cmdImage = fh.am_GetImageURL(cbe.Command.CommandImage.Replace("_16_16_32.png", "_small.png"));
+                        if (!string.IsNullOrWhiteSpace(cmdImage))
+                        {
+                            var msg = "Replaced Command Image '" + cbe.Command.CommandImage + "' for command ID '" + cbe.CommandID + "' / '" + cbe.CommandName + "' with image '" + cbe.Command.CommandImage.Replace("_16_16_32.png", "_small.png") + "'";
+                            <script>
+                                console.warn('@msg');
+                            </script>
+                        }
+                    }
+
+                    if (string.IsNullOrWhiteSpace(cmdImage) && !string.IsNullOrWhiteSpace(cbe.Command.CommandImage))
+                    {
+                        showText = true;
+                        showImage = false;
+                        var msg = "Command Image '" + cbe.Command.CommandImage + "' for command ID '" + cbe.CommandID + "' / '" + cbe.CommandName + "' could not be found in image folder(s)";
+                        <script>
+                            console.warn('@msg');
+                            a4dn.core.mvc.am_Notification("extraSmallBox", "Error", '@msg');
+                        </script>
+                    }
+
+                    var searchModelAttributes = "";
+                    if (cbe.CommandID == "SEARCH")
+                    {
+                        searchModelAttributes = "data-toggle=modal data-target=#a4dn-search-modal";
+                    }
+
+                    var commandState = "";
+                    if (commandBarLocation == "MODULE" || commandBarLocation == "SUB-MODULE")
+                    {
+                        commandState = "data-a4dn-zero-state=" + cbe.ZeroItemsSelected + " data-a4dn-one-state=" + cbe.OneItemSelected + " data-a4dn-multiple-state=" + cbe.MultipleItemsSelected;
+                    }
+                    if (commandBarLocation == "DETAIL")
+                    {
+                        commandState = "data-a4dn-new-state=" + newState + " data-a4dn-open-state=" + openState + " data-a4dn-display-state=" + displayState;
+                    }
+
+                    if (showImage && showText)
+                    {
+                        <button type="button" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state disabled" @searchModelAttributes data-a4dn-command-id="@cbe.CommandID" data-a4dn-is-checked-btn="@cbe.Checkbutton" data-a4dn-checked-state="@checkedState" data-original-title="@cbe.Command.CommandDescription.Replace("&", "")" @commandState rel="tooltip" data-placement="bottom"><img class="a4dn-command-image margin-right-5" src="@Url.Content(cmdImage)" /> @cbe.Command.CommandName </button>
+                    }
+                    else if (showImage)
+                    {
+                        <button type="button" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state disabled" @searchModelAttributes data-a4dn-command-id="@cbe.CommandID" data-a4dn-is-checked-btn="@cbe.Checkbutton" data-a4dn-checked-state="@checkedState" data-original-title="@cbe.Command.CommandDescription.Replace("&", "")" @commandState rel="tooltip" data-placement="bottom"><img class="a4dn-command-image" src="@Url.Content(cmdImage)" /></button>
+                    }
+                    else if (showText)
+                    {
+                        <button type="button" class="a4dn-btn btn btn-default a4dn-command a4dn-command-state disabled" @searchModelAttributes data-a4dn-command-id="@cbe.CommandID" data-a4dn-is-checked-btn="@cbe.Checkbutton" data-a4dn-checked-state="@checkedState" data-original-title="@cbe.Command.CommandDescription.Replace("&", "")" @commandState rel="tooltip" data-placement="bottom"> @cbe.Command.CommandName </button>
+                    }
+                }
+            }
+
+            <div class="a4dn-toolbar-overflow-btn-group btn-group hidden">
+                <a class="a4dn-toolbar-overflow-dropdown btn btn-default dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-ellipsis-v fa-lg a4dn-command-overflow-image"></i><span class="a4dn-commands-label hidden">Commands</span></a>
+                <ul class="a4dn-toolbar-overflow-dropdown-menu dropdown-menu">
+                    @foreach (var cb in commandBarCollection)
+                    {
+                        foreach (var cbe in cb.CommandBarElements)
+                        {
+                            var checkedState = false;
+                            var newState = cbe.NewState;
+                            var openState = cbe.OpenState;
+                            var displayState = cbe.DisplayState;
+
+                            if (commandStates != null)
+                            {
+                                var cmdState = commandStates.Where(s => s.ap_CommandID == cbe.CommandID).FirstOrDefault();
+                                if (cmdState != null)
+                                {
+                                    if (cmdState.ap_IsChecked == true)
+                                    {
+                                        checkedState = true;
+                                    }
+                                    if (cmdState.ap_IsEnabled == false)
+                                    {
+                                        newState = "D";
+                                        openState = "D";
+                                        displayState = "D";
+                                    }
+
+                                    if (cmdState.ap_IsVisibile == false)
+                                    {
+                                        newState = "H";
+                                        openState = "H";
+                                        displayState = "H";
+                                    }
+                                }
+                            }
+
+                            var showText = cbe.ShowText;
+                            var showImage = cbe.ShowImage;
+                            var cmdImage = fh.am_GetImageURL(cbe.Command.CommandImage);
+
+                            if (string.IsNullOrWhiteSpace(cmdImage) && cbe.Command.CommandImage.EndsWith("_16_16_32.png"))
+                            {
+                                cmdImage = fh.am_GetImageURL(cbe.Command.CommandImage.Replace("_16_16_32.png", "_small.png"));
+                            }
+
+                            if (string.IsNullOrWhiteSpace(cmdImage) && !string.IsNullOrWhiteSpace(cbe.Command.CommandImage))
+                            {
+                                showText = true;
+                                showImage = false;
+                            }
+
+                            var searchModelAttributes = "";
+                            if (cbe.CommandID == "SEARCH")
+                            {
+                                searchModelAttributes = "data-toggle=modal data-target=#a4dn-search-modal";
+                            }
+
+                            var commandState = "";
+                            if (commandBarLocation == "MODULE" || commandBarLocation == "SUB-MODULE")
+                            {
+                                commandState = "data-a4dn-zero-state=" + cbe.ZeroItemsSelected + " data-a4dn-one-state=" + cbe.OneItemSelected + " data-a4dn-multiple-state=" + cbe.MultipleItemsSelected;
+                            }
+                            if (commandBarLocation == "DETAIL")
+                            {
+                                commandState = "data-a4dn-new-state=" + newState + " data-a4dn-open-state=" + openState + " data-a4dn-display-state=" + displayState;
+                            }
+
+                            if (showImage && showText)
+                            {
+                                <li class="a4dn-command-state hidden disabled" @commandState><a href="#" class="a4dn-overflow-btn a4dn-command" @searchModelAttributes data-a4dn-command-id="@cbe.CommandID" data-a4dn-is-checked-btn="@cbe.Checkbutton" data-a4dn-checked-state="@checkedState"><img class="a4dn-command-image margin-right-5" src="@Url.Content(cmdImage)" /> @cbe.Command.CommandName</a></li>
+                            }
+                            else if (showImage)
+                            {
+                                <li class="a4dn-command-state hidden disabled" @commandState><a href="#" class="a4dn-overflow-btn a4dn-command" @searchModelAttributes data-a4dn-command-id="@cbe.CommandID" data-a4dn-is-checked-btn="@cbe.Checkbutton" data-a4dn-checked-state="@checkedState"><img class="a4dn-command-image margin-right-5" src="@Url.Content(cmdImage)" /></a></li>
+                            }
+                            else if (showText)
+                            {
+                                <li class="a4dn-command-state hidden disabled" @commandState><a href="#" class="a4dn-overflow-btn a4dn-command" @searchModelAttributes data-a4dn-command-id="@cbe.CommandID" data-a4dn-is-checked-btn="@cbe.Checkbutton" data-a4dn-checked-state="@checkedState">@cbe.Command.CommandName</a></li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}

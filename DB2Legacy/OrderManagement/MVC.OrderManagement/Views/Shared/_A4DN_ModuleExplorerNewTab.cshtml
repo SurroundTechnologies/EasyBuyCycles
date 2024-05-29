@@ -1,0 +1,43 @@
+﻿@model AB_ModuleExplorerNewTabModel
+
+@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@{
+
+    var guid = "g" + Guid.NewGuid().ToString();
+    var moduleType = "custom-explorer";
+}
+
+
+<div id="a4dn-module-@guid" data-a4dn-guid="@guid" data-a4dn-type="@moduleType" data-a4dn-mod-number="0" data-a4dn-mod-name="@Resources.DescriptionResource.NewTab" data-a4dn-anchortowindow="true"
+     class="a4dn-module a4dn-module-explorer a4dn-@moduleType">
+
+    <!--Module Explorer Main Content Pane-->
+    <div class="a4dn-splitter-pane-1">
+      
+            <div class="a4dn-module-content a4dn-module-explorer-content a4dn-module-custom-explorer-content">
+                <div class="a4dn-scroll-body">
+                  
+                    <div id="a4dn-module-explorer-new-tab-@guid" class="a4dn-module-explorer-new-tab" data-a4dn-view-href="@Url.Action("am_GetModuleExplorerNewTabContentHtmlView", "AB_Framework")">
+                        @Html.Partial("_A4DN_ModuleExplorerNewTabContent", Model)
+                    </div>
+
+                </div>
+            </div>
+        
+    </div>
+
+    <!--Module Explorer Content Preview Pane-->
+    <div class="a4dn-splitter-pane-2">
+
+        <div class="a4dn-module-preview a4dn-module-explorer-content-preview hidden">
+         
+        </div>
+    </div>
+</div>
+
+
+<script>
+    a4dn.core.mvc.am_SetupModuleExplorer({ guid: "@guid" });
+    a4dn.core.mvc.am_InitializeNewTabRecentAndFavorites("@guid");
+</script>

@@ -1,0 +1,45 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.System.Views._ViewStart.cshtml.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers.SmartAdmin
+@using A4DN.Core.MVC.Shared.Models
+
+@model A4DN.AM.BOS.PC_ObjectsDataEntity.PC_ObjectsEntity
+
+@using (Html.BeginForm(null, null, FormMethod.Get))
+{
+	ViewBag.AppendClearButtonToAll = true;
+
+	<div class="smart-form">
+		<fieldset>
+			@*@Html.am_FieldControl(model => model.ObjectId)*@
+			@Html.am_FieldControl(model => model.ObjectName)
+			@*@Html.am_FieldControl(model => model.ObjectDescription)
+			@Html.am_FieldControl(model => model.CreateDate)
+			@Html.am_FieldControl(model => model.CreateTime)
+			@Html.am_FieldControl(model => model.CreateUser)
+			@Html.am_FieldControl(model => model.CreateSystemUser)
+			@Html.am_FieldControl(model => model.CreateJob)
+			@Html.am_FieldControl(model => model.CreateJobNumber)
+			@Html.am_FieldControl(model => model.LastChangeDate)
+			@Html.am_FieldControl(model => model.LastChangeTime)
+			@Html.am_FieldControl(model => model.LastChangeUser)
+			@Html.am_FieldControl(model => model.LastChangeSystemUser)
+			@Html.am_FieldControl(model => model.LastChangeJob)
+			@Html.am_FieldControl(model => model.LastChangeJobNumber)
+			@Html.am_FieldControl(model => model.DeleteFlag)
+			@Html.am_FieldControl(model => model.DeleteDate)
+			@Html.am_FieldControl(model => model.DeleteTime)
+			@Html.am_FieldControl(model => model.DeleteUser)
+			@Html.am_FieldControl(model => model.DeleteSystemUser)
+			@Html.am_FieldControl(model => model.DeleteJob)
+			@Html.am_FieldControl(model => model.DeleteJobNumber)*@
+		</fieldset>
+	</div>
+
+}

@@ -1,0 +1,67 @@
+﻿@model AB_ModuleExplorerModel
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.BOS.FrameworkEntity
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+
+
+@{
+
+    var guid = ViewBag.Guid;
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+
+}
+
+<table id="a4dn-table-@guid" data-a4dn-guid="@guid" class="table table-striped table-bordered table-hover a4dn-table" data-a4dn-selectionchangedajaxtrigger="@Model.ap_SelectionChangedAjaxTrigger" data-a4dn-on-search-broadcast-keys="@Model.ap_OnSearchBroadcastKeys" data-a4dn-on-preload-broadcast-keys="@Model.ap_OnPreloadBroadcastKeys" data-a4dn-parent-guid="@Model.ap_ParentGuid" data-a4dn-set-first-row-focus="@Model.ap_TableSetFirstRowFocus"
+       data-a4dn-dtl-view-href="@Url.Action("GetModuleDetailHtmlView", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber})"
+       data-a4dn-fetch-href="@Url.Action("FetchWithUniqueKey", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber})"
+       data-a4dn-delete-href="@Url.Action("DeleteWithUniqueKey", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber})"
+       data-a4dn-selection-changed-href="@Url.Action("am_SelectionChanged", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber})"
+       data-a4dn-process-request-href="@Url.Action("am_ProcessRequest", moduleEntity.MVCControllerName, new { pSysNo = Model.ap_SystemNumber, pAppNo = Model.ap_ApplicationNumber, pModNo = Model.ap_ModuleNumber, pModNm = moduleEntity.ModuleName, pUNm = @Model.ap_Entity.ap_UniqueName, pUKy = @Model.ap_UniqueKey.am_ToBase64String() })">
+
+    <thead>
+        <tr>
+            @foreach (var col in Model.ap_ViewColumns)
+            {
+                var neverClass = "";
+                if (!col.Entity.Visible)
+                {
+                    neverClass = "never";
+                }
+
+                var expandDataAttr = "";
+                if (Model.ap_ViewColumns.First() == col)
+                {
+                    expandDataAttr = "expand";
+                }
+
+                var innerHtml = col.Entity.ColumnDescription;
+
+                if (string.IsNullOrWhiteSpace(col.Entity.WebMarkupExtension))
+                {
+                    <th class="a4dn-table-header @neverClass" data-class="@expandDataAttr"> @innerHtml</th>
+                }
+                else
+                {
+
+                    if (!string.IsNullOrWhiteSpace(col.Entity.WebMarkupTHInnerHTML))
+                    {
+                        innerHtml = string.Format(col.Entity.WebMarkupTHInnerHTML, col.Entity.ColumnDescription);
+                    }
+
+                    <th class="a4dn-table-header @neverClass @col.Entity.WebMarkupTHClassNames" data-class="@expandDataAttr" @Html.Raw(col.Entity.WebMarkupTHDataAttributes)>@Html.Raw(innerHtml)</th>
+                }
+
+
+            }
+            <th class="a4dn-table-header">Unique Name</th>
+            <th class="a4dn-table-header">Unique Key</th>
+            <th class="a4dn-table-header">Title</th>
+            <th class="a4dn-table-header">Sub Title</th>
+
+        </tr>
+
+    </thead>
+
+</table>
+

@@ -1,0 +1,17 @@
+<base:AB_DropDownBase x:Class="WPF.Product.ProductDropDown"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
+	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
+    xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.PRODUCTNAME}"
+    >
+    <base:AB_DropDownBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Product/ProductResourceDictionary.xaml"/>  
+       
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </base:AB_DropDownBase.Resources>
+</base:AB_DropDownBase>

@@ -1,0 +1,18 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.System.Global.asax.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+@{
+    ViewBag.PageId = "extr-page";
+    ViewBag.PageClass = "scrollable-body";
+}
+
+@section topright{
+    <span id="extr-page-header-space"> <span class="hidden-mobile">@Resources.DescriptionResource.AlreadyRegistered</span> <a href="@Url.Action("login", "sys_account")" class="btn btn-danger">@Resources.DescriptionResource.SignIn</a> </span>
+}
+
+@{ Html.RenderPartial("_A4DN_AccountRegister"); }

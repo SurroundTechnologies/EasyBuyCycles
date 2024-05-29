@@ -1,0 +1,245 @@
+<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="../A4DNReference.msbuild" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E80F0A5-0783-4292-A79D-CF79914AD903}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPF.OrderManagement.Shared</RootNamespace>
+    <AssemblyName>WPF.OrderManagement.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup Label="A4DNItems">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Folder Include="Images\" />
+    <Resource Include="Images\3.png" />
+    <Resource Include="Images\accelbanner_left.png" />
+    <Resource Include="Images\accelbanner_mid.png" />
+    <Resource Include="Images\accelbanner_right.png" />
+    <Resource Include="Images\AcceleratorBanner.png" />
+    <Resource Include="Images\AcceleratorIcon.png" />
+    <Resource Include="Images\bingmap_sm.jpg" />
+    <Resource Include="Images\Brochure.png" />
+    <Resource Include="Images\Brochure_16_16_32.png" />
+    <Resource Include="Images\Brochure_24_24_32.png" />
+    <Resource Include="Images\Brochure_32_32_32.png" />
+    <Resource Include="Images\Brochure_48_48_32.png" />
+    <Resource Include="Images\CodeValues.png" />
+    <Resource Include="Images\CodeValues_128_128_32.png" />
+    <Resource Include="Images\CodeValues_16_16_32.png" />
+    <Resource Include="Images\CodeValues_24_24_32.png" />
+    <Resource Include="Images\CodeValues_32_32_32.png" />
+    <Resource Include="Images\CodeValues_48_48_32.png" />
+    <Resource Include="Images\CodeValues_64_64_32.png" />
+    <Resource Include="Images\CodeValues_72_72_32.png" />
+    <Resource Include="Images\CodeValues_96_96_32.png" />
+    <Resource Include="Images\Customer.png" />
+    <Resource Include="Images\Customer_128_128_32.png" />
+    <Resource Include="Images\Customer_16_16_32.png" />
+    <Resource Include="Images\Customer_24_24_32.png" />
+    <Resource Include="Images\Customer_32_32_32.png" />
+    <Resource Include="Images\Customer_48_48_32.png" />
+    <Resource Include="Images\Dashboard.png" />
+    <Resource Include="Images\Dashboard_128_128_32.png" />
+    <Resource Include="Images\Dashboard_16_16_32.png" />
+    <Resource Include="Images\Dashboard_24_24_32.png" />
+    <Resource Include="Images\Dashboard_32_32_32.png" />
+    <Resource Include="Images\Dashboard_48_48_32.png" />
+    <Resource Include="Images\Document.png" />
+    <Resource Include="Images\Document_128_128_32.png" />
+    <Resource Include="Images\Document_16_16_32.png" />
+    <Resource Include="Images\Document_24_24_32.png" />
+    <Resource Include="Images\Document_32_32_32.png" />
+    <Resource Include="Images\Document_48_48_32.png" />
+    <Resource Include="Images\Document_64_64_32.png" />
+    <Resource Include="Images\Document_72_72_32.png" />
+    <Resource Include="Images\Document_96_96_32.png" />
+    <Resource Include="Images\EasyBuy-Multimedia.png" />
+    <Resource Include="Images\EasyBuy-Presentation.png" />
+    <Resource Include="Images\EasyBuy-Video.png" />
+    <Resource Include="Images\EasyBuyCycles-HTML.ico" />
+    <Resource Include="Images\EasyBuyCycles-HTML_128_128_32.png" />
+    <Resource Include="Images\EasyBuyCycles-HTML_256_256_32.png" />
+    <Resource Include="Images\EasyBuyCycles-WPFReuse.ico" />
+    <Resource Include="Images\EasyBuyCycles-WPFReuse_128_128_32.png" />
+    <Resource Include="Images\EasyBuyCycles-WPFReuse_256_256_32.png" />
+    <Resource Include="Images\EasyBuyDistributors48x200.png" />
+    <Resource Include="Images\easybuyv4horiz90h.png" />
+    <Resource Include="Images\EasyBuyv4Logo.ico" />
+    <Resource Include="Images\EasyBuyv4Logo_128_128_32.png" />
+    <Resource Include="Images\EasyBuyv4Logo_256_256_32.png" />
+    <Resource Include="Images\email.png" />
+    <Resource Include="Images\email_icon.png" />
+    <Resource Include="Images\fax_icon.png" />
+    <Resource Include="Images\GlobeCheck.png" />
+    <Resource Include="Images\googlemap_sm.jpg" />
+    <Resource Include="Images\Headquarters.png" />
+    <Resource Include="Images\HeadquartersStatistics.png" />
+    <Resource Include="Images\held.png" />
+    <Resource Include="Images\LOBLoginSplash.png" />
+    <Resource Include="Images\Logo-MyApp_128_128_32.png" />
+    <Resource Include="Images\Logo-MyApp_16_16_32.png" />
+    <Resource Include="Images\Logo-MyApp_24_24_32.png" />
+    <Resource Include="Images\Logo-MyApp_256_256_32.png" />
+    <Resource Include="Images\Logo-MyApp_32_32_32.png" />
+    <Resource Include="Images\Logo-MyApp_48_48_32.png" />
+    <Resource Include="Images\Logo-MyApp_64_64_32.png" />
+    <Resource Include="Images\Logo-MyApp_96_96_32.png" />
+    <Resource Include="Images\Logo-MyCompany_128_128_32.png" />
+    <Resource Include="Images\Logo-MyCompany_16_16_32.png" />
+    <Resource Include="Images\Logo-MyCompany_24_24_32.png" />
+    <Resource Include="Images\Logo-MyCompany_256_256_32.png" />
+    <Resource Include="Images\Logo-MyCompany_32_32_32.png" />
+    <Resource Include="Images\Logo-MyCompany_48_48_32.png" />
+    <Resource Include="Images\Logo-MyCompany_64_64_32.png" />
+    <Resource Include="Images\Logo-MyCompany_96_96_32.png" />
+    <Resource Include="Images\Map.png" />
+    <Resource Include="Images\MyApplicationSquare.ico" />
+    <Resource Include="Images\MyApplicationSquare.png" />
+    <Resource Include="Images\MyApplicationSquare_128_128_32.png" />
+    <Resource Include="Images\MyApplicationSquare_16_16_32.png" />
+    <Resource Include="Images\MyApplicationSquare_24_24_32.png" />
+    <Resource Include="Images\MyApplicationSquare_256_256_32.png" />
+    <Resource Include="Images\MyApplicationSquare_32_32_32.png" />
+    <Resource Include="Images\MyApplicationSquare_48_48_32.png" />
+    <Resource Include="Images\MyApplicationSquare_64_64_32.png" />
+    <Resource Include="Images\MyApplicationSquare_96_96_32.png" />
+    <Resource Include="Images\MyCompany.png" />
+    <Resource Include="Images\MyCompanySquare.ico" />
+    <Resource Include="Images\MyCompanySquare.png" />
+    <Resource Include="Images\MyCompanySquare_128_128_32.png" />
+    <Resource Include="Images\MyCompanySquare_16_16_32.png" />
+    <Resource Include="Images\MyCompanySquare_24_24_32.png" />
+    <Resource Include="Images\MyCompanySquare_256_256_32.png" />
+    <Resource Include="Images\MyCompanySquare_32_32_32.png" />
+    <Resource Include="Images\MyCompanySquare_48_48_32.png" />
+    <Resource Include="Images\MyCompanySquare_64_64_32.png" />
+    <Resource Include="Images\MyCompanySquare_96_96_32.png" />
+    <Resource Include="Images\officebuilding.jpg" />
+    <Resource Include="Images\office_photo_lg.png" />
+    <Resource Include="Images\office_photo_thumbs.png" />
+    <Resource Include="Images\Order.png" />
+    <Resource Include="Images\OrderItem.png" />
+    <Resource Include="Images\OrderItems_128_128_32.png" />
+    <Resource Include="Images\OrderItem_128_128_32.png" />
+    <Resource Include="Images\OrderItem_16_16_32.png" />
+    <Resource Include="Images\OrderItem_24_24_32.png" />
+    <Resource Include="Images\OrderItem_32_32_32.png" />
+    <Resource Include="Images\OrderItem_48_48_32.png" />
+    <Resource Include="Images\OrderStatus_128_128_32.png" />
+    <Resource Include="Images\OrderStatus_16_16_32.png" />
+    <Resource Include="Images\OrderStatus_24_24_32.png" />
+    <Resource Include="Images\OrderStatus_32_32_32.png" />
+    <Resource Include="Images\OrderStatus_48_48_32.png" />
+    <Resource Include="Images\Order_128_128_32.png" />
+    <Resource Include="Images\Order_16_16_32.png" />
+    <Resource Include="Images\Order_24_24_32.png" />
+    <Resource Include="Images\Order_32_32_32.png" />
+    <Resource Include="Images\Order_48_48_32.png" />
+    <Resource Include="Images\product.png" />
+    <Resource Include="Images\ProductCategory_128_128_32.png" />
+    <Resource Include="Images\ProductCategory_16_16_32.png" />
+    <Resource Include="Images\ProductCategory_24_24_32.png" />
+    <Resource Include="Images\ProductCategory_32_32_32.png" />
+    <Resource Include="Images\ProductCategory_48_48_32.png" />
+    <Resource Include="Images\product_128_128_32.png" />
+    <Resource Include="Images\product_16_16_32.png" />
+    <Resource Include="Images\product_24_24_32.png" />
+    <Resource Include="Images\product_32_32_32.png" />
+    <Resource Include="Images\product_48_48_32.png" />
+    <Resource Include="Images\ShippingAddress.png" />
+    <Resource Include="Images\ShippingAddress_128_128_32.png" />
+    <Resource Include="Images\ShippingAddress_16_16_32.png" />
+    <Resource Include="Images\ShippingAddress_24_24_32.png" />
+    <Resource Include="Images\ShippingAddress_32_32_32.png" />
+    <Resource Include="Images\ShippingAddress_48_48_32.png" />
+    <Resource Include="Images\surround.png" />
+    <Resource Include="Images\SurroundTask.png" />
+    <Folder Include="Resources\" />
+    <Page Include="Resources\ApplicationResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Folder Include="Resources\Themes\" />
+    <Page Include="Resources\Themes\GraphiteThemeResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\SoftBlueThemeResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\SoftGreenThemeResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\BlackThemeResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup Label="A4DNReferences">
+    <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.DataController, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.DataController.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.ViewModel, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.WPF.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.WPF.Base.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

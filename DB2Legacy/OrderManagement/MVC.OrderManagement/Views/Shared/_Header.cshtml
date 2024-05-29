@@ -1,0 +1,36 @@
+@*
+//===============================================================================================
+// <A4DN_GeneratedInformation>
+// This code was generated using the Accelerator for .Net Code Generator.
+// <A4DN_Template Name="MVC.System.Views._ViewStart.cshtml.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
+// </A4DN_GeneratedInformation>
+//===============================================================================================
+*@
+
+<!-- HEADER -->
+<header id="header">
+    <div id="logo-group">
+
+        <!-- PLACE YOUR LOGO HERE -->
+        <span id="logo"> <img src="~/content/img/EasyBuyDistributors48x200.png" alt="Order Management"> </span>
+        <!-- END LOGO PLACEHOLDER -->
+
+        @{ Html.RenderPartial("_A4DN_HeaderShortcuts"); }
+    </div>
+
+    @{ Html.RenderPartial("_A4DN_HeaderDropdowns"); }
+
+    <section id="top-right">
+        @if (@Model is HelperResult)
+        {
+            @Model
+        }
+        else
+        {
+            <div class="pull-right">
+                @Html.Partial("_TopRight")
+            </div>
+        }
+    </section>
+</header>
+<!-- END HEADER -->

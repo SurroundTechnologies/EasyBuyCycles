@@ -1,0 +1,61 @@
+﻿@using System.Web.Configuration
+@using A4DN.Core.BOS.Base.Properties
+@{
+    var section = WebConfigurationManager.GetSection("system.web/authentication") as AuthenticationSection;
+    var sessionTimeout = section.Forms.Timeout;
+    var timeoutMS = sessionTimeout.TotalMilliseconds;   // JS Timer operates in milliseconds
+    var warningTimeoutMS = timeoutMS - 60 * 1000;       // One minute warning
+    var loginUrl = VirtualPathUtility.ToAbsolute(section.Forms.LoginUrl);
+    var resetUrl = Url.Action("am_SessionHeartbeat", "SYS_Account");
+    var title = DescriptionResource.SESSION_TIMEOUT_WARNING;
+    var noBtn = DescriptionResource.SESSION_TIMEOUT_ENDSESSION;
+    var yesBtn = DescriptionResource.SESSION_TIMEOUT_KEEPALIVE;
+}
+<script>
+    $(function() {
+        var autoLogoutTimeout;
+        var warningTimeout;
+
+        var resetTimer = function () {
+            clearTimeout(autoLogoutTimeout);
+            clearTimeout(warningTimeout);
+            autoLogoutTimeout = setTimeout(function () { goToLoginPage(); }, @timeoutMS);
+            warningTimeout = setTimeout(function () { showWarning(); }, @warningTimeoutMS);
+        };
+
+        var goToLoginPage = function () {
+            window.location = '@loginUrl';
+        };
+
+        var showWarning = function () {
+            $.SmartMessageBox({
+                title: '@title',
+                content: '',
+                buttons: '[@noBtn][@yesBtn]'
+            }, function (ButtonPressed) {
+                if (ButtonPressed === '@yesBtn') {
+                    a4dn.core.mvc.am_ajax('@resetUrl', null, {});
+                }
+                else {
+                    goToLoginPage();
+                }
+            });
+        };
+
+        @* Start/Reset timer when an ajax request completes *@
+        $(document).on("ajaxComplete", function (e, xhr, settings) {
+            // Reset timer, unless AJAX request was a User Job Log update
+            if (settings.url.indexOf("/AB_Framework/am_UpdateUserJobLog") < 0)
+                resetTimer();
+        });
+
+        @*
+            NOTE: We're not reseting on events like mousemove because we don't care if the user is active.
+            The only thing that matters is how long it's been since the server has heard from us, because
+            we're tracking the server's Session timeout.
+        *@
+
+        @* Start/Reset timer on initial page load *@
+        resetTimer();
+    });
+</script>

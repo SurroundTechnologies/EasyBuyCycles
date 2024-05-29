@@ -1,0 +1,140 @@
+<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="../A4DNReference.msbuild" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{454BC523-D124-4A39-89AA-498FA3F40C86}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BOS.OrderManagement</RootNamespace>
+    <AssemblyName>BOS.OrderManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup Label="A4DNItems">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\DescriptionResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DescriptionResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\DescriptionResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DescriptionResource.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\MessageResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\MessageResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageResource.resx</DependentUpon>
+    </Compile>
+    <Folder Include="Customer\" />
+    <Compile Include="Customer\CustomerDataContracts.cs" />
+    <Compile Include="Customer\CustomerValidations.cs" />
+    <Compile Include="Customer\CustomerEntity.cs" />
+    <Compile Include="Customer\CustomerMaps.cs" />
+    <Compile Include="Customer\CustomerDALServiceContract.cs" />
+    <Compile Include="Customer\CustomerDALForSQL.cs" />
+    <Compile Include="Customer\CustomerBP.cs" />
+    <Folder Include="OrderItem\" />
+    <Compile Include="OrderItem\OrderItemDataContracts.cs" />
+    <Compile Include="OrderItem\OrderItemValidations.cs" />
+    <Compile Include="OrderItem\OrderItemEntity.cs" />
+    <Compile Include="OrderItem\OrderItemMaps.cs" />
+    <Compile Include="OrderItem\OrderItemDALServiceContract.cs" />
+    <Compile Include="OrderItem\OrderItemDALForSQL.cs" />
+    <Compile Include="OrderItem\OrderItemBP.cs" />
+    <Folder Include="Order\" />
+    <Compile Include="Order\OrderDataContracts.cs" />
+    <Compile Include="Order\OrderValidations.cs" />
+    <Compile Include="Order\OrderEntity.cs" />
+    <Compile Include="Order\OrderMaps.cs" />
+    <Compile Include="Order\OrderDALServiceContract.cs" />
+    <Compile Include="Order\OrderDALForSQL.cs" />
+    <Compile Include="Order\OrderBP.cs" />
+    <Folder Include="Product\" />
+    <Compile Include="Product\ProductDataContracts.cs" />
+    <Compile Include="Product\ProductValidations.cs" />
+    <Compile Include="Product\ProductEntity.cs" />
+    <Compile Include="Product\ProductMaps.cs" />
+    <Compile Include="Product\ProductDALServiceContract.cs" />
+    <Compile Include="Product\ProductDALForSQL.cs" />
+    <Compile Include="Product\ProductBP.cs" />
+    <Folder Include="ShippingAddress\" />
+    <Compile Include="ShippingAddress\ShippingAddressDataContracts.cs" />
+    <Compile Include="ShippingAddress\ShippingAddressValidations.cs" />
+    <Compile Include="ShippingAddress\ShippingAddressEntity.cs" />
+    <Compile Include="ShippingAddress\ShippingAddressMaps.cs" />
+    <Compile Include="ShippingAddress\ShippingAddressDALServiceContract.cs" />
+    <Compile Include="ShippingAddress\ShippingAddressDALForSQL.cs" />
+    <Compile Include="ShippingAddress\ShippingAddressBP.cs" />
+  </ItemGroup>
+  <ItemGroup Label="A4DNReferences">
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="A4DN.Core.BOS.ValidationAttributes, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.ValidationAttributes.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.DataController, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.DataController.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.DALBaseForSQL, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.DALBaseForSQL.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.FrameworkEntity, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.FrameworkEntity.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj">
+      <Project>{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}</Project>
+      <Name>BOS.OrderManagement.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

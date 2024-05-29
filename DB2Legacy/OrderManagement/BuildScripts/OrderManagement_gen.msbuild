@@ -1,0 +1,58 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	ToolsVersion="4.0"
+	DefaultTargets="AllLayers">
+
+
+<Target Name="AllLayers">
+<MSBuild
+	Projects="@(Layer0_0)"
+	BuildInParallel="true"
+	Properties="Configuration=Debug;Platform=AnyCPU"
+	ContinueOnError="true"
+/>
+<MSBuild
+	Projects="@(Layer1_0)"
+	BuildInParallel="true"
+	Properties="Configuration=Debug;Platform=AnyCPU"
+	ContinueOnError="true"
+/>
+<MSBuild
+	Projects="@(Layer2_0)"
+	BuildInParallel="true"
+	Properties="Configuration=Debug;Platform=AnyCPU"
+	ContinueOnError="true"
+/>
+<MSBuild
+	Projects="@(Layer3_0)"
+	BuildInParallel="true"
+	Properties="Configuration=Debug;Platform=AnyCPU"
+	ContinueOnError="true"
+/>
+<MSBuild
+	Projects="@(Layer4_0)"
+	BuildInParallel="true"
+	Properties="Configuration=Debug;Platform=AnyCPU"
+	ContinueOnError="true"
+/>
+</Target>
+
+<ItemGroup>
+	<Layer0_0 Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj" />
+	<Layer0_0 Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj" />
+</ItemGroup>
+<ItemGroup>
+	<Layer1_0 Include="..\BOS.OrderManagement\BOS.OrderManagement.csproj" />
+</ItemGroup>
+<ItemGroup>
+	<Layer2_0 Include="..\ServiceHost.OrderManagement.BP\ServiceHost.OrderManagement.BP.csproj" />
+	<Layer2_0 Include="..\ServiceHost.OrderManagement.DALForSQL\ServiceHost.OrderManagement.DALForSQL.csproj" />
+	<Layer2_0 Include="..\BOS.OrderManagement.ViewModels\BOS.OrderManagement.ViewModels.csproj" />
+</ItemGroup>
+<ItemGroup>
+	<Layer3_0 Include="..\MVC.OrderManagement\MVC.OrderManagement.csproj" />
+	<Layer3_0 Include="..\WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj" />
+</ItemGroup>
+<ItemGroup>
+	<Layer4_0 Include="..\WPF.OrderManagement\WPF.OrderManagement.csproj" />
+</ItemGroup>
+</Project>

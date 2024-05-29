@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="MVC.OrderManagement.MvcApplication" Language="C#" %>

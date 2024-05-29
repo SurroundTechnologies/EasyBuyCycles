@@ -1,0 +1,38 @@
+﻿@model AB_ModuleExplorerModel
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.BOS.Base
+@using A4DN.Core.BOS.Base.ModuleExtensions
+@using A4DN.Core.BOS.FrameworkEntity
+
+@{
+
+    var guid = ViewBag.Guid;
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+
+    string target = null;
+    string url = null;
+
+    // Look for a non-search-explorer url to use
+    if (moduleEntity.ap_ExplorerComponentAttributes != null)
+    {
+        var extAttr = moduleEntity.ap_ExplorerComponentAttributes;
+        if (extAttr is AB_WebPageExplorerAttributes)
+        {
+            target = (extAttr as AB_WebPageExplorerAttributes).Target;
+            url = (extAttr as AB_WebPageExplorerAttributes).Url ?? moduleEntity.Path;
+        }
+        else if (extAttr is AB_PDFExplorerAttributes)
+        {
+            target = (extAttr as AB_PDFExplorerAttributes).Target;
+            url = (extAttr as AB_PDFExplorerAttributes).Url ?? moduleEntity.Path;
+        }
+
+        if (url != null && url.StartsWith("~/"))
+        {
+            url = Url.am_AbsoluteContent(url);
+        }
+    }
+}
+
+<iframe id="a4dn-webpage-explorer-@guid" src="@url" class="a4dn-webpage-explorer a4dn-dashboard" data-a4dn-guid="@guid"></iframe>

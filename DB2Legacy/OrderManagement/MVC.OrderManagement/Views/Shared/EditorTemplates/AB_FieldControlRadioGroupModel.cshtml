@@ -1,0 +1,81 @@
+﻿@using A4DN.Core.BOS.Base
+@using A4DN.Core.MVC.Shared.Models
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers.SmartAdmin
+@model A4DN.Core.MVC.Shared.Models.AB_FieldControlRadioGroupModel
+@{
+    // DEBUG
+    //Model.ap_GroupLayout = AB_RadioGroupDisplay.GROUP_LAYOUT.Inline;
+    //Model.ap_RadioStyle = AB_RadioGroupDisplay.RADIO_STYLE.Toggle;
+    //Model.ap_NumberOfColumns = AB_RadioGroupDisplay.COLUMNS.THREE;
+
+    var fieldModel = ViewBag.FieldControlModel as AB_FieldControlModel;
+
+    var disabledProp = (fieldModel.ap_IsDisabled == true || fieldModel.ap_IsReadOnly == true) ? "disabled" : null;
+    var disabledClass = fieldModel.ap_IsDisabled == true ? "disabled a4dn-disabled" : null;
+    var disabledLabelClass = fieldModel.ap_IsDisabled == true ? "state-disabled" : null;
+    var hiddenClass = fieldModel.ap_IsHidden == true ? "hidden" : null;
+    var hiddenLabelClass = fieldModel.ap_IsLabelHidden == true ? "hidden" : null;
+
+    // Reset default selection if fieldModel.ap_Value is populated
+    if (!String.IsNullOrWhiteSpace(fieldModel.ap_Value))
+    {
+        Model.ap_Options.ForEach(opt => opt.Selected = opt.Value == fieldModel.ap_Value);
+    }
+
+    var labelClass = Model.ap_RadioStyle == AB_RadioGroupDisplay.RADIO_STYLE.Radio ? "radio" : "toggle";
+}
+<label class="label a4dn-field-control-label @hiddenLabelClass @fieldModel.ap_LabelClass" for="@fieldModel.ap_PropertyName">@fieldModel.ap_DisplayName</label>
+
+@if (Model.ap_GroupLayout == AB_RadioGroupDisplay.GROUP_LAYOUT.Inline)
+{
+    <div class="inline-group">
+        @foreach (var opt in Model.ap_Options)
+        {
+            // Radio options don't support 'readonly', so to simulate it we have to disable all options except for the selected one
+            var readonlyProp = fieldModel.ap_IsReadOnly == true && !opt.Selected ? "disabled" : null;
+            var readonlyClass = fieldModel.ap_IsReadOnly == true && !opt.Selected ? "disabled a4dn-disabled" : null;
+            <label class="@labelClass @readonlyClass">
+                <input type="radio" name="@fieldModel.ap_PropertyName" class="a4dn-field-control @disabledClass @readonlyClass @fieldModel.ap_FieldClass" @disabledProp @readonlyProp @Html.am_AttributeCollection(fieldModel.ap_FieldDataAttributes)  data-a4dn-original-value="@fieldModel.ap_Value" value="@opt.Value" @(opt.Selected == true ? "checked" : "") @fieldModel.ap_UnobtrusiveValidationAttributesFor />
+                <i data-swchon-text="@Model.ap_ToggleLabelOn" data-swchoff-text="@Model.ap_ToggleLabelOff"></i>
+                @opt.Text
+            </label>
+        }
+    </div>
+}
+else if (Model.ap_GroupLayout == AB_RadioGroupDisplay.GROUP_LAYOUT.Columns)
+{
+    var numCols = (int)Model.ap_NumberOfColumns;
+    var numOpts = Model.ap_Options.Count;
+    var numRows = 1; // 1 row for top-to-bottom, left-to-right layout. For left-to-right, top-to-bottom use Math.Ceiling((decimal)numOpts / numCols);
+    var optsPerCol = Math.Ceiling(((decimal)numOpts / numRows) / numCols);
+    var colClass = numCols == 1 ? "col-12" : numCols == 2 ? "col-6" : numCols == 3 ? "col-4" : numCols == 4 ? "col-3" : numCols == 6 ? "col-2" : "";
+    var i = 0;
+    for (var row = 0; row < numRows; row++)
+    {
+        <div class="row">
+            @for (var col = 0; col < numCols; col++)
+            {
+                <div class="col @colClass">
+                    @for (var j = 0; j < optsPerCol; j++)
+                    {
+                        if (i >= numOpts)
+                        {
+                            break;
+                        }
+                        var opt = Model.ap_Options[i++];
+                        // Radio options don't support 'readonly', so to simulate it we have to disable all options except for the selected one
+                        var readonlyProp = fieldModel.ap_IsReadOnly == true && !opt.Selected ? "disabled" : null;
+                        var readonlyClass = fieldModel.ap_IsReadOnly == true && !opt.Selected ? "disabled a4dn-disabled" : null;
+                        <label class="@labelClass @readonlyClass">
+                            <input type="radio" name="@fieldModel.ap_PropertyName" class="a4dn-field-control @disabledClass @readonlyClass @fieldModel.ap_FieldClass" @disabledProp @readonlyProp @Html.am_AttributeCollection(fieldModel.ap_FieldDataAttributes) data-a4dn-original-value="@fieldModel.ap_Value" value="@opt.Value" @(opt.Selected == true ? "checked" : "") @fieldModel.ap_UnobtrusiveValidationAttributesFor />
+                            <i data-swchon-text="@Model.ap_ToggleLabelOn" data-swchoff-text="@Model.ap_ToggleLabelOff"></i>
+                            @opt.Text
+                        </label>
+                    }
+                </div>
+            }
+        </div>
+    }
+}
+
+@fieldModel.ap_ValidationMessageFor

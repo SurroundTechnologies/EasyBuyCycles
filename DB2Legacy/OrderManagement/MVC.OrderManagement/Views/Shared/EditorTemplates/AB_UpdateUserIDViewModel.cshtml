@@ -1,0 +1,46 @@
+﻿@using A4DN.Core.MVC.AccountRegistration
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@model AB_UpdateUserIDViewModel
+@helper RenderField(string fieldName, string icon, string fieldType, string placeholder, string autocomplete, bool isRequired)
+{
+    <section>
+        <label class="label @(isRequired ? "required" : "")">@Html.Label(fieldName)</label>
+        <label class="@(fieldType == "textarea" ? "textarea" : "input")">
+            <i class="icon-append fa @icon"></i>
+            @if (fieldType == "textarea")
+            {
+                <textarea rows="3" name="@Html.Name(fieldName)" placeholder="@placeholder" autocomplete="@autocomplete" @Html.am_UnobtrusiveValidationAttributes(fieldName)>@Html.Value(fieldName)</textarea>
+            }
+            else
+            {
+                <input type="@fieldType" name="@Html.Name(fieldName)" placeholder="@placeholder" autocomplete="@autocomplete" value="@Html.Value(fieldName)" @Html.am_UnobtrusiveValidationAttributes(fieldName)>
+            }
+            @Html.ValidationMessage(fieldName)
+        </label>
+    </section>
+}
+
+@using (Html.BeginForm("UpdateUsername", "AccountSettings", FormMethod.Post, new { @class = "smart-form client-form", role = "form", id = "update-username-form" }))
+{
+    <fieldset>
+        @RenderField("UserID", "fa-user", "text", Resources.DescriptionResource.EditYourUsername, "username", true)
+        @RenderField("Email", "fa-envelope", "email", Resources.DescriptionResource.EditYourEmailAddress, "email", true)
+        @RenderField("ConfirmEmail", "fa-envelope", "email", Resources.DescriptionResource.EditYourEmailAddress, "off", true)
+        @RenderField("FirstName", "fa-user", "text", Resources.DescriptionResource.EditYourFirstName, "given-name", true)
+        @RenderField("MiddleName", "fa-user", "text", Resources.DescriptionResource.EditYourMiddleName, "additional-name", false)
+        @RenderField("LastName", "fa-user", "text", Resources.DescriptionResource.EditYourLastName, "family-name", true)
+        @RenderField("CompanyName", "fa-building", "text", Resources.DescriptionResource.EditYourCompanyName, "organization", true)
+        @RenderField("JobTitle", "fa-briefcase", "text", Resources.DescriptionResource.EditYourJobTitle, "organization-title", false)
+        @RenderField("Phone", "fa-phone", "tel", Resources.DescriptionResource.EditYourContactPhoneNumber, "tel", true)
+        @RenderField("AddressLine1", "fa-map-marker", "text", Resources.DescriptionResource.EditYourStreetAddress1, "address-line1", false)
+        @RenderField("AddressLine2", "fa-map-marker", "text", Resources.DescriptionResource.EditYourStreetAddress2, "address-line2", false)
+        @RenderField("City", "fa-map-marker", "text", Resources.DescriptionResource.EditYourCity, "address-level2", false)
+        @RenderField("State", "fa-map-marker", "text", Resources.DescriptionResource.EditYourState, "address-level1", false)
+        @RenderField("Zip", "fa-map-marker", "text", Resources.DescriptionResource.EditYourZipPostalCode, "postal-code", false)
+        @RenderField("Country", "fa-map-marker", "text", Resources.DescriptionResource.EditYourCountry, "country-name", false)
+    </fieldset>
+
+    <footer>
+        <button class="btn btn-primary" type="submit">@Resources.DescriptionResource.Update &#x276f;</button>
+    </footer>
+}

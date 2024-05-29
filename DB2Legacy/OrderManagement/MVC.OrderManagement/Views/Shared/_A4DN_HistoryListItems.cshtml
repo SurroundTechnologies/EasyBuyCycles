@@ -1,0 +1,29 @@
+﻿@model AB_HistoryModel
+
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.Shared.Infrastructure.Extensions
+@using A4DN.Core.MVC.Shared.Models
+
+@{
+
+    var fh = Html.ap_FrameworkHelper();
+   
+}
+
+@foreach (var item in Model.ap_HistoryRecords)
+{
+    var mod = fh.am_GetModuleByModuleNumber((int)item.ModuleNumber);
+    if (mod != null)
+    {
+        var command = fh.am_GetCommandBarElement(mod.ModuleNumber, "OPEN") != null ? "OPEN" : "DISPLAY";
+
+        <li class="a4dn-tree-list-item">
+            <img class="a4dn-mod-image" src="@Url.Content(fh.am_GetImageURL(mod.Image))"/>
+            <a class="a4dn-detail-link" href="@Url.Action("GetModuleDetailHtmlView", mod.MVCControllerName, new {pSysNo = item.SystemNumber, pAppNo = item.ApplicationNumber, pModNo = item.ModuleNumber})"
+               data-a4dn-app-number="@item.ApplicationNumber" data-a4dn-mod-number="@item.ModuleNumber" data-a4dn-unique-name="@item.FileObjectName" data-a4dn-unique-key="@item.FileObjectKey.am_ToBase64String()" data-a4dn-command-id="@command">@item.Title</a>
+            <a class="a4dn-remove a4dn-remove-btn a4dn-remove-item" href="javascript:void(0);" data-original-title="@Resources.DescriptionResource.Remove" rel="tooltip" data-placement="left"
+               data-a4dn-remove-href="@Url.Action("am_RemoveHistoryForID", "AB_Framework", new {historyID = item.HistoryID, title = item.Title})"><i class="fa fa-times"></i></a>
+
+        </li>
+    }
+}

@@ -1,0 +1,63 @@
+@model A4DN.Core.MVC.Shared.Models.AB_LoginModel
+
+<div id="content" class="container">
+    <div class="row">
+        @{ Html.RenderPartial("_LoginText"); }
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+            <div class="well no-padding">
+                <form action="@Url.Action("login", "SYS_account")" method="POST" id="login-form" class="smart-form client-form">
+                    <header>
+                        @Resources.DescriptionResource.SignIn
+                    </header>
+                    @Html.HiddenFor(m => m.ReturnUrl)
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationBootstrap()
+                    <fieldset>
+                        @if (Model.IsLanguageDropdownVisible)
+                        {
+                          Html.RenderPartial("_A4DN_LanguageDropdown"); 
+                        }
+                        <section>
+                            <label class="label">@Resources.DescriptionResource.USERNAME</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-user"></i>
+                                <input type="text" name="Username" value="@Html.ValueFor(m => m.UserName)" tabindex=1 autofocus>
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> @Resources.DescriptionResource.EnterYourUsername</b>
+                            </label>
+                            <div class="note">
+                                <a href="@Url.Action("ForgotID", "SYS_Account", new { rs = 1 })" tabindex=-1><i class="fa fa-frown-o"></i>@Resources.DescriptionResource.ForgotUsername</a>
+                            </div>
+                        </section>
+
+                        <section>
+                            <label class="label">@Resources.DescriptionResource.PASSWORD</label>
+                            <label class="input">
+                                <i class="icon-append fa fa-lock"></i>
+                                <input type="password" name="password" value="" tabindex=2>
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> @Resources.DescriptionResource.EnterYourPassword</b>
+                            </label>
+                            <div class="note">
+                                <a href="@Url.Action("ForgotPassword", "SYS_Account", new { rs = 1 })" tabindex=-1><i class="fa fa-frown-o"></i> @Resources.DescriptionResource.ForgotPassword</a>
+                            </div>
+                        </section>
+
+                        <section>
+                            <label class="checkbox">
+                                <input type="checkbox" name="rememberMe" value="true" checked="checked" tabindex=-1>
+                                <input type="hidden" name="rememberMe" value="false" />
+                                <i></i>@Resources.DescriptionResource.StaySignedIn
+                            </label>
+                        </section>
+
+
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="btn btn-primary" tabindex=3>
+                            @Resources.DescriptionResource.SignIn
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

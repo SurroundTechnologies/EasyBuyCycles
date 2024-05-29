@@ -1,0 +1,24 @@
+﻿@model A4DN.Core.MVC.Shared.Models.AB_LoginModel
+
+<section>
+    @Html.HiddenFor(m => m.IsLanguageDropdownVisible)
+
+    <label class="label">@Resources.DescriptionResource.SelectLanguage</label>
+    <label class="select">
+        <select onchange="location = this.value;">
+            @foreach (var item in Model.EnrolledCultures)
+            {
+                if (item.Name == Model.DefaultCulture.Name)
+                {
+                    <option value="@Url.Action("Login", "SYS_Account", new { culture = item })" selected>@item.DisplayName</option>
+
+                }
+                else
+                {
+                    <option value="@Url.Action("Login", "SYS_Account", new { culture = item })">@item.DisplayName</option>
+                }
+
+            }
+        </select> <i></i>
+    </label>
+</section>

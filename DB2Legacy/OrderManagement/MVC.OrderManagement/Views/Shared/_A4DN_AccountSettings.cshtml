@@ -1,0 +1,99 @@
+﻿@model AB_ModuleExplorerModel
+
+@using A4DN.Core.MVC.LOB.Models
+@using A4DN.Core.BOS.FrameworkEntity
+@using A4DN.Core.MVC.Shared.Infrastructure.Helpers
+@using A4DN.Core.MVC.AccountRegistration
+
+@{
+    var moduleEntity = ViewBag.ModuleEntity as AB_ModuleEntity;
+    var guid = ViewBag.Guid;
+    var accountSettingsModel = Model.ap_CustomModel as AB_AccountSettingsModel;
+}
+
+<style>
+    .a4dn-accountsettings {
+        padding: 15px;
+    }
+        /*.a4dn-accountsettings-row > article { padding-bottom: 5px; padding-right: 5px; }*/
+        .a4dn-accountsettings .section-heading {
+            border-bottom: 1px solid #346597;
+            margin-bottom: 30px;
+        }
+
+            .a4dn-accountsettings .section-heading h2 {
+                margin-top: 0;
+                margin-bottom: -0.1em;
+            }
+
+        .a4dn-accountsettings form {
+            margin-bottom: 60px;
+            border: 1px solid #ccc;
+        }
+
+        .a4dn-accountsettings label.required::after {
+            content: "*";
+            color: #ff0000;
+            padding-left: 0.25em;
+        }
+
+    #security-question-suggestions.no-selection {
+        color: #999;
+    }
+
+    #security-question-suggestions option {
+        color: #000;
+        padding: 5px 10px;
+    }
+
+        #security-question-suggestions option[value=''] {
+            color: #999;
+        }
+</style>
+
+<!-- widget grid -->
+<section id="widget-grid-@guid" class="a4dn-accountsettings">
+    <!-- row -->
+    <div class="row a4dn-accountsettings-row">
+        <article class="col-xs-12 col-sm-6 sortable-grid ui-sortable">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-heading">
+                        <h2>@Resources.DescriptionResource.UpdateUsernameEmailAddress</h2>
+                    </div>
+                </div>
+            </div>
+            @Html.EditorFor(m => accountSettingsModel.ap_UpdateUserIDModel, null, "")
+        </article>
+        <article class="col-xs-12 col-sm-6 sortable-grid ui-sortable">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-heading">
+                        <h2>@Resources.DescriptionResource.UpdatePassword</h2>
+                    </div>
+                </div>
+            </div>
+            @Html.EditorFor(m => accountSettingsModel.ap_UpdatePasswordModel, null, "")
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-heading">
+                        <h2>@Resources.DescriptionResource.UpdateSecurityQuestionAnswer</h2>
+                    </div>
+                </div>
+            </div>
+            @Html.EditorFor(m => accountSettingsModel.ap_UpdateSecurityQandAModel, null, "")
+        </article>
+    </div>
+    <!-- end row -->
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+
+    pageSetUp();
+
+    a4dn.core.mvc.am_InitializeJarvisWidgets("widget-grid-@guid");
+
+    a4dn.core.mvc.am_SetupAccountSettings();
+</script>
