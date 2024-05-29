@@ -1,0 +1,37 @@
+/* ================================================================ */
+/* CONFIDENTIAL AND PROPRIETARY INFORMATION                         */
+/*                                                                  */
+/* The receipt or possession of this document does not convey any   */
+/* rights to reproduce, disclose its contents or manufacture, use   */
+/* or sell anything it may describe.  Reproduction, disclosure, or  */
+/* use without the specific written authorization of                */
+/* Surround Technologies, LLC is strictly forbidden.                */
+/*                                                                  */
+/* Copyright ....: (C) Surround Technologies, LLC 1998 - 2021       */
+/* .               9197 Estero River Circle                         */
+/* .               Estero, FL 33928                                 */
+/* .               973-743-1277                                     */
+/* .               http://www.surroundtech.com/                     */
+/*                                                                  */
+/* ================================================================ */
+/*                                                                  */
+/* Source File...: QDDSSRC                                          */
+/* Source Member.: YD1ILF3                                          */
+/* Created by ...: Lee Paul                                         */
+/* Created on ...: August 17, 1998                                  */
+/* Object Type ..: Logical File                                     */
+/* Description ..: Order Item View By Product and Order IIDs        */
+/*                                                                  */
+/* ================================================================ */
+/* .                 Amendment Details                              */
+/* .                 -----------------                              */
+/* Date     Programmer Description                                  */
+/* -------- ---------- -------------------------------------------- */
+/*                                                                  */
+/* ================================================================ */
+
+     A* Order Logical File (YD1ILF2)
+     A          R YD1IPR                    PFILE(YD1I)
+     A          K YD1I1PID
+     A          K YD1I1OID
+     A          K YD1IIID

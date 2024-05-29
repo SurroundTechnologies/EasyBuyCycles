@@ -1,0 +1,92 @@
+/* ================================================================ */
+/* CONFIDENTIAL AND PROPRIETARY INFORMATION                         */
+/*                                                                  */
+/* The receipt or possession of this document does not convey any   */
+/* rights to reproduce, disclose its contents or manufacture, use   */
+/* or sell anything it may describe.  Reproduction, disclosure, or  */
+/* use without the specific written authorization of                */
+/* Surround Technologies, LLC is strictly forbidden.                */
+/*                                                                  */
+/* Copyright ....: (C) Surround Technologies, LLC 1998 - 2021       */
+/* .               9197 Estero River Circle                         */
+/* .               Estero, FL 33928                                 */
+/* .               973-743-1277                                     */
+/* .               http://www.surroundtech.com/                     */
+/*                                                                  */
+/* ================================================================ */
+/*                                                                  */
+/* Source File...: QDDSSRC                                          */
+/* Source Member.: YD1C                                             */
+/* Created by ...: Lee Paul                                         */
+/* Created on ...: August 17, 1998                                  */
+/* Object Type ..: Logical File                                     */
+/* Description ..: Customers                                        */
+/*                                                                  */
+/* ================================================================ */
+/* .                 Amendment Details                              */
+/* .                 -----------------                              */
+/* Date     Programmer Description                                  */
+/* -------- ---------- -------------------------------------------- */
+/*                                                                  */
+/* ================================================================ */
+
+     A* Customer File (YD1C)
+     A                                      UNIQUE
+     A          R YD1CPR                    TEXT('Customer Record')
+     A            YD1CIID        8S 0       TEXT('Internal ID')
+     A                                      COLHDG('Internal ID')
+     A            YD1CPTID       8S 0       TEXT('Parent Internal ID')
+     A                                      COLHDG('Parent' 'Internal ID')
+     A            YD1CPTRL      20A         TEXT('Parent Relationship')
+     A                                      COLHDG('Parent' 'Relationship')
+     A            YD1CNM        50A         TEXT('Name')
+     A                                      COLHDG('Name')
+     A            YD1CNMLG      50A         TEXT('Legal Name')
+     A                                      COLHDG('Legal Name')
+     A            YD1CCNLN      50A         TEXT('Contact Last Name')
+     A                                      COLHDG('Contact' 'Last Name')
+     A            YD1CCNFN      50A         TEXT('Contact First Name')
+     A                                      COLHDG('Contact' 'First Name')
+     A            YD1CCNMN      50A         TEXT('Contact Middle Name')
+     A                                      COLHDG('Contact' 'Middle Name')
+     A            YD1CCNNN      50A         TEXT('Contact Nick Name')
+     A                                      COLHDG('Contact' 'Nick Name')
+     A            YD1CBLA1      30A         TEXT('Billing Address 1')
+     A                                      COLHDG('Billing' 'Address 1')
+     A            YD1CBLA2      30A         TEXT('Billing Address 2')
+     A                                      COLHDG('Billing' 'Address 2')
+     A            YD1CBLA3      30A         TEXT('Billing Address 3')
+     A                                      COLHDG('Billing' 'Address 3')
+     A            YD1CBLPC      10A         TEXT('Billing Postal Code')
+     A                                      COLHDG('Billing' 'Postal Code')
+     A            YD1CBLCY      50A         TEXT('Billing Country')
+     A                                      COLHDG('Billing' 'Country')
+     A            YD1CTL        20A         TEXT('Telephone')
+     A                                      COLHDG('Telephone')
+     A            YD1CEM        50A         TEXT('Email')
+     A                                      COLHDG('Email')
+     A            YD1CM1       100A         TEXT('Memo')
+     A                                      COLHDG('Memo')
+     A            YD1CPRPT       8S 0       TEXT('Purchase Points')
+     A                                      COLHDG('Purchase Points')
+     A            YD1CCRDT       8S 0       TEXT('Create Date')
+     A                                      COLHDG('Create Date')
+     A            YD1CCRTM       6S 0       TEXT('Create Time')
+     A                                      COLHDG('Create Time')
+     A            YD1CCRUS      10A         TEXT('Create User')
+     A                                      COLHDG('Create User')
+     A            YD1CCRJB      10A         TEXT('Create Job')
+     A                                      COLHDG('Create Job')
+     A            YD1CCRJN       6A         TEXT('Create Job Number')
+     A                                      COLHDG('Create' 'Job Number')
+     A            YD1CLCDT       8S 0       TEXT('Last Change Date')
+     A                                      COLHDG('Last Change' 'Date')
+     A            YD1CLCTM       6S 0       TEXT('Last Change Time')
+     A                                      COLHDG('Last Change' 'Time')
+     A            YD1CLCUS      10A         TEXT('Last Change User')
+     A                                      COLHDG('Last Change' 'User')
+     A            YD1CLCJB      10A         TEXT('Last Change Job')
+     A                                      COLHDG('Last Change' 'Job')
+     A            YD1CLCJN       6A         TEXT('Last Change Job Number')
+     A                                      COLHDG('Last Change' 'Job Number')
+     A          K YD1CIID

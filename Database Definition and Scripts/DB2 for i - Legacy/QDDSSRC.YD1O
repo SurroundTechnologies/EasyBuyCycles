@@ -1,0 +1,87 @@
+/* ================================================================ */
+/* CONFIDENTIAL AND PROPRIETARY INFORMATION                         */
+/*                                                                  */
+/* The receipt or possession of this document does not convey any   */
+/* rights to reproduce, disclose its contents or manufacture, use   */
+/* or sell anything it may describe.  Reproduction, disclosure, or  */
+/* use without the specific written authorization of                */
+/* Surround Technologies, LLC is strictly forbidden.                */
+/*                                                                  */
+/* Copyright ....: (C) Surround Technologies, LLC 1998 - 2021       */
+/* .               9197 Estero River Circle                         */
+/* .               Estero, FL 33928                                 */
+/* .               973-743-1277                                     */
+/* .               http://www.surroundtech.com/                     */
+/*                                                                  */
+/* ================================================================ */
+/*                                                                  */
+/* Source File...: QDDSSRC                                          */
+/* Source Member.: YD1O                                             */
+/* Created by ...: Lee Paul                                         */
+/* Created on ...: August 17, 1998                                  */
+/* Object Type ..: Physical File                                    */
+/* Description ..: Orders                                           */
+/*                                                                  */
+/* ================================================================ */
+/* .                 Amendment Details                              */
+/* .                 -----------------                              */
+/* Date     Programmer Description                                  */
+/* -------- ---------- -------------------------------------------- */
+/*                                                                  */
+/* ================================================================ */
+
+     A* Order File (YD1O)
+     A                                      UNIQUE
+     A          R YD1OPR                    TEXT('Order Record')
+     A            YD1OIID        8S 0       TEXT('Internal ID')
+     A                                      COLHDG('Internal ID')
+     A            YD1O1CID       8S 0       TEXT('Customer Internal ID')
+     A                                      COLHDG('Customer' 'Internal ID')
+     A            YD1ODT          L         DATFMT(*ISO)
+     A                                      TEXT('Order Date')
+     A                                      COLHDG('Order Date')
+     A            YD1OTM          T         TIMFMT(*ISO)
+     A                                      TEXT('Order Time')
+     A                                      COLHDG('Order Time')
+     A            YD1OPONO      50A         TEXT('Purchase Order Number/ID')
+     A                                      COLHDG('Purchase Order' 'Number/ID')
+     A            YD1O1WID       8S 0       TEXT('Warehouse Internal ID')
+     A                                      COLHDG('Warehouse' 'Internal ID')
+     A            YD1O1WNM      50A         TEXT('Warehouse Name')
+     A                                      COLHDG('Warehouse' 'Name')
+     A            YD1ODLM1     100A         TEXT('Delivery Memo')
+     A                                      COLHDG('Delivery Memo')
+     A            YD1O1SID       8S 0       TEXT('Shipping Address Internal ID')
+     A                                      COLHDG('Shipping Address' +
+                                            'Internal ID')
+     A            YD1OM1       100A         TEXT('Order Memo')
+     A                                      COLHDG('Order Memo')
+     A            YD1OST        10A         TEXT('Status')
+     A                                      COLHDG('Status')
+     A            YD1O1AID       8S 0       TEXT('Sales Person Internal ID')
+     A                                      COLHDG('Sales Person' 'Internal ID')
+     A            YD1O1ANM      50A         TEXT('Sales Person Name')
+     A                                      COLHDG('Sales Person' 'Name')
+     A            YD1CPRPT       8S 0       TEXT('Purchase Points')
+     A                                      COLHDG('Purchase Points')
+     A            YD1OCRDT       8S 0       TEXT('Create Date')
+     A                                      COLHDG('Create Date')
+     A            YD1OCRTM       6S 0       TEXT('Create Time')
+     A                                      COLHDG('Create Time')
+     A            YD1OCRUS      10A         TEXT('Create User')
+     A                                      COLHDG('Create User')
+     A            YD1OCRJB      10A         TEXT('Create Job')
+     A                                      COLHDG('Create Job')
+     A            YD1OCRJN       6A         TEXT('Create Job Number')
+     A                                      COLHDG('Create' 'Job Number')
+     A            YD1OLCDT       8S 0       TEXT('Last Change Date')
+     A                                      COLHDG('Last Change' 'Date')
+     A            YD1OLCTM       6S 0       TEXT('Last Change Time')
+     A                                      COLHDG('Last Change' 'Time')
+     A            YD1OLCUS      10A         TEXT('Last Change User')
+     A                                      COLHDG('Last Change' 'User')
+     A            YD1OLCJB      10A         TEXT('Last Change Job')
+     A                                      COLHDG('Last Change' 'Job')
+     A            YD1OLCJN       6A         TEXT('Last Change Job Number')
+     A                                      COLHDG('Last Change' 'Job Number')
+     A          K YD1OIID
