@@ -13,6 +13,7 @@ using A4DN.Core.BOS.Base;
 using A4DN.Core.BOS.DALBaseForSQL;
 using BOS.CustomerDataEntity;
 using BOS.CustomerDataMaps;
+using System.Linq;
 
 
 namespace BOS.CustomerDataAccessLayer
@@ -23,11 +24,27 @@ namespace BOS.CustomerDataAccessLayer
 	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
 	public class CustomerDALForSQL : AB_BusinessObjectDALBaseForSQL<CustomerEntity>, BOS.CustomerDataAccessLayer.ICustomerDALServiceContract
 	{
+        ///// <summary>
+        ///// Override for default select data.
+        ///// </summary>
+        public override AB_SelectReturnArgs am_Select(AB_SelectInputArgs inputArgs)
+        {
+            var IsSubCustomerWC = inputArgs.ap_Query.ap_WhereClauses.FirstOrDefault(wc => wc.ap_Field == nameof(CustomerEntity.SearchIsSubCustomer));
+            if (IsSubCustomerWC != null)
+            {
+                if ((bool)IsSubCustomerWC.ap_Value == true) inputArgs.ap_Query.am_AddWhereClause(new AB_QueryWhereClause(nameof(CustomerEntity.ParentInternalID), "<>", 0));
+                if ((bool)IsSubCustomerWC.ap_Value == false) inputArgs.ap_Query.am_AddWhereClause(new AB_QueryWhereClause(nameof(CustomerEntity.ParentInternalID), "=", 0));
+                inputArgs.ap_Query.ap_WhereClauses.Remove(IsSubCustomerWC);
+            }
 
-		/// <summary>
-		/// Used to pass static data for the instance constructor
-		/// </summary>
-		protected static AB_DataMapContainer DataMapContainer;
+            var retArgs = base.am_Select(inputArgs);
+            return retArgs;
+        }
+
+        /// <summary>
+        /// Used to pass static data for the instance constructor
+        /// </summary>
+        protected static AB_DataMapContainer DataMapContainer;
 		
 		/// <summary>
 		/// Static Declaration of each map we need to use

@@ -79,7 +79,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address 3.
+        ///   Looks up a localized string similar to Address 1.
         /// </summary>
         public static string ADDRESS3 {
             get {
@@ -142,6 +142,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Billing Address Block.
+        /// </summary>
+        public static string BILLINGADDRESSBLOCK {
+            get {
+                return ResourceManager.GetString("BILLINGADDRESSBLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Billing Country.
         /// </summary>
         public static string BILLINGCOUNTRY {
@@ -160,7 +169,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Billing Postal Code.
         /// </summary>
         public static string CATEGORY {
             get {
@@ -183,6 +192,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CONTACTFIRSTNAME {
             get {
                 return ResourceManager.GetString("CONTACTFIRSTNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Full Name.
+        /// </summary>
+        public static string CONTACTFULLNAME {
+            get {
+                return ResourceManager.GetString("CONTACTFULLNAME", resourceCulture);
             }
         }
         
@@ -322,7 +340,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discount (Percent).
+        ///   Looks up a localized string similar to Detail.
         /// </summary>
         public static string DISCOUNTPERCENT {
             get {
@@ -372,6 +390,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string IMAGEPATH {
             get {
                 return ResourceManager.GetString("IMAGEPATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is a Sub-Customer.
+        /// </summary>
+        public static string ISASUBCUSTOMER {
+            get {
+                return ResourceManager.GetString("ISASUBCUSTOMER", resourceCulture);
             }
         }
         
@@ -728,6 +755,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Y.
+        /// </summary>
+        public static string TRUEFLAG {
+            get {
+                return ResourceManager.GetString("TRUEFLAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Price.
         /// </summary>
         public static string TRUEFLAG {
             get {
