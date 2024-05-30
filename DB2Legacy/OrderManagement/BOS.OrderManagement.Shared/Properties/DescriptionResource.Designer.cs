@@ -147,6 +147,20 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string BILLINGCOUNTRY {
             get {
                 return ResourceManager.GetString("BILLINGCOUNTRY", resourceCulture);
+        ///   Looks up a localized string similar to Billing Address Block.
+        /// </summary>
+        public static string BILLINGADDRESSBLOCK {
+            get {
+                return ResourceManager.GetString("BILLINGADDRESSBLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Billing Country.
+        /// </summary>
+        public static string BILLINGCOUNTRY {
+            get {
+                return ResourceManager.GetString("BILLINGCOUNTRY", resourceCulture);
             }
         }
         
@@ -183,6 +197,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CONTACTFIRSTNAME {
             get {
                 return ResourceManager.GetString("CONTACTFIRSTNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Full Name.
+        /// </summary>
+        public static string CONTACTFULLNAME {
+            get {
+                return ResourceManager.GetString("CONTACTFULLNAME", resourceCulture);
             }
         }
         
@@ -372,6 +395,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string IMAGEPATH {
             get {
                 return ResourceManager.GetString("IMAGEPATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is a Sub-Customer.
+        /// </summary>
+        public static string ISASUBCUSTOMER {
+            get {
+                return ResourceManager.GetString("ISASUBCUSTOMER", resourceCulture);
             }
         }
         

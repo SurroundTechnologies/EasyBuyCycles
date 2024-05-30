@@ -43,7 +43,8 @@
 						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Email" ap_PropertyMetaData="{x:Static entity:CustomerEntity.EmailProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
 						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
 						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-					</StackPanel>
+                        <base:AB_CheckBoxWithLabel Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_IsThreeState="True" x:Name="Field_SeachIsSubCustomer" ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.SearchIsSubCustomerProperty}" />
+                    </StackPanel>
 				</ScrollViewer>
 			</Expander>
 			<Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
