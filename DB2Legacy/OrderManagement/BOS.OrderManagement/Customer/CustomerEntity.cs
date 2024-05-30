@@ -423,6 +423,27 @@ namespace BOS.CustomerDataEntity
         }
         public static AB_PropertyMetadata<bool?> SearchIsSubCustomerProperty = am_CreatePropertyMetaData<bool?>("SearchIsSubCustomer", DescriptionResource.ISASUBCUSTOMER, null);
 
+		#endregion //Properties
+
+                if ((ParentInternalID == 0) || (ParentInternalID == null)) return false;
+
+                return true;
+            }
+            set
+            {
+
+            }
+        }
+        public static AB_PropertyMetadata<bool?> IsASubCustomerProperty = am_CreatePropertyMetaData<bool?>("IsASubCustomer", DescriptionResource.ISASUBCUSTOMER, null);
+
+        [DataMember]
+        public bool? SearchIsSubCustomer
+        {
+            get { return am_GetPropertyValue(SearchIsSubCustomerProperty); }
+            set { am_SetPropertyValue(SearchIsSubCustomerProperty, value); }
+        }
+        public static AB_PropertyMetadata<bool?> SearchIsSubCustomerProperty = am_CreatePropertyMetaData<bool?>("SearchIsSubCustomer", DescriptionResource.ISASUBCUSTOMER, null);
+
         [Display(Name = "ISSUBCUSTOMER", ResourceType = typeof(DescriptionResource))]
         [AB_VirtualMember("ParentInternalID")]
         [AB_ReadOnly]
