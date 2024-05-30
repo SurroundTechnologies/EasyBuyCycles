@@ -12,18 +12,32 @@ using A4DN.Core.BOS.Base;
 
 namespace BOS.CustomerDataEntity
 {
-	//// A4DN_Tag: Validation Method Example
-	// public class MyValidateMethod : AB_IValidation
-	// {
-	//     public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs inputArgs)
-	//     {
-	//         CustomerEntity entity = inputArgs.ap_EntityToValidate as CustomerEntity;
-	//
-	//         //condition logic and return true or false in AB_ValidateMethodReturnArgs
-	//         if (MyConditionLogic)
-	//             return new AB_ValidateMethodReturnArgs(false);
-	//         else
-	//             return new AB_ValidateMethodReturnArgs(true);         
-	//      }
-	// }
+    //// A4DN_Tag: Validation Method Example
+    // public class MyValidateMethod : AB_IValidation
+    // {
+    //     public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs inputArgs)
+    //     {
+    //         CustomerEntity entity = inputArgs.ap_EntityToValidate as CustomerEntity;
+    //
+    //         //condition logic and return true or false in AB_ValidateMethodReturnArgs
+    //         if (MyConditionLogic)
+    //             return new AB_ValidateMethodReturnArgs(false);
+    //         else
+    //             return new AB_ValidateMethodReturnArgs(true);         
+    //      }
+    // }
+
+    public class ValidateParentRelationship : AB_IValidation
+    {
+        //Put More Code Here
+        public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs InputArgs)
+        {
+            CustomerEntity entity = InputArgs.ap_EntityToValidate as CustomerEntity;
+            if (entity.ParentInternalID != null && string.IsNullOrEmpty(entity.ParentRelationship))
+            {
+                return new AB_ValidateMethodReturnArgs(false);
+            }
+            return new AB_ValidateMethodReturnArgs(true);
+        }
+    }
 }

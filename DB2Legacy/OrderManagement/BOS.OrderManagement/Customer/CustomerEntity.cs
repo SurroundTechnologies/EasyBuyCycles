@@ -74,6 +74,7 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "PARENTRELATIONSHIP", ResourceType = typeof(DescriptionResource))]
         [AB_Length(20)]
         [DataMember]
+        [AB_ValidationMethod(typeof(ValidateParentRelationship), "Invalid Parent Relationship")]
         public string ParentRelationship //Map Field: YD1CPTRL
         {
             get => am_GetPropertyValue(ParentRelationshipProperty);
@@ -205,6 +206,7 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "EMAIL", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_EmailAddress(ap_ValidationTriggers = AB_ValidationTrigger.OnSave | AB_ValidationTrigger.OnLostFocus)]
         public string Email //Map Field: YD1CEM
         {
             get => am_GetPropertyValue(EmailProperty);
