@@ -136,6 +136,7 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "CONTACTNICKNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string ContactNickName //Map Field: YD1CCNNN
         {
             get => am_GetPropertyValue(ContactNickNameProperty);
