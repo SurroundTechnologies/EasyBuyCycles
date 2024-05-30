@@ -350,15 +350,26 @@ namespace BOS.CustomerDataEntity
             get => am_GetPropertyValue(ParentNameProperty);
             set => am_SetPropertyValue(ParentNameProperty, value);
         }
-        public static AB_PropertyMetadata<string> ParentNameProperty = am_CreatePropertyMetaData<string>(nameof(ParentName), DescriptionResource.PARENTNAME, null); 
+        public static AB_PropertyMetadata<string> ParentNameProperty = am_CreatePropertyMetaData<string>(nameof(ParentName), DescriptionResource.PARENTNAME, null);
 
+		[Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+		[AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
+		public string BillingAddressLine
+		{
+			get
+			{
+				var billingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
+				return billingAddressLine;
+			}
+		}
+		public static AB_PropertyMetadata<string> BillingAddressLineProperty = am_CreatePropertyMetaData<string>("BillingAddressLine", DescriptionResource.BILLINGADDRESS, null);
 
-        #endregion //Properties
+		#endregion //Properties
 
-        #region Property Overrides
+		#region Property Overrides
 
-        // Title
-        public override string ap_Title
+		// Title
+		public override string ap_Title
         {
             get
             {
