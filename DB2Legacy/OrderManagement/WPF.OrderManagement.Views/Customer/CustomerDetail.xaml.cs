@@ -83,8 +83,11 @@ namespace WPF.Customer
 			RG_SetParentProperties();
 			
 			base.am_SetParentProperties();
-			
-					}
+
+			am_AddTabToPreview(new AB_DockingTabItem[] { GoogleMapsTab });
+			ap_AdditionalTabItemsToSetDataContextOn.Add(GoogleMapsTab);
+
+		}
 
 		/// <summary>
 		/// This method is called after the Loaded Event. At this point the XAML objects can be accessed.

@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,225 +112,228 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CUSTOMERINTERNALID">
+  <data name="CUSTOMERINTERNALID" xml:space="preserve">
     <value>Customer Internal ID</value>
   </data>
-  <data name="PARENTINTERNALID">
+  <data name="PARENTINTERNALID" xml:space="preserve">
     <value>Parent Internal ID</value>
   </data>
-  <data name="PARENTRELATIONSHIP">
+  <data name="PARENTRELATIONSHIP" xml:space="preserve">
     <value>Parent Relationship</value>
   </data>
-  <data name="NAME">
+  <data name="NAME" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="LEGALNAME">
+  <data name="LEGALNAME" xml:space="preserve">
     <value>Legal Name</value>
   </data>
-  <data name="CONTACTLASTNAME">
+  <data name="CONTACTLASTNAME" xml:space="preserve">
     <value>Contact Last Name</value>
   </data>
-  <data name="CONTACTFIRSTNAME">
+  <data name="CONTACTFIRSTNAME" xml:space="preserve">
     <value>Contact First Name</value>
   </data>
-  <data name="CONTACTMIDDLENAME">
+  <data name="CONTACTMIDDLENAME" xml:space="preserve">
     <value>Contact Middle Name</value>
   </data>
-  <data name="CONTACTNICKNAME">
+  <data name="CONTACTNICKNAME" xml:space="preserve">
     <value>Contact Nick Name</value>
   </data>
-  <data name="BILLINGADDRESS1">
+  <data name="BILLINGADDRESS1" xml:space="preserve">
     <value>Billing Address 1</value>
   </data>
-  <data name="BILLINGADDRESS2">
+  <data name="BILLINGADDRESS2" xml:space="preserve">
     <value>Billing Address 2</value>
   </data>
-  <data name="BILLINGADDRESS3">
+  <data name="BILLINGADDRESS3" xml:space="preserve">
     <value>Billing Address 3</value>
   </data>
-  <data name="BILLINGPOSTALCODE">
+  <data name="BILLINGPOSTALCODE" xml:space="preserve">
     <value>Billing Postal Code</value>
   </data>
-  <data name="BILLINGCOUNTRY">
+  <data name="BILLINGCOUNTRY" xml:space="preserve">
     <value>Billing Country</value>
   </data>
-  <data name="TELEPHONE">
+  <data name="TELEPHONE" xml:space="preserve">
     <value>Telephone</value>
   </data>
-  <data name="EMAIL">
+  <data name="EMAIL" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="MEMO">
+  <data name="MEMO" xml:space="preserve">
     <value>Memo</value>
   </data>
-  <data name="PURCHASEPOINTS">
+  <data name="PURCHASEPOINTS" xml:space="preserve">
     <value>Purchase Points</value>
   </data>
-  <data name="CREATEDATE">
+  <data name="CREATEDATE" xml:space="preserve">
     <value>Create Date</value>
   </data>
-  <data name="CREATETIME">
+  <data name="CREATETIME" xml:space="preserve">
     <value>Create Time</value>
   </data>
-  <data name="CREATEUSER">
+  <data name="CREATEUSER" xml:space="preserve">
     <value>Create User</value>
   </data>
-  <data name="CREATEJOB">
+  <data name="CREATEJOB" xml:space="preserve">
     <value>Create Job</value>
   </data>
-  <data name="CREATEJOBNUMBER">
+  <data name="CREATEJOBNUMBER" xml:space="preserve">
     <value>Create Job Number</value>
   </data>
-  <data name="LASTCHANGEDATE">
+  <data name="LASTCHANGEDATE" xml:space="preserve">
     <value>Last Change Date</value>
   </data>
-  <data name="LASTCHANGETIME">
+  <data name="LASTCHANGETIME" xml:space="preserve">
     <value>Last Change Time</value>
   </data>
-  <data name="LASTCHANGEUSER">
+  <data name="LASTCHANGEUSER" xml:space="preserve">
     <value>Last Change User</value>
   </data>
-  <data name="LASTCHANGEJOB">
+  <data name="LASTCHANGEJOB" xml:space="preserve">
     <value>Last Change Job</value>
   </data>
-  <data name="LASTCHANGEJOBNUMBER">
+  <data name="LASTCHANGEJOBNUMBER" xml:space="preserve">
     <value>Last Change Job Number</value>
   </data>
-  <data name="PARENTNAME">
+  <data name="PARENTNAME" xml:space="preserve">
     <value>Parent Name</value>
   </data>
-  <data name="EXTENDED">
+  <data name="EXTENDED" xml:space="preserve">
     <value>Extended</value>
   </data>
-  <data name="BASIC">
+  <data name="BASIC" xml:space="preserve">
     <value>Basic</value>
   </data>
-  <data name="DETAILTABTEXT">
+  <data name="DETAILTABTEXT" xml:space="preserve">
     <value>Detail</value>
   </data>
-  <data name="LOGONSYSTEMNAME">
+  <data name="LOGONSYSTEMNAME" xml:space="preserve">
     <value>Order Management</value>
   </data>
-  <data name="LOGONTITLETEXT">
+  <data name="LOGONTITLETEXT" xml:space="preserve">
     <value>Order Management Logon</value>
   </data>
-  <data name="FALSEFLAG">
+  <data name="FALSEFLAG" xml:space="preserve">
     <value>N</value>
   </data>
-  <data name="TRUEFLAG">
+  <data name="TRUEFLAG" xml:space="preserve">
     <value>Y</value>
   </data>
-  <data name="AUDITSTAMPTABTEXT">
+  <data name="AUDITSTAMPTABTEXT" xml:space="preserve">
     <value>Audit Stamps</value>
   </data>
-  <data name="ORDERITEMINTERNALID">
+  <data name="ORDERITEMINTERNALID" xml:space="preserve">
     <value>Order Item Internal ID</value>
   </data>
-  <data name="ORDERINTERNALID">
+  <data name="ORDERINTERNALID" xml:space="preserve">
     <value>Order Internal ID</value>
   </data>
-  <data name="PRODUCTINTERNALID">
+  <data name="PRODUCTINTERNALID" xml:space="preserve">
     <value>Product Internal ID</value>
   </data>
-  <data name="QUANTITY">
+  <data name="QUANTITY" xml:space="preserve">
     <value>Quantity</value>
   </data>
-  <data name="UNITPRICE">
+  <data name="UNITPRICE" xml:space="preserve">
     <value>Unit Price</value>
   </data>
-  <data name="DISCOUNTPERCENT">
+  <data name="DISCOUNTPERCENT" xml:space="preserve">
     <value>Discount (Percent)</value>
   </data>
-  <data name="PRODUCTNAME">
+  <data name="PRODUCTNAME" xml:space="preserve">
     <value>Product Name</value>
   </data>
-  <data name="ORDERDATE">
+  <data name="ORDERDATE" xml:space="preserve">
     <value>Order Date</value>
   </data>
-  <data name="ORDERTIME">
+  <data name="ORDERTIME" xml:space="preserve">
     <value>Order Time</value>
   </data>
-  <data name="PURCHASEORDERNUMBERID">
+  <data name="PURCHASEORDERNUMBERID" xml:space="preserve">
     <value>Purchase Order Number/ID</value>
   </data>
-  <data name="WAREHOUSEINTERNALID">
+  <data name="WAREHOUSEINTERNALID" xml:space="preserve">
     <value>Warehouse Internal ID</value>
   </data>
-  <data name="WAREHOUSENAME">
+  <data name="WAREHOUSENAME" xml:space="preserve">
     <value>Warehouse Name</value>
   </data>
-  <data name="DELIVERYMEMO">
+  <data name="DELIVERYMEMO" xml:space="preserve">
     <value>Delivery Memo</value>
   </data>
-  <data name="SHIPPINGADDRESSINTERNALID">
+  <data name="SHIPPINGADDRESSINTERNALID" xml:space="preserve">
     <value>Shipping Address Internal ID</value>
   </data>
-  <data name="ORDERMEMO">
+  <data name="ORDERMEMO" xml:space="preserve">
     <value>Order Memo</value>
   </data>
-  <data name="STATUS">
+  <data name="STATUS" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="SALESPERSONINTERNALID">
+  <data name="SALESPERSONINTERNALID" xml:space="preserve">
     <value>Sales Person Internal ID</value>
   </data>
-  <data name="SALESPERSONNAME">
+  <data name="SALESPERSONNAME" xml:space="preserve">
     <value>Sales Person Name</value>
   </data>
-  <data name="CUSTOMERNAME">
+  <data name="CUSTOMERNAME" xml:space="preserve">
     <value>Customer Name</value>
   </data>
-  <data name="SHIPPINGADDRESSNAME">
+  <data name="SHIPPINGADDRESSNAME" xml:space="preserve">
     <value>Shipping Address Name</value>
   </data>
-  <data name="CODE">
+  <data name="CODE" xml:space="preserve">
     <value>Code</value>
   </data>
-  <data name="DESCRIPTION">
+  <data name="DESCRIPTION" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="CATEGORY">
+  <data name="CATEGORY" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="STANDARDCOST">
+  <data name="STANDARDCOST" xml:space="preserve">
     <value>Standard Cost</value>
   </data>
-  <data name="LISTPRICE">
+  <data name="LISTPRICE" xml:space="preserve">
     <value>List Price</value>
   </data>
-  <data name="REORDERLEVEL">
+  <data name="REORDERLEVEL" xml:space="preserve">
     <value>Reorder Level</value>
   </data>
-  <data name="TARGETLEVEL">
+  <data name="TARGETLEVEL" xml:space="preserve">
     <value>Target Level</value>
   </data>
-  <data name="MINIMUMREORDERQUANTITY">
+  <data name="MINIMUMREORDERQUANTITY" xml:space="preserve">
     <value>Minimum Reorder Quantity</value>
   </data>
-  <data name="DISCONTINUED">
+  <data name="DISCONTINUED" xml:space="preserve">
     <value>Discontinued</value>
   </data>
-  <data name="IMAGEPATH">
+  <data name="IMAGEPATH" xml:space="preserve">
     <value>Image Path</value>
   </data>
-  <data name="ADDRESS1">
+  <data name="ADDRESS1" xml:space="preserve">
     <value>Address 1</value>
   </data>
-  <data name="ADDRESS2">
+  <data name="ADDRESS2" xml:space="preserve">
     <value>Address 2</value>
   </data>
-  <data name="ADDRESS3">
+  <data name="ADDRESS3" xml:space="preserve">
     <value>Address 3</value>
   </data>
-  <data name="POSTALCODE">
+  <data name="POSTALCODE" xml:space="preserve">
     <value>Postal Code</value>
   </data>
-  <data name="COUNTRY">
+  <data name="COUNTRY" xml:space="preserve">
     <value>Country</value>
+  </data>
+  <data name="BILLINGADDRESS" xml:space="preserve">
+    <value>Billing Address</value>
   </data>
 </root>
