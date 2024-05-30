@@ -176,6 +176,7 @@ namespace BOS.OrderDataEntity
         [Display(Name = "SALESPERSONNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string SalesPersonName //Map Field: YD1O1ANM
         {
             get => am_GetPropertyValue(SalesPersonNameProperty);
