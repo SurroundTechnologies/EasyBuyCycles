@@ -12,6 +12,7 @@ using A4DN.Core.BOS.ViewModel;
 using A4DN.Core.BOS.Base;
 using BOS.CustomerBusinessProcess;
 using BOS.CustomerDataEntity;
+using System.Windows;
 
 namespace BOS.CustomerViewModel
 {   
@@ -22,6 +23,12 @@ namespace BOS.CustomerViewModel
 	/// </summary>
 	public class CustomerVM : AB_ViewModel<CustomerEntity>
 	{
+		public bool IsMapTabVisible
+		{
+			get { return (bool)GetValue(IsMapTabVisibleProperty); }
+			set { SetValue(IsMapTabVisibleProperty, value); }
+		}
+		public static readonly DependencyProperty IsMapTabVisibleProperty = DependencyProperty.Register("IsMapTabVisible", typeof(bool), typeof(CustomerVM), new PropertyMetadata(true));
 
 		/// <summary>
 		/// Sets properties of the parent class before it is instantiated.
@@ -90,11 +97,14 @@ namespace BOS.CustomerViewModel
 		/// </summary>       
 		public override void am_SetUpVisualModelForDetail(AB_VisualModelInitArgs inputArgs, CustomerEntity currentDataContext)
 		{
+			IsMapTabVisible = true;
+
 			switch (inputArgs.ap_Mode)
 			{
 				case AB_RecordMode.Display:
 					break;
 				case AB_RecordMode.New:
+					IsMapTabVisible = false;
 					break;
 				case AB_RecordMode.Open:
 					break;
