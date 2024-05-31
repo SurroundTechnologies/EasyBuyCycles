@@ -1373,5 +1373,13 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("WIZARDSTART", resourceCulture);
             }
         }
+        
+        ///   Looks up a localized string similar to Wizard Splash.
+        /// </summary>
+        public static string WIZARDSPLASH {
+            get {
+                return ResourceManager.GetString("WIZARDSPLASH", resourceCulture);
+            }
+        }
     }
 }

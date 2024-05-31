@@ -18,7 +18,7 @@ namespace WPF.OrderManagement
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : AB_Application
+	public partial class AppMain : AB_Application
 	{
 		/// <summary>
 		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
