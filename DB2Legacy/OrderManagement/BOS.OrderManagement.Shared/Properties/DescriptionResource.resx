@@ -363,4 +363,34 @@
   <data name="ISASUBCUSTOMER" xml:space="preserve">
     <value>Is a Sub-Customer</value>
   </data>
+  <data name="AVERAGEORDERDISCOUNT" xml:space="preserve">
+    <value>Average Order Discount</value>
+  </data>
+  <data name="AVERAGEORDERSUBTOTAL" xml:space="preserve">
+    <value>Average Order Subtotal</value>
+  </data>
+  <data name="AVERAGEORDERTOTAL" xml:space="preserve">
+    <value>Average Order Total</value>
+  </data>
+  <data name="ISPARENTCUSTOMER" xml:space="preserve">
+    <value>Is Parent Customer</value>
+  </data>
+  <data name="ISPARTENTCUSTOMER" xml:space="preserve">
+    <value>Is Parent Customer</value>
+  </data>
+  <data name="ISSUBCUSTOMER" xml:space="preserve">
+    <value>Is Sub-Customer</value>
+  </data>
+  <data name="ORDERCOUNT" xml:space="preserve">
+    <value>Order Count</value>
+  </data>
+  <data name="SHIPPINGADDRESSCOUNT" xml:space="preserve">
+    <value>Shipping Address Count</value>
+  </data>
+  <data name="SUBCUSTOMERCOUNT" xml:space="preserve">
+    <value>Sub-Customer Count</value>
+  </data>
+  <data name="SUBCUSTOMERLIST" xml:space="preserve">
+    <value>Sub-Customer List</value>
+  </data>
 </root>

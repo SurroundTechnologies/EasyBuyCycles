@@ -79,7 +79,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address 1.
+        ///   Looks up a localized string similar to Address 3.
         /// </summary>
         public static string ADDRESS3 {
             get {
@@ -93,6 +93,33 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string AUDITSTAMPTABTEXT {
             get {
                 return ResourceManager.GetString("AUDITSTAMPTABTEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average Order Discount.
+        /// </summary>
+        public static string AVERAGEORDERDISCOUNT {
+            get {
+                return ResourceManager.GetString("AVERAGEORDERDISCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average Order Subtotal.
+        /// </summary>
+        public static string AVERAGEORDERSUBTOTAL {
+            get {
+                return ResourceManager.GetString("AVERAGEORDERSUBTOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average Order Total.
+        /// </summary>
+        public static string AVERAGEORDERTOTAL {
+            get {
+                return ResourceManager.GetString("AVERAGEORDERTOTAL", resourceCulture);
             }
         }
         
@@ -169,7 +196,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Billing Postal Code.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CATEGORY {
             get {
@@ -340,7 +367,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detail.
+        ///   Looks up a localized string similar to Discount (Percent).
         /// </summary>
         public static string DISCOUNTPERCENT {
             get {
@@ -399,6 +426,33 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string ISASUBCUSTOMER {
             get {
                 return ResourceManager.GetString("ISASUBCUSTOMER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Parent Customer.
+        /// </summary>
+        public static string ISPARENTCUSTOMER {
+            get {
+                return ResourceManager.GetString("ISPARENTCUSTOMER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Parent Customer.
+        /// </summary>
+        public static string ISPARTENTCUSTOMER {
+            get {
+                return ResourceManager.GetString("ISPARTENTCUSTOMER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Sub-Customer.
+        /// </summary>
+        public static string ISSUBCUSTOMER {
+            get {
+                return ResourceManager.GetString("ISSUBCUSTOMER", resourceCulture);
             }
         }
         
@@ -516,6 +570,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string NORECORDS {
             get {
                 return ResourceManager.GetString("NORECORDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Count.
+        /// </summary>
+        public static string ORDERCOUNT {
+            get {
+                return ResourceManager.GetString("ORDERCOUNT", resourceCulture);
             }
         }
         
@@ -700,6 +763,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Count.
+        /// </summary>
+        public static string SHIPPINGADDRESSCOUNT {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping Address Internal ID.
         /// </summary>
         public static string SHIPPINGADDRESSINTERNALID {
@@ -732,6 +804,24 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string STATUS {
             get {
                 return ResourceManager.GetString("STATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-Customer Count.
+        /// </summary>
+        public static string SUBCUSTOMERCOUNT {
+            get {
+                return ResourceManager.GetString("SUBCUSTOMERCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-Customer List.
+        /// </summary>
+        public static string SUBCUSTOMERLIST {
+            get {
+                return ResourceManager.GetString("SUBCUSTOMERLIST", resourceCulture);
             }
         }
         
