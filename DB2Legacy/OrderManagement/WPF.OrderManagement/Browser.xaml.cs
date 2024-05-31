@@ -9,6 +9,8 @@ using A4DN.Core.WPF.Base;
 using A4DN.Core.BOS.ViewModel;
 using WPF.OrderManagement;
 using WPF.OrderManagement.Shared;
+using System.Windows.Controls;
+using WPF.OrderManagement.TaskPanes;
 
 namespace WPF.OrderManagement
 {
@@ -86,5 +88,15 @@ namespace WPF.OrderManagement
             Utilities.MessageConsole = ap_MessageConsole;
         }
 
-    }
+		protected override void am_SetUpTaskPanes()
+		{
+			base.am_SetUpTaskPanes();
+			AcceleratorTaskPane Accelerator = new AcceleratorTaskPane();
+			am_EnrollTaskPane(Accelerator, "ACCELERATORTASKPANE", Dock.Bottom, false);
+			HeadquartersTaskPane headQuarters = new HeadquartersTaskPane();
+			am_EnrollTaskPane(headQuarters, "HEADQUARTERSTASKPANE", Dock.Bottom, false);
+			SurroundTaskPane Surround = new SurroundTaskPane();
+			am_EnrollTaskPane(Surround, "SURROUNDTASKPANE", Dock.Bottom, false);
+		}
+	}
 }
