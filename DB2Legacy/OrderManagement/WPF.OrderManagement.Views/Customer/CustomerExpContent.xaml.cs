@@ -15,6 +15,7 @@ using A4DN.Core.BOS.ViewModel;
 using BOS.CustomerViewModel;
 using BOS.CustomerDataEntity;
 using BOS.CustomerDataMaps;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.Customer
 {
@@ -80,40 +81,45 @@ namespace WPF.Customer
 			base.am_OnInitialized();
 		   
 		}
-		
-		/// <summary>
-		/// This method is called before the base object has processed the command.
-		/// </summary>
-		protected override void am_BeforeProcessCommand(AB_Command command, RoutedEventArgs e)
-		{
-			// Access the Current Selected Entity
-		    //var selectedEntity = ap_SelectedEntity as CustomerEntity;
-            //if (selectedEntity != null)
-            //{
-            //    var myVariable = selectedEntity.<Property>;
-            //}
 
-			switch (command.ap_CommandID)
-			{
-				//case "<CommandID>":
+        /// <summary>
+        /// This method is called before the base object has processed the command.
+        /// </summary>
+        protected override void am_BeforeProcessCommand(AB_Command command, RoutedEventArgs e)
+        {
+            var selectedEntity = ap_SelectedEntity as CustomerEntity;
 
-                //    Do Something ...
+            switch (command.ap_CommandID)
+            {
+                case Constants.CMD_CopyAddressLine:
+                    Utilities.CopyToClipboard(selectedEntity.BillingAddressLine);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CopyAddressBlock:
+                    Utilities.CopyToClipboard(selectedEntity.BillingAddressBlock);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_OpenInMaps:
+                    Utilities.OpenWithGoogleMaps(selectedEntity.BillingAddressLine);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CallCustomer:
+                    Utilities.CallCustomer(selectedEntity.Telephone);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_EmailCustomer:
+                    Utilities.EmailCustomer(selectedEntity.Email);
+                    e.Handled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
 
-              	//    set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
-
-				default:
-					break;
-			}
-			
-		}
-
-		/// <summary>
-		/// This method is called after the base object has processed the command.
-		/// </summary>
-		protected override void am_AfterProcessCommand(AB_Command command, RoutedEventArgs e)
+        /// <summary>
+        /// This method is called after the base object has processed the command.
+        /// </summary>
+        protected override void am_AfterProcessCommand(AB_Command command, RoutedEventArgs e)
 		{
 			
 			switch (command.ap_CommandID)

@@ -352,17 +352,29 @@ namespace BOS.CustomerDataEntity
         }
         public static AB_PropertyMetadata<string> ParentNameProperty = am_CreatePropertyMetaData<string>(nameof(ParentName), DescriptionResource.PARENTNAME, null);
 
-		[Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
-		[AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
-		public string BillingAddressLine
-		{
-			get
-			{
-				var billingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
-				return billingAddressLine;
-			}
-		}
-		public static AB_PropertyMetadata<string> BillingAddressLineProperty = am_CreatePropertyMetaData<string>("BillingAddressLine", DescriptionResource.BILLINGADDRESS, null);
+        [Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
+        public string BillingAddressLine
+        {
+            get
+            {
+                var billingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
+                return billingAddressLine;
+            }
+        }
+        public static AB_PropertyMetadata<string> BillingAddressLineProperty = am_CreatePropertyMetaData<string>("BillingAddressLine", DescriptionResource.BILLINGADDRESS, null);
+
+        [Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
+        public string BillingAddressBlock
+        {
+            get
+            {
+                var billingAddressBlock = AB_AddressHelper.am_FullAddressBlock(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
+                return billingAddressBlock;
+            }
+        }
+        public static AB_PropertyMetadata<string> BillingAddressBlockProperty = am_CreatePropertyMetaData<string>("BillingAddressBlock", DescriptionResource.BILLINGADDRESS, null);
 
 		#endregion //Properties
 

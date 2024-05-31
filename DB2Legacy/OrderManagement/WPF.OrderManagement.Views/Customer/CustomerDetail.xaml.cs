@@ -13,6 +13,10 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
 using BOS.CustomerDataEntity;
 using BOS.CustomerViewModel;
+using System.Windows;
+using System.Diagnostics;
+using System;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.Customer
 {
@@ -108,34 +112,45 @@ namespace WPF.Customer
 			//CustomerEntity currentEntity = ap_CurrentEntity as CustomerEntity;
 			
 		}
-		
-		/// <summary>
-		/// This method is called before the base object has processed the command.
-		/// </summary>
-		protected override void am_BeforeProcessCommand(AB_Command command, System.Windows.RoutedEventArgs e)
-		{
-			
-			switch (command.ap_CommandID)
-			{
-				//case "<CommandID>":
 
-                //    Do Something ...
+        /// <summary>
+        /// This method is called before the base object has processed the command.
+        /// </summary>
+        protected override void am_BeforeProcessCommand(AB_Command command, System.Windows.RoutedEventArgs e)
+        {
+            var selectedEntity = ap_CurrentEntity as CustomerEntity;
 
-                //	  set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
+            switch (command.ap_CommandID)
+            {
+                case Constants.CMD_CopyAddressLine:
+                    Utilities.CopyToClipboard(selectedEntity.BillingAddressLine, ap_MessageConsole);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CopyAddressBlock:
+                    Utilities.CopyToClipboard(selectedEntity.BillingAddressBlock, ap_MessageConsole);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_OpenInMaps:
+                    Utilities.OpenWithGoogleMaps(selectedEntity.BillingAddressLine, ap_MessageConsole);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CallCustomer:
+                    Utilities.CallCustomer(selectedEntity.Telephone, ap_MessageConsole);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_EmailCustomer:
+                    Utilities.EmailCustomer(selectedEntity.Email, ap_MessageConsole);
+                    e.Handled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
 
-				default:
-					break;
-			}
-			
-		}
-
-		/// <summary>
-		/// This method is called after the base object has processed the command.
-		/// </summary>
-		protected override void am_AfterProcessCommand(AB_Command command, System.Windows.RoutedEventArgs e)
+        /// <summary>
+        /// This method is called after the base object has processed the command.
+        /// </summary>
+        protected override void am_AfterProcessCommand(AB_Command command, System.Windows.RoutedEventArgs e)
 		{
 			
 			switch (command.ap_CommandID)
@@ -154,5 +169,5 @@ namespace WPF.Customer
 			}
 			
 		}
-	}
+    }
 }
