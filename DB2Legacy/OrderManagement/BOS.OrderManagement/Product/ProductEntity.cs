@@ -294,8 +294,107 @@ namespace BOS.ProductDataEntity
             get => am_GetPropertyValue(LastChangeJobNumberProperty);
             set => am_SetPropertyValue(LastChangeJobNumberProperty, value);
         }
-        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null); 
+        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
 
+        [Display(Name = "ORDERCOUNT", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? OrderCount //Map Field: ORDERCOUNT
+        {
+            get { return am_GetPropertyValue(OrderCountProperty); }
+            set { am_SetPropertyValue(OrderCountProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> OrderCountProperty = am_CreatePropertyMetaData<int?>("OrderCount", DescriptionResource.ORDERCOUNT, null);
+
+        [Display(Name = "ORDERITEMCOUNT", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? OrderItemCount //Map Field: ORDERITEMCOUNT
+        {
+            get { return am_GetPropertyValue(OrderItemCountProperty); }
+            set { am_SetPropertyValue(OrderItemCountProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> OrderItemCountProperty = am_CreatePropertyMetaData<int?>("OrderItemCount", DescriptionResource.ORDERITEMCOUNT, null);
+
+        [Display(Name = "AVERAGEORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public decimal? AverageOrderQuantity //Map Field: AVERAGEORDERQUANTITY
+        {
+            get { return am_GetPropertyValue(AverageOrderQuantityProperty); }
+            set { am_SetPropertyValue(AverageOrderQuantityProperty, value); }
+        }
+        public static AB_PropertyMetadata<decimal?> AverageOrderQuantityProperty = am_CreatePropertyMetaData<decimal?>("AverageOrderQuantity", DescriptionResource.AVERAGEORDERQUANTITY, null);
+
+        [Display(Name = "SMALLESTORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? SmallestOrderQuantity //Map Field: SMALLESTORDERQUANTITY
+        {
+            get { return am_GetPropertyValue(SmallestOrderQuantityProperty); }
+            set { am_SetPropertyValue(SmallestOrderQuantityProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> SmallestOrderQuantityProperty = am_CreatePropertyMetaData<int?>("SmallestOrderQuantity", DescriptionResource.SMALLESTORDERQUANTITY, null);
+
+        [Display(Name = "LARGESTORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? LargestOrderQuantity //Map Field: LARGESTORDERQUANTITY
+        {
+            get { return am_GetPropertyValue(LargestOrderQuantityProperty); }
+            set { am_SetPropertyValue(LargestOrderQuantityProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> LargestOrderQuantityProperty = am_CreatePropertyMetaData<int?>("LargestOrderQuantity", DescriptionResource.LARGESTORDERQUANTITY, null);
+
+        [Display(Name = "AVERAGEORDERUNITPRICE", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public decimal? AverageOrderUnitPrice //Map Field: AVERAGEORDERUNITPRICE
+        {
+            get { return am_GetPropertyValue(AverageOrderUnitPriceProperty); }
+            set { am_SetPropertyValue(AverageOrderUnitPriceProperty, value); }
+        }
+        public static AB_PropertyMetadata<decimal?> AverageOrderUnitPriceProperty = am_CreatePropertyMetaData<decimal?>("AverageOrderUnitPrice", DescriptionResource.AVERAGEORDERUNITPRICE, null);
+
+        [Display(Name = "LOWESTORDERUNITPRICE", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? LowestOrderUnitPrice //Map Field: LOWESTORDERUNITPRICE
+        {
+            get { return am_GetPropertyValue(LowestOrderUnitPriceProperty); }
+            set { am_SetPropertyValue(LowestOrderUnitPriceProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> LowestOrderUnitPriceProperty = am_CreatePropertyMetaData<int?>("LowestOrderUnitPrice", DescriptionResource.LOWESTORDERUNITPRICE, null);
+
+        [Display(Name = "HIGHESTORDERUNITPRICE", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? HighestOrderUnitPrice //Map Field: HIGHESTORDERUNITPRICE
+        {
+            get { return am_GetPropertyValue(HighestOrderUnitPriceProperty); }
+            set { am_SetPropertyValue(HighestOrderUnitPriceProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> HighestOrderUnitPriceProperty = am_CreatePropertyMetaData<int?>("HighestOrderUnitPrice", DescriptionResource.HIGHESTORDERUNITPRICE, null);
+
+        [Display(Name = "LASTORDERDATETIME", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public DateTime? LastOrderDateTime //Map Field: LASTORDERDATETIME
+        {
+            get { return am_GetPropertyValue(LastOrderDateTimeProperty); }
+            set { am_SetPropertyValue(LastOrderDateTimeProperty, value); }
+        }
+        public static AB_PropertyMetadata<DateTime?> LastOrderDateTimeProperty = am_CreatePropertyMetaData<DateTime?>("LastOrderDateTime", DescriptionResource.LASTORDERDATETIME, null);
+
+        [Display(Name = "CUSTOMERCOUNT", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? CustomerCount //Map Field: CUSTOMERCOUNT
+        {
+            get { return am_GetPropertyValue(CustomerCountProperty); }
+            set { am_SetPropertyValue(CustomerCountProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> CustomerCountProperty = am_CreatePropertyMetaData<int?>("CustomerCount", DescriptionResource.CUSTOMERCOUNT, null);
 
         #endregion //Properties
 

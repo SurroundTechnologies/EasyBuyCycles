@@ -393,4 +393,31 @@
   <data name="SUBCUSTOMERLIST" xml:space="preserve">
     <value>Sub-Customer List</value>
   </data>
+  <data name="AVERAGEORDERQUANTITY" xml:space="preserve">
+    <value>Average Order Quantity</value>
+  </data>
+  <data name="AVERAGEORDERUNITPRICE" xml:space="preserve">
+    <value>Average Order Unit Price</value>
+  </data>
+  <data name="CUSTOMERCOUNT" xml:space="preserve">
+    <value>Customer Count</value>
+  </data>
+  <data name="HIGHESTORDERUNITPRICE" xml:space="preserve">
+    <value>Highest Order Unit Price</value>
+  </data>
+  <data name="LARGESTORDERQUANTITY" xml:space="preserve">
+    <value>Largest Order Quantity</value>
+  </data>
+  <data name="LASTORDERDATETIME" xml:space="preserve">
+    <value>Last Order Date Time</value>
+  </data>
+  <data name="LOWESTORDERUNITPRICE" xml:space="preserve">
+    <value>Lowest Order Unit Price</value>
+  </data>
+  <data name="ORDERITEMCOUNT" xml:space="preserve">
+    <value>Order Item Count</value>
+  </data>
+  <data name="SMALLESTORDERQUANTITY" xml:space="preserve">
+    <value>Smallest Order Quantity</value>
+  </data>
 </root>
