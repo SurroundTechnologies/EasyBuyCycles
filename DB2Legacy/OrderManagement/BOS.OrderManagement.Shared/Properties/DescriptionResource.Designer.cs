@@ -358,6 +358,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Name.
+        /// </summary>
+        public static string FULLNAME {
+            get {
+                return ResourceManager.GetString("FULLNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Path.
         /// </summary>
         public static string IMAGEPATH {
@@ -475,6 +484,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Records.
+        /// </summary>
+        public static string NORECORDS {
+            get {
+                return ResourceManager.GetString("NORECORDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Date.
         /// </summary>
         public static string ORDERDATE {
@@ -547,11 +565,29 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Popular Products.
+        /// </summary>
+        public static string POPULARPRODUCTS {
+            get {
+                return ResourceManager.GetString("POPULARPRODUCTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Postal Code.
         /// </summary>
         public static string POSTALCODE {
             get {
                 return ResourceManager.GetString("POSTALCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Code.
+        /// </summary>
+        public static string PRODUCTCODE {
+            get {
+                return ResourceManager.GetString("PRODUCTCODE", resourceCulture);
             }
         }
         
@@ -597,6 +633,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string QUANTITY {
             get {
                 return ResourceManager.GetString("QUANTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Orders.
+        /// </summary>
+        public static string RECENTORDERS {
+            get {
+                return ResourceManager.GetString("RECENTORDERS", resourceCulture);
             }
         }
         
@@ -714,6 +759,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string WAREHOUSENAME {
             get {
                 return ResourceManager.GetString("WAREHOUSENAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weather.
+        /// </summary>
+        public static string WEATHER {
+            get {
+                return ResourceManager.GetString("WEATHER", resourceCulture);
             }
         }
     }
