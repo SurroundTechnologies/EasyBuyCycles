@@ -773,15 +773,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unit Price.
         /// </summary>
-        public static string TRUEFLAG {
-            get {
-                return ResourceManager.GetString("TRUEFLAG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unit Price.
-        /// </summary>
         public static string UNITPRICE {
             get {
                 return ResourceManager.GetString("UNITPRICE", resourceCulture);
