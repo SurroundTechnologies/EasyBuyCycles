@@ -85,6 +85,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "CONTACTLASTNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string ContactLastName //Map Field: YD1SCNLN
         {
             get => am_GetPropertyValue(ContactLastNameProperty);
@@ -125,6 +126,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "ADDRESS1", ResourceType = typeof(DescriptionResource))]
         [AB_Length(30)]
         [DataMember]
+        [AB_RequiredField]
         public string Address1 //Map Field: YD1SSHA1
         {
             get => am_GetPropertyValue(Address1Property);
@@ -325,6 +327,7 @@ namespace BOS.ShippingAddressDataEntity
         [AB_Length(50)]
         [AB_BroadcastMember(AB_DataShouldBePassed.OnPreload)]
         [DataMember]
+        [AB_RequiredField]
         public string CustomerName //Map Field: YD1C.YD1CNM
         {
             get => am_GetPropertyValue(CustomerNameProperty);

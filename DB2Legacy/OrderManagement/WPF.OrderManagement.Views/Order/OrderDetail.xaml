@@ -45,7 +45,7 @@
                   <!--<base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />-->
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderMemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Status" ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelWidth="110" ap_LabelPosition="Left" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" Width="Auto" />
+                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="230" DockPanel.Dock="Top"/>
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />
 			   </DockPanel>
 			</ScrollViewer>

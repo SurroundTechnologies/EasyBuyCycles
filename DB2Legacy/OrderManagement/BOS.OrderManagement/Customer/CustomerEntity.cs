@@ -96,6 +96,7 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "LEGALNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string LegalName //Map Field: YD1CNMLG
         {
             get => am_GetPropertyValue(LegalNameProperty);
@@ -171,6 +172,7 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "BILLINGADDRESS2", ResourceType = typeof(DescriptionResource))]
         [AB_Length(30)]
         [DataMember]
+        [AB_RequiredField]
         public string BillingAddress2 //Map Field: YD1CBLA2
         {
             get => am_GetPropertyValue(BillingAddress2Property);
