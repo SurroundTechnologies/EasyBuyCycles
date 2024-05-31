@@ -14,6 +14,8 @@ using A4DN.Core.BOS.ViewModel;
 using BOS.OrderDataEntity;
 using BOS.OrderViewModel;
 using BOS.CustomerDataEntity;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace WPF.Order
 {
@@ -22,7 +24,19 @@ namespace WPF.Order
 	/// </summary>
 	public partial class OrderDetail : AB_DetailBase
 	{        
-		OrderVM _ViewModel; 
+		private OrderVM _ViewModel;
+
+        public Panel OrderDetailLayout
+        {
+            get { return FieldsPanel; }
+        }
+
+        public Visibility NonWizardControlsVisibility
+        {
+            get { return (Visibility)GetValue(NonWizardControlsVisibilityProperty); }
+            set { SetValue(NonWizardControlsVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty NonWizardControlsVisibilityProperty = DependencyProperty.Register("NonWizardControlsVisibility", typeof(Visibility), typeof(OrderDetail), new UIPropertyMetadata(Visibility.Visible));
 
 		/// <summary>
 		/// Type initializer / static constructor

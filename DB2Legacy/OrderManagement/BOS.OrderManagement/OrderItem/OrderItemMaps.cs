@@ -78,7 +78,8 @@ namespace BOS.OrderItemDataMaps
 			maps.am_AddDataMap("YD1ILCUS", OrderItemEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1ILCJB", OrderItemEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1ILCJN", OrderItemEntity.LastChangeJobNumberProperty);
-			maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PNM"), OrderItemEntity.ProductNameProperty, targetTable: YD1PTableName);
+            maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PCD"), OrderItemEntity.ProductCodeProperty, targetTable: YD1PTableName);
+            maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PNM"), OrderItemEntity.ProductNameProperty, targetTable: YD1PTableName);
             maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PIMPT"), OrderItemEntity.ProductImagePathProperty, targetTable: YD1PTableName);
             maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1ODT"), OrderItemEntity.OrderDateProperty, targetTable: YD1OTableName);
             maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1OTM"), OrderItemEntity.OrderTimeProperty, targetTable: YD1OTableName);

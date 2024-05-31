@@ -1,54 +1,56 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC.OrderManagement", "MVC.OrderManagement\MVC.OrderManagement.csproj", "{C6C6B613-1049-4E07-9F0B-0AED603D2D66}"
 	ProjectSection(ProjectDependencies) = postProject
-		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
-		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
-		{a7d867ac-5e72-42e0-85be-a7e734355528} = {a7d867ac-5e72-42e0-85be-a7e734355528}
+		{454BC523-D124-4A39-89AA-498FA3F40C86} = {454BC523-D124-4A39-89AA-498FA3F40C86}
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6} = {47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}
+		{A7D867AC-5E72-42E0-85BE-A7E734355528} = {A7D867AC-5E72-42E0-85BE-A7E734355528}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement", "WPF.OrderManagement\WPF.OrderManagement.csproj", "{461CCA97-8B34-40B2-9B95-05104F04A680}"
 	ProjectSection(ProjectDependencies) = postProject
-		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
-		{4e80f0a5-0783-4292-a79d-cf79914ad903} = {4e80f0a5-0783-4292-a79d-cf79914ad903}
-		{b596c4b7-bf56-4578-8750-f17162f9b803} = {b596c4b7-bf56-4578-8750-f17162f9b803}
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6} = {47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}
+		{4E80F0A5-0783-4292-A79D-CF79914AD903} = {4E80F0A5-0783-4292-A79D-CF79914AD903}
+		{B596C4B7-BF56-4578-8750-F17162F9B803} = {B596C4B7-BF56-4578-8750-F17162F9B803}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement.Views", "WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj", "{B596C4B7-BF56-4578-8750-F17162F9B803}"
 	ProjectSection(ProjectDependencies) = postProject
-		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
-		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
-		{a7d867ac-5e72-42e0-85be-a7e734355528} = {a7d867ac-5e72-42e0-85be-a7e734355528}
-		{4e80f0a5-0783-4292-a79d-cf79914ad903} = {4e80f0a5-0783-4292-a79d-cf79914ad903}
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6} = {47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}
+		{454BC523-D124-4A39-89AA-498FA3F40C86} = {454BC523-D124-4A39-89AA-498FA3F40C86}
+		{A7D867AC-5E72-42E0-85BE-A7E734355528} = {A7D867AC-5E72-42E0-85BE-A7E734355528}
+		{4E80F0A5-0783-4292-A79D-CF79914AD903} = {4E80F0A5-0783-4292-A79D-CF79914AD903}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement.Shared", "WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj", "{4E80F0A5-0783-4292-A79D-CF79914AD903}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost.OrderManagement.BP", "ServiceHost.OrderManagement.BP\ServiceHost.OrderManagement.BP.csproj", "{85E41EBA-6787-49FA-ABA5-2F1596ADB819}"
 	ProjectSection(ProjectDependencies) = postProject
-		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+		{454BC523-D124-4A39-89AA-498FA3F40C86} = {454BC523-D124-4A39-89AA-498FA3F40C86}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost.OrderManagement.DALForSQL", "ServiceHost.OrderManagement.DALForSQL\ServiceHost.OrderManagement.DALForSQL.csproj", "{CA597C2E-348B-42E5-ABFE-83C88902B126}"
 	ProjectSection(ProjectDependencies) = postProject
-		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
+		{454BC523-D124-4A39-89AA-498FA3F40C86} = {454BC523-D124-4A39-89AA-498FA3F40C86}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement.ViewModels", "BOS.OrderManagement.ViewModels\BOS.OrderManagement.ViewModels.csproj", "{A7D867AC-5E72-42E0-85BE-A7E734355528}"
 	ProjectSection(ProjectDependencies) = postProject
-		{454bc523-d124-4a39-89aa-498fa3f40c86} = {454bc523-d124-4a39-89aa-498fa3f40c86}
-		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+		{454BC523-D124-4A39-89AA-498FA3F40C86} = {454BC523-D124-4A39-89AA-498FA3F40C86}
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6} = {47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement", "BOS.OrderManagement\BOS.OrderManagement.csproj", "{454BC523-D124-4A39-89AA-498FA3F40C86}"
 	ProjectSection(ProjectDependencies) = postProject
-		{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6} = {47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}
+		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6} = {47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement.Shared", "BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj", "{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}"
 EndProject
-VisualStudioVersion = 17.3.32811.315
-MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement.OrderWizard", "WPF.OrderManagement.OrderWizard\WPF.OrderManagement.OrderWizard.csproj", "{DD71D0CD-0558-46BB-A953-C3E59D164A59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,11 +93,15 @@ Global
 		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD71D0CD-0558-46BB-A953-C3E59D164A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD71D0CD-0558-46BB-A953-C3E59D164A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD71D0CD-0558-46BB-A953-C3E59D164A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD71D0CD-0558-46BB-A953-C3E59D164A59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4595C85A-C2EC-4EE4-8FE8-170ACAEF585B}
 	EndGlobalSection
 EndGlobal
-

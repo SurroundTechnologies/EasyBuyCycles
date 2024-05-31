@@ -84,6 +84,29 @@
       <DependentUpon>ProductTemplateUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wizards\OrderWizard\CompletionWizardPart.xaml.cs">
+      <DependentUpon>CompletionWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\CustomerWizardPart.xaml.cs">
+      <DependentUpon>CustomerWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\OrderItemWizardPart.xaml.cs">
+      <DependentUpon>OrderItemWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\OrderWizardPart.xaml.cs">
+      <DependentUpon>OrderWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\OrderWizardSharedObject.cs" />
+    <Compile Include="Wizards\OrderWizard\ShippingAddressWizardPart.xaml.cs">
+      <DependentUpon>ShippingAddressWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\StartWizardPart.xaml.cs">
+      <DependentUpon>StartWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\WizardSplash.xaml.cs">
+      <DependentUpon>WizardSplash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wizards\OrderWizard\OrderWizardWindow.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -293,12 +316,40 @@
       <SubType>Code</SubType>
       <DependentUpon>ShippingAddressExpContent.xaml</DependentUpon>
     </Compile>
+    <Page Include="Wizards\OrderWizard\CompletionWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizards\OrderWizard\CustomerWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizards\OrderWizard\OrderItemWizardPart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wizards\OrderWizard\OrderWizardPart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wizards\OrderWizard\ShippingAddressWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizards\OrderWizard\StartWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wizards\OrderWizard\WizardSplash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup Label="A4DNReferences">
-	  <Reference Include="WPF.PropCodeValue, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-		  <SpecificVersion>False</SpecificVersion>
-		  <HintPath>$(A4DNMaintenanceHintPath)WPF.PropCodeValue.dll</HintPath>
-	  </Reference>
+    <Reference Include="WPF.PropCodeValue, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)WPF.PropCodeValue.dll</HintPath>
+    </Reference>
     <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
       <SpecificVersion>True</SpecificVersion>
       <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>

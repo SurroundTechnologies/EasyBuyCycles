@@ -1,0 +1,37 @@
+﻿<wizardBase:AB_WizardPartBase x:Class="WPF.Wizards.OrderWizard.StartWizardPart"
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                              xmlns:local="clr-namespace:WPF.Wizards.OrderWizard"
+                              xmlns:wizardBase="clr-namespace:A4DN.Core.WPF.Base.WizardBase;assembly=A4DN.Core.WPF.Base"
+                              ap_BtnFinishIsEnabled="False"
+                              ap_BtnBackVisibility="Collapsed"
+                              ap_BtnResetVisibility="Collapsed"
+                              ap_BtnSkipVisibility="Collapsed"
+                              mc:Ignorable="d"
+                              d:DesignHeight="450"
+                              d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Welcome to the Order Wizard!"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="48"
+                   FontWeight="Bold"
+                   TextWrapping="Wrap"
+                   Grid.Row="0"
+                   Margin="20 0 20 0"/>
+
+        <TextBlock Text="This wizard will walk you through creating a new Order based on new and/or existing Customers, Order Items, and Shipping Addresses.&#10;&#10;Walk through each of the steps in the top left pane using the navigation buttons in the bottom right.&#10;&#10;Be sure to check the Summary of your progress in the bottom left pane as you go to ensure accuracy."
+                   HorizontalAlignment="Center"
+                   FontSize="18"
+                   TextWrapping="Wrap"
+                   Grid.Row="1"
+                   Margin="20 0 20 0" />
+    </Grid>
+</wizardBase:AB_WizardPartBase>

@@ -22,7 +22,6 @@ namespace WPF.ShippingAddress
 		/// Dependency Property for Binding of foreign keys.  As this property is updated, a fetch will occur to load the drop down appropriately
 		/// </summary>
  
-		
         [AB_DropdownKeyProperty]
 		public int? ShippingAddressInternalID
 		{
@@ -31,10 +30,18 @@ namespace WPF.ShippingAddress
 		}
         public static readonly DependencyProperty ShippingAddressInternalIDProperty = DependencyProperty.Register(nameof(ShippingAddressInternalID), typeof(int?), typeof(ShippingAddressDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
 
-		/// <summary>
-		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
-		/// </summary>
-		protected override void am_SetParentProperties()
+        [AB_DropdownFilterProperty]
+        public int? CustomerInternalID
+        {
+            get => (int?)GetValue(CustomerInternalIDProperty);
+            set => SetValue(CustomerInternalIDProperty, value);
+        }
+        public static readonly DependencyProperty CustomerInternalIDProperty = DependencyProperty.Register(nameof(CustomerInternalID), typeof(int?), typeof(ShippingAddressDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
+
+        /// <summary>
+        /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
+        /// </summary>
+        protected override void am_SetParentProperties()
 		{
 			InitializeComponent();
 			

@@ -8,8 +8,7 @@
     ap_BelowComboBoxVisibility="Visible"
     xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
     xmlns:local="clr-namespace:WPF.Customer"
-    ap_LeftComboBoxVisibility="Visible"
-    >
+    ap_LeftComboBoxVisibility="Visible">
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
