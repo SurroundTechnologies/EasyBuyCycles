@@ -68,6 +68,18 @@
   </Target>
   -->
   <ItemGroup Label="A4DNItems">
+    <Compile Include="Dashboard\DashboardControl.xaml.cs">
+      <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\FiveRecentOrdersDashboardPart.xaml.cs">
+      <DependentUpon>FiveRecentOrdersDashboardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\PopularProductsImagesDashboardPart.xaml.cs">
+      <DependentUpon>PopularProductsImagesDashboardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\WeatherInfoDashboardPart.xaml.cs">
+      <DependentUpon>WeatherInfoDashboardPart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -114,6 +126,22 @@
       <SubType>Code</SubType>
       <DependentUpon>CustomerExpContent.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dashboard\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\FiveRecentOrdersDashboardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\PopularProductsImagesDashboardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\WeatherInfoDashboardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrderItem\OrderItemResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

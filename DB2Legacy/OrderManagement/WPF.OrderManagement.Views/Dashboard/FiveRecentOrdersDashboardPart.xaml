@@ -1,0 +1,63 @@
+﻿<db:AB_DashboardPart x:Class="WPF.Dashboard.FiveRecentOrdersDashboardPart"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:db="clr-namespace:A4DN.Core.WPF.Base.DataPresentation.Dashboard;assembly=A4DN.Core.WPF.Base"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:local="clr-namespace:WPF.Dashboard"
+                     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
+                     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+                     mc:Ignorable="d">
+    <db:AB_DashboardPart.Resources>
+        <DataTemplate x:Key="buttonTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                       Width="50" Height="50" Margin="10 2" HorizontalAlignment="Left"
+                       Source="/WPF.OrderManagement.Shared;component/Images/Order.png" />
+                <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.FULLNAME}"
+                           Grid.Row="0" Grid.Column="1"
+                           Margin="10 0" HorizontalAlignment="Left"
+                           FontWeight="Bold" />
+                <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.ORDERDATE}"
+                           Grid.Row="1" Grid.Column="1"
+                           Margin="10 0" HorizontalAlignment="Left"
+                           FontWeight="Bold" />
+                <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.STATUS}"
+                           Grid.Row="2" Grid.Column="1"
+                           Margin="10 0" HorizontalAlignment="Left"
+                           FontWeight="Bold" />
+
+                <TextBlock Text="{Binding Path=CustomerName}"
+                           Grid.Row="0" Grid.Column="2"
+                           Margin="5 0"
+                           TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding Path=OrderDate, StringFormat={}{0:MM/dd/yyyy}}"
+                           Grid.Row="1" Grid.Column="2"
+                           Margin="5 0"
+                           TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding Path=Status}"
+                           Grid.Row="2" Grid.Column="2"
+                           Margin="5 0"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </DataTemplate>
+    </db:AB_DashboardPart.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Name="tbNoRecords" Text="{x:Static systemSharedProperties:DescriptionResource.NORECORDS}"
+                       Visibility="Collapsed" FontSize="14" FontWeight="Bold" Foreground="Red" />
+            <StackPanel Name="buttonsPanel" Margin="0 5 0 0" />
+        </StackPanel>
+    </ScrollViewer>
+</db:AB_DashboardPart>

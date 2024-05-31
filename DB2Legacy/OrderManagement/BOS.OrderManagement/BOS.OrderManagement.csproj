@@ -1,4 +1,4 @@
-<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="../A4DNReference.msbuild" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\NuGetPackages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +52,7 @@
   </Target>
   -->
   <ItemGroup Label="A4DNItems">
+    <Compile Include="ExternalAPIs\IPAPIClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\DescriptionResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -67,7 +72,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MessageResource.resx</DependentUpon>
     </Compile>
-    <Folder Include="Customer\" />
     <Compile Include="Customer\CustomerDataContracts.cs" />
     <Compile Include="Customer\CustomerValidations.cs" />
     <Compile Include="Customer\CustomerEntity.cs" />
@@ -75,7 +79,6 @@
     <Compile Include="Customer\CustomerDALServiceContract.cs" />
     <Compile Include="Customer\CustomerDALForSQL.cs" />
     <Compile Include="Customer\CustomerBP.cs" />
-    <Folder Include="OrderItem\" />
     <Compile Include="OrderItem\OrderItemDataContracts.cs" />
     <Compile Include="OrderItem\OrderItemValidations.cs" />
     <Compile Include="OrderItem\OrderItemEntity.cs" />
@@ -83,7 +86,6 @@
     <Compile Include="OrderItem\OrderItemDALServiceContract.cs" />
     <Compile Include="OrderItem\OrderItemDALForSQL.cs" />
     <Compile Include="OrderItem\OrderItemBP.cs" />
-    <Folder Include="Order\" />
     <Compile Include="Order\OrderDataContracts.cs" />
     <Compile Include="Order\OrderValidations.cs" />
     <Compile Include="Order\OrderEntity.cs" />
@@ -91,7 +93,6 @@
     <Compile Include="Order\OrderDALServiceContract.cs" />
     <Compile Include="Order\OrderDALForSQL.cs" />
     <Compile Include="Order\OrderBP.cs" />
-    <Folder Include="Product\" />
     <Compile Include="Product\ProductDataContracts.cs" />
     <Compile Include="Product\ProductValidations.cs" />
     <Compile Include="Product\ProductEntity.cs" />
@@ -99,7 +100,6 @@
     <Compile Include="Product\ProductDALServiceContract.cs" />
     <Compile Include="Product\ProductDALForSQL.cs" />
     <Compile Include="Product\ProductBP.cs" />
-    <Folder Include="ShippingAddress\" />
     <Compile Include="ShippingAddress\ShippingAddressDataContracts.cs" />
     <Compile Include="ShippingAddress\ShippingAddressValidations.cs" />
     <Compile Include="ShippingAddress\ShippingAddressEntity.cs" />
@@ -136,5 +136,8 @@
       <Project>{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}</Project>
       <Name>BOS.OrderManagement.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

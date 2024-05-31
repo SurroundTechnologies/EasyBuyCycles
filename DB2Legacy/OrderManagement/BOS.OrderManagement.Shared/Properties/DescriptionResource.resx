@@ -336,4 +336,22 @@
   <data name="BILLINGADDRESS" xml:space="preserve">
     <value>Billing Address</value>
   </data>
+  <data name="FULLNAME" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="NORECORDS" xml:space="preserve">
+    <value>No Records</value>
+  </data>
+  <data name="POPULARPRODUCTS" xml:space="preserve">
+    <value>Popular Products</value>
+  </data>
+  <data name="PRODUCTCODE" xml:space="preserve">
+    <value>Product Code</value>
+  </data>
+  <data name="RECENTORDERS" xml:space="preserve">
+    <value>Recent Orders</value>
+  </data>
+  <data name="WEATHER" xml:space="preserve">
+    <value>Weather</value>
+  </data>
 </root>
