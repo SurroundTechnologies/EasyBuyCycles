@@ -8,6 +8,7 @@ using System.Windows;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.BOS.ViewModel;
 using WPF.OrderManagement;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.OrderManagement
 {
@@ -78,5 +79,12 @@ namespace WPF.OrderManagement
 			
 		}
 
-	}
+        public override void am_PerformCustomTaskDuringLoadSystem()
+        {
+            base.am_PerformCustomTaskDuringLoadSystem();
+
+            Utilities.MessageConsole = ap_MessageConsole;
+        }
+
+    }
 }
