@@ -1,4 +1,4 @@
-<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="../A4DNReference.msbuild" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,11 +48,13 @@
   </Target>
   -->
   <ItemGroup Label="A4DNItems">
+    <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationAttributes.cs" />
     <EmbeddedResource Include="Properties\DescriptionResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DescriptionResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\DescriptionResource.Designer.cs">
       <AutoGen>True</AutoGen>
