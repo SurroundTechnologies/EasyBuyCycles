@@ -291,8 +291,17 @@ namespace BOS.ProductDataEntity
             get => am_GetPropertyValue(LastChangeJobNumberProperty);
             set => am_SetPropertyValue(LastChangeJobNumberProperty, value);
         }
-        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null); 
+        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
 
+        [Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
+        [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
+        [DataMember]
+        public int? CustomerInternalID
+        {
+            get { return am_GetPropertyValue(CustomerInternalIDProperty); }
+            set { am_SetPropertyValue(CustomerInternalIDProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> CustomerInternalIDProperty = am_CreatePropertyMetaData<int?>("CustomerInternalID", DescriptionResource.CUSTOMERINTERNALID, null);
 
         #endregion //Properties
 

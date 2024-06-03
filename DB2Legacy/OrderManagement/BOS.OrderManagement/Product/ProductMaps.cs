@@ -14,27 +14,43 @@ namespace BOS.ProductDataMaps
 	public class ProductMaps : AB_DataMaps
 	{
 		private const string YD1PTableName = "YD1P";
+        // CTE Names
+        private const string OrderedProductsCTE = "ORDEREDPRODUCTSCTE";
 
-		public ProductMaps() : base() { }
+        public ProductMaps() : base() { }
 		public ProductMaps(string qualifier) : base(qualifier) { }
-		  
-		/// <summary>
-		/// Loads maps to join two database files.
-		/// </summary>
-		public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
+
+        public override AB_CommonTableExpressionDictionary am_LoadCommonTableExpressions()
+        {
+            var cteList = new AB_CommonTableExpressionDictionary();
+
+            cteList.am_AddCTE(OrderedProductsCTE, @"SELECT DISTINCT YD1I1PID,
+                                             YD1O.YD1O1CID AS CUSTOMERINTERNALID
+                                          FROM YD1I
+                                          LEFT JOIN YD1O ON YD1O.YD1OIID = YD1I.YD1I1OID");
+
+            return cteList;
+        }
+
+        /// <summary>
+        /// Loads maps to join two database files.
+        /// </summary>
+        public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
-		   
-			// TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
-			// AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
-			// TODO: Table Relationships Step 2 - Add Joins for each relationship
-			// Two field Relationship 
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
-			// Single Field to Constant Relationship
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
-			// relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
-		 
-			return relationshipMap;
+
+            // TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
+            // AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
+            // TODO: Table Relationships Step 2 - Add Joins for each relationship
+            // Two field Relationship 
+            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
+            // Single Field to Constant Relationship
+            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
+            // relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
+
+            relationshipMap.am_AddRelationshipMap(OrderedProductsCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
+
+            return relationshipMap;
 		}
 		
 
@@ -71,17 +87,18 @@ namespace BOS.ProductDataMaps
 			maps.am_AddDataMap("YD1PLCUS", ProductEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1PLCJB", ProductEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1PLCJN", ProductEntity.LastChangeJobNumberProperty);
+            maps.am_AddDataMap("CUSTOMERINTERNALID", ProductEntity.CustomerInternalIDProperty, targetTable: OrderedProductsCTE);
 
-			//TODO: ProductMaps Real Field Example
-			//maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
-			//TODO: ProductMaps Virtual Field Example
-			//maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>, isVirtual: true);
-			//TODO: ProductMaps Foreign Field Example
-			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ProductEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-			//TODO: ProductMaps Configure Example (for setting options not available as constructor arguments)
-			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
-		  
-			return maps;
+            //TODO: ProductMaps Real Field Example
+            //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
+            //TODO: ProductMaps Virtual Field Example
+            //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>, isVirtual: true);
+            //TODO: ProductMaps Foreign Field Example
+            //maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ProductEntity.<Property Name>, targetTable: "<Target Table Name>"); 
+            //TODO: ProductMaps Configure Example (for setting options not available as constructor arguments)
+            //maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+
+            return maps;
 		}
 
 	}
