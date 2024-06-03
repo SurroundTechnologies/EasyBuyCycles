@@ -1,27 +1,85 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:local="clr-namespace:WPF.Product">
+    xmlns:local="clr-namespace:WPF.OrderManagement.Views.Product"
+    xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared">
     
     <!-- Module Specific Resources should go in here.  If you wish to override a resource just for this module, define it here. -->
 
 
     <!-- /////// Card Content Templates /////// -->
-    
+    <DataTemplate x:Key="ProductDataTemplate">
+        <local:ProductTemplateUserControl HorizontalAlignment="Stretch" Width="Auto" />
+    </DataTemplate>
+
+    <Style x:Key="ProductAlternatingListBoxStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Style.Triggers>
+            <Trigger Property="ListBox.AlternationIndex" Value="1">
+                <Setter Property="Background" Value="{DynamicResource AB_Brush_NavigatorBackground2}" />
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AB_Brush_SelecteItemBackground}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AB_Brush_NavigatorListBoxBackground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ProductCustomListBoxStyle" TargetType="{x:Type ListBox}">
+        <Setter Property="ItemTemplate" Value="{DynamicResource ProductDataTemplate}" />
+        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="AlternationCount" Value="2" />
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource ProductAlternatingListBoxStyle}" />
+    </Style>
+
     <!-- Define your content for the header of the card in this control template -->
     <ControlTemplate x:Key="AB_HeaderField" TargetType="{x:Type UserControl}">
-        <TextBlock Text="{Binding Path=ap_Title}" Width="250" TextTrimming="CharacterEllipsis" Foreground="White" Margin="2,0,0,0" FontWeight="Bold" FontSize="16"/>
+        <TextBlock Text="{Binding Path=Name}" Width="250" TextTrimming="CharacterEllipsis" Foreground="White" Margin="2,0,0,0" FontWeight="Bold" FontSize="16"/>
     </ControlTemplate>
     
     <!-- Define fields or content that you want to appear in the main content area of the card in this control template -->
     <ControlTemplate x:Key="AB_ContentFields" TargetType="{x:Type UserControl}">
-        <StackPanel Orientation="Vertical">
-            <!--Other Databound text blocks can put here to display additional data-->
-          <TextBlock Text="{Binding Path=ProductInternalID}" Foreground="White"/>
-          <TextBlock Text="{Binding Path=Code}" Foreground="White"/>
-          <TextBlock Text="{Binding Path=Name}" Foreground="White"/>
-          <TextBlock Text="{Binding Path=Description}" Foreground="White"/>
-          <TextBlock Text="{Binding Path=Category}" Foreground="White"/>
-          <TextBlock Text="{Binding Path=StandardCost}" Foreground="White"/>
+        <StackPanel Orientation="Vertical" Margin="5 0 0 5">
+            <TextBlock Text="{Binding Path=Description}"
+                   Foreground="White" TextTrimming="CharacterEllipsis"
+                   ToolTip="{Binding Path=Description}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <!--<TextBlock Text="{Binding Path=Category}" Foreground="White"/>-->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.STANDARDCOST}" Foreground="White" />
+                        <TextBlock Text=":" Foreground="White" />
+                        <TextBlock Text="{Binding Path=StandardCost}"
+                               Margin="5 0 0 0"
+                               Foreground="White" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.LISTPRICE}" Foreground="White" />
+                        <TextBlock Text=":" Foreground="White" />
+                        <TextBlock Text="{Binding Path=ListPrice}"
+                               Margin="5 0 0 0"
+                               Foreground="White" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.REORDERLEVEL}" Foreground="White" />
+                        <TextBlock Text=":" Foreground="White" />
+                        <TextBlock Text="{Binding Path=ReorderLevel}"
+                               Margin="5 0 0 0"
+                               Foreground="White" />
+                    </StackPanel>
+                </StackPanel>
+                <Image Grid.Column="1"
+                   Margin="3"
+                   Width="60" Height="60"
+                   Source="{Binding ImagePath, FallbackValue=http://www.indiana.edu/~iscc/images/noImageAvailable.jpg}" />
+            </Grid>
         </StackPanel>
     </ControlTemplate>
 </ResourceDictionary>
