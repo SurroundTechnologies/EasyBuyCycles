@@ -140,13 +140,7 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("BILLINGADDRESS3", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Billing Country.
-        /// </summary>
-        public static string BILLINGCOUNTRY {
-            get {
-                return ResourceManager.GetString("BILLINGCOUNTRY", resourceCulture);
+
         ///   Looks up a localized string similar to Billing Address Block.
         /// </summary>
         public static string BILLINGADDRESSBLOCK {
