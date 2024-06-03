@@ -243,8 +243,17 @@ namespace BOS.OrderItemDataEntity
             get => am_GetPropertyValue(ProductNameProperty);
             set => am_SetPropertyValue(ProductNameProperty, value);
         }
-        public static AB_PropertyMetadata<string> ProductNameProperty = am_CreatePropertyMetaData<string>(nameof(ProductName), DescriptionResource.PRODUCTNAME, null); 
+        public static AB_PropertyMetadata<string> ProductNameProperty = am_CreatePropertyMetaData<string>(nameof(ProductName), DescriptionResource.PRODUCTNAME, null);
 
+        [Display(Name = "PRODUCTCODE", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(25)]
+        [DataMember]
+        public string ProductCode //Map Field: YD1P.YD1PCD
+        {
+            get { return am_GetPropertyValue(ProductCodeProperty); }
+            set { am_SetPropertyValue(ProductCodeProperty, value); }
+        }
+        public static AB_PropertyMetadata<string> ProductCodeProperty = am_CreatePropertyMetaData<string>("ProductCode", DescriptionResource.PRODUCTCODE, null);
 
         #endregion //Properties
 
