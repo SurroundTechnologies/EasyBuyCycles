@@ -9,6 +9,7 @@
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
 	xmlns:vm="clr-namespace:BOS.ProductViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+                    xmlns:propCodeValue="clr-namespace:WPF.PropCodeValue;assembly=WPF.PropCodeValue"
 	Height="620" Width="740">    
 	<base:AB_DetailBase.Resources>
 		<ResourceDictionary>
@@ -35,7 +36,13 @@
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="400"  DockPanel.Dock="Top" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Category" ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
+                  <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
+                                 DockPanel.Dock="Top"
+                                 Width="400" Margin="0 0 0 5" HorizontalAlignment="Left"
+                                 Code="{Binding Category, Mode=TwoWay}"
+                                 PropertyCodeTable="ProductCategory"
+                                 ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Left"
+                                 ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270"  DockPanel.Dock="Top" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270"  DockPanel.Dock="Top" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="190"  DockPanel.Dock="Top" />
