@@ -80,6 +80,9 @@
     <Compile Include="Dashboard\WeatherInfoDashboardPart.xaml.cs">
       <DependentUpon>WeatherInfoDashboardPart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Product\ProductTemplateUserControl.xaml.cs">
+      <DependentUpon>ProductTemplateUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -250,6 +253,10 @@
       <SubType>Code</SubType>
       <DependentUpon>ProductExpContent.xaml</DependentUpon>
     </Compile>
+    <Page Include="Product\ProductTemplateUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ShippingAddress\ShippingAddressResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
