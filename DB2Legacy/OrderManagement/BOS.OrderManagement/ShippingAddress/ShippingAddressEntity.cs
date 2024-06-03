@@ -330,8 +330,20 @@ namespace BOS.ShippingAddressDataEntity
             get => am_GetPropertyValue(CustomerNameProperty);
             set => am_SetPropertyValue(CustomerNameProperty, value);
         }
-        public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null); 
+        public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null);
 
+        [Display(Name = "SHIPPINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("Address1", "Address2", "Address3", "PostalCode", "Country")]
+        public string ShippingAddressLine
+        {
+            get
+            {
+                var shippingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: Address1, city: Address2, state: Address3, zip: PostalCode, country: Country);
+                return shippingAddressLine;
+            }
+        }
+
+        public static AB_PropertyMetadata<string> ShippingAddressLineProperty = am_CreatePropertyMetaData<string>("ShippingAddressLine", DescriptionResource.SHIPPINGADDRESS, null);
 
         #endregion //Properties
 
