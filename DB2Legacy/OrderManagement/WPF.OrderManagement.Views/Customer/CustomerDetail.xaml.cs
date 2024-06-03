@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System;
 using WPF.OrderManagement.Shared;
 using BOS.OrderManagement.Shared;
+using System.Windows.Controls;
 
 namespace WPF.Customer
 {
@@ -26,7 +27,12 @@ namespace WPF.Customer
 	/// </summary>
 	public partial class CustomerDetail : AB_DetailBase
 	{        
-		CustomerVM _ViewModel; 
+		CustomerVM _ViewModel;
+
+		public Panel WizardMainInfoPanel
+        {
+            get { return FieldsPanel; }
+        }
 
 		/// <summary>
 		/// Type initializer / static constructor
@@ -182,6 +188,6 @@ namespace WPF.Customer
             {
                 System.Diagnostics.Process.Start("mailto:" + ((CustomerEntity)ap_CurrentEntity).Email);
             }
-        }
+		}
     }
 }

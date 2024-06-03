@@ -558,4 +558,37 @@
   <data name="WIZARDSPLASH" xml:space="preserve">
     <value>Wizard Splash</value>
   </data>
+  <data name="ADDITEM" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="CREATENEWCUSTOMER" xml:space="preserve">
+    <value>Create New Customer</value>
+  </data>
+  <data name="CUSTOMER" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="ENTERCUSTOMERINFORMATION" xml:space="preserve">
+    <value>Enter Customer Information</value>
+  </data>
+  <data name="ENTERORDERITEMINFORMATION" xml:space="preserve">
+    <value>Enter Order Item Information</value>
+  </data>
+  <data name="EXISTINGCUSTOMER" xml:space="preserve">
+    <value>Existing Customer</value>
+  </data>
+  <data name="NOORDERITEMS" xml:space="preserve">
+    <value>No Order Items</value>
+  </data>
+  <data name="PLEASEPICKCUSTOMER" xml:space="preserve">
+    <value>Please Pick Customer</value>
+  </data>
+  <data name="REMOVEITEM" xml:space="preserve">
+    <value>Remove Item</value>
+  </data>
+  <data name="SPECIFYEXISTING" xml:space="preserve">
+    <value>Specify Existing</value>
+  </data>
+  <data name="TOTALCOST" xml:space="preserve">
+    <value>Total Cost</value>
+  </data>
 </root>

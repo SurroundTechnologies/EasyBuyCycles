@@ -35,6 +35,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="A4DN.Core.BOS.Base, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.DataController, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.DataController.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.FrameworkBusinessProcess, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.FrameworkBusinessProcess.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.BOS.FrameworkEntity, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL" />
+    <Reference Include="A4DN.Core.BOS.ViewModel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.ViewModel.dll</HintPath>
+    </Reference>
     <Reference Include="A4DN.Core.WPF.Base, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\Master\Core\DotNet\A4DN.Core.WPF.Base.dll</HintPath>
@@ -67,6 +84,12 @@
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerWizardPart.xaml.cs">
+      <DependentUpon>CustomerWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItemWizardPart.xaml.cs">
+      <DependentUpon>OrderItemWizardPart.xaml</DependentUpon>
     </Compile>
     <Compile Include="WizardSplash.xaml.cs">
       <DependentUpon>WizardSplash.xaml</DependentUpon>
@@ -106,9 +129,17 @@
       <Project>{5fdefbfe-ef5b-45dd-80c5-5bca3264c214}</Project>
       <Name>BOS.OrderManagement.Wizard.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BOS.OrderManagement\BOS.OrderManagement.csproj">
+      <Project>{454bc523-d124-4a39-89aa-498fa3f40c86}</Project>
+      <Name>BOS.OrderManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj">
       <Project>{4e80f0a5-0783-4292-a79d-cf79914ad903}</Project>
       <Name>WPF.OrderManagement.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj">
+      <Project>{b596c4b7-bf56-4578-8750-f17162f9b803}</Project>
+      <Name>WPF.OrderManagement.Views</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPF.OrderManagement\WPF.OrderManagement.csproj">
       <Project>{461cca97-8b34-40b2-9b95-05104f04a680}</Project>
@@ -119,6 +150,14 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CustomerWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderItemWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WizardSplash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

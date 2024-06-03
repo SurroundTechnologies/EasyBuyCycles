@@ -383,6 +383,14 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("CREATESTAMPS", resourceCulture);
             }
         }
+
+        ///   Looks up a localized string similar to Create New Customer.
+        /// </summary>
+        public static string CREATENEWCUSTOMER {
+            get {
+                return ResourceManager.GetString("CREATENEWCUSTOMER", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Create Time.
@@ -453,6 +461,14 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CUSTOMERCOUNT {
             get {
                 return ResourceManager.GetString("CUSTOMERCOUNT", resourceCulture);
+            }
+        }
+        
+        ///   Looks up a localized string similar to Customer.
+        /// </summary>
+        public static string CUSTOMER {
+            get {
+                return ResourceManager.GetString("CUSTOMER", resourceCulture);
             }
         }
         
@@ -888,6 +904,14 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        ///   Looks up a localized string similar to No Order Items.
+        /// </summary>
+        public static string NOORDERITEMS {
+            get {
+                return ResourceManager.GetString("NOORDERITEMS", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Order Date.
         /// </summary>
@@ -1032,6 +1056,14 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        ///   Looks up a localized string similar to Please Pick Customer.
+        /// </summary>
+        public static string PLEASEPICKCUSTOMER {
+            get {
+                return ResourceManager.GetString("PLEASEPICKCUSTOMER", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Postal Code.
         /// </summary>
@@ -1140,6 +1172,14 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        ///   Looks up a localized string similar to Remove Item.
+        /// </summary>
+        public static string REMOVEITEM {
+            get {
+                return ResourceManager.GetString("REMOVEITEM", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Remove Item.
         /// </summary>
@@ -1218,6 +1258,14 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string SMALLESTORDERQUANTITY {
             get {
                 return ResourceManager.GetString("SMALLESTORDERQUANTITY", resourceCulture);
+            }
+        }
+        
+        ///   Looks up a localized string similar to Specify Existing.
+        /// </summary>
+        public static string SPECIFYEXISTING {
+            get {
+                return ResourceManager.GetString("SPECIFYEXISTING", resourceCulture);
             }
         }
         

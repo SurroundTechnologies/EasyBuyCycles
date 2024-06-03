@@ -1,11 +1,7 @@
 ﻿using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderManagement.Shared.Properties;
 using BOS.OrderManagement.Wizard.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WPF.OrderManagement.Wizards;
 
 namespace WPF.OrderManagement.Wizard
 {
@@ -20,6 +16,14 @@ namespace WPF.OrderManagement.Wizard
             ap_SplashWindowType = typeof(WizardSplash);
             ap_TreeViewIconsStyle = AB_TreeViewIconsStyles.SmallIcons;
             ap_SharedObjectType = typeof(WizardSharedObject);
+        }
+
+        protected override void am_EnrollWizardParts()
+        {
+            base.am_EnrollWizardParts();
+
+            am_AddWizardPart(typeof(CustomerWizardPart));
+            am_AddWizardPart(typeof(OrderItemWizardPart));
         }
     }
 }
