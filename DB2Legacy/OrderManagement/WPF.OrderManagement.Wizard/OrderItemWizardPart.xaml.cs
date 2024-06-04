@@ -62,6 +62,7 @@ namespace WPF.OrderManagement.Wizards
                 ap_MessageConsole.am_ClearMessages();
                 ap_MessageConsole.am_AddMessages(messages, false);
                 ap_MessageConsole.am_AddMessage(DescriptionResource.ENTERORDERITEMINFORMATION, false);
+
                 return;
             }
             _CurrentEntity.ProductCode = _ItemDetail.EntityInTheDropDown.Code;
@@ -81,6 +82,7 @@ namespace WPF.OrderManagement.Wizards
             {
                 return;
             }
+
             _sharedObject.OrderItems.Remove(dgOrderItems.SelectedItem as OrderItemEntity);
         }
 
@@ -90,8 +92,10 @@ namespace WPF.OrderManagement.Wizards
             {
                 ap_MessageConsole.am_AddMessage(new AB_Message(DescriptionResource.NOORDERITEMS), false);
                 Args.Cancel = true;
+
                 return;
             }
+
             am_MarkCurrentStepComplete();
         }
     }

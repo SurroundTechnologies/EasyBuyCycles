@@ -6,7 +6,6 @@
                               xmlns:local="clr-namespace:WPF.OrderManagement.Wizards"
                               xmlns:wizardBase="clr-namespace:A4DN.Core.WPF.Base.WizardBase;assembly=A4DN.Core.WPF.Base"
                               xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-                              xmlns:product="clr-namespace:WPF.Product;assembly=WPF.OrderManagement.Views"
                               ap_BtnSkipVisibility="Collapsed"
                               ap_BtnResetVisibility="Collapsed"
                               ap_BtnFinishIsEnabled="False"
@@ -22,20 +21,10 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.ENTERORDERITEMINFORMATION}"
-                       Margin="0 0 0 5"
-                       FontWeight="Bold"
-                       Foreground="Navy" />
-
-            <product:ProductDropDown Margin="0,0,0,5"
-                                     ap_CurrentSelectedEntity="{Binding ElementName=ItemDetail, Path=CurrentEntity, Mode=TwoWay}"
-                                     ProductInternalID="{Binding Path=ProductInternalID, Mode=TwoWay}"
-                                     ap_LabelPosition="Left"
-                                     HorizontalAlignment="Left"
-                                     Width="550" />
-        </StackPanel>
-
+        <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.ENTERORDERITEMINFORMATION}"
+                   Margin="0 0 0 5"
+                   FontWeight="Bold"
+                   Foreground="Navy" />
         <ContentPresenter Name="itemsDetail"
                           Grid.Row="1" />
         <ToolBar Grid.Row="2"
