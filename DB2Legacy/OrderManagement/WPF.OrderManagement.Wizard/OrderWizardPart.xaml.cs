@@ -32,7 +32,7 @@ namespace WPF.OrderManagement.Wizards
             InitializeComponent();
 
             _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
-            _OrderDetail = new OrderDetail(new AB_DetailInitializationArgs(AB_FrameworkDataBP.am_GetModuleEntity(9), ap_SharedWizardObject.ap_WizardMessageConsole, true));
+            _OrderDetail = new OrderDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(3), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _OrderDetail.NonWizardControlsVisibility = System.Windows.Visibility.Collapsed;
             _OrderDetail.OrderDetailLayout.SetBinding(DataContextProperty, new Binding("CurrentOrderEntity")
             {

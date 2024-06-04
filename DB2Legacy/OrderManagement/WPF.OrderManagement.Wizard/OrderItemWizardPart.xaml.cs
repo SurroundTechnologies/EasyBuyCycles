@@ -42,7 +42,7 @@ namespace WPF.OrderManagement.Wizards
             InitializeComponent();
 
             _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
-            _ItemDetail = new OrderItemDetail(new AB_DetailInitializationArgs(AB_FrameworkDataBP.am_GetModuleEntity(10), ap_SharedWizardObject.ap_WizardMessageConsole, true));
+            _ItemDetail = new OrderItemDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(2), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _ItemDetail.OrderItemDetailLayout.SetBinding(DataContextProperty, new Binding("CurrentEntity")
             {
                 Source = this,

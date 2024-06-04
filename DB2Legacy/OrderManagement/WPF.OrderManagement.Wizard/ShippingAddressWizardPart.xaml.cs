@@ -36,8 +36,8 @@ namespace WPF.OrderManagement.Wizards
             InitializeComponent();
 
             _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
-            _ShippingAddressDetail = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_FrameworkDataBP.am_GetModuleEntity(8), ap_SharedWizardObject.ap_WizardMessageConsole, true));
-            _ShippingAddressDetailReadOnly = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_FrameworkDataBP.am_GetModuleEntity(8), ap_SharedWizardObject.ap_WizardMessageConsole, true));
+            _ShippingAddressDetail = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(5), ap_SharedWizardObject.ap_WizardMessageConsole, true));
+            _ShippingAddressDetailReadOnly = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(5), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _ShippingAddressDetailReadOnly.ShippingAddressDetailLayout.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
             {
                 Source = ddShipAddress,

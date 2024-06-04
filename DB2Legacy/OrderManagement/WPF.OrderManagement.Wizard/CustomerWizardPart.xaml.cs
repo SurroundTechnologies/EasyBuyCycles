@@ -36,8 +36,8 @@ namespace WPF.OrderManagement.Wizards
             InitializeComponent();
 
             _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
-            _CustomerDetail = new CustomerDetail(new AB_DetailInitializationArgs(AB_FrameworkDataBP.am_GetModuleEntity(7), ap_SharedWizardObject.ap_WizardMessageConsole, true));
-            _CustomerDetailReadOnly = new CustomerDetail(new AB_DetailInitializationArgs(AB_FrameworkDataBP.am_GetModuleEntity(7), ap_SharedWizardObject.ap_WizardMessageConsole, true));
+            _CustomerDetail = new CustomerDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(1), ap_SharedWizardObject.ap_WizardMessageConsole, true));
+            _CustomerDetailReadOnly = new CustomerDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(1), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _CustomerDetailReadOnly.WizardMainInfoPanel.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
             {
                 Source = ddCustomer,
