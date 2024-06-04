@@ -88,7 +88,6 @@
     <Compile Include="CustomerWizardPart.xaml.cs">
       <DependentUpon>CustomerWizardPart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IOrderWizardPart.cs" />
     <Compile Include="OrderItemWizardPart.xaml.cs">
       <DependentUpon>OrderItemWizardPart.xaml</DependentUpon>
     </Compile>
