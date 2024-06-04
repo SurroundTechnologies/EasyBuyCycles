@@ -31,27 +31,57 @@
 				</StackPanel>
 			</base:AB_DockingTabItem.Header>
 			<ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-				<DockPanel x:Name="FieldsPanel">              
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:ProductEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="400"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                  <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
+				<DockPanel x:Name="FieldsPanel">
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!-- Put More Code Here -->
+                        <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" Width="Auto" />
+                        <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                        <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                        <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
                                  DockPanel.Dock="Top"
                                  Width="400" Margin="0 0 0 5" HorizontalAlignment="Left"
                                  Code="{Binding Category, Mode=TwoWay}"
                                  PropertyCodeTable="ProductCategory"
                                  ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Left"
                                  ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="190"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="190"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="190"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Discontinued" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="180"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-			   </DockPanel>
+                        <Image Height="205" Width="225" Grid.Column="1" Margin="10,5,5,5" Grid.Row="0" Grid.RowSpan="4" Source="{Binding ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}"/>
+                    </Grid>
+                    <Path Fill="White" Stretch="Uniform" HorizontalAlignment="Left" Width="750" Stroke="{DynamicResource blueSeparatorBrush}" DockPanel.Dock="Top" Margin="0 5 0 10" Height="1" Data="M43,8.04 L105,8.04"/>
+                    <Grid DockPanel.Dock="Top" Width="600" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!-- Put More Code Here -->
+                        <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="0" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}" Margin="0,0,10,5" HorizontalAlignment="Left" Width="237" />
+                        <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
+                        <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="2" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
+                        <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}" Margin="0,0,5,5" HorizontalAlignment="Left" Width="189" />
+                        <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
+                        <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
+                        <base:AB_CheckBoxWithLabel Grid.Row="2" Grid.Column="2" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}" Margin="0,0,0,5" Width="100" />
+                    </Grid>
+                    <base:AB_FieldWithLabel ap_LabelWidth="90" ap_LabelPosition="Left" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="725" DockPanel.Dock="Top" />
+                </DockPanel>
 			</ScrollViewer>
 		</base:AB_DockingTabItem>
 		 <base:AB_DockingTabItem x:Name="AuditFieldsTab"  >
@@ -62,19 +92,41 @@
 				</StackPanel>
 			</base:AB_DockingTabItem.Header>
 			<ScrollViewer x:Name="AuditScrollViewer"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-				<DockPanel>
-                  <base:AB_DatePicker ap_LabelPosition="Left" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateDateProperty}"  Margin="0,0,0,5" Width="260" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
-                  <base:AB_TimePicker ap_LabelPosition="Left" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateTimeProperty}"  Margin="0,0,0,5" Width="260" HorizontalAlignment="Left" DockPanel.Dock="Top" ap_SecondsVisibility="Visible"/>
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"   DockPanel.Dock="Top"/>
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"   DockPanel.Dock="Top"/>
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="210"   DockPanel.Dock="Top"/>
-                  <base:AB_DatePicker ap_LabelPosition="Left" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeDateProperty}"  Margin="0,0,0,5" Width="260" HorizontalAlignment="Left" DockPanel.Dock="Top"/>
-                  <base:AB_TimePicker ap_LabelPosition="Left" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeTimeProperty}"  Margin="0,0,0,5" Width="260" HorizontalAlignment="Left" DockPanel.Dock="Top" ap_SecondsVisibility="Visible"/>
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"   DockPanel.Dock="Top"/>
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"   DockPanel.Dock="Top"/>
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="210"   DockPanel.Dock="Top"/>
-				</DockPanel>
-			</ScrollViewer>  
+                <Grid Width="Auto" Height="Auto" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="270"/>
+                        <ColumnDefinition Width="270"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Put More Code Here -->
+                    <base:AB_Expander Grid.Row="0" Grid.Column="0" IsExpanded="True" Header="{x:Static systemSharedProperties:DescriptionResource.CREATESTAMPS}" Padding="5">
+                        <StackPanel>
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateDateProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateTimeProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240"/>
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateUserProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateJobProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:ProductEntity.CreateJobNumberProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                        </StackPanel>
+                    </base:AB_Expander>
+                    <base:AB_Expander Grid.Row="1" Grid.Column="0" Header="{x:Static systemSharedProperties:DescriptionResource.IDS}" Padding="5">
+                        <StackPanel>
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:ProductEntity.ProductInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                        </StackPanel>
+                    </base:AB_Expander>
+                    <base:AB_Expander Grid.Row="0" Grid.Column="1" IsExpanded="True" Header="{x:Static systemSharedProperties:DescriptionResource.CHANGESTAMPS}" Padding="5">
+                        <StackPanel>
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeDateProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeTimeProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeUserProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeJobProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:ProductEntity.LastChangeJobNumberProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                        </StackPanel>
+                    </base:AB_Expander>
+                </Grid>
+            </ScrollViewer>  
 		</base:AB_DockingTabItem>
 	</base:AB_DockingTabControl>
 	</Grid>
