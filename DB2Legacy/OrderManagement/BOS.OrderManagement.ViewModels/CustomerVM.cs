@@ -23,7 +23,14 @@ namespace BOS.CustomerViewModel
 	/// </summary>
 	public class CustomerVM : AB_ViewModel<CustomerEntity>
 	{
-		public bool IsMapTabVisible
+        public CustomerEntity SelectedParentCustomer
+        {
+            get => (CustomerEntity)GetValue(SelectedParentCustomerProperty);
+            set => SetValue(SelectedParentCustomerProperty, value);
+        }
+        public static readonly DependencyProperty SelectedParentCustomerProperty = DependencyProperty.Register(nameof(SelectedParentCustomer), typeof(CustomerEntity), typeof(CustomerVM), new PropertyMetadata(null));
+
+        public bool IsMapTabVisible
 		{
 			get { return (bool)GetValue(IsMapTabVisibleProperty); }
 			set { SetValue(IsMapTabVisibleProperty, value); }

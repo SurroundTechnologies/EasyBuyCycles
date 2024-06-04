@@ -58,6 +58,7 @@
   -->
   <ItemGroup Label="A4DNItems">
     <Compile Include="Constants.cs" />
+    <Compile Include="DataConverters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
     <Resource Include="Images\3.png" />

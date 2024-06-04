@@ -89,7 +89,14 @@ namespace BOS.CustomerDataEntity
         public string Name //Map Field: YD1CNM
         {
             get => am_GetPropertyValue(NameProperty);
-            set => am_SetPropertyValue(NameProperty, value);
+            set
+            {
+                if (ap_RecordMode == AB_RecordMode.New && (string.IsNullOrEmpty(LegalName) || Name == LegalName))
+                {
+                    LegalName = value;
+                }
+                am_SetPropertyValue(NameProperty, value);
+            }
         }
         public static AB_PropertyMetadata<string> NameProperty = am_CreatePropertyMetaData<string>(nameof(Name), DescriptionResource.NAME, null); 
 
