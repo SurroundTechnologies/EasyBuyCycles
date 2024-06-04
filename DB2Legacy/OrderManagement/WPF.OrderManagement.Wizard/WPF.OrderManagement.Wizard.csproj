@@ -88,8 +88,15 @@
     <Compile Include="CustomerWizardPart.xaml.cs">
       <DependentUpon>CustomerWizardPart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IOrderWizardPart.cs" />
     <Compile Include="OrderItemWizardPart.xaml.cs">
       <DependentUpon>OrderItemWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderWizardPart.xaml.cs">
+      <DependentUpon>OrderWizardPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingAddressWizardPart.xaml.cs">
+      <DependentUpon>ShippingAddressWizardPart.xaml</DependentUpon>
     </Compile>
     <Compile Include="WizardSplash.xaml.cs">
       <DependentUpon>WizardSplash.xaml</DependentUpon>
@@ -155,6 +162,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderItemWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShippingAddressWizardPart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

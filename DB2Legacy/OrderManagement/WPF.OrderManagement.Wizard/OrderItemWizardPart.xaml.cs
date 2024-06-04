@@ -1,8 +1,10 @@
 ﻿using A4DN.Core.BOS.Base;
 using A4DN.Core.BOS.DataController;
 using A4DN.Core.BOS.FrameworkBusinessProcess;
+using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
+using BOS.OrderDataEntity;
 using BOS.OrderItemDataEntity;
 using BOS.OrderManagement.Shared.Properties;
 using BOS.OrderManagement.Wizard.Shared;
@@ -10,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Data;
 using WPF.OrderItem;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.OrderManagement.Wizards
 {
@@ -20,6 +23,7 @@ namespace WPF.OrderManagement.Wizards
     {
         private OrderItemDetail _ItemDetail;
         private WizardSharedObject _sharedObject;
+        public const string Step_OrderItem = "WPF.OrderManagement.Wizards.OrderItemWizardPart";
 
         private OrderItemEntity _CurrentEntity;
         public OrderItemEntity CurrentEntity
@@ -48,6 +52,11 @@ namespace WPF.OrderManagement.Wizards
             itemsDetail.Content = _ItemDetail.OrderItemDetailLayout;
 
             _CurrentEntity = new OrderItemEntity() { ap_RecordMode = AB_RecordMode.New };
+        }
+
+        protected override void am_EnrollWizardSteps()
+        {
+            am_AddStep(new AB_WizardStep(Step_OrderItem, DescriptionResource.ORDERITEM, DescriptionResource.ENTERORDERITEMINFORMATION, "OrderItem.png"));
         }
 
         public override void am_InitializeOrResetWizardPart()
@@ -95,6 +104,17 @@ namespace WPF.OrderManagement.Wizards
 
                 return;
             }
+
+            WizardSummaryController.OrderItemSummaryItem.Header = DescriptionResource.UNITPRICE;
+            
+            // calculate total
+            decimal total = 0;
+            foreach (OrderItemEntity entity in _sharedObject.OrderItems)
+            {
+                total += (entity.UnitPrice ?? 0) * (entity.Quantity ?? 0);
+            }
+
+            WizardSummaryController.OrderItemSummaryItem.Info = total.ToString("C");
 
             am_MarkCurrentStepComplete();
         }

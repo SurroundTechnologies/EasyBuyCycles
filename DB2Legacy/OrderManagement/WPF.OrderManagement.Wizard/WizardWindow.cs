@@ -1,6 +1,7 @@
 ﻿using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderManagement.Shared.Properties;
 using BOS.OrderManagement.Wizard.Shared;
+using WPF.OrderManagement.Shared;
 using WPF.OrderManagement.Wizards;
 
 namespace WPF.OrderManagement.Wizard
@@ -24,6 +25,18 @@ namespace WPF.OrderManagement.Wizard
 
             am_AddWizardPart(typeof(CustomerWizardPart));
             am_AddWizardPart(typeof(OrderItemWizardPart));
+            am_AddWizardPart(typeof(ShippingAddressWizardPart));
+            am_AddWizardPart(typeof(OrderWizardPart));
+
+            InitializeSummaryItems();
+        }
+
+        private void InitializeSummaryItems()
+        {
+            ap_SummaryStackPanel.Children.Add(WizardSummaryController.CustomerSummaryItem);
+            ap_SummaryStackPanel.Children.Add(WizardSummaryController.OrderItemSummaryItem);
+            ap_SummaryStackPanel.Children.Add(WizardSummaryController.OrderSummaryItem);
+            ap_SummaryStackPanel.Children.Add(WizardSummaryController.ShippingAddressSummaryItem);
         }
     }
 }

@@ -335,7 +335,7 @@ namespace BOS.ShippingAddressDataEntity
         }
         public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null);
 
-        [Display(Name = "SHIPPINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [Display(Name = "SHIPPINGADDRESS", ResourceType = typeof(DescriptionResource))]
         [AB_VirtualMember("Address1", "Address2", "Address3", "PostalCode", "Country")]
         public string ShippingAddressLine
         {
@@ -345,9 +345,8 @@ namespace BOS.ShippingAddressDataEntity
                 return shippingAddressLine;
             }
         }
-
         public static AB_PropertyMetadata<string> ShippingAddressLineProperty = am_CreatePropertyMetaData<string>("ShippingAddressLine", DescriptionResource.SHIPPINGADDRESS, null);
-
+        
         #endregion //Properties
 
         #region Property Overrides

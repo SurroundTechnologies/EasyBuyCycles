@@ -13,6 +13,7 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
 using BOS.ShippingAddressDataEntity;
 using BOS.ShippingAddressViewModel;
+using System.Windows.Controls;
 
 namespace WPF.ShippingAddress
 {
@@ -21,12 +22,17 @@ namespace WPF.ShippingAddress
 	/// </summary>
 	public partial class ShippingAddressDetail : AB_DetailBase
 	{        
-		ShippingAddressVM _ViewModel; 
+		ShippingAddressVM _ViewModel;
 
-		/// <summary>
-		/// Type initializer / static constructor
-		/// </summary>
-		static ShippingAddressDetail()
+        public Panel ShippingAddressDetailLayout
+        {
+            get { return FieldsPanel; }
+        }
+
+        /// <summary>
+        /// Type initializer / static constructor
+        /// </summary>
+        static ShippingAddressDetail()
 		{
 			RG_StaticInit();
 		}

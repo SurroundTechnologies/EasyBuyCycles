@@ -591,4 +591,61 @@
   <data name="TOTALCOST" xml:space="preserve">
     <value>Total Cost</value>
   </data>
+  <data name="CREATENEWSHIPPINGADDRESS" xml:space="preserve">
+    <value>Create New Shipping Address</value>
+  </data>
+  <data name="ENTERSHIPPINGADDRESSINFORMATION" xml:space="preserve">
+    <value>Enter Shipping Address Information</value>
+  </data>
+  <data name="EXISTINGSHIPPINGADDRESS" xml:space="preserve">
+    <value>Existing Shipping Address</value>
+  </data>
+  <data name="ORDERITEM" xml:space="preserve">
+    <value>Order Item</value>
+  </data>
+  <data name="PLEASEPICKSHIPPINGADDRESS" xml:space="preserve">
+    <value>Please Pick Shipping Address</value>
+  </data>
+  <data name="SHIPPINGADDRESS" xml:space="preserve">
+    <value>Shipping Address</value>
+  </data>
+  <data name="SPECIFYEXISTINGSHIPPINGADDRESS" xml:space="preserve">
+    <value>Specify Existing Shipping Address</value>
+  </data>
+  <data name="ENTERORDERINFORMATION" xml:space="preserve">
+    <value>Enter Order Information</value>
+  </data>
+  <data name="ORDER" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="CREATINGNEWCUSTOMER" xml:space="preserve">
+    <value>Creating New Customer</value>
+  </data>
+  <data name="CREATINGNEWORDER" xml:space="preserve">
+    <value>Creating New Order</value>
+  </data>
+  <data name="CREATINGNEWORDERITEMS" xml:space="preserve">
+    <value>Creating New Order Items</value>
+  </data>
+  <data name="CREATINGNEWSHIPPINGADDRESS" xml:space="preserve">
+    <value>Creating New Shipping Order</value>
+  </data>
+  <data name="ERRORCREATINGNEWCUSTOMER" xml:space="preserve">
+    <value>Error Creating New Customer</value>
+  </data>
+  <data name="ERRORCREATINGNEWORDER" xml:space="preserve">
+    <value>Error Creating New Order</value>
+  </data>
+  <data name="ERRORCREATINGNEWORDERITEMS" xml:space="preserve">
+    <value>Error Creating New Order Items</value>
+  </data>
+  <data name="ERRORCREATINGNEWSHIPPINGADDRESS" xml:space="preserve">
+    <value>Error Creating New Shipping Order</value>
+  </data>
+  <data name="PROCESSINGCOMPLETE" xml:space="preserve">
+    <value>Processing Complete</value>
+  </data>
+  <data name="PROCESSINGSTARTED" xml:space="preserve">
+    <value>Proccessing Started</value>
+  </data>
 </root>

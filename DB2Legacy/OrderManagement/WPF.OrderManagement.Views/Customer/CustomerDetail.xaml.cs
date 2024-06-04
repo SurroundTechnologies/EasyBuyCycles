@@ -29,15 +29,15 @@ namespace WPF.Customer
 	{        
 		CustomerVM _ViewModel;
 
-		public Panel WizardMainInfoPanel
+        public Panel WizardMainInfoPanel
         {
             get { return FieldsPanel; }
         }
 
-		/// <summary>
-		/// Type initializer / static constructor
-		/// </summary>
-		static CustomerDetail()
+        /// <summary>
+        /// Type initializer / static constructor
+        /// </summary>
+        static CustomerDetail()
 		{
 			RG_StaticInit();
 		}

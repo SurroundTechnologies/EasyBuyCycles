@@ -393,6 +393,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create New Shipping Address.
+        /// </summary>
+        public static string CREATENEWSHIPPINGADDRESS {
+            get {
+                return ResourceManager.GetString("CREATENEWSHIPPINGADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Time.
         /// </summary>
         public static string CREATETIME {
@@ -464,6 +473,42 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        ///   Looks up a localized string similar to Creating New Customer.
+        /// </summary>
+        public static string CREATINGNEWCUSTOMER {
+            get {
+                return ResourceManager.GetString("CREATINGNEWCUSTOMER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating New Order.
+        /// </summary>
+        public static string CREATINGNEWORDER {
+            get {
+                return ResourceManager.GetString("CREATINGNEWORDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating New Order Items.
+        /// </summary>
+        public static string CREATINGNEWORDERITEMS {
+            get {
+                return ResourceManager.GetString("CREATINGNEWORDERITEMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating New Shipping Order.
+        /// </summary>
+        public static string CREATINGNEWSHIPPINGADDRESS {
+            get {
+                return ResourceManager.GetString("CREATINGNEWSHIPPINGADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string CUSTOMER {
@@ -913,6 +958,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        public static string ORDER {
+            get {
+                return ResourceManager.GetString("ORDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Date.
         /// </summary>
         public static string ORDERDATE {
@@ -945,6 +999,14 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string ORDERITEMCOUNT {
             get {
                 return ResourceManager.GetString("ORDERITEMCOUNT", resourceCulture);
+            }
+        }
+        
+        ///   Looks up a localized string similar to Order Item.
+        /// </summary>
+        public static string ORDERITEM {
+            get {
+                return ResourceManager.GetString("ORDERITEM", resourceCulture);
             }
         }
         
@@ -1065,6 +1127,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Pick Shipping Address.
+        /// </summary>
+        public static string PLEASEPICKSHIPPINGADDRESS {
+            get {
+                return ResourceManager.GetString("PLEASEPICKSHIPPINGADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Postal Code.
         /// </summary>
         public static string POSTALCODE {
@@ -1115,6 +1186,23 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string PRODUCTCODE {
             get {
                 return ResourceManager.GetString("PRODUCTCODE", resourceCulture);
+            }
+        }
+
+        ///   Looks up a localized string similar to Processing Complete.
+        /// </summary>
+        public static string PROCESSINGCOMPLETE {
+            get {
+                return ResourceManager.GetString("PROCESSINGCOMPLETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proccessing Started.
+        /// </summary>
+        public static string PROCESSINGSTARTED {
+            get {
+                return ResourceManager.GetString("PROCESSINGSTARTED", resourceCulture);
             }
         }
         

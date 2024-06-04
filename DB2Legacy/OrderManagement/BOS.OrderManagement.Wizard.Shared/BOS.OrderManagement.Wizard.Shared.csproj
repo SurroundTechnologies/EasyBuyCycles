@@ -54,6 +54,10 @@
     <Compile Include="WizardSharedObject.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj">
+      <Project>{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}</Project>
+      <Name>BOS.OrderManagement.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BOS.OrderManagement\BOS.OrderManagement.csproj">
       <Project>{454bc523-d124-4a39-89aa-498fa3f40c86}</Project>
       <Name>BOS.OrderManagement</Name>

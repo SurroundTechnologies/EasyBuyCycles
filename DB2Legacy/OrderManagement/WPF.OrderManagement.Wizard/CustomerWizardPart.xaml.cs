@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Data;
 using WPF.Customer;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.OrderManagement.Wizards
 {
@@ -88,6 +89,9 @@ namespace WPF.OrderManagement.Wizards
             }
 
             _sharedObject.IsSpecifyingExistingCustomer = (bool)rbSpecifyExisting.IsChecked;
+
+            WizardSummaryController.CustomerSummaryItem.Header = DescriptionResource.CUSTOMERNAME;
+            WizardSummaryController.CustomerSummaryItem.Info = _sharedObject.CurrentCustomerEntity.ap_Title;
 
             am_MarkCurrentStepComplete();
         }
