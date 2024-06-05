@@ -8,9 +8,9 @@ using System.Windows;
 namespace WPF.OrderManagement.Wizard
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for WizardApp.xaml
     /// </summary>
-    public partial class App : AppMain
+    public partial class WizardApp : App
     {
         protected override void am_SetParentProperties()
         {

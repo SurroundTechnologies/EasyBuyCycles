@@ -76,14 +76,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="WizardApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
+    <Compile Include="WizardApp.xaml.cs">
+      <DependentUpon>WizardApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerWizardPart.xaml.cs">
       <DependentUpon>CustomerWizardPart.xaml</DependentUpon>

@@ -58,7 +58,7 @@
                                    Grid.Row="2"
                                    ap_LabelPosition="Left"
                                    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.EXISTINGCUSTOMER}"
-                                   ap_LabelWidth="120"
+                                   ap_LabelWidth="150"
                                    Width="400"
                                    HorizontalAlignment="Left"
                                    Margin="0,0,0,5" />

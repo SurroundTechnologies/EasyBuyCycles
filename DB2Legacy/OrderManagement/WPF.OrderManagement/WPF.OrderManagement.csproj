@@ -133,13 +133,13 @@
     </Page>
     <Resource Include="EasyBuyv4Logo.ico" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <ApplicationDefinition Include="AppMain.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppMain.xaml.cs">
+    <Compile Include="App.xaml.cs">
       <SubType>Code</SubType>
-      <DependentUpon>AppMain.xaml</DependentUpon>
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Page Include="Browser.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -18,12 +18,19 @@ namespace WPF.OrderManagement
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class AppMain : AB_Application
+	public partial class App : AB_Application
 	{
-		/// <summary>
-		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
-		/// </summary>
-		protected override void am_SetParentProperties()
+        protected override void am_Initialize()
+        {
+            base.am_Initialize();
+
+			//AB_SystemController.ap_WizardModel.am_EnrollWizard(new AB_WizardEntity(typeof(WizardWindow)))
+        }
+
+        /// <summary>
+        /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
+        /// </summary>
+        protected override void am_SetParentProperties()
 		{
 			ap_MainWindowType = typeof(Browser);
 			ap_WpfLogonType = typeof(Logon);

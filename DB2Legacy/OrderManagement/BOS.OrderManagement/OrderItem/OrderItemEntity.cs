@@ -46,6 +46,7 @@ namespace BOS.OrderItemDataEntity
         [AB_DoNotCopy]
         [Display(Name = "ORDERITEMINTERNALID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(12)]
+        [AB_AutoIncrement]
         [DataMember]
         public int? OrderItemInternalID //Map Field: YD1IIID
         {
