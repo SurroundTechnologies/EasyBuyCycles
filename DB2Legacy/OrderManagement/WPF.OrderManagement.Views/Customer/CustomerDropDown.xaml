@@ -7,13 +7,12 @@
     ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.CUSTOMERNAME}"
     ap_BelowComboBoxVisibility="Visible"
     xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
-    xmlns:local="clr-namespace:WPF.Customer"
-    >
+    xmlns:local="clr-namespace:WPF.Customer" >
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Customer/CustomerResourceDictionary.xaml"/>  
-       
+                <ResourceDictionary Source="/WPF.OrderManagement.Views;component/Customer/CustomerResourceDictionary.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
             <wpfshared:NullCheckToVisibilityConverter x:Key="nullCheckToVis" />
         </ResourceDictionary>

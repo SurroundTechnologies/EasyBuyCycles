@@ -1,10 +1,9 @@
 ﻿using A4DN.Core.BOS.DataController;
-using A4DN.Core.BOS.FrameworkBusinessProcess;
 using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
+using BOS.OrderDataEntity;
 using BOS.OrderManagement.Shared.Properties;
-using BOS.OrderManagement.Wizard.Shared;
 using BOS.ShippingAddressDataEntity;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -12,7 +11,7 @@ using System.Windows.Data;
 using WPF.OrderManagement.Shared;
 using WPF.ShippingAddress;
 
-namespace WPF.OrderManagement.Wizards
+namespace WPF.Wizards.OrderWizard
 {
     /// <summary>
     /// Interaction logic for ShippingAddressWizardPart.xaml
@@ -20,11 +19,11 @@ namespace WPF.OrderManagement.Wizards
     public partial class ShippingAddressWizardPart : AB_WizardPartBase
     {
         //// Due to a bug in the CLR this type will not resolve in the XAML at runtime unless we make a reference to it in the code behind
-        private Shared.BoolToVisibilityConverter coverter;
-        private WizardSharedObject _sharedObject;
+        private A4DN.Core.WPF.Base.BoolToVisibilityConverter coverter;
+        private OrderWizardObject _sharedObject;
         private ShippingAddressDetail _ShippingAddressDetail;
         private ShippingAddressDetail _ShippingAddressDetailReadOnly;
-        public const string Step_ShippingAddress = "WPF.OrderManagement.Wizards.ShippingAddressWizardPart";
+        public const string Step_ShippingAddress = "WPF.Wizards.OrderWizard.ShippingAddressWizardPart";
 
         public ShippingAddressWizardPart() : this(null)
         {
@@ -35,7 +34,7 @@ namespace WPF.OrderManagement.Wizards
         {
             InitializeComponent();
 
-            _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
+            _sharedObject = (OrderWizardObject)ap_SharedWizardObject;
             _ShippingAddressDetail = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(5), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _ShippingAddressDetailReadOnly = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(5), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _ShippingAddressDetailReadOnly.ShippingAddressDetailLayout.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
@@ -46,7 +45,7 @@ namespace WPF.OrderManagement.Wizards
 
             addShipAddress.Content = _ShippingAddressDetail.ShippingAddressDetailLayout;
             readOnlyDetail.Content = _ShippingAddressDetailReadOnly.ShippingAddressDetailLayout;
-            
+
             layoutRoot.DataContext = _sharedObject;
         }
 

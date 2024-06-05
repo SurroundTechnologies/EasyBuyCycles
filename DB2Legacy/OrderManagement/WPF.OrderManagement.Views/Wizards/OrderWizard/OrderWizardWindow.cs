@@ -1,22 +1,21 @@
 ﻿using A4DN.Core.WPF.Base.WizardBase;
+using BOS.OrderDataEntity;
 using BOS.OrderManagement.Shared.Properties;
-using BOS.OrderManagement.Wizard.Shared;
 using WPF.OrderManagement.Shared;
-using WPF.OrderManagement.Wizards;
 
-namespace WPF.OrderManagement.Wizard
+namespace WPF.Wizards.OrderWizard
 {
-    public class WizardWindow : AB_WizardBase
+    public class OrderWizardWindow : AB_WizardBase
     {
         protected override void am_SetParentProperties()
         {
             base.am_SetParentProperties();
 
             Width = 1005;
-            Title = DescriptionResource.WIZARDSPLASH;
-            ap_SplashWindowType = typeof(WizardSplash);
+            Title = DescriptionResource.ORDERWIZARDSPLASH;
+            ap_SplashWindowType = typeof(OrderWizardSplash);
             ap_TreeViewIconsStyle = AB_TreeViewIconsStyles.SmallIcons;
-            ap_SharedObjectType = typeof(WizardSharedObject);
+            ap_SharedObjectType = typeof(OrderWizardObject);
         }
 
         protected override void am_EnrollWizardParts()

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF.OrderManagement.Wizard.Properties
+namespace WPF.OrderManagement.OrderWizard.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace WPF.OrderManagement.Wizard.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPF.OrderManagement.Wizard.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPF.OrderManagement.OrderWizard.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

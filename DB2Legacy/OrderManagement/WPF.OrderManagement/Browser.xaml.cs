@@ -44,12 +44,17 @@ namespace WPF.OrderManagement
 			{
 				//case "<CommandID>":
 
-                //    Do Something ...
+				//    Do Something ...
 
-                //    set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
+				//    set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
+				//    e.Handled = true;
+
+				//    break;
+
+				case "ORDERWIZARD":
+					e.Handled = true;
+					AB_SystemController.ap_WizardModel.am_ShowWizard("ORDERWIZARD");
+					break;
 
 				default:
 					break;

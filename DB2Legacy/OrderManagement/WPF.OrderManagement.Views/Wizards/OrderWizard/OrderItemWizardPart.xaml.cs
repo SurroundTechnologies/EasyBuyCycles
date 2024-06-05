@@ -1,20 +1,18 @@
 ﻿using A4DN.Core.BOS.Base;
 using A4DN.Core.BOS.DataController;
-using A4DN.Core.BOS.FrameworkBusinessProcess;
 using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderDataEntity;
 using BOS.OrderItemDataEntity;
 using BOS.OrderManagement.Shared.Properties;
-using BOS.OrderManagement.Wizard.Shared;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Data;
 using WPF.OrderItem;
 using WPF.OrderManagement.Shared;
 
-namespace WPF.OrderManagement.Wizards
+namespace WPF.Wizards.OrderWizard
 {
     /// <summary>
     /// Interaction logic for OrderItemWizardPart.xaml
@@ -22,8 +20,8 @@ namespace WPF.OrderManagement.Wizards
     public partial class OrderItemWizardPart : AB_WizardPartBase
     {
         private OrderItemDetail _ItemDetail;
-        private WizardSharedObject _sharedObject;
-        public const string Step_OrderItem = "WPF.OrderManagement.Wizards.OrderItemWizardPart";
+        private OrderWizardObject _sharedObject;
+        public const string Step_OrderItem = "WPF.Wizards.OrderWizard.OrderItemWizardPart";
 
         private OrderItemEntity _CurrentEntity;
         public OrderItemEntity CurrentEntity
@@ -41,7 +39,7 @@ namespace WPF.OrderManagement.Wizards
         {
             InitializeComponent();
 
-            _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
+            _sharedObject = (OrderWizardObject)ap_SharedWizardObject;
             _ItemDetail = new OrderItemDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(2), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _ItemDetail.OrderItemDetailLayout.SetBinding(DataContextProperty, new Binding("CurrentEntity")
             {

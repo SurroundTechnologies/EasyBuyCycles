@@ -1,26 +1,25 @@
 ﻿using A4DN.Core.BOS.Base;
 using A4DN.Core.BOS.DataController;
-using A4DN.Core.BOS.FrameworkBusinessProcess;
 using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderDataEntity;
 using BOS.OrderManagement.Shared.Properties;
-using BOS.OrderManagement.Wizard.Shared;
+using BOS.OrderViewModel;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using WPF.Order;
 
-namespace WPF.OrderManagement.Wizards
+namespace WPF.Wizards.OrderWizard
 {
     /// <summary>
     /// Interaction logic for OrderWizardPart.xaml
     /// </summary>
     public partial class OrderWizardPart : AB_WizardPartBase
     {
-        private WizardSharedObject _sharedObject;
+        private OrderWizardObject _sharedObject;
         private OrderDetail _OrderDetail;
-        public const string Step_Order = "WPF.OrderManagement.Wizards.OrderWizardPart";
+        public const string Step_Order = "WPF.Wizards.OrderWizard.OrderWizardPart";
 
         public OrderWizardPart() : this(null)
         {
@@ -31,7 +30,7 @@ namespace WPF.OrderManagement.Wizards
         {
             InitializeComponent();
 
-            _sharedObject = (WizardSharedObject)ap_SharedWizardObject;
+            _sharedObject = (OrderWizardObject)ap_SharedWizardObject;
             _OrderDetail = new OrderDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(3), ap_SharedWizardObject.ap_WizardMessageConsole, true));
             _OrderDetail.NonWizardControlsVisibility = System.Windows.Visibility.Collapsed;
             _OrderDetail.OrderDetailLayout.SetBinding(DataContextProperty, new Binding("CurrentOrderEntity")
@@ -72,7 +71,13 @@ namespace WPF.OrderManagement.Wizards
             AB_WPFHelperMethods.am_CallInBackground(
                 inBackground: () =>
                 {
-                    return _sharedObject.AsyncProcessWizard();
+                    using (var vm = new OrderVM())
+                    {
+                        var inArgs = new AB_ProcessRequestInputArgs<OrderEntity>("ASYNCPROCESSORDERWIZARD", _sharedObject.CurrentOrderEntity).am_WithCustomInputArgs(_sharedObject);
+                        return vm.am_ProcessRequest(inArgs);
+
+                        //return vm.AsyncProcessOrderWizard(_sharedObject);
+                    }
                 },
                 onSuccess: (retArgs) =>
                 {

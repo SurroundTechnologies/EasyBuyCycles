@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48679DC3-6820-4B9F-95E7-89E6215FAC53}</ProjectGuid>
+    <ProjectGuid>{DD71D0CD-0558-46BB-A953-C3E59D164A59}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WPF.OrderManagement.Wizards</RootNamespace>
-    <AssemblyName>WPF.OrderManagement.Wizards</AssemblyName>
+    <RootNamespace>WPF.OrderManagement.OrderWizard</RootNamespace>
+    <AssemblyName>WPF.OrderManagement.OrderWizard</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,23 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="A4DN.Core.BOS.Base, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="A4DN.Core.BOS.DataController, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.DataController.dll</HintPath>
-    </Reference>
-    <Reference Include="A4DN.Core.BOS.FrameworkBusinessProcess, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.FrameworkBusinessProcess.dll</HintPath>
-    </Reference>
-    <Reference Include="A4DN.Core.BOS.FrameworkEntity, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL" />
-    <Reference Include="A4DN.Core.BOS.ViewModel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\v8_0\Core\DotNet\A4DN.Core.BOS.ViewModel.dll</HintPath>
-    </Reference>
     <Reference Include="A4DN.Core.WPF.Base, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\Master\Core\DotNet\A4DN.Core.WPF.Base.dll</HintPath>
@@ -76,30 +59,16 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="WizardApp.xaml">
+    <ApplicationDefinition Include="OrderWizardApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="OrderWizardApp.xaml.cs">
+      <DependentUpon>OrderWizardApp.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WizardApp.xaml.cs">
-      <DependentUpon>WizardApp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerWizardPart.xaml.cs">
-      <DependentUpon>CustomerWizardPart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OrderItemWizardPart.xaml.cs">
-      <DependentUpon>OrderItemWizardPart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OrderWizardPart.xaml.cs">
-      <DependentUpon>OrderWizardPart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ShippingAddressWizardPart.xaml.cs">
-      <DependentUpon>ShippingAddressWizardPart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WizardSplash.xaml.cs">
-      <DependentUpon>WizardSplash.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,7 +82,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WizardWindow.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -127,18 +95,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj">
-      <Project>{47cb41e7-9abe-43cc-9b52-4bd67a9aa8a6}</Project>
-      <Name>BOS.OrderManagement.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BOS.OrderManagement.Wizard.Shared\BOS.OrderManagement.Wizard.Shared.csproj">
-      <Project>{5fdefbfe-ef5b-45dd-80c5-5bca3264c214}</Project>
-      <Name>BOS.OrderManagement.Wizard.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BOS.OrderManagement\BOS.OrderManagement.csproj">
-      <Project>{454bc523-d124-4a39-89aa-498fa3f40c86}</Project>
-      <Name>BOS.OrderManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj">
       <Project>{4e80f0a5-0783-4292-a79d-cf79914ad903}</Project>
       <Name>WPF.OrderManagement.Shared</Name>
@@ -151,31 +107,6 @@
       <Project>{461cca97-8b34-40b2-9b95-05104f04a680}</Project>
       <Name>WPF.OrderManagement</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="CustomerWizardPart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OrderItemWizardPart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OrderWizardPart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ShippingAddressWizardPart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WizardSplash.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF.OrderManagement.Wizard.Properties
+namespace WPF.OrderManagement.OrderWizard.Properties
 {
 
 

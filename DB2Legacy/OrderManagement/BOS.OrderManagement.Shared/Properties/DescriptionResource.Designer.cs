@@ -1064,6 +1064,14 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        ///   Looks up a localized string similar to Order Wizard Splash.
+        /// </summary>
+        public static string ORDERWIZARDSPLASH {
+            get {
+                return ResourceManager.GetString("ORDERWIZARDSPLASH", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Parent Internal ID.
         /// </summary>
