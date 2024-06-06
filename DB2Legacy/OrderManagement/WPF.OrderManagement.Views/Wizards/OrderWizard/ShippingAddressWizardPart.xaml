@@ -15,7 +15,7 @@
                               d:DesignHeight="450"
                               d:DesignWidth="800">
     <wizardBase:AB_WizardPartBase.Resources>
-        <systemWPFShared:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </wizardBase:AB_WizardPartBase.Resources>
 
     <Grid Margin="10"
