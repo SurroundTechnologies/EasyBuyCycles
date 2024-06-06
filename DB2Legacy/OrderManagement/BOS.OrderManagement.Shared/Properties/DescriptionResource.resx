@@ -423,4 +423,25 @@
   <data name="SHIPPINGADDRESS" xml:space="preserve">
     <value>Shipping Address</value>
   </data>
+  <data name="COMPANY" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="PARENTCOMPANYNAME" xml:space="preserve">
+    <value>Parent Company Name</value>
+  </data>
+  <data name="CONTACTINFO" xml:space="preserve">
+    <value>Contact Info</value>
+  </data>
+  <data name="CHANGESTAMPS" xml:space="preserve">
+    <value>Change Stamps</value>
+  </data>
+  <data name="CREATESTAMPS" xml:space="preserve">
+    <value>Create Stamps</value>
+  </data>
+  <data name="IDS" xml:space="preserve">
+    <value>IDs</value>
+  </data>
 </root>
