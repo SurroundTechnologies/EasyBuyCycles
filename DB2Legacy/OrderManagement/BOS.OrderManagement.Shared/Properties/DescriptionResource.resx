@@ -420,4 +420,7 @@
   <data name="SMALLESTORDERQUANTITY" xml:space="preserve">
     <value>Smallest Order Quantity</value>
   </data>
+  <data name="SHIPPINGADDRESS" xml:space="preserve">
+    <value>Shipping Address</value>
+  </data>
 </root>
