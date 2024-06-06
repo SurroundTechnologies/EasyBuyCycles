@@ -53,11 +53,16 @@ namespace WPF.Customer
 			AB_SystemController.ap_SystemPropertyMethods.am_EnrollResourceCultureInfo(typeof(CustomerDetail) , WPF.OrderManagement.Views.Properties.Resources.Culture);
 		}
 
-		/// <summary>
-		/// Sets properties of the parent class before it is instantiated.
-		/// If it is necessary to override what is set here or set additional parent properties, use <c>am_SetParentProperties</c>.
-		/// </summary>
-		private void RG_SetParentProperties()
+        private void dd_ParentInternalID_ae_ValueChanged(object sender, System.EventArgs e)
+        {
+            _ViewModel.SelectedParentCustomer = dd_ParentInternalID.ap_CurrentSelectedEntity as CustomerEntity;
+        }
+
+        /// <summary>
+        /// Sets properties of the parent class before it is instantiated.
+        /// If it is necessary to override what is set here or set additional parent properties, use <c>am_SetParentProperties</c>.
+        /// </summary>
+        private void RG_SetParentProperties()
 		{            
 			// Call Initialize Component in order to access XAML objects in Code Behind
 			InitializeComponent();
@@ -169,5 +174,13 @@ namespace WPF.Customer
 			}
 			
 		}
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(((CustomerEntity)ap_CurrentEntity).Email))
+            {
+                System.Diagnostics.Process.Start("mailto:" + ((CustomerEntity)ap_CurrentEntity).Email);
+            }
+        }
     }
 }

@@ -223,11 +223,38 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Stamps.
+        /// </summary>
+        public static string CHANGESTAMPS {
+            get {
+                return ResourceManager.GetString("CHANGESTAMPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string CODE {
             get {
                 return ResourceManager.GetString("CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        public static string COMPANY {
+            get {
+                return ResourceManager.GetString("COMPANY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string CONTACT {
+            get {
+                return ResourceManager.GetString("CONTACT", resourceCulture);
             }
         }
         
@@ -246,6 +273,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CONTACTFULLNAME {
             get {
                 return ResourceManager.GetString("CONTACTFULLNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Info.
+        /// </summary>
+        public static string CONTACTINFO {
+            get {
+                return ResourceManager.GetString("CONTACTINFO", resourceCulture);
             }
         }
         
@@ -309,6 +345,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CREATEJOBNUMBER {
             get {
                 return ResourceManager.GetString("CREATEJOBNUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Stamps.
+        /// </summary>
+        public static string CREATESTAMPS {
+            get {
+                return ResourceManager.GetString("CREATESTAMPS", resourceCulture);
             }
         }
         
@@ -444,6 +489,14 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string HIGHESTORDERUNITPRICE {
             get {
                 return ResourceManager.GetString("HIGHESTORDERUNITPRICE", resourceCulture);
+            }
+        }
+        
+        ///   Looks up a localized string similar to IDs.
+        /// </summary>
+        public static string IDS {
+            get {
+                return ResourceManager.GetString("IDS", resourceCulture);
             }
         }
         
@@ -696,6 +749,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string ORDERTIME {
             get {
                 return ResourceManager.GetString("ORDERTIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Company Name.
+        /// </summary>
+        public static string PARENTCOMPANYNAME {
+            get {
+                return ResourceManager.GetString("PARENTCOMPANYNAME", resourceCulture);
             }
         }
         
