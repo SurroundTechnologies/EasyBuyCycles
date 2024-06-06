@@ -81,17 +81,20 @@ namespace BOS.CustomerDataMaps
 			maps.am_AddDataMap("YD1CLCJB", CustomerEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1CLCJN", CustomerEntity.LastChangeJobNumberProperty);
 			maps.am_AddDataMap(string.Format("{0}.{1}", YD1CTableAlias_b, "YD1CNM"), CustomerEntity.ParentNameProperty, targetTable: YD1CTableAlias_b);
+            maps.am_AddDataMap("ContactFullName", CustomerEntity.ContactFullNameProperty, isVirtual: true);
+            maps.am_AddDataMap("BillingAddressLine", CustomerEntity.BillingAddressLineProperty, isVirtual: true);
+            maps.am_AddDataMap("BillingAddressBlock", CustomerEntity.BillingAddressBlockProperty, isVirtual: true);
 
-			//TODO: CustomerMaps Real Field Example
-			//maps.am_AddDataMap("<Field Name>", CustomerEntity.<Property Name>);
-			//TODO: CustomerMaps Virtual Field Example
-			//maps.am_AddDataMap("<Field Name>", CustomerEntity.<Property Name>, isVirtual: true);
-			//TODO: CustomerMaps Foreign Field Example
-			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), CustomerEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-			//TODO: CustomerMaps Configure Example (for setting options not available as constructor arguments)
-			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
-		  
-			return maps;
+            //TODO: CustomerMaps Real Field Example
+            //maps.am_AddDataMap("<Field Name>", CustomerEntity.<Property Name>);
+            //TODO: CustomerMaps Virtual Field Example
+            //maps.am_AddDataMap("<Field Name>", CustomerEntity.<Property Name>, isVirtual: true);
+            //TODO: CustomerMaps Foreign Field Example
+            //maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), CustomerEntity.<Property Name>, targetTable: "<Target Table Name>"); 
+            //TODO: CustomerMaps Configure Example (for setting options not available as constructor arguments)
+            //maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+
+            return maps;
 		}
 
 	}
