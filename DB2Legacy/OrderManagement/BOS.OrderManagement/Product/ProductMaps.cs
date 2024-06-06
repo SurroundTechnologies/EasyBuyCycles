@@ -14,10 +14,12 @@ namespace BOS.ProductDataMaps
 	public class ProductMaps : AB_DataMaps
 	{
 		private const string YD1PTableName = "YD1P";
+        // CTE Names
+        private const string OrderedProductsCTE = "ORDEREDPRODUCTSCTE";
         private const string OrderItemsCTE = "ORDERITEMS";
 
         public ProductMaps() : base() { }
-		public ProductMaps(string qualifier) : base(qualifier) { }
+        public ProductMaps(string qualifier) : base(qualifier) { }
 
         /// <summary>
         /// Loads maps to join two database files.
@@ -42,9 +44,17 @@ namespace BOS.ProductDataMaps
                                  LEFT JOIN YD1O ON YD1O.YD1OIID = YD1I.YD1IIID
                                  GROUP BY YD1I1PID");
 
-            return ctes;
-        }/// 
+            ctes.am_AddCTE(OrderedProductsCTE, @"SELECT DISTINCT YD1I1PID,
+                                             YD1O.YD1O1CID AS CUSTOMERINTERNALID
+                                          FROM YD1I
+                                          LEFT JOIN YD1O ON YD1O.YD1OIID = YD1I.YD1I1OID");
 
+            return ctes;
+        }
+
+        /// <summary>
+        /// Loads maps to join two database files.
+        /// </summary>
         public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
@@ -59,6 +69,7 @@ namespace BOS.ProductDataMaps
             // relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
 
             relationshipMap.am_AddRelationshipMap(OrderItemsCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
+            relationshipMap.am_AddRelationshipMap(OrderedProductsCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
 
             return relationshipMap;
 		}
@@ -107,6 +118,7 @@ namespace BOS.ProductDataMaps
             maps.am_AddDataMap("HIGHESTORDERUNITPRICE", ProductEntity.HighestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("LASTORDERDATETIME", ProductEntity.LastOrderDateTimeProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("CUSTOMERCOUNT", ProductEntity.CustomerCountProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("CUSTOMERINTERNALID", ProductEntity.CustomerInternalIDProperty, targetTable: OrderedProductsCTE);
 
             //TODO: ProductMaps Real Field Example
             //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
