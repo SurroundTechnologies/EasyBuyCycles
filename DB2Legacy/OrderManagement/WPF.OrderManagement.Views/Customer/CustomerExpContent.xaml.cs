@@ -310,26 +310,6 @@ namespace WPF.Customer
         {
             switch (command.ap_CommandID)
             {
-                case Constants.CMD_CopyAddressLine:
-                    Utilities.CopyToClipboard(selectedEntity.BillingAddressLine);
-                    e.Handled = true;
-                    break;
-                case Constants.CMD_CopyAddressBlock:
-                    Utilities.CopyToClipboard(selectedEntity.BillingAddressBlock);
-                    e.Handled = true;
-                    break;
-                case Constants.CMD_OpenInMaps:
-                    Utilities.OpenWithGoogleMaps(selectedEntity.BillingAddressLine);
-                    e.Handled = true;
-                    break;
-                case Constants.CMD_CallCustomer:
-                    Utilities.CallCustomer(selectedEntity.Telephone);
-                    e.Handled = true;
-                    break;
-                case Constants.CMD_EmailCustomer:
-                    Utilities.EmailCustomer(selectedEntity.Email);
-                    e.Handled = true;
-                    break;
                 default:
                     break;
             }
@@ -343,4 +323,5 @@ namespace WPF.Customer
             public string Telephone_OrderDate { get; set; }
             public string Email { get; set; }
         }
+    }
 }

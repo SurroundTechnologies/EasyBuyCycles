@@ -194,16 +194,7 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("BILLINGADDRESSBLOCK", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Billing Address Block.
-        /// </summary>
-        public static string BILLINGADDRESSBLOCK {
-            get {
-                return ResourceManager.GetString("BILLINGADDRESSBLOCK", resourceCulture);
-            }
-        }
-        
+       
         /// <summary>
         ///   Looks up a localized string similar to Billing Country.
         /// </summary>
@@ -926,15 +917,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Y.
-        /// </summary>
-        public static string TRUEFLAG {
-            get {
-                return ResourceManager.GetString("TRUEFLAG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unit Price.
         /// </summary>
         public static string TRUEFLAG {
             get {
