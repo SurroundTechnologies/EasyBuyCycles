@@ -85,6 +85,7 @@ namespace BOS.OrderItemDataEntity
         [Display(Name = "QUANTITY", ResourceType = typeof(DescriptionResource))]
         [AB_Length(4)]
         [DataMember]
+        [AB_RequiredField]
         public int? Quantity //Map Field: YD1IQT
         {
             get => am_GetPropertyValue(QuantityProperty);
@@ -97,6 +98,7 @@ namespace BOS.OrderItemDataEntity
         [DataType(DataType.Currency)]
         [AB_ApplyStringFormat("C")]
         [DataMember]
+        [AB_RequiredField]
         public decimal? UnitPrice //Map Field: YD1IPRUN
         {
             get => am_GetPropertyValue(UnitPriceProperty);
