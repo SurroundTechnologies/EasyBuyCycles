@@ -79,7 +79,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address 3.
+        ///   Looks up a localized string similar to Address 1.
         /// </summary>
         public static string ADDRESS3 {
             get {
@@ -214,7 +214,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Billing Postal Code.
         /// </summary>
         public static string CATEGORY {
             get {
@@ -394,7 +394,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discount (Percent).
+        ///   Looks up a localized string similar to Detail.
         /// </summary>
         public static string DISCOUNTPERCENT {
             get {
