@@ -354,4 +354,13 @@
   <data name="WEATHER" xml:space="preserve">
     <value>Weather</value>
   </data>
+  <data name="BILLINGADDRESSBLOCK" xml:space="preserve">
+    <value>Billing Address Block</value>
+  </data>
+  <data name="CONTACTFULLNAME" xml:space="preserve">
+    <value>Contact Full Name</value>
+  </data>
+  <data name="ISASUBCUSTOMER" xml:space="preserve">
+    <value>Is a Sub-Customer</value>
+  </data>
 </root>

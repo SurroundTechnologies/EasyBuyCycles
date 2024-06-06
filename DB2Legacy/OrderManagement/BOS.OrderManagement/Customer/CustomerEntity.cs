@@ -140,7 +140,21 @@ namespace BOS.CustomerDataEntity
             get => am_GetPropertyValue(ContactNickNameProperty);
             set => am_SetPropertyValue(ContactNickNameProperty, value);
         }
-        public static AB_PropertyMetadata<string> ContactNickNameProperty = am_CreatePropertyMetaData<string>(nameof(ContactNickName), DescriptionResource.CONTACTNICKNAME, null); 
+        public static AB_PropertyMetadata<string> ContactNickNameProperty = am_CreatePropertyMetaData<string>(nameof(ContactNickName), DescriptionResource.CONTACTNICKNAME, null);
+
+        [Display(Name = "CONTACTFULLNAME", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("ContactFirstName", "ContactMiddleName", "ContactLastName")]
+        public string ContactFullName
+        {
+            get
+            {
+                var array = new[] { ContactFirstName, ContactMiddleName, ContactLastName };
+                string contactFullName = string.Join(" ", array.Where(s => !string.IsNullOrEmpty(s)));
+
+                return contactFullName;
+            }
+        }
+        public static AB_PropertyMetadata<string> ContactFullNameProperty = am_CreatePropertyMetaData<string>("ContactFullName", DescriptionResource.CONTACTFULLNAME, null);
 
         [Display(Name = "BILLINGADDRESS1", ResourceType = typeof(DescriptionResource))]
         [AB_Length(30)]
@@ -352,17 +366,57 @@ namespace BOS.CustomerDataEntity
         }
         public static AB_PropertyMetadata<string> ParentNameProperty = am_CreatePropertyMetaData<string>(nameof(ParentName), DescriptionResource.PARENTNAME, null);
 
-		[Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
-		[AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
-		public string BillingAddressLine
-		{
-			get
-			{
-				var billingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
-				return billingAddressLine;
-			}
-		}
-		public static AB_PropertyMetadata<string> BillingAddressLineProperty = am_CreatePropertyMetaData<string>("BillingAddressLine", DescriptionResource.BILLINGADDRESS, null);
+        [Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
+        public string BillingAddressLine
+        {
+            get
+            {
+                var billingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
+                return billingAddressLine;
+            }
+        }
+        public static AB_PropertyMetadata<string> BillingAddressLineProperty = am_CreatePropertyMetaData<string>("BillingAddressLine", DescriptionResource.BILLINGADDRESS, null);
+
+        [Display(Name = "BILLINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("BillingAddress1", "BillingAddress2", "BillingAddress3", "BillingPostalCode", "BillingCountry")]
+        public string BillingAddressBlock
+        {
+            get
+            {
+                var billingAddressBlock = AB_AddressHelper.am_FullAddressBlock(addressLine1: BillingAddress1, city: BillingAddress2, state: BillingAddress3, zip: BillingPostalCode, country: BillingCountry);
+                return billingAddressBlock;
+            }
+        }
+        public static AB_PropertyMetadata<string> BillingAddressBlockProperty = am_CreatePropertyMetaData<string>("BillingAddressBlock", DescriptionResource.BILLINGADDRESS, null);
+
+        [Display(Name = "ISASUBCUSTOMER", ResourceType = typeof(DescriptionResource))]
+        [AB_VirtualMember("ParentInternalID")]
+        [AB_ReadOnly]
+        public bool? IsASubCustomer //Map Field: Is A Sub Customer
+        {
+            get
+            {
+                if (ap_RecordMode == AB_RecordMode.SearchInput) return null;
+
+                if ((ParentInternalID == 0) || (ParentInternalID == null)) return false;
+
+                return true;
+            }
+            set
+            {
+
+            }
+        }
+        public static AB_PropertyMetadata<bool?> IsASubCustomerProperty = am_CreatePropertyMetaData<bool?>("IsASubCustomer", DescriptionResource.ISASUBCUSTOMER, null);
+
+        [DataMember]
+        public bool? SearchIsSubCustomer
+        {
+            get { return am_GetPropertyValue(SearchIsSubCustomerProperty); }
+            set { am_SetPropertyValue(SearchIsSubCustomerProperty, value); }
+        }
+        public static AB_PropertyMetadata<bool?> SearchIsSubCustomerProperty = am_CreatePropertyMetaData<bool?>("SearchIsSubCustomer", DescriptionResource.ISASUBCUSTOMER, null);
 
 		#endregion //Properties
 
