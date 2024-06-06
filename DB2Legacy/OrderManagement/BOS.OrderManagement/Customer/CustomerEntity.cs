@@ -423,12 +423,132 @@ namespace BOS.CustomerDataEntity
         }
         public static AB_PropertyMetadata<bool?> SearchIsSubCustomerProperty = am_CreatePropertyMetaData<bool?>("SearchIsSubCustomer", DescriptionResource.ISASUBCUSTOMER, null);
 
-		#endregion //Properties
+        [Display(Name = "ISSUBCUSTOMER", ResourceType = typeof(DescriptionResource))]
+        [AB_VirtualMember("ParentInternalID")]
+        [AB_ReadOnly]
+        public bool? IsSubCustomer
+        {
+            get
+            {
+                if (ap_RecordMode == AB_RecordMode.SearchInput) return null;
 
-		#region Property Overrides
+                if (ParentInternalID == 0 || ParentInternalID == null)
+                {
+                    return false;
+                }
 
-		// Title
-		public override string ap_Title
+                return true;
+            }
+        }
+        public static AB_PropertyMetadata<bool?> IsSubCustomerProperty = am_CreatePropertyMetaData<bool?>("IsSubCustomer", DescriptionResource.ISSUBCUSTOMER, null);
+
+        [Display(Name = "SUBCUSTOMERCOUNT", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_Length(9)]
+        [AB_ReadOnly]
+        public int? SubCustomerCount //Map Field: SubCustomerCount
+        {
+            get { return am_GetPropertyValue(SubCustomerCountProperty); }
+            set { am_SetPropertyValue(SubCustomerCountProperty, value); }
+
+        }
+        public static AB_PropertyMetadata<int?> SubCustomerCountProperty = am_CreatePropertyMetaData<int?>("SubCustomerCount", DescriptionResource.SUBCUSTOMERCOUNT, null);
+
+        [Display(Name = "SUBCUSTOMERLIST", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public string SubCustomerList //Map Field: SubCustomerList
+        {
+            get { return am_GetPropertyValue(SubCustomerListProperty); }
+            set { am_SetPropertyValue(SubCustomerListProperty, value); }
+        }
+        public static AB_PropertyMetadata<string> SubCustomerListProperty = am_CreatePropertyMetaData<string>("SubCustomerList", DescriptionResource.SUBCUSTOMERLIST, null);
+
+        [Display(Name = "ISPARENTCUSTOMER", ResourceType = typeof(DescriptionResource))]
+        [AB_VirtualMember("SubCustomerCount")]
+        [AB_Length(1)]
+        [AB_ReadOnly]
+        public bool? IsParentCustomer //Map Field: Is Parent Customer
+        {
+            get
+            {
+                if (ap_RecordMode == AB_RecordMode.SearchInput) return null;
+
+                if (am_GetPropertyValue(SubCustomerCountProperty) == 0 || am_GetPropertyValue(SubCustomerCountProperty) == null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+        public static AB_PropertyMetadata<bool?> IsParentCustomerProperty = am_CreatePropertyMetaData<bool?>("IsParentCustomer", DescriptionResource.ISPARENTCUSTOMER, false);
+
+        [Display(Name = "SHIPPINGADDRESSCOUNT", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(9)]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? ShippingAddressCount //Map Field: SHIPPINGADDRESSCOUNT
+        {
+            get { return am_GetPropertyValue(ShippingAddressCountProperty); }
+            set { am_SetPropertyValue(ShippingAddressCountProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> ShippingAddressCountProperty = am_CreatePropertyMetaData<int?>("ShippingAddressCount", DescriptionResource.SHIPPINGADDRESSCOUNT, null);
+
+        [Display(Name = "ORDERCOUNT", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? OrderCount //Map Field: ORDERCOUNT
+        {
+            get { return am_GetPropertyValue(OrderCountProperty); }
+            set { am_SetPropertyValue(OrderCountProperty, value); }
+
+        }
+        public static AB_PropertyMetadata<int?> OrderCountProperty = am_CreatePropertyMetaData<int?>("OrderCount", DescriptionResource.ORDERCOUNT, null);
+
+        [Display(Name = "AVERAGEORDERSUBTOTAL", ResourceType = typeof(DescriptionResource))]
+        [AB_ApplyStringFormat("C")]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? AverageOrderSubtotal //Map Field: AVERAGEORDERSUBTOTAL
+        {
+            get { return am_GetPropertyValue(AverageOrderSubtotalProperty); }
+            set { am_SetPropertyValue(AverageOrderSubtotalProperty, value); }
+
+        }
+        public static AB_PropertyMetadata<int?> AverageOrderSubtotalProperty = am_CreatePropertyMetaData<int?>("AverageOrderSubtotal", DescriptionResource.AVERAGEORDERSUBTOTAL, null);
+
+
+        [Display(Name = "AVERAGEORDERDISCOUNT", ResourceType = typeof(DescriptionResource))]
+        [AB_ApplyStringFormat("C")]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? AverageOrderDiscount //Map Field: AVERAGEORDERDISCOUNT
+        {
+            get { return am_GetPropertyValue(AverageOrderDiscountProperty); }
+            set { am_SetPropertyValue(AverageOrderDiscountProperty, value); }
+
+        }
+        public static AB_PropertyMetadata<int?> AverageOrderDiscountProperty = am_CreatePropertyMetaData<int?>("AverageOrderDiscount", DescriptionResource.AVERAGEORDERDISCOUNT, null);
+
+        [Display(Name = "AVERAGEORDERTOTAL", ResourceType = typeof(DescriptionResource))]
+        [AB_ApplyStringFormat("C")]
+        [DataMember]
+        [AB_ReadOnly]
+        public int? AverageOrderTotal //Map Field: AVERAGEORDERSUBTOTAL
+        {
+            get { return am_GetPropertyValue(AverageOrderTotalProperty); }
+            set { am_SetPropertyValue(AverageOrderTotalProperty, value); }
+
+        }
+        public static AB_PropertyMetadata<int?> AverageOrderTotalProperty = am_CreatePropertyMetaData<int?>("AverageOrderTotal", DescriptionResource.AVERAGEORDERTOTAL, null);
+
+        #endregion //Properties
+
+        #region Property Overrides
+
+        // Title
+        public override string ap_Title
         {
             get
             {
