@@ -443,7 +443,6 @@ namespace BOS.CustomerDataEntity
         public static AB_PropertyMetadata<bool?> IsSubCustomerProperty = am_CreatePropertyMetaData<bool?>("IsSubCustomer", DescriptionResource.ISSUBCUSTOMER, null);
 
         [Display(Name = "SUBCUSTOMERCOUNT", ResourceType = typeof(DescriptionResource))]
-        //[AB_VirtualMember("ParentInternalID")]
         [DataMember]
         [AB_Length(9)]
         [AB_ReadOnly]
