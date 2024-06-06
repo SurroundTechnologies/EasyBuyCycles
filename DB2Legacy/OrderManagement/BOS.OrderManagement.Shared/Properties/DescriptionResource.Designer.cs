@@ -140,6 +140,14 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("BILLINGADDRESS3", resourceCulture);
             }
         }
+
+        ///   Looks up a localized string similar to Billing Address Block.
+        /// </summary>
+        public static string BILLINGADDRESSBLOCK {
+            get {
+                return ResourceManager.GetString("BILLINGADDRESSBLOCK", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Billing Address Block.
