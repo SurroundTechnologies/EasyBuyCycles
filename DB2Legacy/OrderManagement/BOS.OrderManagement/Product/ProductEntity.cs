@@ -63,6 +63,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "CODE", ResourceType = typeof(DescriptionResource))]
         [AB_Length(25)]
         [DataMember]
+        [AB_RequiredField]
         public string Code //Map Field: YD1PCD
         {
             get => am_GetPropertyValue(CodeProperty);
@@ -106,6 +107,7 @@ namespace BOS.ProductDataEntity
         [DataType(DataType.Currency)]
         [AB_ApplyStringFormat("C")]
         [DataMember]
+        [AB_RequiredField]
         public decimal? StandardCost //Map Field: YD1PSTCS
         {
             get => am_GetPropertyValue(StandardCostProperty);
@@ -148,6 +150,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "MINIMUMREORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
         [AB_Length(4)]
         [DataMember]
+        [AB_RequiredField]
         public int? MinimumReorderQuantity //Map Field: YD1PMRQT
         {
             get => am_GetPropertyValue(MinimumReorderQuantityProperty);
