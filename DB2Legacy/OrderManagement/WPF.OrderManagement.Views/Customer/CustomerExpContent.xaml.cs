@@ -308,24 +308,32 @@ namespace WPF.Customer
         /// </summary>
         protected override void am_AfterProcessCommand(AB_Command command, RoutedEventArgs e)
         {
-
             switch (command.ap_CommandID)
             {
-                //case "<CommandID>":
-
-                //    Do Something ...
-
-                //	  set e.Handled to true to prevent further processing by the Detail.
-                //    e.Handled = true;
-
-                //    break;
-
+                case Constants.CMD_CopyAddressLine:
+                    Utilities.CopyToClipboard(selectedEntity.BillingAddressLine);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CopyAddressBlock:
+                    Utilities.CopyToClipboard(selectedEntity.BillingAddressBlock);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_OpenInMaps:
+                    Utilities.OpenWithGoogleMaps(selectedEntity.BillingAddressLine);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CallCustomer:
+                    Utilities.CallCustomer(selectedEntity.Telephone);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_EmailCustomer:
+                    Utilities.EmailCustomer(selectedEntity.Email);
+                    e.Handled = true;
+                    break;
                 default:
                     break;
             }
-
         }
-    }
 
         public class TreeEntity : AB_TreeListEntity
         {
