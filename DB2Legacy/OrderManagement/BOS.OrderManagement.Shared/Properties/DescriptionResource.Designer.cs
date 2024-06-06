@@ -383,23 +383,6 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("CREATESTAMPS", resourceCulture);
             }
         }
-
-        ///   Looks up a localized string similar to Create New Customer.
-        /// </summary>
-        public static string CREATENEWCUSTOMER {
-            get {
-                return ResourceManager.GetString("CREATENEWCUSTOMER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create New Shipping Address.
-        /// </summary>
-        public static string CREATENEWSHIPPINGADDRESS {
-            get {
-                return ResourceManager.GetString("CREATENEWSHIPPINGADDRESS", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Create Time.
@@ -470,50 +453,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CUSTOMERCOUNT {
             get {
                 return ResourceManager.GetString("CUSTOMERCOUNT", resourceCulture);
-            }
-        }
-        
-        ///   Looks up a localized string similar to Creating New Customer.
-        /// </summary>
-        public static string CREATINGNEWCUSTOMER {
-            get {
-                return ResourceManager.GetString("CREATINGNEWCUSTOMER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating New Order.
-        /// </summary>
-        public static string CREATINGNEWORDER {
-            get {
-                return ResourceManager.GetString("CREATINGNEWORDER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating New Order Items.
-        /// </summary>
-        public static string CREATINGNEWORDERITEMS {
-            get {
-                return ResourceManager.GetString("CREATINGNEWORDERITEMS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating New Shipping Order.
-        /// </summary>
-        public static string CREATINGNEWSHIPPINGADDRESS {
-            get {
-                return ResourceManager.GetString("CREATINGNEWSHIPPINGADDRESS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer.
-        /// </summary>
-        public static string CUSTOMER {
-            get {
-                return ResourceManager.GetString("CUSTOMER", resourceCulture);
             }
         }
         
@@ -949,23 +888,6 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
-        ///   Looks up a localized string similar to No Order Items.
-        /// </summary>
-        public static string NOORDERITEMS {
-            get {
-                return ResourceManager.GetString("NOORDERITEMS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Order.
-        /// </summary>
-        public static string ORDER {
-            get {
-                return ResourceManager.GetString("ORDER", resourceCulture);
-            }
-        }
-        
         /// <summary>
         ///   Looks up a localized string similar to Order Date.
         /// </summary>
@@ -999,14 +921,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string ORDERITEMCOUNT {
             get {
                 return ResourceManager.GetString("ORDERITEMCOUNT", resourceCulture);
-            }
-        }
-        
-        ///   Looks up a localized string similar to Order Item.
-        /// </summary>
-        public static string ORDERITEM {
-            get {
-                return ResourceManager.GetString("ORDERITEM", resourceCulture);
             }
         }
         
@@ -1064,14 +978,6 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
-        ///   Looks up a localized string similar to Order Wizard Splash.
-        /// </summary>
-        public static string ORDERWIZARDSPLASH {
-            get {
-                return ResourceManager.GetString("ORDERWIZARDSPLASH", resourceCulture);
-            }
-        }
-        
         /// <summary>
         ///   Looks up a localized string similar to Parent Internal ID.
         /// </summary>
@@ -1126,23 +1032,6 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
-        ///   Looks up a localized string similar to Please Pick Customer.
-        /// </summary>
-        public static string PLEASEPICKCUSTOMER {
-            get {
-                return ResourceManager.GetString("PLEASEPICKCUSTOMER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please Pick Shipping Address.
-        /// </summary>
-        public static string PLEASEPICKSHIPPINGADDRESS {
-            get {
-                return ResourceManager.GetString("PLEASEPICKSHIPPINGADDRESS", resourceCulture);
-            }
-        }
-        
         /// <summary>
         ///   Looks up a localized string similar to Postal Code.
         /// </summary>
@@ -1162,38 +1051,11 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing Complete.
-        /// </summary>
-        public static string PROCESSINGCOMPLETE {
-            get {
-                return ResourceManager.GetString("PROCESSINGCOMPLETE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Proccessing Started.
-        /// </summary>
-        public static string PROCESSINGSTARTED {
-            get {
-                return ResourceManager.GetString("PROCESSINGSTARTED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Product.
         /// </summary>
         public static string PRODUCT {
             get {
                 return ResourceManager.GetString("PRODUCT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Product Code.
-        /// </summary>
-        public static string PRODUCTCODE {
-            get {
-                return ResourceManager.GetString("PRODUCTCODE", resourceCulture);
             }
         }
 
@@ -1211,6 +1073,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string PROCESSINGSTARTED {
             get {
                 return ResourceManager.GetString("PROCESSINGSTARTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Code.
+        /// </summary>
+        public static string PRODUCTCODE {
+            get {
+                return ResourceManager.GetString("PRODUCTCODE", resourceCulture);
             }
         }
         
@@ -1268,6 +1139,7 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to Remove Item.
         /// </summary>
         public static string REMOVEITEM {
@@ -1357,6 +1229,7 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to Specify Existing.
         /// </summary>
         public static string SPECIFYEXISTING {
@@ -1518,12 +1391,5 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
-        ///   Looks up a localized string similar to Wizard Splash.
-        /// </summary>
-        public static string WIZARDSPLASH {
-            get {
-                return ResourceManager.GetString("WIZARDSPLASH", resourceCulture);
-            }
-        }
     }
 }

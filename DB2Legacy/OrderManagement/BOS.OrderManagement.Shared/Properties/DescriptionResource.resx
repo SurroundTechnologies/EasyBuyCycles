@@ -448,7 +448,7 @@
     <value>Order Price</value>
   </data>
   <data name="ORDERWIZARDSPLASH" xml:space="preserve">
-    <value>Order Wizard Splash</value>
+    <value>Order Wizard</value>
   </data>
   <data name="ADDITEM" xml:space="preserve">
     <value>Add Item</value>
@@ -497,9 +497,6 @@
   </data>
   <data name="PLEASEPICKSHIPPINGADDRESS" xml:space="preserve">
     <value>Please Pick Shipping Address</value>
-  </data>
-  <data name="SHIPPINGADDRESS" xml:space="preserve">
-    <value>Shipping Address</value>
   </data>
   <data name="SPECIFYEXISTINGSHIPPINGADDRESS" xml:space="preserve">
     <value>Specify Existing Shipping Address</value>
