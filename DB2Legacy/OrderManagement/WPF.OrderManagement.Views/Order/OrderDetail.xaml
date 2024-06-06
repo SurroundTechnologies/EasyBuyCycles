@@ -11,6 +11,7 @@
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
 	xmlns:vm="clr-namespace:BOS.OrderViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+	xmlns:propCodeValue="clr-namespace:WPF.PropCodeValue;assembly=WPF.PropCodeValue"
 	Height="620" Width="740">    
 	<base:AB_DetailBase.Resources>
 		<ResourceDictionary>
@@ -44,8 +45,15 @@
                   <WPF.ShippingAddress:ShippingAddressDropDown Margin="0,0,0,5"  x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}" ShippingAddressInternalID="{Binding Path=ShippingAddressInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
                   <!--<base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />-->
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderMemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Status" ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="230" DockPanel.Dock="Top"/>
+                  <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_AccountStatus"
+                                 DockPanel.Dock="Top"
+                                 Width="250" Margin="0 0 0 5" HorizontalAlignment="Left"
+                                 Code="{Binding Status, Mode=TwoWay}"
+                                 PropertyCodeTable="SalesStatus"
+                                 ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Left"
+                                 ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}" />
+                  <!--Ensure all the values are correct-->
+                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                   <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />
 			   </DockPanel>
 			</ScrollViewer>
