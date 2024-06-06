@@ -145,7 +145,6 @@ namespace BOS.CustomerDataMaps
             maps.am_AddDataMap("AVERAGEORDERDISCOUNT", CustomerEntity.AverageOrderDiscountProperty, targetTable: OrdersCTE);
             maps.am_AddDataMap("AVERAGEORDERTOTAL", CustomerEntity.AverageOrderTotalProperty, targetTable: OrdersCTE);
             maps.am_AddDataMap("ContactFullName", CustomerEntity.ContactFullNameProperty, isVirtual: true);
-			maps.am_AddDataMap(string.Format("{0}.{1}", YD1CTableAlias_b, "YD1CNM"), CustomerEntity.ParentNameProperty, targetTable: YD1CTableAlias_b);
             maps.am_AddDataMap("ContactFullName", CustomerEntity.ContactFullNameProperty, isVirtual: true);
             maps.am_AddDataMap("BillingAddressLine", CustomerEntity.BillingAddressLineProperty, isVirtual: true);
             maps.am_AddDataMap("BillingAddressBlock", CustomerEntity.BillingAddressBlockProperty, isVirtual: true);
