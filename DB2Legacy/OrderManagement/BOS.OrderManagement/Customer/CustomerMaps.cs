@@ -14,31 +14,85 @@ namespace BOS.CustomerDataMaps
 	public class CustomerMaps : AB_DataMaps
 	{
 		private const string YD1CTableName = "YD1C";
-		private const string YD1CTableAlias_b = "b";
+        private const string YD1CParentAlias = "PARENT";
+        private const string SubCustomerCTE = "SUBCUSTOMER";
+        private const string ShippingAddressCTE = "SHIPPINGADDRESS";
+        private const string OrdersCTE = "ORDERS";
 
-		public CustomerMaps() : base() { }
+        public CustomerMaps() : base() { }
 		public CustomerMaps(string qualifier) : base(qualifier) { }
-		  
-		/// <summary>
-		/// Loads maps to join two database files.
-		/// </summary>
-		public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
+
+        /// <summary>
+        /// Loads maps to join two database files.
+        /// </summary>
+        /// 
+        public override AB_CommonTableExpressionDictionary am_LoadCommonTableExpressions()
+        {
+            var ctes = new AB_CommonTableExpressionDictionary();
+
+            // Add CTE's here
+            ctes.am_AddCTE(SubCustomerCTE, @"SELECT YD1CPTID,
+                                     COUNT(*) AS SUBCUSTOMERCOUNT,
+                                     CLOB(LISTAGG(RTRIM(YD1CNM), ', ' ON OVERFLOW TRUNCATE '...' WITH COUNT) WITHIN GROUP(ORDER BY YD1CNM), 5000) AS SUBCUSTOMERLIST
+                                 FROM YD1C
+                                 GROUP BY YD1CPTID");
+            ctes.am_AddCTE(ShippingAddressCTE, @"SELECT YD1S1CID, 
+                                         COUNT(*) AS SHIPPINGADDRESSCOUNT
+                                     FROM YD1S
+                                     GROUP BY YD1S1CID");
+            ctes.am_AddCTE(OrdersCTE, @"SELECT YD1O1CID,
+                                COUNT(*) AS ORDERCOUNT,
+                                SUM(CASE WHEN YD1OST IN('Open', 'New', 'Pending') THEN 1 ELSE 0 END) AS INCOMPLETEORDERCOUNT,
+                                SUM(CASE WHEN ORDERITEMS.ORDERDISCOUNT > 0 THEN 1 ELSE 0 END) AS DISCOUNTEDORDERCOUNT,
+                                DECIMAL(MAX(ORDERITEMS.ORDERSUBTOTAL), 11, 2) AS HIGHESTORDERSUBTOTAL,
+                                DECIMAL(MAX(ORDERITEMS.ORDERDISCOUNT), 11, 2) AS HIGHESTORDERDISCOUNT,
+                                DECIMAL(MAX(ORDERITEMS.ORDERTOTAL), 11, 2) AS HIGHESTORDERTOTAL, 
+                                DECIMAL(AVG(ORDERITEMS.ORDERSUBTOTAL), 11, 2) AS AVERAGEORDERSUBTOTAL, 
+                                DECIMAL(AVG(ORDERITEMS.ORDERDISCOUNT), 11, 2) AS AVERAGEORDERDISCOUNT, 
+                                DECIMAL(AVG(ORDERITEMS.ORDERTOTAL), 11, 2) AS AVERAGEORDERTOTAL, 
+                                DECIMAL(MIN(ORDERITEMS.ORDERSUBTOTAL), 11, 2) AS LOWESTORDERSUBTOTAL, 
+                                DECIMAL(MIN(ORDERITEMS.ORDERDISCOUNT), 11, 2) AS LOWESTORDERDISCOUNT,
+                                DECIMAL(MIN(ORDERITEMS.ORDERTOTAL), 11, 2) AS LOWESTORDERTOTAL
+                            FROM YD1O
+                            LEFT JOIN (SELECT YD1I1OID,
+                                          COUNT(*) AS ORDERITEMCOUNT,
+                                          DECIMAL(SUM(YD1IQT * YD1IPRUN), 11, 2) AS ORDERSUBTOTAL,
+                                          DECIMAL(SUM(YD1IQT * YD1IPRUN * (YD1IDSPC * 0.01)), 11, 2) AS ORDERDISCOUNT,
+                                          DECIMAL(SUM(YD1IQT * YD1IPRUN * (1 - (YD1IDSPC * 0.01))), 11, 2) AS ORDERTOTAL
+                                      FROM YD1I
+                                      GROUP BY YD1I1OID) ORDERITEMS ON ORDERITEMS.YD1I1OID = YD1OIID
+                            GROUP BY YD1O1CID");
+
+            return ctes;
+        }
+
+        public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
-		   
-			// TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
-			// AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
-			// TODO: Table Relationships Step 2 - Add Joins for each relationship
-			// Two field Relationship 
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
-			// Single Field to Constant Relationship
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
-			// relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
-		 
-            relationshipMap.am_AddRelationshipMap(YD1CTableName, useDistinctJoins: false, joinTableAlias:YD1CTableAlias_b)
-			.am_JoinWhere(primaryTableField:"YD1CPTID", joinTableField:"YD1CIID");
 
-			return relationshipMap;
+            // TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
+            // AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
+            // TODO: Table Relationships Step 2 - Add Joins for each relationship
+            // Two field Relationship 
+            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
+            // Single Field to Constant Relationship
+            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
+            // relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
+
+            AB_RelationshipMap map0 = new AB_RelationshipMap(YD1CTableName, YD1CTableName, JoinType.LeftOuter);
+            map0.ap_JoinedFileAlias = YD1CParentAlias;
+            map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField(map0.ap_PrimaryFile, "YD1CPTID"), "=", new AB_QueryField(map0.ap_JoinedFileAlias, "YD1CIID")));
+            relationshipMap.Add(map0.ap_JoinedFileAlias, map0);
+
+            AB_RelationshipMap map1 = new AB_RelationshipMap(YD1CTableName, SubCustomerCTE, JoinType.LeftOuter);
+            map1.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField(map1.ap_PrimaryFile, "YD1CIID"), "=", new AB_QueryField(map1.ap_JoinedFile, "YD1CPTID")));
+            relationshipMap.Add(map1.ap_JoinedFile, map1);
+
+            relationshipMap.am_AddRelationshipMap(ShippingAddressCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1CIID", joinTableField: "YD1S1CID");
+
+            relationshipMap.am_AddRelationshipMap(OrdersCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1CIID", joinTableField: "YD1O1CID");
+
+            return relationshipMap;
 		}
 		
 
@@ -80,7 +134,16 @@ namespace BOS.CustomerDataMaps
 			maps.am_AddDataMap("YD1CLCUS", CustomerEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1CLCJB", CustomerEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1CLCJN", CustomerEntity.LastChangeJobNumberProperty);
-			maps.am_AddDataMap(string.Format("{0}.{1}", YD1CTableAlias_b, "YD1CNM"), CustomerEntity.ParentNameProperty, targetTable: YD1CTableAlias_b);
+            maps.am_AddDataMap("IsSubCustomer", CustomerEntity.IsSubCustomerProperty, isVirtual: true);
+            maps.am_AddDataMap("SUBCUSTOMERCOUNT", CustomerEntity.SubCustomerCountProperty, targetTable: SubCustomerCTE);
+            maps.am_AddDataMap("SUBCUSTOMERLIST", CustomerEntity.SubCustomerListProperty, targetTable: SubCustomerCTE);
+            maps.am_AddDataMap("YD1CNM", CustomerEntity.ParentNameProperty, targetTable: YD1CParentAlias);
+            maps.am_AddDataMap("IsParentCustomer", CustomerEntity.IsParentCustomerProperty, isVirtual: true);
+            maps.am_AddDataMap("SHIPPINGADDRESSCOUNT", CustomerEntity.ShippingAddressCountProperty, targetTable: ShippingAddressCTE);
+            maps.am_AddDataMap("ORDERCOUNT", CustomerEntity.OrderCountProperty, targetTable: OrdersCTE);
+            maps.am_AddDataMap("AVERAGEORDERSUBTOTAL", CustomerEntity.AverageOrderSubtotalProperty, targetTable: OrdersCTE);
+            maps.am_AddDataMap("AVERAGEORDERDISCOUNT", CustomerEntity.AverageOrderDiscountProperty, targetTable: OrdersCTE);
+            maps.am_AddDataMap("AVERAGEORDERTOTAL", CustomerEntity.AverageOrderTotalProperty, targetTable: OrdersCTE);
             maps.am_AddDataMap("ContactFullName", CustomerEntity.ContactFullNameProperty, isVirtual: true);
             maps.am_AddDataMap("BillingAddressLine", CustomerEntity.BillingAddressLineProperty, isVirtual: true);
             maps.am_AddDataMap("BillingAddressBlock", CustomerEntity.BillingAddressBlockProperty, isVirtual: true);

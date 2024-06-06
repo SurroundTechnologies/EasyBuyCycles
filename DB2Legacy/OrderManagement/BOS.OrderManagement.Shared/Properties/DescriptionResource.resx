@@ -363,4 +363,61 @@
   <data name="ISASUBCUSTOMER" xml:space="preserve">
     <value>Is a Sub-Customer</value>
   </data>
+  <data name="AVERAGEORDERDISCOUNT" xml:space="preserve">
+    <value>Average Order Discount</value>
+  </data>
+  <data name="AVERAGEORDERSUBTOTAL" xml:space="preserve">
+    <value>Average Order Subtotal</value>
+  </data>
+  <data name="AVERAGEORDERTOTAL" xml:space="preserve">
+    <value>Average Order Total</value>
+  </data>
+  <data name="ISPARENTCUSTOMER" xml:space="preserve">
+    <value>Is Parent Customer</value>
+  </data>
+  <data name="ISPARTENTCUSTOMER" xml:space="preserve">
+    <value>Is Parent Customer</value>
+  </data>
+  <data name="ISSUBCUSTOMER" xml:space="preserve">
+    <value>Is Sub-Customer</value>
+  </data>
+  <data name="ORDERCOUNT" xml:space="preserve">
+    <value>Order Count</value>
+  </data>
+  <data name="SHIPPINGADDRESSCOUNT" xml:space="preserve">
+    <value>Shipping Address Count</value>
+  </data>
+  <data name="SUBCUSTOMERCOUNT" xml:space="preserve">
+    <value>Sub-Customer Count</value>
+  </data>
+  <data name="SUBCUSTOMERLIST" xml:space="preserve">
+    <value>Sub-Customer List</value>
+  </data>
+  <data name="AVERAGEORDERQUANTITY" xml:space="preserve">
+    <value>Average Order Quantity</value>
+  </data>
+  <data name="AVERAGEORDERUNITPRICE" xml:space="preserve">
+    <value>Average Order Unit Price</value>
+  </data>
+  <data name="CUSTOMERCOUNT" xml:space="preserve">
+    <value>Customer Count</value>
+  </data>
+  <data name="HIGHESTORDERUNITPRICE" xml:space="preserve">
+    <value>Highest Order Unit Price</value>
+  </data>
+  <data name="LARGESTORDERQUANTITY" xml:space="preserve">
+    <value>Largest Order Quantity</value>
+  </data>
+  <data name="LASTORDERDATETIME" xml:space="preserve">
+    <value>Last Order Date Time</value>
+  </data>
+  <data name="LOWESTORDERUNITPRICE" xml:space="preserve">
+    <value>Lowest Order Unit Price</value>
+  </data>
+  <data name="ORDERITEMCOUNT" xml:space="preserve">
+    <value>Order Item Count</value>
+  </data>
+  <data name="SMALLESTORDERQUANTITY" xml:space="preserve">
+    <value>Smallest Order Quantity</value>
+  </data>
 </root>
