@@ -395,6 +395,15 @@ namespace BOS.ProductDataEntity
             set { am_SetPropertyValue(CustomerCountProperty, value); }
         }
         public static AB_PropertyMetadata<int?> CustomerCountProperty = am_CreatePropertyMetaData<int?>("CustomerCount", DescriptionResource.CUSTOMERCOUNT, null);
+        [Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
+        [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
+        [DataMember]
+        public int? CustomerInternalID
+        {
+            get { return am_GetPropertyValue(CustomerInternalIDProperty); }
+            set { am_SetPropertyValue(CustomerInternalIDProperty, value); }
+        }
+        public static AB_PropertyMetadata<int?> CustomerInternalIDProperty = am_CreatePropertyMetaData<int?>("CustomerInternalID", DescriptionResource.CUSTOMERINTERNALID, null);
 
         #endregion //Properties
 
