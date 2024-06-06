@@ -48,11 +48,11 @@
                         <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
                         <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
                         <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
-                                 DockPanel.Dock="Top"
-                                 Width="400" Margin="0 0 0 5" HorizontalAlignment="Left"
+                                 DockPanel.Dock="Top" Grid.Row="3" Grid.Column="0"
+                                 Width="497" Margin="0 0 0 5" HorizontalAlignment="Left"
                                  Code="{Binding Category, Mode=TwoWay}"
                                  PropertyCodeTable="ProductCategory"
-                                 ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Left"
+                                 ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Top"
                                  ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}" />
                         <Image Height="205" Width="225" Grid.Column="1" Margin="10,5,5,5" Grid.Row="0" Grid.RowSpan="4" Source="{Binding ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}"/>
                     </Grid>
