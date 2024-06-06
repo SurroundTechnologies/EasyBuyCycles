@@ -375,9 +375,6 @@
   <data name="ISPARENTCUSTOMER" xml:space="preserve">
     <value>Is Parent Customer</value>
   </data>
-  <data name="ISPARTENTCUSTOMER" xml:space="preserve">
-    <value>Is Parent Customer</value>
-  </data>
   <data name="ISSUBCUSTOMER" xml:space="preserve">
     <value>Is Sub-Customer</value>
   </data>

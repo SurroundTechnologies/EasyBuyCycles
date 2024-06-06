@@ -79,7 +79,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address 1.
+        ///   Looks up a localized string similar to Address 3.
         /// </summary>
         public static string ADDRESS3 {
             get {
@@ -223,7 +223,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Billing Postal Code.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CATEGORY {
             get {
@@ -403,7 +403,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detail.
+        ///   Looks up a localized string similar to Discount (Percent).
         /// </summary>
         public static string DISCOUNTPERCENT {
             get {
@@ -480,15 +480,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string ISPARENTCUSTOMER {
             get {
                 return ResourceManager.GetString("ISPARENTCUSTOMER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Is Parent Customer.
-        /// </summary>
-        public static string ISPARTENTCUSTOMER {
-            get {
-                return ResourceManager.GetString("ISPARTENTCUSTOMER", resourceCulture);
             }
         }
         
