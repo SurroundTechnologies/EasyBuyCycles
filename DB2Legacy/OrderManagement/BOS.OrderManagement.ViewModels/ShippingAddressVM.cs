@@ -12,6 +12,7 @@ using A4DN.Core.BOS.ViewModel;
 using A4DN.Core.BOS.Base;
 using BOS.ShippingAddressBusinessProcess;
 using BOS.ShippingAddressDataEntity;
+using System.Windows;
 
 namespace BOS.ShippingAddressViewModel
 {   
@@ -23,11 +24,18 @@ namespace BOS.ShippingAddressViewModel
 	public class ShippingAddressVM : AB_ViewModel<ShippingAddressEntity>
 	{
 
-		/// <summary>
-		/// Sets properties of the parent class before it is instantiated.
-		/// If it is necessary to override what is set here or set additional parent properties, use <c>am_SetParentProperties</c>.
-		/// </summary>
-		private void RG_SetParentProperties()
+        public bool IsMapTabVisible
+        {
+            get { return (bool)GetValue(IsMapTabVisibleProperty); }
+            set { SetValue(IsMapTabVisibleProperty, value); }
+        }
+        public static readonly DependencyProperty IsMapTabVisibleProperty = DependencyProperty.Register("IsMapTabVisible", typeof(bool), typeof(ShippingAddressVM), new PropertyMetadata(true));
+
+        /// <summary>
+        /// Sets properties of the parent class before it is instantiated.
+        /// If it is necessary to override what is set here or set additional parent properties, use <c>am_SetParentProperties</c>.
+        /// </summary>
+        private void RG_SetParentProperties()
 		{
 			// Set WCF Service BP Proxy Class Name
 			ap_RemoteBPTypeFullName = "BOS.OrderManagement.ViewModels.ShippingAddress.ServiceProxy.ShippingAddressBPServiceContractClient";
@@ -85,30 +93,32 @@ namespace BOS.ShippingAddressViewModel
 			}
 		}
 
-		/// <summary>
-		/// This method is called before the DataContext is set on the detail
-		/// </summary>       
-		public override void am_SetUpVisualModelForDetail(AB_VisualModelInitArgs inputArgs, ShippingAddressEntity currentDataContext)
-		{
-			switch (inputArgs.ap_Mode)
-			{
-				case AB_RecordMode.Display:
-					break;
-				case AB_RecordMode.New:
-					break;
-				case AB_RecordMode.Open:
-					break;
-				case AB_RecordMode.Preview:
-					break;
-				default:
-					break;
-			}
-		}
+        /// <summary>
+        /// This method is called before the DataContext is set on the detail
+        /// </summary>       
+        public override void am_SetUpVisualModelForDetail(AB_VisualModelInitArgs inputArgs, ShippingAddressEntity currentDataContext)
+        {
+            IsMapTabVisible = true;
+            switch (inputArgs.ap_Mode)
+            {
+                case AB_RecordMode.Display:
+                    break;
+                case AB_RecordMode.New:
+                    IsMapTabVisible = false;
+                    break;
+                case AB_RecordMode.Open:
+                    break;
+                case AB_RecordMode.Preview:
+                    break;
+                default:
+                    break;
+            }
+        }
 
-		/// <summary>
-		/// This method is called to handle a property change and the updating of property models
-		/// </summary>        
-		protected override void am_OnCurrentEntityPropertyChanged(AB_VisualModelInitArgs inputArgs, string propertyName, ShippingAddressEntity currentEntity)
+        /// <summary>
+        /// This method is called to handle a property change and the updating of property models
+        /// </summary>        
+        protected override void am_OnCurrentEntityPropertyChanged(AB_VisualModelInitArgs inputArgs, string propertyName, ShippingAddressEntity currentEntity)
 		{
 
 		}
