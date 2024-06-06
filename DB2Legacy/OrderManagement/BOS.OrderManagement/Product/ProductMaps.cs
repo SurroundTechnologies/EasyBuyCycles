@@ -14,27 +14,53 @@ namespace BOS.ProductDataMaps
 	public class ProductMaps : AB_DataMaps
 	{
 		private const string YD1PTableName = "YD1P";
+        private const string OrderItemsCTE = "ORDERITEMS";
 
-		public ProductMaps() : base() { }
+        public ProductMaps() : base() { }
 		public ProductMaps(string qualifier) : base(qualifier) { }
-		  
-		/// <summary>
-		/// Loads maps to join two database files.
-		/// </summary>
-		public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
+
+        /// <summary>
+        /// Loads maps to join two database files.
+        /// </summary>
+        public override AB_CommonTableExpressionDictionary am_LoadCommonTableExpressions()
+        {
+            var ctes = new AB_CommonTableExpressionDictionary();
+
+            // Add CTE's here
+            ctes.am_AddCTE(OrderItemsCTE, @"SELECT YD1I1PID,
+                                    COUNT(DISTINCT YD1I.YD1IIID) AS ORDERCOUNT,
+                                    COUNT(*) AS ORDERITEMCOUNT,
+                                    DECIMAL(AVG(YD1I.YD1IQT), 6, 2) AS AVERAGEORDERQUANTITY,
+                                    MIN(YD1I.YD1IQT) AS SMALLESTORDERQUANTITY,
+                                    MAX(YD1I.YD1IQT) AS LARGESTORDERQUANTITY,
+                                    DECIMAL(AVG(YD1I.YD1IPRUN), 8, 2) AS AVERAGEORDERUNITPRICE,
+                                    MIN(YD1I.YD1IPRUN) AS LOWESTORDERUNITPRICE,
+                                    MAX(YD1I.YD1IPRUN) AS HIGHESTORDERUNITPRICE,
+                                    MAX(YD1O.YD1ODT) AS LASTORDERDATETIME,
+                                    COUNT(DISTINCT YD1O.YD1O1CID) AS CUSTOMERCOUNT
+                                 FROM YD1I
+                                 LEFT JOIN YD1O ON YD1O.YD1OIID = YD1I.YD1IIID
+                                 GROUP BY YD1I1PID");
+
+            return ctes;
+        }/// 
+
+        public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
-		   
-			// TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
-			// AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
-			// TODO: Table Relationships Step 2 - Add Joins for each relationship
-			// Two field Relationship 
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
-			// Single Field to Constant Relationship
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
-			// relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
-		 
-			return relationshipMap;
+
+            // TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
+            // AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
+            // TODO: Table Relationships Step 2 - Add Joins for each relationship
+            // Two field Relationship 
+            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
+            // Single Field to Constant Relationship
+            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
+            // relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
+
+            relationshipMap.am_AddRelationshipMap(OrderItemsCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
+
+            return relationshipMap;
 		}
 		
 
@@ -71,17 +97,27 @@ namespace BOS.ProductDataMaps
 			maps.am_AddDataMap("YD1PLCUS", ProductEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1PLCJB", ProductEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1PLCJN", ProductEntity.LastChangeJobNumberProperty);
+            maps.am_AddDataMap("ORDERCOUNT", ProductEntity.OrderCountProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("ORDERITEMCOUNT", ProductEntity.OrderItemCountProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("AVERAGEORDERQUANTITY", ProductEntity.AverageOrderQuantityProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("SMALLESTORDERQUANTITY", ProductEntity.SmallestOrderQuantityProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LARGESTORDERQUANTITY", ProductEntity.LargestOrderQuantityProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("AVERAGEORDERUNITPRICE", ProductEntity.AverageOrderUnitPriceProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LOWESTORDERUNITPRICE", ProductEntity.LowestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("HIGHESTORDERUNITPRICE", ProductEntity.HighestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LASTORDERDATETIME", ProductEntity.LastOrderDateTimeProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("CUSTOMERCOUNT", ProductEntity.CustomerCountProperty, targetTable: OrderItemsCTE);
 
-			//TODO: ProductMaps Real Field Example
-			//maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
-			//TODO: ProductMaps Virtual Field Example
-			//maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>, isVirtual: true);
-			//TODO: ProductMaps Foreign Field Example
-			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ProductEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-			//TODO: ProductMaps Configure Example (for setting options not available as constructor arguments)
-			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
-		  
-			return maps;
+            //TODO: ProductMaps Real Field Example
+            //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
+            //TODO: ProductMaps Virtual Field Example
+            //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>, isVirtual: true);
+            //TODO: ProductMaps Foreign Field Example
+            //maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ProductEntity.<Property Name>, targetTable: "<Target Table Name>"); 
+            //TODO: ProductMaps Configure Example (for setting options not available as constructor arguments)
+            //maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+
+            return maps;
 		}
 
 	}
