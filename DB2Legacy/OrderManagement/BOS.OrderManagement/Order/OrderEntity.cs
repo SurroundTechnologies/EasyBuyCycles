@@ -95,6 +95,7 @@ namespace BOS.OrderDataEntity
         [Display(Name = "PURCHASEORDERNUMBERID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string PurchaseOrderNumberID //Map Field: YD1OPONO
         {
             get => am_GetPropertyValue(PurchaseOrderNumberIDProperty);
@@ -115,6 +116,7 @@ namespace BOS.OrderDataEntity
         [Display(Name = "WAREHOUSENAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string WarehouseName //Map Field: YD1O1WNM
         {
             get => am_GetPropertyValue(WarehouseNameProperty);
@@ -176,6 +178,7 @@ namespace BOS.OrderDataEntity
         [Display(Name = "SALESPERSONNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string SalesPersonName //Map Field: YD1O1ANM
         {
             get => am_GetPropertyValue(SalesPersonNameProperty);
@@ -306,6 +309,7 @@ namespace BOS.OrderDataEntity
         [AB_Length(50)]
         [AB_BroadcastMember(AB_DataShouldBePassed.OnPreload)]
         [DataMember]
+        [AB_RequiredField]
         public string CustomerName //Map Field: YD1C.YD1CNM
         {
             get => am_GetPropertyValue(CustomerNameProperty);
