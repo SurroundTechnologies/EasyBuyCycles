@@ -1,0 +1,102 @@
+﻿<base:AB_TaskPanePresenter x:Class="WPF.OrderManagement.TaskPanes.SurroundTaskPane"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           mc:Ignorable="d">
+    <base:AB_TaskPanePresenter.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="11pt" />
+                <Setter Property="FontFamily" Value="Arial" />
+            </Style>
+            <Style x:Key="Header1" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12pt" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+            <Style x:Key="Header2" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="11pt" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+            <Style x:Key="Link" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                <Setter Property="Foreground" Value="Blue" />
+                <Setter Property="Cursor" Value="Hand" />
+            </Style>
+            <Style x:Key="ContactLetter" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Gray" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
+        </ResourceDictionary>
+    </base:AB_TaskPanePresenter.Resources>
+    <Grid Background="White">
+        <Viewbox HorizontalAlignment="Left">
+            <StackPanel Margin="2" Orientation="Horizontal">
+                <Image Margin="0 0 1 0" Source="/WPF.OrderManagement.Shared;component/images/office_photo_lg.png" />
+                <Image Margin="0 0 10 0" Source="/WPF.OrderManagement.Shared;component/images/office_photo_thumbs.png" />
+
+                <StackPanel Width="500" Margin="0 0 20 0">
+                    <TextBlock Text="New Jersey, USA"
+                               Margin="5 0"
+                               Style="{StaticResource Header1}" />
+                    <StackPanel Margin="5">
+                        <TextBlock TextWrapping="Wrap">New Jersey is where our roots are. We have consultants and facilities located just outside of New York City and close by to the Newark Airport, EWR. You can get to us easily by car, train or bus. With so much in the area, it is an easy place to setup multiple meetings while visiting or passing through.</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Width="500" Margin="0 0 20 0">
+                    <TextBlock Text="Florida, USA"
+                               Margin="5 0"
+                               Style="{StaticResource Header1}" />
+                    <StackPanel Margin="5">
+                        <TextBlock TextWrapping="Wrap">We also have an established presence in beautiful southwest Florida. Close by to the Fort Myers Airport, RSW, the gulf coast beaches and to over 150 golf courses, it's a great place for work and play.</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+                <Line Margin="0 2 20 2"
+                      Stroke="Black" StrokeDashArray="2, 4" X1="0" X2="0" Y1="0"
+                      Y2="110" />
+
+                <StackPanel >
+                    <TextBlock Text="Contact:"
+                               Margin="0 5 0 5"
+                               Style="{StaticResource Header1}" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <StackPanel Margin="0 0 15 0" Orientation="Vertical">
+                                <StackPanel Margin="0 2" Orientation="Horizontal">
+                                    <Image Height="16" Margin="0 0 10 0" VerticalAlignment="Center"
+                                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/Phone_small.png" />
+                                    <TextBlock VerticalAlignment="Bottom" Text="Phone: " />
+                                    <TextBlock VerticalAlignment="Bottom" Text="+1 (973) 743-1277" />
+                                </StackPanel>
+                                <StackPanel Margin="0 2" Orientation="Horizontal">
+                                    <Image Height="16" Margin="0 0 10 0" VerticalAlignment="Center"
+                                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/Email_small.png" />
+                                    <TextBlock VerticalAlignment="Bottom" Text="Email: " />
+                                    <TextBlock Text="info@surroundtech.com"
+                                               VerticalAlignment="Bottom"
+                                               PreviewMouseDown="TextBlock_PreviewMouseDown"
+                                               Style="{StaticResource Link}" />
+                                </StackPanel>
+                                <StackPanel Margin="0 2" Orientation="Horizontal">
+                                    <Image Height="16" Margin="0 0 10 0" VerticalAlignment="Center"
+                                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/Website_small.png" />
+                                    <TextBlock VerticalAlignment="Bottom" Text="Website: " FontSize="14" />
+                                    <TextBlock Text="www.surroundtech.com"
+                                               VerticalAlignment="Bottom"
+                                               PreviewMouseDown="TextBlock_PreviewMouseDown" 
+                                               Style="{StaticResource Link}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+    </Grid>
+</base:AB_TaskPanePresenter>
