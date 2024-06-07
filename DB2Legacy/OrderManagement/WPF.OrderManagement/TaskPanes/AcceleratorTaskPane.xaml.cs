@@ -23,7 +23,7 @@ namespace WPF.OrderManagement.TaskPanes
 
 		private void _OpenUrl()
 		{
-			string url = "http://www.surroundtech.com/SoftwareSolutions/Accelerator_Software_Solutions/Accelerated_Development.aspx";
+			string url = "https://www.surroundtech.com/accelerator";
 			System.Diagnostics.Process.Start(url);
 		}
 
