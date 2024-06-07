@@ -5,12 +5,12 @@
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     x:Name="SplashWindow" Title="{Binding Path=ap_SystemName, ElementName=SplashWindow}">
      <base:AB_SplashWindow.ap_CompanyLogo>
-        <Image Source="/WPF.OrderManagement.Shared;component/images/EasyBuyDistributors48x200.png" />
+        <Image Source="/WPF.OrderManagement.Shared;component/images/easybuyv4horiz90h.png"/>
     </base:AB_SplashWindow.ap_CompanyLogo>
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Image Height="100" Width="100"  Source="/WPF.OrderManagement.Shared;component/images/EasyBuyv4Logo_256_256_32.png"/>
-            <TextBlock Text="{Binding Path=ap_SystemName, ElementName=SplashWindow}" Margin="5,0,0,0" FontSize="28" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=ap_SystemName, ElementName=SplashWindow}" Margin="5,0,0,0" FontSize="48" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource EasyBuyBlueBrush}"/>
         </StackPanel>
     </Grid>
 </base:AB_SplashWindow>
