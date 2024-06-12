@@ -104,7 +104,20 @@ namespace BOS.OrderItemDataEntity
             get => am_GetPropertyValue(UnitPriceProperty);
             set => am_SetPropertyValue(UnitPriceProperty, value);
         }
-        public static AB_PropertyMetadata<decimal?> UnitPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitPrice), DescriptionResource.UNITPRICE, null); 
+        public static AB_PropertyMetadata<decimal?> UnitPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitPrice), DescriptionResource.UNITPRICE, null);
+
+        [Display(Name = "ORDERPRICE", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(8)]
+        [DataType(DataType.Currency)]
+        [AB_ApplyStringFormat("C")]
+        [DataMember]
+        [AB_RequiredField]
+        public decimal? OrderPrice //Map Field: YD1IPRUN
+        {
+            get => am_GetPropertyValue(OrderPriceProperty);
+            set => am_SetPropertyValue(OrderPriceProperty, UnitPrice * Quantity);
+        }
+        public static AB_PropertyMetadata<decimal?> OrderPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderPrice), DescriptionResource.ORDERPRICE, null);
 
         [Display(Name = "DISCOUNTPERCENT", ResourceType = typeof(DescriptionResource))]
         [AB_Length(4)]
@@ -256,6 +269,48 @@ namespace BOS.OrderItemDataEntity
             set { am_SetPropertyValue(ProductCodeProperty, value); }
         }
         public static AB_PropertyMetadata<string> ProductCodeProperty = am_CreatePropertyMetaData<string>("ProductCode", DescriptionResource.PRODUCTCODE, null);
+
+        [Display(Name = "IMAGEPATH", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(256)]
+        [DataMember]
+        public string ProductImagePath //Map Field: YD1PIMPT
+        {
+            get => am_GetPropertyValue(ProductImagePathProperty);
+            set => am_SetPropertyValue(ProductImagePathProperty, value);
+        }
+        public static AB_PropertyMetadata<string> ProductImagePathProperty = am_CreatePropertyMetaData<string>(nameof(ProductImagePath), DescriptionResource.IMAGEPATH, null);
+
+        [Display(Name = "ORDERDATE", ResourceType = typeof(DescriptionResource))]
+        [AB_ApplyDateFormat]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataMember]
+        public DateTime? OrderDate //Map Field: YD1ODT
+        {
+            get => am_GetPropertyValue(OrderDateProperty);
+            set => am_SetPropertyValue(OrderDateProperty, value);
+        }
+        public static AB_PropertyMetadata<DateTime?> OrderDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(OrderDate), DescriptionResource.ORDERDATE, null);
+
+        [Display(Name = "ORDERTIME", ResourceType = typeof(DescriptionResource))]
+        [DataMember]
+        public TimeSpan? OrderTime //Map Field: YD1OTM
+        {
+            get => am_GetPropertyValue(OrderTimeProperty);
+            set => am_SetPropertyValue(OrderTimeProperty, value);
+        }
+        public static AB_PropertyMetadata<TimeSpan?> OrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(OrderTime), DescriptionResource.ORDERTIME, null);
+
+        [Display(Name = "PURCHASEORDERNUMBERID", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(50)]
+        [DataMember]
+        [AB_RequiredField]
+        public string PurchaseOrderNumberID //Map Field: YD1OPONO
+        {
+            get => am_GetPropertyValue(PurchaseOrderNumberIDProperty);
+            set => am_SetPropertyValue(PurchaseOrderNumberIDProperty, value);
+        }
+        public static AB_PropertyMetadata<string> PurchaseOrderNumberIDProperty = am_CreatePropertyMetaData<string>(nameof(PurchaseOrderNumberID), DescriptionResource.PURCHASEORDERNUMBERID, null);
 
         #endregion //Properties
 
