@@ -33,21 +33,6 @@
                 </base:AB_DockingTabItem.Header>
                 <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
                     <DockPanel x:Name="FieldsPanel">
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderItemInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderItemInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270"  DockPanel.Dock="Top" />
-                  <WPF.Order:OrderDropDown Margin="0,0,0,5"  x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}" OrderInternalID="{Binding Path=OrderInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
-                  -->
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />-->
-                        <!--
-                  <WPF.Product:ProductDropDown Margin="0,0,0,5"  x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}" ProductInternalID="{Binding Path=ProductInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
-                  -->
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />-->
-                        <!--
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Quantity" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.QuantityProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="190"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_UnitPrice" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.UnitPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="250"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_DiscountPercent" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.DiscountPercentProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="200"  DockPanel.Dock="Top" />
-                  <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.MemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />-->
-
-
                         <Grid DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
