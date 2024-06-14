@@ -31,7 +31,7 @@
   <UseWizardDefaultSettingsComponent>true</UseWizardDefaultSettingsComponent>
   <WizardDefaultSettingsComponentLocation>C:\Surround\AcceleratorOpenGenerationWizardPlugin\bin\Debug\GenerationWizardPlugin.dll</WizardDefaultSettingsComponentLocation>
   <WizardDefaultSettingsComponentNamespace>GenerationWizardPlugin</WizardDefaultSettingsComponentNamespace>
-  <WizardDefaultSettingsComponentClassName>EasyBuyWizardDefaults_MSSQLLModern</WizardDefaultSettingsComponentClassName>
+  <WizardDefaultSettingsComponentClassName>EasyBuyWizardDefaults_MSSQLModern</WizardDefaultSettingsComponentClassName>
   <RunDependencyTool>true</RunDependencyTool>
   <GenerateForWAMs>false</GenerateForWAMs>
   <ShowIDE>false</ShowIDE>
