@@ -12,7 +12,7 @@
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     xmlns:datapresentation="clr-namespace:A4DN.Core.WPF.Base.DataPresentation;assembly=A4DN.Core.WPF.Base"
     xmlns:wpfShared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
-	Height="620" Width="740">
+	Height="660" Width="760">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
