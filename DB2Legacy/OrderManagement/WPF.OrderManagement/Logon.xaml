@@ -4,12 +4,12 @@
     xmlns:logonBase="clr-namespace:A4DN.Core.WPF.LogonBase;assembly=A4DN.Core.WPF.LogonBase"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     Title="{x:Static systemSharedProperties:DescriptionResource.LOGONTITLETEXT}" ap_ContentHorizontalAlignment="Left">
-    <Grid>    
-    
-      <StackPanel Orientation="Horizontal">
+    <Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Image Height="70" Width="70"  Source="/WPF.OrderManagement.Shared;component/images/EasyBuyv4Logo_256_256_32.png"/>
-            <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.LOGONSYSTEMNAME}" Margin="5,0,0,0" FontSize="24" VerticalAlignment="Center" Foreground="{DynamicResource AB_LogonTextBrush}"/>
-      </StackPanel>     
-  
+            <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.LOGONSYSTEMNAME}" Margin="5,0,0,0" FontSize="24" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource PrimaryLogoBrush}"/>
+        </StackPanel>
+
     </Grid>
 </logonBase:AB_LogonBase>
