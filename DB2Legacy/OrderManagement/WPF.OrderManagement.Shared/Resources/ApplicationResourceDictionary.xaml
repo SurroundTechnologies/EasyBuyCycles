@@ -1,6 +1,19 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base">
-    <SolidColorBrush x:Key="blueSeparatorBrush" Color="Blue"/>
     <SolidColorBrush x:Key="EasyBuyBlueBrush" Color="#487bb9"/>
+
+    <SolidColorBrush x:Key="PrimaryLogoBrush" Color="#385E97"/>
+    <SolidColorBrush x:Key="SecondaryLogoBrush" Color="#363636"/>
+    <SolidColorBrush x:Key="TertiaryLogoBrush" Color="#5A80B8"/>
+
+    <Style x:Key="DropdownTextBoxStyle" TargetType="TextBox">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource AB_Brush_DisabledText}" />
+    </Style>
+
 </ResourceDictionary>

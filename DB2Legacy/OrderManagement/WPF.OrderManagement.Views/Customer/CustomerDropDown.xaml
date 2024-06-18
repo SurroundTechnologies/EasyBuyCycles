@@ -5,6 +5,9 @@
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.CUSTOMERNAME}"
+    ap_BelowComboBoxVisibility="Visible"
+    xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
+    xmlns:local="clr-namespace:WPF.Customer"
     >
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
@@ -12,6 +15,23 @@
 				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Customer/CustomerResourceDictionary.xaml"/>  
        
             </ResourceDictionary.MergedDictionaries>
+            <wpfshared:NullCheckToVisibilityConverter x:Key="nullCheckToVis" />
         </ResourceDictionary>
     </base:AB_DropDownBase.Resources>
+
+    <base:AB_DropDownBase.ap_BelowComboBox>
+        <base:AB_DropdownDetailControl>
+            <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
+                <TextBox Text="{Binding ContactFullName, Mode=OneWay}"
+                         Style="{StaticResource DropdownTextBoxStyle}"
+                         Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CustomerDropDown}}, Path=ContactFullName, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding Telephone, Mode=OneWay}"
+                         Style="{StaticResource DropdownTextBoxStyle}"
+                         Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CustomerDropDown}}, Path=Telephone, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding BillingAddressBlock, Mode=OneWay}"
+                         Style="{StaticResource DropdownTextBoxStyle}"
+                         Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CustomerDropDown}}, Path=BillingAddressBlock, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+            </StackPanel>
+        </base:AB_DropdownDetailControl>
+    </base:AB_DropDownBase.ap_BelowComboBox>
 </base:AB_DropDownBase>
