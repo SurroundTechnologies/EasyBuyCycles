@@ -72,7 +72,7 @@
 
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
-                                <TextBlock Text="650 Bloomfield Avenue" />
+                                <TextBlock Text="650 Easybuy Avenue" />
                                 <TextBlock Text="Suite 211" />
                                 <TextBlock Text="Bloomfield, NJ 07003" />
                             </StackPanel>
@@ -81,19 +81,19 @@
                                     <TextBlock Text="p."
                                                Margin="0 0 2 0"
                                                Style="{StaticResource GrayText}" />
-                                    <TextBlock Text="973-743-1277" />
+                                    <TextBlock Text="555-743-1277" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="f."
                                                Margin="0 0 2 0"
                                                Style="{StaticResource GrayText}" />
-                                    <TextBlock Text="973-743-1277" />
+                                    <TextBlock Text="555-743-1277" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="e."
                                                Margin="0 0 2 0"
                                                Style="{StaticResource GrayText}" />
-                                    <TextBlock Text="973-743-1277" />
+                                    <TextBlock Text="easybuycycles@easy.biz" />
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
