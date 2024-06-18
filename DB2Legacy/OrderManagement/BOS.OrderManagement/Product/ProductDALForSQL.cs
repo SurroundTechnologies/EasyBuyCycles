@@ -83,6 +83,14 @@ namespace BOS.ProductDataAccessLayer
 			return overrideParms;
 		}
 
+		protected override AB_SelectInputArgs am_OverRideView(AB_SelectInputArgs inputArgs)
+		{
+			if (inputArgs.ap_View == "Product_Customer")
+				inputArgs.ap_Category = ProductMaps.CAT_CustomerOrderedProducts;
+
+			return base.am_OverRideView(inputArgs);
+		}
+
 		#region Standard Operations
 
 		///// <summary>
@@ -130,7 +138,7 @@ namespace BOS.ProductDataAccessLayer
 		//}
 
 		#endregion Standard Operations
-	  
+
 		//// A4DN_Tag: Add Custom Method Example - Step 2: Implement Method as defined in the Interface  IProductDALServiceContract
 		//// My Custom Method 
 		////=============================================================
