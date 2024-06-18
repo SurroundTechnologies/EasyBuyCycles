@@ -51,10 +51,10 @@
                             <base:AB_FieldWithLabel Width="Auto" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:CustomerEntity.NameProperty}" Margin="0,0,5,5" />
                             <base:AB_FieldWithLabel HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_LegalName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LegalNameProperty}" Margin="0,0,0,5" Width="Auto" />
                             <WPF.Customer:CustomerDropDown Width="345" Grid.Row="2" Grid.Column="0" x:Name="dd_ParentInternalID" ae_ValueChanged="dd_ParentInternalID_ae_ValueChanged" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}" ap_LabelPosition="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENTNAME}" />
-                            <base:AB_FieldWithLabel Width="Auto" Grid.Row="2" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" />
+                            <base:AB_FieldWithLabel Width="Auto" Grid.Row="2" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}" Margin="0,4,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
                         </Grid>
-
-                        <Grid DockPanel.Dock="Top">
+                        
+                        <Grid DockPanel.Dock="Top" Margin="0,10,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -103,15 +103,15 @@
                                     <TextBlock Margin="5,2,0,0" Text="Email"/>
                                 </Button>
                             </StackPanel>
-                            <Grid Grid.Column="1" Grid.Row="3" Grid.RowSpan="2">
+                            <Grid Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,10,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <!-- Put More Code Here -->
-                                <TextBlock Margin="0,0,8,0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
-                                <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="65" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="0,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="346" />
+                                <TextBlock Margin="3,0,8,0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
+                                <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="55" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="0,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="346" />
                             </Grid>
                         </Grid>
 
