@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using A4DN.Core.BOS.Base;
 using SharedSystemProperties = BOS.OrderManagement.Shared.Properties;
 using BOS.OrderItemDataEntity;
+using BOS.ProductDataEntity;
+using BOS.OrderDataEntity;
 
 namespace BOS.OrderItemDataMaps
 {
@@ -42,7 +44,10 @@ namespace BOS.OrderItemDataMaps
             relationshipMap.am_AddRelationshipMap(YD1PTableName, useDistinctJoins: false)
 			.am_JoinWhere(primaryTableField:"YD1I1PID", joinTableField:"YD1PIID");
 
-			return relationshipMap;
+            relationshipMap.am_AddRelationshipMap(YD1OTableName, useDistinctJoins: false)
+            .am_JoinWhere(primaryTableField: "YD1I1OID", joinTableField: "YD1OIID");
+
+            return relationshipMap;
 		}
 		
 
@@ -74,17 +79,21 @@ namespace BOS.OrderItemDataMaps
 			maps.am_AddDataMap("YD1ILCJB", OrderItemEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1ILCJN", OrderItemEntity.LastChangeJobNumberProperty);
 			maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PNM"), OrderItemEntity.ProductNameProperty, targetTable: YD1PTableName);
+            maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PIMPT"), OrderItemEntity.ProductImagePathProperty, targetTable: YD1PTableName);
+            maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1ODT"), OrderItemEntity.OrderDateProperty, targetTable: YD1OTableName);
+            maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1OTM"), OrderItemEntity.OrderTimeProperty, targetTable: YD1OTableName);
+            maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1OPONO"), OrderItemEntity.PurchaseOrderNumberIDProperty, targetTable: YD1OTableName);
 
-			//TODO: OrderItemMaps Real Field Example
-			//maps.am_AddDataMap("<Field Name>", OrderItemEntity.<Property Name>);
-			//TODO: OrderItemMaps Virtual Field Example
-			//maps.am_AddDataMap("<Field Name>", OrderItemEntity.<Property Name>, isVirtual: true);
-			//TODO: OrderItemMaps Foreign Field Example
-			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), OrderItemEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-			//TODO: OrderItemMaps Configure Example (for setting options not available as constructor arguments)
-			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
-		  
-			return maps;
+            //TODO: OrderItemMaps Real Field Example
+            //maps.am_AddDataMap("<Field Name>", OrderItemEntity.<Property Name>);
+            //TODO: OrderItemMaps Virtual Field Example
+            //maps.am_AddDataMap("<Field Name>", OrderItemEntity.<Property Name>, isVirtual: true);
+            //TODO: OrderItemMaps Foreign Field Example
+            //maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), OrderItemEntity.<Property Name>, targetTable: "<Target Table Name>"); 
+            //TODO: OrderItemMaps Configure Example (for setting options not available as constructor arguments)
+            //maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+
+            return maps;
 		}
 
 	}

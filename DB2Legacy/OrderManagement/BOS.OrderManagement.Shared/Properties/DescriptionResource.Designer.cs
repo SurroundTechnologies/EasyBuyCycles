@@ -492,6 +492,7 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to IDs.
         /// </summary>
         public static string IDS {
@@ -744,6 +745,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Price.
+        /// </summary>
+        public static string ORDERPRICE {
+            get {
+                return ResourceManager.GetString("ORDERPRICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Time.
         /// </summary>
         public static string ORDERTIME {
@@ -834,7 +844,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchase Order Number/ID.
+        ///   Looks up a localized string similar to Purchase Order Number.
         /// </summary>
         public static string PURCHASEORDERNUMBERID {
             get {
@@ -897,19 +907,20 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shipping Address Count.
-        /// </summary>
-        public static string SHIPPINGADDRESSCOUNT {
-            get {
-                return ResourceManager.GetString("SHIPPINGADDRESSCOUNT", resourceCulture);
-            }
-        }
-        
         ///   Looks up a localized string similar to Shipping Address.
         /// </summary>
         public static string SHIPPINGADDRESS {
             get {
                 return ResourceManager.GetString("SHIPPINGADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Count.
+        /// </summary>
+        public static string SHIPPINGADDRESSCOUNT {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSCOUNT", resourceCulture);
             }
         }
         
