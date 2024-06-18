@@ -18,6 +18,8 @@ namespace BOS.ProductDataMaps
         private const string OrderedProductsCTE = "ORDEREDPRODUCTSCTE";
         private const string OrderItemsCTE = "ORDERITEMS";
 
+        public const string CAT_CustomerOrderedProducts = "Category_CustomerOrderedProducts";
+
         public ProductMaps() : base() { }
         public ProductMaps(string qualifier) : base(qualifier) { }
 
@@ -84,6 +86,7 @@ namespace BOS.ProductDataMaps
 			ap_PrimaryTable = YD1PTableName;
 			//Create a dictionary to hold the maps
 			var maps = new AB_DataMapsDictionary(ap_PrimaryTable, qualifier);
+            maps.ap_DefaultDataCategories = new List<string>() { "*ALL", CAT_CustomerOrderedProducts };
 		 
 			maps.am_AddDataMap("YD1PIID", ProductEntity.ProductInternalIDProperty);
 			maps.am_AddDataMap("YD1PCD", ProductEntity.CodeProperty);
@@ -118,7 +121,7 @@ namespace BOS.ProductDataMaps
             maps.am_AddDataMap("HIGHESTORDERUNITPRICE", ProductEntity.HighestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("LASTORDERDATETIME", ProductEntity.LastOrderDateTimeProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("CUSTOMERCOUNT", ProductEntity.CustomerCountProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("CUSTOMERINTERNALID", ProductEntity.CustomerInternalIDProperty, targetTable: OrderedProductsCTE);
+            maps.am_AddDataMap("CUSTOMERINTERNALID", ProductEntity.CustomerInternalIDProperty, targetTable: OrderedProductsCTE, dataCategories: new List<string> { CAT_CustomerOrderedProducts });
 
             //TODO: ProductMaps Real Field Example
             //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
