@@ -13,6 +13,7 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
 using BOS.OrderDataEntity;
 using BOS.OrderViewModel;
+using BOS.CustomerDataEntity;
 
 namespace WPF.Order
 {
@@ -151,5 +152,7 @@ namespace WPF.Order
 			}
 			
 		}
-	}
+
+
+    }
 }
