@@ -22,4 +22,4 @@ jobs:
     runs-on: [self-hosted, Windows]
     steps:
       - name: Build DB2 Legacy
-        run: .\\DB2Legacy\OrderManagement\BuildScripts\Build.ps1
+        run: .\DB2Legacy\OrderManagement\BuildScripts\Build.ps1
