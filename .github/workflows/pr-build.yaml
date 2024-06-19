@@ -20,8 +20,6 @@ permissions: write-all
 jobs:
   deploy-dev: 
     runs-on: [self-hosted, Windows]
-    environment: dev
-    needs: call-build-workflow
     steps:
-      - name: Update Version Config
+      - name: Build DB2 Legacy
         run: .\\DB2Legacy\OrderManagement\BuildScripts\Build.ps1
