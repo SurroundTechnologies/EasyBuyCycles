@@ -17,6 +17,7 @@ using System.Windows;
 using System.Diagnostics;
 using System;
 using WPF.OrderManagement.Shared;
+using BOS.OrderManagement.Shared;
 
 namespace WPF.Customer
 {
