@@ -8,6 +8,12 @@ namespace BOS.OrderManagement.Shared
 {
 	public static class Constants
 	{
+		public const string CMD_OpenInMaps = "OPENINMAPS";
+		public const string CMD_CopyAddressLine = "COPYADDRESSLINE";
+		public const string CMD_CopyAddressBlock = "COPYADDRESSBLOCK";
+		public const string CMD_CallCustomer = "CALLCUSTOMER";
+		public const string CMD_EmailCustomer = "EMAILCUSTOMER";
+
 		public const int MODULE_Customer = 1;
 		public const int MODULE_OrderItem = 2;
 		public const int MODULE_Order = 3;
