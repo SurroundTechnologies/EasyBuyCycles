@@ -22,6 +22,7 @@ jobs:
     runs-on: [self-hosted, Windows]
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Build DB2 Legacy
-        run: .\DB2Legacy\OrderManagement\BuildScripts\Build.ps1
+        working-directory: .\DB2Legacy\OrderManagement\BuildScripts
+        run: .\Build.ps1
