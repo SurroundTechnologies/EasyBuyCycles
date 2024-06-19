@@ -11,7 +11,7 @@
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
 	xmlns:vm="clr-namespace:BOS.OrderItemViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-	Height="620" Width="740">
+	Height="620" Width="770">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,8 +31,8 @@
                         <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.DETAILTABTEXT}" Margin="5,0,0,0" />
                     </StackPanel>
                 </base:AB_DockingTabItem.Header>
-                <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-                    <DockPanel x:Name="FieldsPanel">
+                <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
+                    <WrapPanel Orientation="Vertical" x:Name="FieldsPanel" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
                         <Grid DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -68,7 +68,7 @@
 
                         </Grid>
 
-                    </DockPanel>
+                    </WrapPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
             <base:AB_DockingTabItem x:Name="AuditFieldsTab"  >
