@@ -25,6 +25,7 @@ using System.ComponentModel;
 using System.Linq;
 using BOS.OrderItemViewModel;
 using A4DN.Core.WPF.Base.DataPresentation;
+using BOS.OrderManagement.Shared;
 
 namespace WPF.Customer
 {

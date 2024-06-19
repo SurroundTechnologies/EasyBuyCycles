@@ -111,7 +111,7 @@
                                 </Grid.RowDefinitions>
                                 <!-- Put More Code Here -->
                                 <TextBlock Margin="0,0,8,0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
-                                <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="65" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="0,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="346" />
+                                <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="65" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="0,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="346" />
                             </Grid>
                         </Grid>
 
