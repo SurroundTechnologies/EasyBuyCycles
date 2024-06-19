@@ -2,7 +2,7 @@ name: easybuy-pr-build
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, edited]
 
 env:
   # Path to the solution file relative to the root of the project.
