@@ -25,7 +25,7 @@
 		<ApplicationManifestFileName>$(DeploymentClickOncePath)\WPF.$(SolutionSystemName).application</ApplicationManifestFileName>
 		<DeploymentManifestFileName>$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.manifest</DeploymentManifestFileName>	
 		<DeploymentAppConfigFileName>$(DeploymentClickOnceFiles)\WPF.$(SolutionSystemName).exe.config.deploy</DeploymentAppConfigFileName>		
-		<CertFilePath>$(SolutionFolder)\System\WPF.$(SolutionSystemName)\WPF.$(SolutionSystemName).$(EnvID).pfx</CertFilePath>
+		<CertFilePath>$(SolutionFolder)\WPF.$(SolutionSystemName)\WPF.$(SolutionSystemName).$(EnvID).pfx</CertFilePath>
 		<PathToApplicationManifestTransform>ApplicationManifestTransform.$(EnvID).xml</PathToApplicationManifestTransform>
 		<LatestArchiveFolder>$(LatestArchiveFolder)</LatestArchiveFolder>
 		<PathToMage>$(MagePath)</PathToMage>
