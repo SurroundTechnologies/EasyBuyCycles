@@ -1,0 +1,43 @@
+name: easybuy-pr-build
+
+on:
+  push:
+    branches: ["dev"]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: .
+  # Folder to use for build artifcats and deployment location
+  # BUILD_DIRECTORY: test
+  # IIS_DIRECTORY: NIMMetalsBP_f1
+  # Configuration type to build.
+  # You can convert this to a build matrix if you need coverage of multiple configuration types.
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  BUILD_CONFIGURATION: Release
+
+permissions: write-all
+
+jobs:
+  increment-revision: 
+    uses: ./.github/workflows/revision-increment.yaml
+    with:
+      env-name: dev
+    secrets: inherit
+  deploy-dev: 
+    runs-on: [self-hosted, Windows]1
+    needs: increment-revision
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build DB2 Legacy
+        working-directory: .\DB2Legacy\OrderManagement\BuildScripts
+        run: .\Build.ps1
+
+      - name: Create Deployment Artifacts
+        working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
+        run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}
+      - name: Copy Files
+        run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* \\ip-172-31-22-48.us-east-2.compute.internal\EasyBuyCyclesDb2_DEV\BPServices\
+        # run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* Z:\BPServices\
+      
+      

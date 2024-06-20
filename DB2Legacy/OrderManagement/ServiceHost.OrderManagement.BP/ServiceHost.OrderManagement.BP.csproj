@@ -113,6 +113,13 @@
     <Content Include="OrderBP.svc" />
     <Content Include="ProductBP.svc" />
     <Content Include="ShippingAddressBP.svc" />
+    <Content Include="Web.DEV.config" />
+    <Content Include="Web.DEV.Debug.config">
+      <DependentUpon>Web.DEV.config</DependentUpon>
+    </Content>
+    <Content Include="Web.DEV.Release.config">
+      <DependentUpon>Web.DEV.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
