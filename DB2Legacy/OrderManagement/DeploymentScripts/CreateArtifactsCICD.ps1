@@ -11,6 +11,10 @@ function BuildSolution
    )  
     Write-Output "Building $solution"
     & $msbuild (@($solution) + $MSBuildArgs)
+    if ($LastExitCode -ne 0) {
+        Write-Outpu "Error Building $solution"
+        exit $LastExitCode
+    }
 }
 
 $msbuild = (&"${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -prerelease -products * -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe)
@@ -127,7 +131,7 @@ Remove-Item $DeploymentFolder\Services*.config
 
 & $msbuild (@($ClickOnceLocation) + $CreatePublishWebPageArgs)
 
-& $msbuild (@($PublishLocation) + $PublishArgs)
+BuildSolution $msbuild $PublishLocation $PublishArgs
 
 # & $msbuild "Publish.msbuild" /target:SetConfigForEnvironment;UpdateAndResignManifests;CompressOutput /p:EnvID=$EnvID1Name /p:ClickOnceIconName=$ClickOnceIconName /p:ClickOnceIconPath=$EnvID1IconPath /p:InstallationFolderURL=$EnvID1InstallationFolderURL /p:DeploymentFolder=$DeploymentFolder /p:SolutionSystemName=$SolutionSystemName /p:SolutionFolder=$SolutionFolder  /p:SigningManifestPassword=$SigningManifestPassword /p:MagePath=$MagePath /p:SevenZipPath=$SevenZipPath /p:PublisherName=$PublisherName /p:ApplicationVersion=$ApplicationVersion  /consoleloggerparameters:ErrorsOnly;ShowTimeStamp /maxcpucount
 Write-Output "Build Complete"
