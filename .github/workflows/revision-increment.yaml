@@ -8,6 +8,7 @@ on:
     outputs: 
       version: 
         type: string
+        value: ${{ jobs.increment_version_vars.outputs.version }}
 jobs:
   increment_version_vars:
     runs-on: [ubuntu-latest]
