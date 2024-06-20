@@ -93,7 +93,6 @@ $PublishArgs = @(
     "/p:SevenZipPath=$SevenZipPath"
     "/p:PublisherName=$PublisherName"
     "/p:ApplicationVersion=$ApplicationVersion",
-    "/consoleloggerparameters:ErrorsOnly;ShowTimeStamp",
     "/maxcpucount",
     "/p:ToolsVersion=$ToolsVersion"
 );
