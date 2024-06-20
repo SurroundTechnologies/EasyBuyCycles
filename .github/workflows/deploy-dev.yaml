@@ -24,7 +24,7 @@ jobs:
       env-name: dev
     secrets: inherit
   deploy-dev: 
-    runs-on: [self-hosted, Windows]1
+    runs-on: [self-hosted, Windows]
     needs: increment-revision
     steps:
       - uses: actions/checkout@v4
