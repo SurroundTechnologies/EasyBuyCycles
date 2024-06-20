@@ -1,6 +1,8 @@
 # If you get an error running this script run the following command:
 # > Set-ExecutionPolicy -Scope CurrentUser unrestricted
 
+param($ApplicationVersion)
+
 # Script is configured to build with full symbos for debuging both release and debug folders
 function BuildSolution    
 {
@@ -21,7 +23,6 @@ $msbuild = (&"${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere
 $VisualStudioVersion = "17.0"
 $ToolsVersion = "17.0"
 $CommitHash = (git rev-parse HEAD).Substring(0,16)
-$ApplicationVersion="1.0.0.3"
 $PublisherName="EasyBuy Cycles Distributors"
 $CompanyName="EasyBuy Cycles Distributors"
 $SystemName="Order Management"
