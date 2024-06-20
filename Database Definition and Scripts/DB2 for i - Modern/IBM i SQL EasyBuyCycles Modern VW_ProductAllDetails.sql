@@ -44,37 +44,40 @@ CREATE OR REPLACE VIEW "VW_Product_AllDetails"
     FOR SYSTEM NAME "YD1PV01" AS
     
     WITH "OrderItems" AS (
-  	         SELECT "ProductInternalID"
+        SELECT "ProductInternalID"
+                ,COUNT(DISTINCT "Order"."CustomerInternalID") AS "CustomerCount"
                 ,COUNT(DISTINCT "OrderItem"."OrderInternalID") AS "OrderCount"
-       			,COUNT(*) AS "OrderItemCount"
+                ,COUNT(*) AS "OrderItemCount"
                 ,DECIMAL(AVG("OrderItem"."Quantity"),6,2) AS "AverageOrderQuantity"
                 ,MIN("OrderItem"."Quantity") AS "SmallestOrderQuantity"
                 ,MAX("OrderItem"."Quantity") AS "LargestOrderQuantity"
                 ,DECIMAL(AVG("OrderItem"."UnitPrice"),8,2) AS "AverageOrderUnitPrice"
                 ,MIN("OrderItem"."UnitPrice") AS "LowestOrderUnitPrice"
                 ,MAX("OrderItem"."UnitPrice") AS "HighestOrderUnitPrice"
+                ,MIN("Order"."OrderDateTime") AS "FirstOrderDateTime"
                 ,MAX("Order"."OrderDateTime") AS "LastOrderDateTime"
-                ,COUNT(DISTINCT "Order"."CustomerInternalID") AS "CustomerCount"
-       		FROM "OrderItem"
-               LEFT JOIN "Order" ON "Order"."InternalID" = "OrderItem"."OrderInternalID"
-       		GROUP BY "ProductInternalID"
+            FROM "OrderItem"
+                LEFT JOIN "Order" ON "Order"."InternalID" = "OrderItem"."OrderInternalID"
+            GROUP BY "ProductInternalID"
    )
     SELECT "Product"."InternalID"
-    		,"Product"."Code"
-    		,"Product"."Name"
-    		,"Product"."Description"
-    		,"Product"."Category"
-    		,"Product"."StandardCost"
-    		,"Product"."ListPrice"
-    		,"Product"."ReorderLevel"
-    		,"Product"."TargetLevel"
-    		,"Product"."MinimumReorderQuantity"
-    		,"Product"."Discontinued"
-    		,"Product"."Memo"
-    		,"Product"."ImagePath"
- 
+            ,"Product"."Code"
+            ,"Product"."Name"
+            ,"Product"."Description"
+            ,"Product"."Category"
+            ,"Product"."StandardCost"
+            ,"Product"."ListPrice"
+            ,"Product"."ListPrice" - "Product"."StandardCost" AS "Margin"
+            ,"Product"."ReorderLevel"
+            ,"Product"."TargetLevel"
+            ,"Product"."MinimumReorderQuantity"
+            ,"Product"."Discontinued"
+            ,"Product"."Memo"
+            ,"Product"."ImagePath"
+
     -- Joins to Order Item
-    		,"OrderItems"."OrderCount"
+            ,"OrderItems"."CustomerCount"
+            ,"OrderItems"."OrderCount"
             ,"OrderItems"."OrderItemCount"
             ,"OrderItems"."AverageOrderQuantity"
             ,"OrderItems"."SmallestOrderQuantity"
@@ -82,9 +85,9 @@ CREATE OR REPLACE VIEW "VW_Product_AllDetails"
             ,"OrderItems"."AverageOrderUnitPrice"
             ,"OrderItems"."LowestOrderUnitPrice"
             ,"OrderItems"."HighestOrderUnitPrice"
+            ,"OrderItems"."FirstOrderDateTime"
             ,"OrderItems"."LastOrderDateTime"
-            ,"OrderItems"."CustomerCount"
-    		
+            
     -- Audit Stamps
             ,"Product"."CreatedAt" AS "CreatedAt"
             ,"Product"."CreatedBy" AS "CreatedBy"
@@ -92,9 +95,9 @@ CREATE OR REPLACE VIEW "VW_Product_AllDetails"
             ,"Product"."LastModifiedAt" AS "ModifiedAt"
             ,"Product"."LastModifiedBy" AS "ModifiedBy"
             ,"Product"."LastModifiedWith" AS "ModifiedWith"
-    
-    	FROM "Product"
-    	LEFT JOIN "OrderItems" ON "OrderItems"."ProductInternalID" = "Product"."InternalID"
+
+        FROM "Product"
+        LEFT JOIN "OrderItems" ON "OrderItems"."ProductInternalID" = "Product"."InternalID"
 ;
 
 -- View Description
@@ -103,16 +106,18 @@ LABEL ON TABLE "VW_Product_AllDetails"
 
 -- Column Labels - Description (50 Chars)
 LABEL ON COLUMN "VW_Product_AllDetails" (
-    "OrderCount"                   TEXT IS 'Order Count'
-    ,"OrderItemCount"              TEXT IS 'Order Item Count'
-    ,"AverageOrderQuantity"        TEXT IS 'Average Order Quantity'
-    ,"SmallestOrderQuantity"       TEXT IS 'Smallest Order Quantity'
-    ,"LargestOrderQuantity"        TEXT IS 'Largest Order Quantity'
-    ,"AverageOrderUnitPrice"       TEXT IS 'Average Order Unit Price'
-    ,"LowestOrderUnitPrice"        TEXT IS 'Lowest Order Unit Price'
-    ,"HighestOrderUnitPrice"       TEXT IS 'Highest Order Unit Price'
-    ,"LastOrderDateTime"           TEXT IS 'Last Order Date Time'
-    ,"CustomerCount"               TEXT IS 'Customer Count'
+    "Margin"                        TEXT IS 'Margin'
+    ,"OrderCount"                   TEXT IS 'Order Count'
+    ,"OrderItemCount"               TEXT IS 'Order Item Count'
+    ,"AverageOrderQuantity"         TEXT IS 'Average Order Quantity'
+    ,"SmallestOrderQuantity"        TEXT IS 'Smallest Order Quantity'
+    ,"LargestOrderQuantity"         TEXT IS 'Largest Order Quantity'
+    ,"AverageOrderUnitPrice"        TEXT IS 'Average Order Unit Price'
+    ,"LowestOrderUnitPrice"         TEXT IS 'Lowest Order Unit Price'
+    ,"HighestOrderUnitPrice"        TEXT IS 'Highest Order Unit Price'
+    ,"FirstOrderDateTime"           TEXT IS 'First Order Date Time'
+    ,"LastOrderDateTime"            TEXT IS 'Last Order Date Time'
+    ,"CustomerCount"                TEXT IS 'Customer Count'
 );
 
 -- Grant View Access

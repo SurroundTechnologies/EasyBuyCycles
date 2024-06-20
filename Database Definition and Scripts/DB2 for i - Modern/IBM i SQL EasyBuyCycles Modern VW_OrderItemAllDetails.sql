@@ -44,27 +44,27 @@ CREATE OR REPLACE VIEW "VW_OrderItem_AllDetails"
     FOR SYSTEM NAME "YD1IV01" AS
     
     SELECT "OrderItem"."InternalID"
-    		,"OrderItem"."OrderInternalID"
-    		,"OrderItem"."ProductInternalID"
-    		,"OrderItem"."Quantity"
-    		,"OrderItem"."UnitPrice"
-    		,"OrderItem"."DiscountPercent"
-    		,"OrderItem"."Memo"
-    
+            ,"OrderItem"."OrderInternalID"
+            ,"OrderItem"."ProductInternalID"
+            ,"OrderItem"."Quantity"
+            ,"OrderItem"."UnitPrice"
+            ,"OrderItem"."DiscountPercent"
+            ,"OrderItem"."Memo"
+
     -- Calculated Columns
-               ,DECIMAL("OrderItem"."Quantity" * "OrderItem"."DiscountPercent" * 0.01,11,2) AS "UnitDiscount"
-               ,DECIMAL("OrderItem"."Quantity" * "OrderItem"."UnitPrice",11,2) AS "Price"
-    		   ,DECIMAL("OrderItem"."Quantity" * "OrderItem"."UnitPrice" * ("OrderItem"."DiscountPercent" * 0.01),11,2) AS "OrderDiscount"
-    	 	   ,DECIMAL("OrderItem"."Quantity" * "OrderItem"."UnitPrice" * (1 - ("OrderItem"."DiscountPercent" * 0.01)),11,2) AS "OrderTotal"
-    
+            ,DECIMAL("OrderItem"."UnitPrice" * ("OrderItem"."DiscountPercent" * 0.01),11,2) AS "UnitDiscount"
+            ,DECIMAL("OrderItem"."UnitPrice" * "OrderItem"."Quantity",11,2) AS "Price"
+            ,DECIMAL("OrderItem"."UnitPrice" * "OrderItem"."Quantity" * ("OrderItem"."DiscountPercent" * 0.01),11,2) AS "Discount"
+            ,DECIMAL("OrderItem"."UnitPrice" * "OrderItem"."Quantity" * (1 - ("OrderItem"."DiscountPercent" * 0.01)),11,2) AS "Total"
+
     -- Join to Order
-    		,"Order"."OrderDateTime"
-    		,"Order"."PurchaseOrderNumber" 
-    		,"Order"."CustomerInternalID"
-    
+            ,"Order"."OrderDateTime"
+            ,"Order"."PurchaseOrderNumber" 
+            ,"Order"."CustomerInternalID"
+
     -- Join to Customer
-    		,"Customer"."Name" AS "CustomerName" 
-    
+            ,"Customer"."Name" AS "CustomerName" 
+
     -- Join to Product
             ,"Product"."Code" AS "ProductCode"
             ,"Product"."Name" AS "ProductName"
@@ -72,7 +72,7 @@ CREATE OR REPLACE VIEW "VW_OrderItem_AllDetails"
             ,"Product"."StandardCost" AS "ProductStandardCost"
             ,"Product"."ListPrice" AS "ProductListPrice"
             ,"Product"."ImagePath" AS "ProductImagePath"
-    
+
     -- Audit Stamps
             ,"OrderItem"."CreatedAt" AS "CreatedAt"
             ,"OrderItem"."CreatedBy" AS "CreatedBy"
@@ -80,11 +80,11 @@ CREATE OR REPLACE VIEW "VW_OrderItem_AllDetails"
             ,"OrderItem"."LastModifiedAt" AS "ModifiedAt"
             ,"OrderItem"."LastModifiedBy" AS "ModifiedBy"
             ,"OrderItem"."LastModifiedWith" AS "ModifiedWith"
-    
-    	FROM "OrderItem"
-        LEFT JOIN "Order" ON "Order"."InternalID" = "OrderItem"."OrderInternalID"
-        LEFT JOIN "Customer" ON "Order"."CustomerInternalID" = "Customer"."InternalID"
-        LEFT JOIN "Product" ON "Product"."InternalID" = "OrderItem"."ProductInternalID"
+
+        FROM "OrderItem"
+            LEFT JOIN "Order" ON "Order"."InternalID" = "OrderItem"."OrderInternalID"
+            LEFT JOIN "Customer" ON "Order"."CustomerInternalID" = "Customer"."InternalID"
+            LEFT JOIN "Product" ON "Product"."InternalID" = "OrderItem"."ProductInternalID"
 ;
 
 -- View Description
@@ -95,8 +95,8 @@ LABEL ON TABLE "VW_OrderItem_AllDetails"
 LABEL ON COLUMN "VW_OrderItem_AllDetails" (
      "UnitDiscount"             TEXT IS 'Unit Discount'
      ,"Price"                   TEXT IS 'Price'
-     ,"OrderDiscount"           TEXT IS 'Order Discount'
-     ,"OrderTotal"              TEXT IS 'Order Total'
+     ,"Discount"                TEXT IS 'Discount'
+     ,"Total"                   TEXT IS 'Total'
      ,"OrderDateTime"           TEXT IS 'Order Date Time'
      ,"PurchaseOrderNumber"     TEXT IS 'Purchase Order Number'
      ,"CustomerInternalID"      TEXT IS 'Customer Internal ID'
