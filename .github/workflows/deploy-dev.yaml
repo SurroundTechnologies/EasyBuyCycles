@@ -2,7 +2,7 @@ name: easybuy-pr-build
 
 on:
   push:
-    branches: ["dev", "pd/deployment"]
+    branches: ["dev"]
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -24,7 +24,7 @@ jobs:
       env-name: dev
     secrets: inherit
   deploy-dev: 
-    runs-on: [self-hosted, Windows]
+    runs-on: [self-hosted, Windows]1
     needs: increment-revision
     steps:
       - uses: actions/checkout@v4
