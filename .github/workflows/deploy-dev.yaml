@@ -7,7 +7,7 @@ on:
 env:
   # Path to the solution file relative to the root of the project.
   SOLUTION_FILE_PATH: .
-  # Folder to use for build artifcats and deployment location
+  # Folder to use for build artifacts and deployment location
   # BUILD_DIRECTORY: test
   # IIS_DIRECTORY: NIMMetalsBP_f1
   # Configuration type to build.
@@ -24,7 +24,7 @@ jobs:
       env-name: dev
     secrets: inherit
   deploy-dev: 
-    runs-on: [self-hosted, Windows]1
+    runs-on: [self-hosted, Windows]
     needs: increment-revision
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +38,4 @@ jobs:
         run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}
       - name: Copy Files
         run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* \\ip-172-31-22-48.us-east-2.compute.internal\EasyBuyCyclesDb2_DEV\BPServices\
-        # run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* Z:\BPServices\
-      
-      
+       
