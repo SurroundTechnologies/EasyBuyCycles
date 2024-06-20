@@ -1,4 +1,4 @@
-name: easybuy-pr-build
+name: easybuy-deploy-dev
 
 on:
   push:
