@@ -1,0 +1,32 @@
+name: easybuy-pr-build
+
+on:
+  push:
+    branches: ["dev", "pd/deployment"]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: .
+  # Folder to use for build artifcats and deployment location
+  # BUILD_DIRECTORY: test
+  # IIS_DIRECTORY: NIMMetalsBP_f1
+  # Configuration type to build.
+  # You can convert this to a build matrix if you need coverage of multiple configuration types.
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  BUILD_CONFIGURATION: Release
+
+permissions: write-all
+
+jobs:
+  deploy-dev: 
+    runs-on: [self-hosted, Windows]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build DB2 Legacy
+        working-directory: .\DB2Legacy\OrderManagement\BuildScripts
+        run: .\Build.ps1
+
+      - name: Create Deployment Artifacts
+        working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
+        run: .\CreateArtifactsCICD.ps1
