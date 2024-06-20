@@ -37,6 +37,7 @@ jobs:
         working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
         run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}
       - name: Copy Files
-        run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* Z:\BPServices\
+        run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* \\172.31.22.48\BPServices\
+        # run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* Z:\BPServices\
       
       
