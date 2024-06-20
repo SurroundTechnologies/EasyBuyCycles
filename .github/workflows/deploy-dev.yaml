@@ -18,8 +18,14 @@ env:
 permissions: write-all
 
 jobs:
+  increment-revision: 
+    uses: ./.github/workflows/revision-increment.yaml
+    with:
+      env-name: dev
+    secrets: inherit
   deploy-dev: 
     runs-on: [self-hosted, Windows]
+    needs: increment-revision
     steps:
       - uses: actions/checkout@v4
 
@@ -29,4 +35,4 @@ jobs:
 
       - name: Create Deployment Artifacts
         working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
-        run: .\CreateArtifactsCICD.ps1
+        run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}

@@ -1,0 +1,24 @@
+name: increment-minor
+on:
+  workflow_call:
+    inputs:
+      env-name: 
+        required: true
+        type: string
+jobs:
+  increment_minor_vars:
+    runs-on: [ubuntu-latest]
+    environment: ${{inputs.env-name}}
+    steps:
+    - uses: actions/checkout@v4
+    - name: List Current Version
+      run: 'echo "Building version ${{ vars.VERSION_MAJOR }}.${{ vars.VERSION_MINOR }}.${{ vars.VERSION_BUILD }}.${{ vars.VERSION_REVISION }}"'
+    - name: list current version
+      run: 'echo "Incrementing current version ${{ vars.VERSION_MAJOR }}.${{ vars.VERSION_MINOR }}.${{ vars.VERSION_BUILD }}.${{ vars.VERSION_REVISION }}"'
+    - name: increment minor version
+      id: increment_minor
+      run: 'echo "MINOR=$((${{ vars.VERSION_MINOR }} + 1))" >> $GITHUB_OUTPUT'
+    - name: update minor version
+      run: 'curl -L -X PATCH -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer ${{secrets.API_TOKEN}}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/NIM-Group/Metals/actions/variables/VERSION_MINOR -d ''{"name": "VERSION_MINOR", "value": "${{ steps.increment_minor.outputs.MINOR }}" }'''
+    - name: reset revision
+      run: 'curl -L -X PATCH -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer ${{secrets.API_TOKEN}}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/NIM-Group/Metals/actions/variables/VERSION_REVISION -d ''{"name": "VERSION_REVISION", "value": "0" }'''
