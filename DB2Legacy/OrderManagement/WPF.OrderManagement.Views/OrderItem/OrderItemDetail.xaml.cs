@@ -4,29 +4,37 @@
 // <A4DN_Template Name="WPF.Module.Detail.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System.Collections.Generic;
-using System.Windows.Documents;
-using System.Globalization;
-using A4DN.Core.WPF.Base;
-using A4DN.Core.BOS.Base;
-using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
+using A4DN.Core.WPF.Base;
 using BOS.OrderItemDataEntity;
 using BOS.OrderItemViewModel;
+using BOS.ProductDataEntity;
+using System.Windows.Controls;
 
 namespace WPF.OrderItem
 {
-	/// <summary>
-	/// Interaction logic for OrderItemDetail.xaml
-	/// </summary>
-	public partial class OrderItemDetail : AB_DetailBase
+    /// <summary>
+    /// Interaction logic for OrderItemDetail.xaml
+    /// </summary>
+    public partial class OrderItemDetail : AB_DetailBase
 	{        
-		OrderItemVM _ViewModel; 
+		OrderItemVM _ViewModel;
+        public Panel OrderItemDetailLayout
+        {
+            get { return FieldsPanel; }
+        }
+		
+        private ProductEntity _EntityInTheDropDown;
+        public ProductEntity EntityInTheDropDown
+        {
+            get { return _EntityInTheDropDown; }
+            set { _EntityInTheDropDown = value; }
+        }
 
-		/// <summary>
-		/// Type initializer / static constructor
-		/// </summary>
-		static OrderItemDetail()
+        /// <summary>
+        /// Type initializer / static constructor
+        /// </summary>
+        static OrderItemDetail()
 		{
 			RG_StaticInit();
 		}
@@ -151,5 +159,10 @@ namespace WPF.OrderItem
 			}
 			
 		}
-	}
+
+        private void Field_ProductName_ae_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			EntityInTheDropDown = Field_ProductName.ap_CurrentSelectedEntity as ProductEntity;
+		}
+    }
 }

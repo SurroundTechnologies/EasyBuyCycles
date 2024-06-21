@@ -4,25 +4,22 @@
 // <A4DN_Template Name="WPF.Module.DropDown.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System;
-using System.Windows;
 using A4DN.Core.WPF.Base;
-using BOS.ProductViewModel;
 using BOS.ProductDataEntity;
-using BOS.ProductDataMaps;
+using BOS.ProductViewModel;
+using System.Windows;
 
 namespace WPF.Product
 {
-	/// <summary>
-	/// Interaction logic for ProductDropDown.xaml
-	/// </summary>
-	public partial class  ProductDropDown : AB_DropDownBase
+    /// <summary>
+    /// Interaction logic for ProductDropDown.xaml
+    /// </summary>
+    public partial class  ProductDropDown : AB_DropDownBase
 	{
 		/// <summary>
 		/// Dependency Property for Binding of foreign keys.  As this property is updated, a fetch will occur to load the drop down appropriately
 		/// </summary>
  
-		
         [AB_DropdownKeyProperty]
 		public int? ProductInternalID
 		{
@@ -31,10 +28,58 @@ namespace WPF.Product
 		}
         public static readonly DependencyProperty ProductInternalIDProperty = DependencyProperty.Register(nameof(ProductInternalID), typeof(int?), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
 
-		/// <summary>
-		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
-		/// </summary>
-		protected override void am_SetParentProperties()
+        [AB_DropdownNonKeyProperty]
+        public string Code
+        {
+            get => (string)GetValue(CodeProperty);
+            set => SetValue(CodeProperty, value);
+        }
+        public static readonly DependencyProperty CodeProperty = DependencyProperty.Register(nameof(Code), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        //[AB_DropdownNonKeyProperty]
+        //public string ProductName
+        //{
+        //    get => (string)GetValue(ProductNameProperty);
+        //    set => SetValue(ProductNameProperty, value);
+        //}
+        //public static readonly DependencyProperty ProductNameProperty = DependencyProperty.Register(nameof(ProductName), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public string Category
+        {
+            get => (string)GetValue(CategoryProperty);
+            set => SetValue(CategoryProperty, value);
+        }
+        public static readonly DependencyProperty CategoryProperty = DependencyProperty.Register(nameof(Category), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public decimal? ListPrice
+        {
+            get => (decimal?)GetValue(ListPriceProperty);
+            set => SetValue(ListPriceProperty, value);
+        }
+        public static readonly DependencyProperty ListPriceProperty = DependencyProperty.Register(nameof(ListPrice), typeof(decimal?), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public string Description
+        {
+            get => (string)GetValue(DescriptionProperty);
+            set => SetValue(DescriptionProperty, value);
+        }
+        public static readonly DependencyProperty DescriptionProperty = DependencyProperty.Register(nameof(Description), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public string ImagePath
+        {
+            get => (string)GetValue(ImagePathProperty);
+            set => SetValue(ImagePathProperty, value);
+        }
+        public static readonly DependencyProperty ImagePathProperty = DependencyProperty.Register(nameof(ImagePath), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        /// <summary>
+        /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
+        /// </summary>
+        protected override void am_SetParentProperties()
 		{
 			InitializeComponent();
 			
