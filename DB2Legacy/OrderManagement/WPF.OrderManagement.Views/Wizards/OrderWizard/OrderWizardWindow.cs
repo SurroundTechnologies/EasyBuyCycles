@@ -1,6 +1,7 @@
 ﻿using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderDataEntity;
 using BOS.OrderManagement.Shared.Properties;
+using System.ComponentModel;
 using WPF.OrderManagement.Shared;
 
 namespace WPF.Wizards.OrderWizard
@@ -13,7 +14,7 @@ namespace WPF.Wizards.OrderWizard
 
             Width = 1005;
             Title = DescriptionResource.ORDERWIZARDSPLASH;
-            ap_SplashWindowType = typeof(OrderWizardSplash);
+            //ap_SplashWindowType = typeof(OrderWizardSplash);
             ap_TreeViewIconsStyle = AB_TreeViewIconsStyles.SmallIcons;
             ap_SharedObjectType = typeof(OrderWizardObject);
         }
@@ -22,6 +23,7 @@ namespace WPF.Wizards.OrderWizard
         {
             base.am_EnrollWizardParts();
 
+            am_AddWizardPart(typeof(StartWizardPart));
             am_AddWizardPart(typeof(CustomerWizardPart));
             am_AddWizardPart(typeof(OrderItemWizardPart));
             am_AddWizardPart(typeof(ShippingAddressWizardPart));

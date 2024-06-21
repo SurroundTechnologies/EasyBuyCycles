@@ -49,7 +49,7 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void am_EnrollWizardSteps()
         {
-            am_AddStep(new AB_WizardStep(Step_Customer, DescriptionResource.CUSTOMER, DescriptionResource.ENTERCUSTOMERINFORMATION, "Customers.png"));
+            am_AddStep(new AB_WizardStep(Step_Customer, DescriptionResource.CUSTOMER, DescriptionResource.ENTERCUSTOMERINFORMATION, "Customer.png"));
         }
 
         private void rbSpecifyExisting_Checked(object sender, RoutedEventArgs e)

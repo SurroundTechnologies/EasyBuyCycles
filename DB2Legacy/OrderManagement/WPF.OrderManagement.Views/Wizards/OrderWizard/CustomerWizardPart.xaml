@@ -10,7 +10,6 @@
                               xmlns:systemWPFShared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
                               xmlns:WPF.Customer="clr-namespace:WPF.Customer"
                               ap_BtnFinishIsEnabled="False"
-                              ap_BtnBackVisibility="Collapsed"
                               ap_BtnResetVisibility="Collapsed"
                               ap_BtnSkipVisibility="Collapsed"
                               mc:Ignorable="d"

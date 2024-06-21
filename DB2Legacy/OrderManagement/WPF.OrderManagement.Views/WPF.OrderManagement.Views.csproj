@@ -96,6 +96,9 @@
     <Compile Include="Wizards\OrderWizard\ShippingAddressWizardPart.xaml.cs">
       <DependentUpon>ShippingAddressWizardPart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wizards\OrderWizard\StartWizardPart.xaml.cs">
+      <DependentUpon>StartWizardPart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wizards\OrderWizard\WizardSplash.xaml.cs">
       <DependentUpon>WizardSplash.xaml</DependentUpon>
     </Compile>
@@ -329,6 +332,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Wizards\OrderWizard\StartWizardPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Wizards\OrderWizard\WizardSplash.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -339,10 +346,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup Label="A4DNReferences">
-	  <Reference Include="WPF.PropCodeValue, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-		  <SpecificVersion>False</SpecificVersion>
-		  <HintPath>$(A4DNMaintenanceHintPath)WPF.PropCodeValue.dll</HintPath>
-	  </Reference>
+    <Reference Include="WPF.PropCodeValue, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(A4DNMaintenanceHintPath)WPF.PropCodeValue.dll</HintPath>
+    </Reference>
     <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
       <SpecificVersion>True</SpecificVersion>
       <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>

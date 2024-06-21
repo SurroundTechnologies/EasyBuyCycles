@@ -46,7 +46,7 @@ namespace WPF.Wizards.OrderWizard
                 Source = this,
                 Mode = BindingMode.OneWay,
             });
-
+            _ItemDetail.Field_PurchaseOrderNumber.Visibility = Visibility.Collapsed;
             itemsDetail.Content = _ItemDetail.OrderItemDetailLayout;
 
             _CurrentEntity = new OrderItemEntity() { ap_RecordMode = AB_RecordMode.New };
