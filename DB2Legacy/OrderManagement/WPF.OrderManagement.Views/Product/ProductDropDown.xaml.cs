@@ -36,14 +36,6 @@ namespace WPF.Product
         }
         public static readonly DependencyProperty CodeProperty = DependencyProperty.Register(nameof(Code), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        //[AB_DropdownNonKeyProperty]
-        //public string ProductName
-        //{
-        //    get => (string)GetValue(ProductNameProperty);
-        //    set => SetValue(ProductNameProperty, value);
-        //}
-        //public static readonly DependencyProperty ProductNameProperty = DependencyProperty.Register(nameof(ProductName), typeof(string), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
         [AB_DropdownNonKeyProperty]
         public string Category
         {

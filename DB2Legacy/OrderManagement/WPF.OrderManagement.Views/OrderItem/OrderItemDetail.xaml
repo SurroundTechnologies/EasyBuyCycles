@@ -47,12 +47,15 @@
                               HorizontalScrollBarVisibility="Auto"
                               Background="{DynamicResource AB_Brush_TabItemSelectedBackground}"
                               Padding="10">
-                    <WrapPanel Orientation="Vertical" x:Name="FieldsPanel" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
-                        <Grid DockPanel.Dock="Top">
+                    <WrapPanel Orientation="Vertical"
+                               x:Name="FieldsPanel"
+                               Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
+                        <Grid DockPanel.Dock="Top"
+                              Margin="0 0 0 20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="310" />
+                                <!--<ColumnDefinition Width="Auto" />-->
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -160,20 +163,20 @@
                                         Grid.RowSpan="7">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="268"/>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="268" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Margin="10,0,0,0"
                                                Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}"
                                                VerticalAlignment="Top"
-                                               Grid.Column="0"/>
+                                               Grid.Column="0" />
                                     <TextBlock x:Name="Field_Memo_Char_Counter"
                                                HorizontalAlignment="Right"
                                                VerticalAlignment="Top"
                                                Text="{Binding Path=MemoCharacterCountStr}"
                                                FontStyle="Italic"
                                                Grid.Column="1">
-                                        
+
                                     </TextBlock>
                                 </Grid>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed"
@@ -188,16 +191,16 @@
                                                         Width="310" />
                             </StackPanel>
 
-                            <Image Height="205"
-                                   Width="225"
-                                   Margin="20,0,10,0"
-                                   Source="{Binding ProductImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}"
-                                   HorizontalAlignment="Left"
-                                   Grid.Column="2"
-                                   Grid.RowSpan="9"
-                                   VerticalAlignment="Top" />
+                            
 
                         </Grid>
+
+                        <Image Height="205"
+                               Width="225"
+                               Margin="20,0,10,0"
+                               Source="{Binding ProductImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top" />
 
                     </WrapPanel>
                 </ScrollViewer>
