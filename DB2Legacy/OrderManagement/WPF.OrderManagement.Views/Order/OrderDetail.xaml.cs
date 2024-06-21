@@ -93,6 +93,16 @@ namespace WPF.Order
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
+
+			// Current Loaded Data Entity
+			var currentEntity = ap_CurrentEntity as OrderEntity;
+
+			if (currentEntity != null && !currentEntity.OrderDate.HasValue && !currentEntity.OrderTime.HasValue)
+			{
+				var CurrentDatetime = System.DateTime.Now;
+                currentEntity.OrderDate = CurrentDatetime.Date;
+                currentEntity.OrderTime = CurrentDatetime.TimeOfDay;
+			}
 		}
 
 		/// <summary>
@@ -104,6 +114,7 @@ namespace WPF.Order
 
 			// Current Loaded Data Entity
 			//OrderEntity currentEntity = ap_CurrentEntity as OrderEntity;
+
 			
 		}
 		
