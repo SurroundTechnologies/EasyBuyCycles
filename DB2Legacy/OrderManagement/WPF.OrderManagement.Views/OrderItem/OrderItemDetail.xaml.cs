@@ -9,6 +9,7 @@ using A4DN.Core.WPF.Base;
 using BOS.OrderItemDataEntity;
 using BOS.OrderItemViewModel;
 using BOS.ProductDataEntity;
+using System;
 using System.Windows.Controls;
 
 namespace WPF.OrderItem
@@ -100,7 +101,9 @@ namespace WPF.OrderItem
 		 protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-		}
+
+            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
+        }
 
 		/// <summary>
 		/// This method is called after the data is loaded.
@@ -160,9 +163,25 @@ namespace WPF.OrderItem
 			
 		}
 
+        protected override void Dispose(bool Disposing)
+        {
+			if (Disposing)
+			{
+                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
+            }
+
+            base.Dispose(Disposing);
+        }
+
         private void Field_ProductName_ae_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 			EntityInTheDropDown = Field_ProductName.ap_CurrentSelectedEntity as ProductEntity;
 		}
+
+		private void MemoCharacterCountChanged(object sender, EventArgs e)
+		{
+			var charCount = (Field_Memo.DataContext as OrderItemEntity).Memo?.Length ?? 0;
+			(ap_CurrentEntity as OrderItemEntity).MemoCharacterCount = charCount;
+        }
     }
 }

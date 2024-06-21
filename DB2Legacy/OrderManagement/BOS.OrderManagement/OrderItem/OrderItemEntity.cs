@@ -4,17 +4,12 @@
 // <A4DN_Template Name="BOS.Module.Entity.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using A4DN.Core.BOS.Base;
 using BOS.OrderManagement.Shared.Properties;
-#if !SILVERLIGHT
-using A4DN.Core.BOS.ValidationAttributes;  // Custom validation attributes
-#endif
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace BOS.OrderItemDataEntity
 {
@@ -446,6 +441,26 @@ namespace BOS.OrderItemDataEntity
             }
         }
         public static AB_PropertyMetadata<decimal?> OrderTotalProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderTotal), DescriptionResource.TOTAL, null);
+
+        public int MemoCharacterCount
+        {
+            get => Memo?.Length ?? 0;
+            set
+            {
+                am_SetPropertyValue(MemoCharacterCountProperty, value);
+                am_FirePropertyChanged(MemoCharacterCountStrProperty);
+            }
+        }
+        public static AB_PropertyMetadata<int> MemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(MemoCharacterCount), null, 0);
+
+        public string MemoCharacterCountStr
+        {
+            get
+            {
+                return string.Format("{0}/100", MemoCharacterCount);
+            }
+        }
+        public static AB_PropertyMetadata<string> MemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(MemoCharacterCountStr), null, null);
 
         #endregion //Properties
 

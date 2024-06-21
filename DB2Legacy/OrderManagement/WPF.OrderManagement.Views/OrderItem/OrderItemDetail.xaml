@@ -158,10 +158,24 @@
                             <StackPanel Grid.Row="2"
                                         Grid.Column="1"
                                         Grid.RowSpan="7">
-                                <TextBlock Margin="10,0,0,0"
-                                           Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Top" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="268"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="10,0,0,0"
+                                               Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}"
+                                               VerticalAlignment="Top"
+                                               Grid.Column="0"/>
+                                    <TextBlock x:Name="Field_Memo_Char_Counter"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Top"
+                                               Text="{Binding Path=MemoCharacterCountStr}"
+                                               FontStyle="Italic"
+                                               Grid.Column="1">
+                                        
+                                    </TextBlock>
+                                </Grid>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed"
                                                         ap_LabelPosition="Top"
                                                         x:Name="Field_Memo"
@@ -171,7 +185,7 @@
                                                         ap_AllowMultilineInput="True"
                                                         Height="160"
                                                         HorizontalAlignment="Left"
-                                                        Width="290" />
+                                                        Width="310" />
                             </StackPanel>
 
                             <Image Height="205"
@@ -181,14 +195,14 @@
                                    HorizontalAlignment="Left"
                                    Grid.Column="2"
                                    Grid.RowSpan="9"
-                                   VerticalAlignment="Top"/>
+                                   VerticalAlignment="Top" />
 
                         </Grid>
 
                     </WrapPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
-            
+
             <base:AB_DockingTabItem x:Name="AuditFieldsTab">
                 <base:AB_DockingTabItem.Header>
                     <StackPanel Orientation="Horizontal">
