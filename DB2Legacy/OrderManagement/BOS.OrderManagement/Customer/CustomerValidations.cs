@@ -40,4 +40,17 @@ namespace BOS.CustomerDataEntity
             return new AB_ValidateMethodReturnArgs(true);
         }
     }
+
+    public class ValidateLegalName : AB_IValidation
+    {
+        public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs InputArgs)
+        {
+            CustomerEntity entity = InputArgs.ap_EntityToValidate as CustomerEntity;
+            if (entity.ParentName != null && string.IsNullOrEmpty(entity.LegalName))
+            {
+                return new AB_ValidateMethodReturnArgs(false);
+            }
+            return new AB_ValidateMethodReturnArgs(true);
+        }
+    }
 }

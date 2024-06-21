@@ -103,7 +103,7 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "LEGALNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
-        [AB_RequiredField]
+        [AB_ValidationMethod(typeof(ValidateLegalName), "No Parent Relationship")]
         public string LegalName //Map Field: YD1CNMLG
         {
             get => am_GetPropertyValue(LegalNameProperty);
