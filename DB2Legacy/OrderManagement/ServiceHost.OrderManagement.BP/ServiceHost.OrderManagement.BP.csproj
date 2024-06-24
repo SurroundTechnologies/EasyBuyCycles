@@ -83,18 +83,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>ConnectionParms.config</Link>
     </Content>
-    <Content Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.DEV.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>ConnectionParms.DEV.config</Link>
-    </Content>
-    <Content Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.TST.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>ConnectionParms.TST.config</Link>
-    </Content>
-    <Content Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.PRO.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>ConnectionParms.PRO.config</Link>
-    </Content>
     <Content Include="Services.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

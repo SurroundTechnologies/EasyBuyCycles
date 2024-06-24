@@ -14,7 +14,7 @@ env:
   # You can convert this to a build matrix if you need coverage of multiple configuration types.
   # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   BUILD_CONFIGURATION: Release
-
+  env-name: dev
 permissions: write-all
 
 jobs:
@@ -22,20 +22,42 @@ jobs:
     uses: ./.github/workflows/revision-increment.yaml
     with:
       env-name: dev
-    secrets: inherit
   deploy-dev: 
     runs-on: [self-hosted, Windows]
+    environment: dev
     needs: increment-revision
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Copy ConnectionParms Config File for BP Service Host.
+        working-directory: .\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL
+        run: cp -r ./ConnectionParms.deploy.config ./ConnectionParms.config
+
+      - name: Update Connection Parms User
+        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB UserID "${{vars.DB_USER_ID}}"
+
+      - name: Update Connection Parms Password
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB Password "${{env.DB_PASSWORD}}"
+
+      - name: Update Connection Parms Server
+        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB DataSource "${{vars.DB_DATA_SOURCE}}"
 
       - name: Build DB2 Legacy
         working-directory: .\DB2Legacy\OrderManagement\BuildScripts
         run: .\Build.ps1
-
       - name: Create Deployment Artifacts
         working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
         run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}
+
+
+      - name: Create MVC Artifacts
+        working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
+        run: .\CreateMVCArtifacts.ps1 ${{ needs.increment-revision.outputs.version }}
       - name: Copy Files
         run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* \\ip-172-31-22-48.us-east-2.compute.internal\EasyBuyCyclesDb2_DEV\BPServices\
+      - name: Copy MVC Files
+        run: cp -r -Force C:\Deployments\OrderManagement\MVC\* \\ip-172-31-22-48.us-east-2.compute.internal\EasyBuyCyclesDb2_DEV\MVC\
        

@@ -178,26 +178,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>Services.DEV.config</Link>
     </Content>
-    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.DEV.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>ConnectionParms.DEV.config</Link>
-    </None>
-    <Content Include="..\ServiceHost.OrderManagement.BP\Services.TST.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>Services.TST.config</Link>
-    </Content>
-    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.TST.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>ConnectionParms.TST.config</Link>
-    </None>
-    <Content Include="..\ServiceHost.OrderManagement.BP\Services.PRO.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>Services.PRO.config</Link>
-    </Content>
-    <None Include="..\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.PRO.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>ConnectionParms.PRO.config</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
