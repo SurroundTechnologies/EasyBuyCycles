@@ -13,6 +13,8 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
 using BOS.ProductDataEntity;
 using BOS.ProductViewModel;
+using WPF.OrderManagement.Shared;
+using System.Windows.Controls;
 
 namespace WPF.Product
 {
@@ -21,7 +23,7 @@ namespace WPF.Product
 	/// </summary>
 	public partial class ProductDetail : AB_DetailBase
 	{        
-		ProductVM _ViewModel; 
+		ProductVM _ViewModel;
 
 		/// <summary>
 		/// Type initializer / static constructor
@@ -72,7 +74,6 @@ namespace WPF.Product
 			// View Model
 			_ViewModel = FindResource("ProductVM") as ProductVM;
 			ap_ViewModel = _ViewModel; 
-
 		}
 		
 		/// <summary>
@@ -151,5 +152,18 @@ namespace WPF.Product
 			}
 			
 		}
-	}
+
+		private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			var entity = ap_CurrentEntity as ProductEntity;
+			var owner = AB_WPFHelperMethods.am_FindParentWindow(sender as Image);
+			
+			var largeImageView = new ImageViewer(entity.ImagePath)
+			{
+				Owner = owner
+			};
+
+			largeImageView.Show();
+		}
+    }
 }

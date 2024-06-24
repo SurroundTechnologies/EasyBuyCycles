@@ -58,6 +58,9 @@
   -->
   <ItemGroup Label="A4DNItems">
     <Compile Include="DataConverters.cs" />
+    <Compile Include="ImageViewer.xaml.cs">
+      <DependentUpon>ImageViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
     <Resource Include="Images\3.png" />
@@ -203,6 +206,10 @@
     <Resource Include="Images\ShippingAddress_48_48_32.png" />
     <Resource Include="Images\surround.png" />
     <Resource Include="Images\SurroundTask.png" />
+    <Page Include="ImageViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\ApplicationResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -54,7 +54,7 @@
                                  PropertyCodeTable="ProductCategory"
                                  ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Top"
                                  ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}" />
-                            <Image Height="205" Width="225" Grid.Column="1" Margin="10,5,5,5" Grid.Row="0" Grid.RowSpan="4" Source="{Binding ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}"/>
+                            <Image Height="205" Width="225" Grid.Column="1" Margin="10,5,5,5" Grid.Row="0" Grid.RowSpan="4" Source="{Binding ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}" MouseLeftButtonUp="Image_MouseLeftButtonUp" Cursor="Hand"/>
                         </Grid>
 
                         <Grid DockPanel.Dock="Top" Width="600" HorizontalAlignment="Left">
