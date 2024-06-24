@@ -71,15 +71,6 @@
     <Content Include="ConnectionParms.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ConnectionParms.DEV.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConnectionParms.TST.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConnectionParms.PRO.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="CustomerDAL.svc" />
     <Content Include="OrderItemDAL.svc" />
     <Content Include="OrderDAL.svc" />
