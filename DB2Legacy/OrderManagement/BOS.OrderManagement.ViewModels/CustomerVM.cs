@@ -106,15 +106,17 @@ namespace BOS.CustomerViewModel
 		{
 			IsMapTabVisible = true;
 
-			switch (inputArgs.ap_Mode)
+            switch (inputArgs.ap_Mode)
 			{
 				case AB_RecordMode.Display:
 					break;
 				case AB_RecordMode.New:
 					IsMapTabVisible = false;
-					break;
+					ValidateParentCustomer(inputArgs, currentDataContext);
+                    break;
 				case AB_RecordMode.Open:
-					break;
+                    ValidateParentCustomer(inputArgs, currentDataContext);
+                    break;
 				case AB_RecordMode.Preview:
 					break;
 				default:
@@ -128,6 +130,15 @@ namespace BOS.CustomerViewModel
 		protected override void am_OnCurrentEntityPropertyChanged(AB_VisualModelInitArgs inputArgs, string propertyName, CustomerEntity currentEntity)
 		{
 
+		}
+
+		private void ValidateParentCustomer(AB_VisualModelInitArgs inputArgs, CustomerEntity currentDataContext)
+		{
+            // Put More Code Here
+            if (currentDataContext.ParentInternalID == 0)
+            {
+                inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = true;
+            }
 		}
 
 		
