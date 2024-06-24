@@ -105,7 +105,7 @@
 	
 	<Target Name="SetConfigForWeb">
 		<Copy SourceFiles="$(DeploymentFolder)\Web.$(EnvID).config" DestinationFiles="$(DeploymentFolder)\Web.config" />
-		<Copy SourceFiles="$(DeploymentBin)\ConnectionParms.$(EnvID).config" DestinationFiles="$(DeploymentBin)\ConnectionParms.config" />
+		<!-- <Copy SourceFiles="$(DeploymentBin)\ConnectionParms.$(EnvID).config" DestinationFiles="$(DeploymentBin)\ConnectionParms.config" /> -->
 		<Copy SourceFiles="$(DeploymentBin)\Services.$(EnvID).config" DestinationFiles="$(DeploymentBin)\Services.config" />
 	</Target>
 

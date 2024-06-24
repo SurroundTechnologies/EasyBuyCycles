@@ -23,6 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Need a connection parms for the solution to build even if not populated
+      - name: Copy ConnectionParms Config File for BP Service Host.
+        working-directory: .\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL
+        run: cp -r ./ConnectionParms.deploy.config ./ConnectionParms.config
+
       - name: Build DB2 Legacy
         working-directory: .\DB2Legacy\OrderManagement\BuildScripts
         run: .\Build.ps1
