@@ -35,7 +35,7 @@ jobs:
         run: cp -r ./ConnectionParms.deploy.config ./ConnectionParms.config
 
       - name: Update Connection Parms User
-        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB UserID "${{env.DB_USER_ID}}"
+        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB UserID "${{vars.DB_USER_ID}}"
 
       - name: Update Connection Parms Password
         env:
@@ -43,7 +43,7 @@ jobs:
         run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB Password "${{env.DB_PASSWORD}}"
 
       - name: Update Connection Parms Server
-        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB DataSource "${{env.DB_DATA_SOURCE}}"
+        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB DataSource "${{vars.DB_DATA_SOURCE}}"
 
       - name: Build DB2 Legacy
         working-directory: .\DB2Legacy\OrderManagement\BuildScripts
