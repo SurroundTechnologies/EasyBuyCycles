@@ -4,29 +4,38 @@
 // <A4DN_Template Name="WPF.Module.Detail.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System.Collections.Generic;
-using System.Windows.Documents;
-using System.Globalization;
-using A4DN.Core.WPF.Base;
-using A4DN.Core.BOS.Base;
-using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
+using A4DN.Core.WPF.Base;
 using BOS.OrderItemDataEntity;
 using BOS.OrderItemViewModel;
+using BOS.ProductDataEntity;
+using System;
+using System.Windows.Controls;
 
 namespace WPF.OrderItem
 {
-	/// <summary>
-	/// Interaction logic for OrderItemDetail.xaml
-	/// </summary>
-	public partial class OrderItemDetail : AB_DetailBase
+    /// <summary>
+    /// Interaction logic for OrderItemDetail.xaml
+    /// </summary>
+    public partial class OrderItemDetail : AB_DetailBase
 	{        
-		OrderItemVM _ViewModel; 
+		OrderItemVM _ViewModel;
+        public Panel OrderItemDetailLayout
+        {
+            get { return FieldsPanel; }
+        }
+		
+        private ProductEntity _EntityInTheDropDown;
+        public ProductEntity EntityInTheDropDown
+        {
+            get { return _EntityInTheDropDown; }
+            set { _EntityInTheDropDown = value; }
+        }
 
-		/// <summary>
-		/// Type initializer / static constructor
-		/// </summary>
-		static OrderItemDetail()
+        /// <summary>
+        /// Type initializer / static constructor
+        /// </summary>
+        static OrderItemDetail()
 		{
 			RG_StaticInit();
 		}
@@ -92,7 +101,9 @@ namespace WPF.OrderItem
 		 protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-		}
+
+            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
+        }
 
 		/// <summary>
 		/// This method is called after the data is loaded.
@@ -137,19 +148,35 @@ namespace WPF.OrderItem
 			
 			switch (command.ap_CommandID)
 			{
-				//case "<CommandID>":
+                case AB_CommonCommandIDs.New:
+                    (ap_CurrentEntity as OrderItemEntity).Quantity = 1;
+                    break;
 
-                //    Do Something ...
-
-                //    set e.Handled to true to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
-
-				default:
+                default:
 					break;
 			}
 			
 		}
-	}
+
+        protected override void Dispose(bool Disposing)
+        {
+			if (Disposing)
+			{
+                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
+            }
+
+            base.Dispose(Disposing);
+        }
+
+        private void Field_ProductName_ae_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			EntityInTheDropDown = Field_ProductName.ap_CurrentSelectedEntity as ProductEntity;
+		}
+
+		private void MemoCharacterCountChanged(object sender, EventArgs e)
+		{
+			var charCount = (Field_Memo.DataContext as OrderItemEntity).Memo?.Length ?? 0;
+			(ap_CurrentEntity as OrderItemEntity).MemoCharacterCount = charCount;
+        }
+    }
 }

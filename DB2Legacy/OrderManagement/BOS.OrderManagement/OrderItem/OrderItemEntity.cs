@@ -4,17 +4,12 @@
 // <A4DN_Template Name="BOS.Module.Entity.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using A4DN.Core.BOS.Base;
 using BOS.OrderManagement.Shared.Properties;
-#if !SILVERLIGHT
-using A4DN.Core.BOS.ValidationAttributes;  // Custom validation attributes
-#endif
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace BOS.OrderItemDataEntity
 {
@@ -63,6 +58,7 @@ namespace BOS.OrderItemDataEntity
         [AB_DropdownDisplay("~/Views/Order/_OrderDropdown.cshtml", new string[] { "Source: OrderInternalID ,Target: OrderInternalID" }, ap_ShowNewButton = true, ap_ShowOpenButton = true, ap_ShowSearchButton = true)]
         [Display(Name = "ORDERINTERNALID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
+        [AB_RequiredField]
         [DataMember]
         public int? OrderInternalID //Map Field: YD1I1OID
         {
@@ -89,7 +85,13 @@ namespace BOS.OrderItemDataEntity
         public int? Quantity //Map Field: YD1IQT
         {
             get => am_GetPropertyValue(QuantityProperty);
-            set => am_SetPropertyValue(QuantityProperty, value);
+            set
+            {
+                am_SetPropertyValue(QuantityProperty, value);
+                am_FirePropertyChanged(OrderPriceProperty);
+                am_FirePropertyChanged(OrderDiscountProperty);
+                am_FirePropertyChanged(OrderTotalProperty);
+            }
         }
         public static AB_PropertyMetadata<int?> QuantityProperty = am_CreatePropertyMetaData<int?>(nameof(Quantity), DescriptionResource.QUANTITY, null); 
 
@@ -98,11 +100,17 @@ namespace BOS.OrderItemDataEntity
         [DataType(DataType.Currency)]
         [AB_ApplyStringFormat("C")]
         [DataMember]
-        [AB_RequiredField]
         public decimal? UnitPrice //Map Field: YD1IPRUN
         {
             get => am_GetPropertyValue(UnitPriceProperty);
-            set => am_SetPropertyValue(UnitPriceProperty, value);
+            set
+            {
+                am_SetPropertyValue(UnitPriceProperty, value);
+                am_FirePropertyChanged(UnitDiscountProperty);
+                am_FirePropertyChanged(OrderPriceProperty);
+                am_FirePropertyChanged(OrderDiscountProperty);
+                am_FirePropertyChanged(OrderTotalProperty);
+            }
         }
         public static AB_PropertyMetadata<decimal?> UnitPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitPrice), DescriptionResource.UNITPRICE, null);
 
@@ -111,13 +119,19 @@ namespace BOS.OrderItemDataEntity
         [DataType(DataType.Currency)]
         [AB_ApplyStringFormat("C")]
         [DataMember]
-        [AB_RequiredField]
+        [AB_ReadOnly]
         public decimal? OrderPrice //Map Field: YD1IPRUN
         {
-            get => am_GetPropertyValue(OrderPriceProperty);
-            set => am_SetPropertyValue(OrderPriceProperty, UnitPrice * Quantity);
+            get
+            {
+                return UnitPrice * Quantity;
+            }
+            set
+            {
+                am_SetPropertyValue(OrderPriceProperty, UnitPrice * Quantity);
+            }
         }
-        public static AB_PropertyMetadata<decimal?> OrderPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderPrice), DescriptionResource.ORDERPRICE, null);
+        public static AB_PropertyMetadata<decimal?> OrderPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderPrice), DescriptionResource.PRICE, null);
 
         [Display(Name = "DISCOUNTPERCENT", ResourceType = typeof(DescriptionResource))]
         [AB_Length(4)]
@@ -126,7 +140,13 @@ namespace BOS.OrderItemDataEntity
         public decimal? DiscountPercent //Map Field: YD1IDSPC
         {
             get => am_GetPropertyValue(DiscountPercentProperty);
-            set => am_SetPropertyValue(DiscountPercentProperty, value);
+            set
+            {
+                am_SetPropertyValue(DiscountPercentProperty, value);
+                am_FirePropertyChanged(UnitDiscountProperty);
+                am_FirePropertyChanged(OrderDiscountProperty);
+                am_FirePropertyChanged(OrderTotalProperty);
+            }
         }
         public static AB_PropertyMetadata<decimal?> DiscountPercentProperty = am_CreatePropertyMetaData<decimal?>(nameof(DiscountPercent), DescriptionResource.DISCOUNTPERCENT, null); 
 
@@ -145,6 +165,7 @@ namespace BOS.OrderItemDataEntity
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
         [AB_CreateDate]
+        [AB_ReadOnly]
         [DataMember]
         public DateTime? CreateDate //Map Field: YD1ICRDT
         {
@@ -155,6 +176,7 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "CREATETIME", ResourceType = typeof(DescriptionResource))]
         [AB_CreateTime]
+        [AB_ReadOnly]
         [DataMember]
         public TimeSpan? CreateTime //Map Field: YD1ICRTM
         {
@@ -166,6 +188,7 @@ namespace BOS.OrderItemDataEntity
         [Display(Name = "CREATEUSER", ResourceType = typeof(DescriptionResource))]
         [AB_Length(10)]
         [AB_CreateUser]
+        [AB_ReadOnly]
         [DataMember]
         public string CreateUser //Map Field: YD1ICRUS
         {
@@ -176,6 +199,7 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "CREATEJOB", ResourceType = typeof(DescriptionResource))]
         [AB_Length(10)]
+        [AB_ReadOnly]
         [DataMember]
         public string CreateJob //Map Field: YD1ICRJB
         {
@@ -186,6 +210,7 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "CREATEJOBNUMBER", ResourceType = typeof(DescriptionResource))]
         [AB_Length(6)]
+        [AB_ReadOnly]
         [DataMember]
         public string CreateJobNumber //Map Field: YD1ICRJN
         {
@@ -199,6 +224,7 @@ namespace BOS.OrderItemDataEntity
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
         [AB_LastChangeDate]
+        [AB_ReadOnly]
         [DataMember]
         public DateTime? LastChangeDate //Map Field: YD1ILCDT
         {
@@ -209,6 +235,7 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "LASTCHANGETIME", ResourceType = typeof(DescriptionResource))]
         [AB_LastChangeTime]
+        [AB_ReadOnly]
         [DataMember]
         public TimeSpan? LastChangeTime //Map Field: YD1ILCTM
         {
@@ -220,6 +247,7 @@ namespace BOS.OrderItemDataEntity
         [Display(Name = "LASTCHANGEUSER", ResourceType = typeof(DescriptionResource))]
         [AB_Length(10)]
         [AB_LastChangeUser]
+        [AB_ReadOnly]
         [DataMember]
         public string LastChangeUser //Map Field: YD1ILCUS
         {
@@ -230,6 +258,7 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "LASTCHANGEJOB", ResourceType = typeof(DescriptionResource))]
         [AB_Length(10)]
+        [AB_ReadOnly]
         [DataMember]
         public string LastChangeJob //Map Field: YD1ILCJB
         {
@@ -240,13 +269,14 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "LASTCHANGEJOBNUMBER", ResourceType = typeof(DescriptionResource))]
         [AB_Length(6)]
+        [AB_ReadOnly]
         [DataMember]
         public string LastChangeJobNumber //Map Field: YD1ILCJN
         {
             get => am_GetPropertyValue(LastChangeJobNumberProperty);
             set => am_SetPropertyValue(LastChangeJobNumberProperty, value);
         }
-        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null); 
+        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
 
         [AB_DropdownDisplay("~/Views/Product/_ProductDropdown.cshtml", new string[] { "Source: ProductInternalID ,Target: ProductInternalID" }, ap_ShowNewButton = true, ap_ShowOpenButton = true, ap_ShowSearchButton = true)]
         [Display(Name = "PRODUCTNAME", ResourceType = typeof(DescriptionResource))]
@@ -311,6 +341,126 @@ namespace BOS.OrderItemDataEntity
             set => am_SetPropertyValue(PurchaseOrderNumberIDProperty, value);
         }
         public static AB_PropertyMetadata<string> PurchaseOrderNumberIDProperty = am_CreatePropertyMetaData<string>(nameof(PurchaseOrderNumberID), DescriptionResource.PURCHASEORDERNUMBERID, null);
+
+        [Display(Name = "CUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(50)]
+        [AB_BroadcastMember(AB_DataShouldBePassed.OnPreload)]
+        [DataMember]
+        public string CustomerName //Map Field: YD1C.YD1CNM
+        {
+            get => am_GetPropertyValue(CustomerNameProperty);
+            set => am_SetPropertyValue(CustomerNameProperty, value);
+        }
+        public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null);
+
+        [Display(Name = "CATEGORY", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(50)]
+        [DataMember]
+        public string ProductCategory //Map Field: YD1P.YD1PCT
+        {
+            get => am_GetPropertyValue(ProductCategoryProperty);
+            set => am_SetPropertyValue(ProductCategoryProperty, value);
+        }
+        public static AB_PropertyMetadata<string> ProductCategoryProperty = am_CreatePropertyMetaData<string>(nameof(ProductCategory), DescriptionResource.CATEGORY, null);
+
+        [Display(Name = "LISTPRICE", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(10)]
+        [DataType(DataType.Currency)]
+        [AB_ApplyStringFormat("C")]
+        [DataMember]
+        public decimal? ProductListPrice //Map Field: YD1P.YD1PLSPR
+        {
+            get => am_GetPropertyValue(ProductListPriceProperty);
+            set => am_SetPropertyValue(ProductListPriceProperty, value);
+        }
+        public static AB_PropertyMetadata<decimal?> ProductListPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(ProductListPrice), DescriptionResource.LISTPRICE, null);
+
+        [Display(Name = "DESCRIPTION", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(256)]
+        [DataMember]
+        public string ProductDescription //Map Field: YD1P.YD1PDS
+        {
+            get => am_GetPropertyValue(ProductDescriptionProperty);
+            set => am_SetPropertyValue(ProductDescriptionProperty, value);
+        }
+        public static AB_PropertyMetadata<string> ProductDescriptionProperty = am_CreatePropertyMetaData<string>(nameof(ProductDescription), DescriptionResource.DESCRIPTION, null);
+
+        [Display(Name = "UNITDISCOUNT", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(8)]
+        [DataType(DataType.Currency)]
+        [AB_ApplyStringFormat("C")]
+        [AB_ReadOnly]
+        [AB_VirtualMember]
+        public decimal? UnitDiscount
+        {
+            get
+            {
+                return UnitPrice * DiscountPercent;
+            }
+            set
+            {
+                am_SetPropertyValue(UnitDiscountProperty, UnitPrice * DiscountPercent);
+            }
+        }
+        public static AB_PropertyMetadata<decimal?> UnitDiscountProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitDiscount), DescriptionResource.UNITDISCOUNT, null);
+
+        [Display(Name = "ORDERDISCOUNT", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(8)]
+        [DataType(DataType.Currency)]
+        [AB_ApplyStringFormat("C")]
+        [AB_ReadOnly]
+        [AB_VirtualMember]
+        public decimal? OrderDiscount
+        {
+            get
+            {
+                return OrderPrice * DiscountPercent;
+            }
+            set
+            {
+                am_SetPropertyValue(OrderDiscountProperty, OrderPrice * DiscountPercent);
+            }
+        }
+        public static AB_PropertyMetadata<decimal?> OrderDiscountProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderDiscount), DescriptionResource.DISCOUNT, null);
+
+        [Display(Name = "ORDERTOTAL", ResourceType = typeof(DescriptionResource))]
+        [AB_Length(8)]
+        [DataType(DataType.Currency)]
+        [AB_ApplyStringFormat("C")]
+        [AB_ReadOnly]
+        [AB_VirtualMember]
+        public decimal? OrderTotal
+        {
+            get
+            {
+                return OrderPrice - OrderDiscount;
+            }
+            set
+            {
+                am_SetPropertyValue(OrderTotalProperty, OrderPrice - OrderDiscount);
+            }
+        }
+        public static AB_PropertyMetadata<decimal?> OrderTotalProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderTotal), DescriptionResource.TOTAL, null);
+
+        public int MemoCharacterCount
+        {
+            get => Memo?.Length ?? 0;
+            set
+            {
+                am_SetPropertyValue(MemoCharacterCountProperty, value);
+                am_FirePropertyChanged(MemoCharacterCountStrProperty);
+            }
+        }
+        public static AB_PropertyMetadata<int> MemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(MemoCharacterCount), null, 0);
+
+        public string MemoCharacterCountStr
+        {
+            get
+            {
+                return string.Format("{0}/100", MemoCharacterCount);
+            }
+        }
+        public static AB_PropertyMetadata<string> MemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(MemoCharacterCountStr), null, null);
 
         #endregion //Properties
 

@@ -4,25 +4,22 @@
 // <A4DN_Template Name="WPF.Module.DropDown.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
+using A4DN.Core.WPF.Base;
+using BOS.OrderDataEntity;
+using BOS.OrderViewModel;
 using System;
 using System.Windows;
-using A4DN.Core.WPF.Base;
-using BOS.OrderViewModel;
-using BOS.OrderDataEntity;
-using BOS.OrderDataMaps;
-using A4DN.Core.BOS.Base;
 
 namespace WPF.Order
 {
-	/// <summary>
-	/// Interaction logic for OrderDropDown.xaml
-	/// </summary>
-	public partial class  OrderDropDown : AB_DropDownBase
+    /// <summary>
+    /// Interaction logic for OrderDropDown.xaml
+    /// </summary>
+    public partial class  OrderDropDown : AB_DropDownBase
 	{
 		/// <summary>
 		/// Dependency Property for Binding of foreign keys.  As this property is updated, a fetch will occur to load the drop down appropriately
 		/// </summary>
- 
 		
         [AB_DropdownKeyProperty]
 		public int? OrderInternalID
@@ -31,6 +28,38 @@ namespace WPF.Order
 			set => SetValue(OrderInternalIDProperty, value);
 		}
         public static readonly DependencyProperty OrderInternalIDProperty = DependencyProperty.Register(nameof(OrderInternalID), typeof(int?), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
+
+		[AB_DropdownNonKeyProperty]
+        public DateTime? OrderDate
+        {
+            get => (DateTime?)GetValue(OrderDateProperty);
+            set => SetValue(OrderDateProperty, value);
+        }
+        public static readonly DependencyProperty OrderDateProperty = DependencyProperty.Register(nameof(OrderDate), typeof(DateTime?), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public TimeSpan? OrderTime
+        {
+            get => (TimeSpan?)GetValue(OrderTimeProperty);
+            set => SetValue(OrderTimeProperty, value);
+        }
+        public static readonly DependencyProperty OrderTimeProperty = DependencyProperty.Register(nameof(OrderTime), typeof(TimeSpan?), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public string CustomerName
+        {
+            get => (string)GetValue(CustomerNameProperty);
+            set => SetValue(CustomerNameProperty, value);
+        }
+        public static readonly DependencyProperty CustomerNameProperty = DependencyProperty.Register(nameof(CustomerName), typeof(string), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        [AB_DropdownNonKeyProperty]
+        public string PurchaseOrderNumberID
+        {
+            get => (string)GetValue(PurchaseOrderNumberIDProperty);
+            set => SetValue(PurchaseOrderNumberIDProperty, value);
+        }
+        public static readonly DependencyProperty PurchaseOrderNumberIDProperty = DependencyProperty.Register(nameof(PurchaseOrderNumberID), typeof(string), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         /// <summary>
         /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
