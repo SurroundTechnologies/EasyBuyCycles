@@ -24,6 +24,7 @@ jobs:
       env-name: dev
   deploy-dev: 
     runs-on: [self-hosted, Windows]
+    environment: dev
     needs: increment-revision
 
     steps:
