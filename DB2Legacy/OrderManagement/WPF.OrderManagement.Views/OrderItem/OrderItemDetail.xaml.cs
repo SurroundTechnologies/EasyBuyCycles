@@ -148,16 +148,11 @@ namespace WPF.OrderItem
 			
 			switch (command.ap_CommandID)
 			{
-				//case "<CommandID>":
+                case AB_CommonCommandIDs.New:
+                    (ap_CurrentEntity as OrderItemEntity).Quantity = 1;
+                    break;
 
-                //    Do Something ...
-
-                //    set e.Handled to true to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
-
-				default:
+                default:
 					break;
 			}
 			
