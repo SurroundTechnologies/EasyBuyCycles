@@ -34,7 +34,7 @@ jobs:
         run: cp -r ./ConnectionParms.deploy.config ./ConnectionParms.config
 
       - name: Update Connection Parms User
-        run: .\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB UserID "${{vars.DB_USER_ID}}"
+        run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB UserID "${{vars.DB_USER_ID}}"
 
       - name: Update Connection Parms Password
         run: .\DB2Legacy\OrderManagement\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB Password "${{secrets.DB_PASSWORD}}"
