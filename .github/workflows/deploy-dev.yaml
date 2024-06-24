@@ -2,7 +2,7 @@ name: easybuy-deploy-dev
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["dev", "pd/mvc-deploy"]
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -29,12 +29,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Copy ConnectionParms Config File for BP Service Host.
+        working-directory: .\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL
+        run: cp -r ./ConnectionParms.deploy.config ./ConnectionParms.config
+
+      - name: Update Connection Parms User
+        run: .\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB UserID "${{vars.USER_ID}}"
+
+      - name: Update Connection Parms Password
+        run: .\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB Password "${{secrets.PASSWORD}}"
+
+      - name: Update Connection Parms Server
+        run: .\DeploymentScripts\UpdateConnectionParmsConfig.ps1 ${{ github.workspace }}\\DB2Legacy\OrderManagement\ServiceHost.OrderManagement.DALForSQL\ConnectionParms.config MasterDB DataSource "${{vars.DATA_SOURCE}}"
+
       - name: Build DB2 Legacy
         working-directory: .\DB2Legacy\OrderManagement\BuildScripts
         run: .\Build.ps1
       - name: Create Deployment Artifacts
         working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
         run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}
+
+
       - name: Create MVC Artifacts
         working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
         run: .\CreateMVCArtifacts.ps1 ${{ needs.increment-revision.outputs.version }}
