@@ -2,7 +2,7 @@ name: easybuy-deploy-dev
 
 on:
   push:
-    branches: ["dev", "pd/mvc-deploy"]
+    branches: ["dev"]
 
 env:
   # Path to the solution file relative to the root of the project.
