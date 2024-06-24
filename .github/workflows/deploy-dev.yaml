@@ -2,7 +2,7 @@ name: easybuy-deploy-dev
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["dev", "pd/mvc-deploy"]
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -32,10 +32,14 @@ jobs:
       - name: Build DB2 Legacy
         working-directory: .\DB2Legacy\OrderManagement\BuildScripts
         run: .\Build.ps1
-
       - name: Create Deployment Artifacts
         working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
         run: .\CreateArtifactsCICD.ps1 ${{ needs.increment-revision.outputs.version }}
+      - name: Create MVC Artifacts
+        working-directory: .\DB2Legacy\OrderManagement\DeploymentScripts
+        run: .\CreateMVCArtifacts.ps1 ${{ needs.increment-revision.outputs.version }}
       - name: Copy Files
         run: cp -r -Force C:\Deployments\OrderManagement\_Publish\* \\ip-172-31-22-48.us-east-2.compute.internal\EasyBuyCyclesDb2_DEV\BPServices\
+      - name: Copy MVC Files
+        run: cp -r -Force C:\Deployments\OrderManagement\MVC\* \\ip-172-31-22-48.us-east-2.compute.internal\EasyBuyCyclesDb2_DEV\MVC\
        
