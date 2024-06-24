@@ -56,7 +56,23 @@ namespace WPF.Customer
 
         private void dd_ParentInternalID_ae_ValueChanged(object sender, System.EventArgs e)
         {
+            if (ap_DetailMode == AB_DetailModes.Uninitialized || ap_DetailMode == AB_DetailModes.Display || ap_DetailMode == AB_DetailModes.Preview)
+                return;
+
+            // Current Loaded Data Entity
+            var currentSelectedEntity = dd_ParentInternalID.ap_CurrentSelectedEntity as CustomerEntity;
+
             _ViewModel.SelectedParentCustomer = dd_ParentInternalID.ap_CurrentSelectedEntity as CustomerEntity;
+
+            if (currentSelectedEntity == null)
+            {
+                Field_ParentRelationship.ap_Value = null;
+                Field_ParentRelationship.IsReadOnly = true;
+            }
+            else
+            {
+                Field_ParentRelationship.IsReadOnly = false;
+            }
         }
 
         /// <summary>
@@ -105,7 +121,7 @@ namespace WPF.Customer
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-		}
+        }
 
 		/// <summary>
 		/// This method is called after the data is loaded.
@@ -114,10 +130,10 @@ namespace WPF.Customer
 		{
 			base.am_OnDataLoaded();
 
-			// Current Loaded Data Entity
-			//CustomerEntity currentEntity = ap_CurrentEntity as CustomerEntity;
-			
-		}
+            // Current Loaded Data Entity
+            //CustomerEntity currentEntity = ap_CurrentEntity as CustomerEntity;
+
+        }
 
         /// <summary>
         /// This method is called before the base object has processed the command.
