@@ -12,6 +12,7 @@ using A4DN.Core.BOS.ViewModel;
 using A4DN.Core.BOS.Base;
 using BOS.OrderBusinessProcess;
 using BOS.OrderDataEntity;
+using A4DN.Core.BOS.DataController;
 
 namespace BOS.OrderViewModel
 {   
@@ -110,7 +111,18 @@ namespace BOS.OrderViewModel
 		/// </summary>        
 		protected override void am_OnCurrentEntityPropertyChanged(AB_VisualModelInitArgs inputArgs, string propertyName, OrderEntity currentEntity)
 		{
+			switch(propertyName)
+			{
+				case nameof(currentEntity.OrderDate):
+					var givenDate = currentEntity.OrderDate;
+					var oldDate = DateTime.Today.AddDays(-2);
 
+					inputArgs.ap_PropertyModelDictionary[OrderEntity.OrderDateProperty.ap_PropertyName].ap_ErrorMessage = new AB_Message("Order Date is in the Past", AB_MessageType.Error);
+					inputArgs.ap_PropertyModelDictionary[OrderEntity.OrderDateProperty.ap_PropertyName].ap_IsInError = givenDate <= oldDate;
+					break;
+				default:
+					break;
+			}
 		}
 
 		
