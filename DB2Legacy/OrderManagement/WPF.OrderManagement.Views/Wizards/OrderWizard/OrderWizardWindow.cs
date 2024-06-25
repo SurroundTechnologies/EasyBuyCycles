@@ -39,5 +39,12 @@ namespace WPF.Wizards.OrderWizard
             ap_SummaryStackPanel.Children.Add(WizardSummaryController.OrderSummaryItem);
             ap_SummaryStackPanel.Children.Add(WizardSummaryController.ShippingAddressSummaryItem);
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            ap_SummaryStackPanel.Children.Clear();
+        }
     }
 }
