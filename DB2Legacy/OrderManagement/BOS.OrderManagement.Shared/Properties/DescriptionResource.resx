@@ -537,4 +537,22 @@
   <data name="PROCESSINGSTARTED" xml:space="preserve">
     <value>Proccessing Started</value>
   </data>
+  <data name="DISCOUNT" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="PRICE" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PRODUCT" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="TOTAL" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="UNITDISCOUNT" xml:space="preserve">
+    <value>Unit Discount</value>
+  </data>
+  <data name="WIZARDSTART" xml:space="preserve">
+    <value>Start</value>
+  </data>
 </root>

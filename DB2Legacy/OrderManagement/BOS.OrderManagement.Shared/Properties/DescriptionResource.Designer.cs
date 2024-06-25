@@ -1051,14 +1051,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product.
-        /// </summary>
-        public static string PRODUCT {
-            get {
-                return ResourceManager.GetString("PRODUCT", resourceCulture);
-            }
-        }
-
         ///   Looks up a localized string similar to Processing Complete.
         /// </summary>
         public static string PROCESSINGCOMPLETE {
@@ -1073,6 +1065,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string PROCESSINGSTARTED {
             get {
                 return ResourceManager.GetString("PROCESSINGSTARTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string PRODUCT {
+            get {
+                return ResourceManager.GetString("PRODUCT", resourceCulture);
             }
         }
         
@@ -1372,6 +1373,5 @@ namespace BOS.OrderManagement.Shared.Properties {
                 return ResourceManager.GetString("WIZARDSTART", resourceCulture);
             }
         }
-        
     }
 }
