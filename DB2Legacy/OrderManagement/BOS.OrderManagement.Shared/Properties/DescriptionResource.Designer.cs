@@ -1149,15 +1149,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove Item.
-        /// </summary>
-        public static string REMOVEITEM {
-            get {
-                return ResourceManager.GetString("REMOVEITEM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reorder Level.
         /// </summary>
         public static string REORDERLEVEL {
@@ -1226,15 +1217,6 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string SMALLESTORDERQUANTITY {
             get {
                 return ResourceManager.GetString("SMALLESTORDERQUANTITY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Specify Existing.
-        /// </summary>
-        public static string SPECIFYEXISTING {
-            get {
-                return ResourceManager.GetString("SPECIFYEXISTING", resourceCulture);
             }
         }
         
