@@ -23,7 +23,18 @@ namespace WPF.Product
 	/// </summary>
 	public partial class  ProductExpContent : AB_ContentWindowBase
 	{
-		ProductVM _ViewModel; 
+        #region Dependency Properties
+
+        public int ThumbnailSize
+        {
+            get { return (int)GetValue(ThumbnailSizeProperty); }
+            set { SetValue(ThumbnailSizeProperty, value); }
+        }
+        public static readonly DependencyProperty ThumbnailSizeProperty = DependencyProperty.Register("ThumbnailSize", typeof(int), typeof(ProductExpContent), new PropertyMetadata(250));
+
+        #endregion
+
+        ProductVM _ViewModel; 
 
 		/// <summary>
 		/// Type initializer / static constructor
