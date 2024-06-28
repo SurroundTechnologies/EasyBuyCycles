@@ -51,10 +51,12 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0"
+                                MaxWidth="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ProductExpContent}}, Path=ThumbnailSize, Mode=OneWay}"
+                                MaxHeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ProductExpContent}}, Path=ThumbnailSize, Mode=OneWay}"
 								Margin="5 5 5 10"
 								BorderBrush="Black" BorderThickness="1">
-                                <Image Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ProductExpContent}}, Path=ThumbnailSize, Mode=OneWay}"
-								   Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ProductExpContent}}, Path=ThumbnailSize, Mode=OneWay}"
+                                <Image MaxWidth="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ProductExpContent}}, Path=ThumbnailSize, Mode=OneWay}"
+								   MaxHeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ProductExpContent}}, Path=ThumbnailSize, Mode=OneWay}"
 								   Source="{Binding Path=ImagePath}" />
                             </Border>
                             <StackPanel Grid.Row="1" Orientation="Vertical">
