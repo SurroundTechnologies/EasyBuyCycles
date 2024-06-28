@@ -2,7 +2,7 @@ name: easybuy-deploy-dev
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["dev", "pd/secrets"]
 
 env:
   # Path to the solution file relative to the root of the project.
