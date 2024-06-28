@@ -4,7 +4,8 @@
     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
     xmlns:DataPresentation="clr-namespace:A4DN.Core.WPF.Base.DataPresentation;assembly=A4DN.Core.WPF.Base"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-	xmlns:vm="clr-namespace:BOS.ProductViewModel;assembly=BOS.OrderManagement.ViewModels" >
+	xmlns:vm="clr-namespace:BOS.ProductViewModel;assembly=BOS.OrderManagement.ViewModels"
+    xmlns:wpfShared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared">
    
    <base:AB_ContentWindowBase.Resources>
         <ResourceDictionary>
@@ -14,6 +15,7 @@
                 <ResourceDictionary Source="/A4DN.Core.WPF.Base;component/DataPresentation/AB_DataPresentationResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <vm:ProductVM x:Key="ProductVM"/>
+            <wpfShared:ByteArrayToImageConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </base:AB_ContentWindowBase.Resources>
     <base:AB_ContentWindowBase.ap_DataPresentationStyles>
@@ -21,6 +23,7 @@
         <base:AB_StyleHolder ap_Style="{DynamicResource AB_DataGridDefaultStyle}" />
         <base:AB_StyleHolder ap_Style="{StaticResource DefaultCardStyle}" />
         <base:AB_StyleHolder ap_Style="{StaticResource AlbumCardStyle}" />
+        <base:AB_StyleHolder ap_Style="{StaticResource ThumbnailCardStyle}" />
     </base:AB_ContentWindowBase.ap_DataPresentationStyles>
     <!--<base:AB_ContentWindowBase.ap_DataPresentationStyles>
         <base:AB_StyleHolder ap_Style="{DynamicResource AB_DataGridDefaultStyle}" ap_IsDefault="True" />

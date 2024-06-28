@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using A4DN.Core.BOS.Base;
+using System.Globalization;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace WPF.OrderManagement.Shared
 {
@@ -42,6 +45,33 @@ namespace WPF.OrderManagement.Shared
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ByteArrayToImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is byte[] bitmapBytes)
+            {
+                var memStream = new MemoryStream(bitmapBytes);
+
+                var bmpi = new BitmapImage();
+                bmpi.BeginInit();
+                bmpi.StreamSource = memStream;
+                bmpi.EndInit();
+
+                return bmpi;
+            }
+            else
+            {
+                return new BitmapImage(new Uri("pack://application:,,,/A4DN.Core.WPF.Base;component/imagesLineFlat2020/Image_large.png"));
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
