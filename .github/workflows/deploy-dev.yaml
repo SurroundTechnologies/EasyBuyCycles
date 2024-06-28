@@ -22,6 +22,7 @@ jobs:
     uses: ./.github/workflows/revision-increment.yaml
     with:
       env-name: dev
+    secrets: inherit
   deploy-dev: 
     runs-on: [self-hosted, Windows]
     environment: dev
