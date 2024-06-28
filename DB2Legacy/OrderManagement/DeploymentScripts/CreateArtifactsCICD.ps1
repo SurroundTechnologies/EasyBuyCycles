@@ -14,7 +14,7 @@ function BuildSolution
     Write-Output "Building $solution"
     & $msbuild (@($solution) + $MSBuildArgs)
     if ($LastExitCode -ne 0) {
-        Write-Outpu "Error Building $solution"
+        Write-Output "Error Building $solution"
         exit $LastExitCode
     }
 }
