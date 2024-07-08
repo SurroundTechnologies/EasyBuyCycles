@@ -9,64 +9,60 @@
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
 	Height="Auto" Width="Auto">
-	  <base:AB_ExplorerBarBase.Resources>
+	<base:AB_ExplorerBarBase.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Customer/CustomerResourceDictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 			<entity:CustomerEntity x:Key="CustomerEntity"/>
 		</ResourceDictionary>
-	 </base:AB_ExplorerBarBase.Resources>
+	</base:AB_ExplorerBarBase.Resources>
 	<Grid>
 		<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-			<Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
-				<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="5">
-					<StackPanel>
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CustomerInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:CustomerEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LegalName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LegalNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactLastName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactLastNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactFirstName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactFirstNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactMiddleName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactMiddleNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactNickName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactNickNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingAddress1" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress1Property}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingAddress2" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress2Property}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingAddress3" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress3Property}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingPostalCode" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingPostalCodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingCountry" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingCountryProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Telephone" ap_PropertyMetaData="{x:Static entity:CustomerEntity.TelephoneProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Email" ap_PropertyMetaData="{x:Static entity:CustomerEntity.EmailProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+		    <Grid>
+			    <Grid.RowDefinitions>
+				    <RowDefinition />
+				    <RowDefinition />
+			    </Grid.RowDefinitions>
+                <Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
+                    <StackPanel>
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CustomerInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:CustomerEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LegalName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LegalNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactLastName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactLastNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactFirstName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactFirstNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactMiddleName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactMiddleNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactNickName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ContactNickNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingAddress1" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress1Property}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingAddress2" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress2Property}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingAddress3" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress3Property}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingPostalCode" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingPostalCodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_BillingCountry" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingCountryProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Telephone" ap_PropertyMetaData="{x:Static entity:CustomerEntity.TelephoneProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Email" ap_PropertyMetaData="{x:Static entity:CustomerEntity.EmailProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_CheckBoxWithLabel Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_IsThreeState="True" x:Name="Field_SeachIsSubCustomer" ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.SearchIsSubCustomerProperty}" />
                     </StackPanel>
-				</ScrollViewer>
-			</Expander>
-			<Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
-				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="5">
-					<StackPanel>
-                  <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_ParentInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENTNAME}" />
-                  <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-						<base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-						<base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-					</StackPanel>
-				</ScrollViewer>
-			</Expander>	
-		</Grid>
+                </Expander>
+                <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
+                    <StackPanel>
+                        <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_ParentInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENTNAME}" />
+                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
+                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
+                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LastChangeJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                    </StackPanel>
+                </Expander>	
+		    </Grid>
 		</ScrollViewer>
 	</Grid>
 </base:AB_ExplorerBarBase>

@@ -92,7 +92,7 @@ namespace WPF.ShippingAddress
 		/// <summary>
 		/// This method is called after the Loaded Event. At this point the XAML objects can be accessed.
 		/// </summary>
-		 protected override void am_OnInitialized()
+		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
 		}

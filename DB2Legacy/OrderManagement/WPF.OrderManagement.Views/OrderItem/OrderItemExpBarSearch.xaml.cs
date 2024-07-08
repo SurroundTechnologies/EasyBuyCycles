@@ -118,6 +118,6 @@ namespace WPF.OrderItem
 			//  }
 
 			return whereFilter;
-		 }                
+		}                
 	}
 }

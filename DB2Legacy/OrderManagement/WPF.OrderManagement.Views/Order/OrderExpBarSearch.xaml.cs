@@ -118,6 +118,6 @@ namespace WPF.Order
 			//  }
 
 			return whereFilter;
-		 }                
+		}                
 	}
 }

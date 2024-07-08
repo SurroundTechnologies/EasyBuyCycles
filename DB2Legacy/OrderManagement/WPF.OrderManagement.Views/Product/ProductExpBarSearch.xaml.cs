@@ -118,6 +118,6 @@ namespace WPF.Product
 			//  }
 
 			return whereFilter;
-		 }                
+		}                
 	}
 }

@@ -10,53 +10,49 @@
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
 	Height="Auto" Width="Auto">
-	  <base:AB_ExplorerBarBase.Resources>
+	<base:AB_ExplorerBarBase.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/OrderItem/OrderItemResourceDictionary.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 			<entity:OrderItemEntity x:Key="OrderItemEntity"/>
 		</ResourceDictionary>
-	 </base:AB_ExplorerBarBase.Resources>
+	</base:AB_ExplorerBarBase.Resources>
 	<Grid>
 		<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-			<Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
-				<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="5">
-					<StackPanel>
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderItemInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderItemInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                  <WPF.Order:OrderDropDown Margin="0,0,0,5"  x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}" OrderInternalID="{Binding Path=OrderInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
-                  <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
-                  <WPF.Product:ProductDropDown Margin="0,0,0,5"  x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}" ProductInternalID="{Binding Path=ProductInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
-                  <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Quantity" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.QuantityProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_UnitPrice" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.UnitPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_DiscountPercent" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.DiscountPercentProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductName" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-					</StackPanel>
-				</ScrollViewer>
-			</Expander>
-			<Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
-				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="5">
-					<StackPanel>
-						<base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-						<base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-						<base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-						<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-					</StackPanel>
-				</ScrollViewer>
-			</Expander>	
-		</Grid>
+		    <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
+                    <StackPanel>
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderItemInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderItemInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <WPF.Order:OrderDropDown Margin="0,0,0,5"  x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}" OrderInternalID="{Binding Path=OrderInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
+                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
+                        <WPF.Product:ProductDropDown Margin="0,0,0,5"  x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}" ProductInternalID="{Binding Path=ProductInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
+                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Quantity" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.QuantityProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_UnitPrice" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.UnitPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_DiscountPercent" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.DiscountPercentProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductName" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                    </StackPanel>
+                </Expander>
+                <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
+                    <StackPanel>
+                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
+                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
+                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.LastChangeJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                    </StackPanel>
+                </Expander>	
+		    </Grid>
 		</ScrollViewer>
 	</Grid>
 </base:AB_ExplorerBarBase>

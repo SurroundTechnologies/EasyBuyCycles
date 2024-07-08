@@ -53,7 +53,7 @@ namespace WPF.Customer
 		{
 			// Call Initialize Component im order to access XAML objects in Code Behind
 			InitializeComponent();
-						// Set Entity Type
+			// Set Entity Type
 			ap_SearchEntityType = typeof(CustomerEntity);
 		}
 
@@ -118,6 +118,6 @@ namespace WPF.Customer
 			//  }
 
 			return whereFilter;
-		 }                
+		}                
 	}
 }
