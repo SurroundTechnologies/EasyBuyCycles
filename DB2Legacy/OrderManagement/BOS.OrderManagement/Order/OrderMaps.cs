@@ -58,7 +58,7 @@ namespace BOS.OrderDataMaps
 		 
 			maps.am_AddDataMap("YD1OIID", OrderEntity.OrderInternalIDProperty);
 			maps.am_AddDataMap("YD1O1CID", OrderEntity.CustomerInternalIDProperty);
-			maps.am_AddDataMap("YD1ODT", OrderEntity.OrderDateProperty);
+			maps.am_AddDataMap("YD1ODT", OrderEntity.OrderDateProperty, databaseFieldType: AB_EntityFieldType.Date);
 			maps.am_AddDataMap("YD1OTM", OrderEntity.OrderTimeProperty);
 			maps.am_AddDataMap("YD1OPONO", OrderEntity.PurchaseOrderNumberIDProperty);
 			maps.am_AddDataMap("YD1O1WID", OrderEntity.WarehouseInternalIDProperty);
