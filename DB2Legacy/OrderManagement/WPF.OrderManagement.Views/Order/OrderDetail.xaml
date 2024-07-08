@@ -34,8 +34,8 @@
                 </base:AB_DockingTabItem.Header>
                 <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
                     <WrapPanel Orientation="Vertical" x:Name="FieldsPanel" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
-                        <WPF.Customer:CustomerDropDown Margin="0,0,20,5"  x:Name="Field_CustomerName" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerNameProperty}" CustomerInternalID="{Binding Path=CustomerName, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
-                        <WPF.ShippingAddress:ShippingAddressDropDown Margin="0,0,20,5"  x:Name="Field_ShippingAddressName" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressNameProperty}" ShippingAddressInternalID="{Binding Path=ShippingAddressName, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
+                        <WPF.Customer:CustomerDropDown Margin="0,0,20,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
+                        <WPF.ShippingAddress:ShippingAddressDropDown Margin="0,0,20,5"  x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}" ShippingAddressInternalID="{Binding Path=ShippingAddressInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
                         <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,20,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,20,0">
                             <base:AB_DatePicker ap_LabelPosition="Left" x:Name="Field_OrderDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  Width="260" />
@@ -96,9 +96,7 @@
                             <StackPanel>
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_SalesPersonInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_WarehouseInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                             </StackPanel>
                         </base:AB_Expander>
                         <base:AB_Expander Grid.Row="0" Grid.Column="1" IsExpanded="True" Header="{x:Static systemSharedProperties:DescriptionResource.CHANGESTAMPS}" Padding="5">
