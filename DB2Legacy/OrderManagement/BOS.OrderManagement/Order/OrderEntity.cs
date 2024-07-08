@@ -62,6 +62,7 @@ namespace BOS.OrderDataEntity
 
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
         [Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
+        [AB_RequiredField]
         [AB_Length(8)]
         [DataMember]
         public int? CustomerInternalID //Map Field: YD1O1CID
@@ -136,6 +137,7 @@ namespace BOS.OrderDataEntity
 
         [AB_ReceivedBroadcastDataMember("ShippingAddressInternalID")]
         [Display(Name = "SHIPPINGADDRESSINTERNALID", ResourceType = typeof(DescriptionResource))]
+        [AB_RequiredField]
         [AB_Length(8)]
         [DataMember]
         public int? ShippingAddressInternalID //Map Field: YD1O1SID
@@ -309,7 +311,6 @@ namespace BOS.OrderDataEntity
         [AB_Length(50)]
         [AB_BroadcastMember(AB_DataShouldBePassed.OnPreload)]
         [DataMember]
-        [AB_RequiredField]
         public string CustomerName //Map Field: YD1C.YD1CNM
         {
             get => am_GetPropertyValue(CustomerNameProperty);
