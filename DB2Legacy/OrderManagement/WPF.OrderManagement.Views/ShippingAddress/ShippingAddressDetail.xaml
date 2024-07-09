@@ -11,7 +11,7 @@
 	xmlns:vm="clr-namespace:BOS.ShippingAddressViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     xmlns:datapresentation="clr-namespace:A4DN.Core.WPF.Base.DataPresentation;assembly=A4DN.Core.WPF.Base"
-	Height="620" Width="740">
+	Height="640" Width="615">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -32,19 +32,19 @@
                         <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.DETAILTABTEXT}" Margin="5,0,0,0" />
                     </StackPanel>
                 </base:AB_DockingTabItem.Header>
-                <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-                    <WrapPanel Orientation="Vertical" x:Name="FieldsPanel" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
-                        <WPF.Customer:CustomerDropDown Margin="0,0,20,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.NameProperty}"  Margin="0,0,20,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
+                <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
+                    <DockPanel x:Name="FieldsPanel">
+                        <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                         <TextBlock Margin="0,0,0,10" DockPanel.Dock="Top" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.CONTACT}" TextWrapping="Wrap"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,20,10" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" DockPanel.Dock="Top">
                             <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactFirstName" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.ContactFirstNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="135" />
                             <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactMiddleName" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.ContactMiddleNameProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left" Width="135" />
                             <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactLastName" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.ContactLastNameProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left" Width="135" />
                             <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ContactNickName" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.ContactNickNameProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left" Width="130" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,0,20,10" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" DockPanel.Dock="Top">
                             <StackPanel>
                                 <TextBlock Margin="0,0,0,5" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.SHIPPINGADDRESS}" TextWrapping="Wrap"/>
                                 <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Address1" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.Address1Property}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270" />
@@ -64,7 +64,7 @@
                             </StackPanel>
                         </StackPanel>
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="100"  DockPanel.Dock="Top" />
-                    </WrapPanel>
+                    </DockPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
 
