@@ -79,8 +79,6 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition MaxWidth="355"/>
@@ -114,8 +112,8 @@
                                 <TextBlock Margin="5,0,0,0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" Grid.RowSpan="2" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="55" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="5,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="346" />
                             </Grid>
-                            <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" />
                         </Grid>
+                        <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" />
                     </DockPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
