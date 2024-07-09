@@ -1,4 +1,5 @@
-﻿using A4DN.Core.WPF.Base;
+﻿using A4DN.Core.BOS.Base;
+using A4DN.Core.WPF.Base;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace WPF.OrderManagement.Shared
 {
@@ -87,5 +89,26 @@ namespace WPF.OrderManagement.Shared
                 messageConsole.am_AddToastNotificationMessage("Invalid email." + Environment.NewLine + e.Message, AB_ToastMessageMode.Error);
             }
         }
-    }
+
+		public static void AddDateRangeFilter(AB_Query whereFilter, DateTime? startDate, DateTime? endDate, AB_IPropertyMetadata propertyName)
+		{
+			if (startDate != null)
+			{
+				whereFilter.am_AddWhereClause(propertyName, ">=", startDate.Value);
+			}
+			if (endDate != null)
+			{
+				whereFilter.am_AddWhereClause(propertyName, "<", endDate.Value);
+			}
+		}
+
+		public static void ClearDateField(AB_DatePicker startDateField, AB_DatePicker endDateField)
+		{
+			(startDateField.Content as DatePicker).SelectedDate = DateTime.Today;
+			startDateField.ap_Value = null;
+
+			(endDateField.Content as DatePicker).SelectedDate = DateTime.Today;
+			endDateField.ap_Value = null;
+		}
+	}
 }
