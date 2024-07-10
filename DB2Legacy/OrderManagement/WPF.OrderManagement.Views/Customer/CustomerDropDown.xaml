@@ -8,16 +8,22 @@
     ap_BelowComboBoxVisibility="Visible"
     xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
     xmlns:local="clr-namespace:WPF.Customer"
+    ap_LeftComboBoxVisibility="Visible"
     >
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Customer/CustomerResourceDictionary.xaml"/>  
-       
             </ResourceDictionary.MergedDictionaries>
             <wpfshared:NullCheckToVisibilityConverter x:Key="nullCheckToVis" />
         </ResourceDictionary>
     </base:AB_DropDownBase.Resources>
+
+    <base:AB_DropDownBase.ap_LeftComboBox>
+        <base:AB_DropdownKeyFieldControl Margin="0 0 5 0"
+                                         Width="60"
+                                         ap_KeyPropertyName="CustomerInternalID" ap_Trigger="PropertyChanged" />
+    </base:AB_DropDownBase.ap_LeftComboBox>
 
     <base:AB_DropDownBase.ap_BelowComboBox>
         <base:AB_DropdownDetailControl>

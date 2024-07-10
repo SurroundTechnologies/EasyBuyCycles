@@ -12,7 +12,7 @@
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     xmlns:datapresentation="clr-namespace:A4DN.Core.WPF.Base.DataPresentation;assembly=A4DN.Core.WPF.Base"
     xmlns:wpfShared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
-	Height="680" Width="780">
+	Height="700" Width="780">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -46,11 +46,16 @@
                                 <ColumnDefinition Width="353"/>
                                 <ColumnDefinition Width="353"/>
                             </Grid.ColumnDefinitions>
-                            <!-- Put More Code Here -->
-                            <TextBlock Margin="0,0,0,5" Grid.ColumnSpan="2" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.COMPANY}" TextWrapping="Wrap"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" Grid.ColumnSpan="2" Grid.Row="0">
+                                <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.COMPANY}" />
+                                <TextBlock Text=" - " FontWeight="Bold" />
+                                <TextBox Text="{Binding CustomerInternalID, Mode=OneWay}" FontWeight="Bold" Style="{StaticResource NoBorderTextBoxStyle}" Foreground="Black" Margin="-4 0 0 0"/>
+                            </StackPanel>
+                            
                             <base:AB_FieldWithLabel Width="Auto" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:CustomerEntity.NameProperty}" Margin="0,0,5,5" />
                             <base:AB_FieldWithLabel HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_LegalName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LegalNameProperty}" Margin="0,0,0,5" Width="Auto" />
-                            <WPF.Customer:CustomerDropDown Width="345" Grid.Row="2" Grid.Column="0" x:Name="dd_ParentInternalID" ae_ValueChanged="dd_ParentInternalID_ae_ValueChanged" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}" ap_LabelPosition="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENTNAME}" />
+                            <WPF.Customer:CustomerDropDown Width="345" Grid.Row="2" Grid.Column="0" x:Name="dd_ParentInternalID" ae_ValueChanged="dd_ParentInternalID_ae_ValueChanged" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}" ap_LabelPosition="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENT}" />
                             <base:AB_FieldWithLabel Width="Auto" Grid.Row="2" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}" Margin="0,4,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
                         </Grid>
                         
@@ -151,7 +156,7 @@
                         </base:AB_Expander>
                         <base:AB_Expander Grid.Row="1" Grid.Column="0" Header="{x:Static systemSharedProperties:DescriptionResource.IDS}" Padding="5">
                             <StackPanel>
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CustomerInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CustomerInternalIDAudit" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CustomerInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ParentInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                             </StackPanel>
                         </base:AB_Expander>
