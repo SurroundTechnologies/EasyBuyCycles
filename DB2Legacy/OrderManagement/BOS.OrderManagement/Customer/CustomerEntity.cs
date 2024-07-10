@@ -253,13 +253,14 @@ namespace BOS.CustomerDataEntity
 		#region Additional Fields
 
 		[Display(Name = "CONTACTFULLNAME", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
-		[AB_VirtualMember("ContactFirstName", "ContactMiddleName", "ContactLastName")]
+		[AB_VirtualMember("ContactFirstName", "ContactMiddleName", "ContactLastName", "ContactNickName")]
 		[AB_ReadOnly]
 		public string ContactFullName
 		{
 			get
 			{
-				var array = new[] { ContactFirstName, ContactMiddleName, ContactLastName };
+				var nickname = string.IsNullOrWhiteSpace(ContactNickName) ? null : @"""" + ContactNickName + @"""";
+				var array = new[] { ContactFirstName, ContactMiddleName, ContactLastName, nickname };
 				string contactFullName = string.Join(" ", array.Where(s => !string.IsNullOrEmpty(s)));
 
 				return contactFullName;
