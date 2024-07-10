@@ -68,13 +68,13 @@ namespace BOS.CustomerDataEntity
         {
             get => am_GetPropertyValue(ParentInternalIDProperty);
             set => am_SetPropertyValue(ParentInternalIDProperty, value);
-        }
+			}
         public static AB_PropertyMetadata<int?> ParentInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(ParentInternalID), DescriptionResource.PARENTCUSTOMERNUMBER, null);
 
         [Display(Name = "PARENTRELATIONSHIP", ResourceType = typeof(DescriptionResource))]
         [AB_Length(20)]
         [DataMember]
-        [AB_ValidationMethod(typeof(ValidateParentRelationship), "Invalid Parent Relationship")]
+        [AB_ValidationMethod(typeof(ValidateParentRelationship), ErrorMessage = "Invalid Parent Relationship")]
         public string ParentRelationship //Map Field: YD1CPTRL
         {
             get => am_GetPropertyValue(ParentRelationshipProperty);
@@ -92,7 +92,7 @@ namespace BOS.CustomerDataEntity
             get => am_GetPropertyValue(NameProperty);
             set
             {
-                if (ap_RecordMode == AB_RecordMode.New && (string.IsNullOrEmpty(LegalName) || Name == LegalName))
+                if ((ap_RecordMode == AB_RecordMode.New || ap_RecordMode == AB_RecordMode.Open) && Name == LegalName)
                 {
                     LegalName = value;
                 }
@@ -148,7 +148,6 @@ namespace BOS.CustomerDataEntity
         [Display(Name = "CONTACTNICKNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
-        [AB_RequiredField]
         public string ContactNickName //Map Field: YD1CCNNN
         {
             get => am_GetPropertyValue(ContactNickNameProperty);
