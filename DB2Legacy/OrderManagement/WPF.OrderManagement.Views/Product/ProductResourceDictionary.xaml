@@ -5,7 +5,6 @@
     xmlns:wpfShared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared">
 
     <!-- Module Specific Resources should go in here.  If you wish to override a resource just for this module, define it here. -->
-    <wpfShared:ByteArrayToImageConverter x:Key="ByteArrayToImage" />
 
     <!-- /////// Card Content Templates /////// -->
     <DataTemplate x:Key="ProductDataTemplate">

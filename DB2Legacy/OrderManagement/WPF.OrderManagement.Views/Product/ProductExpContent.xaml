@@ -15,7 +15,6 @@
                 <ResourceDictionary Source="/A4DN.Core.WPF.Base;component/DataPresentation/AB_DataPresentationResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <vm:ProductVM x:Key="ProductVM"/>
-            <wpfShared:ByteArrayToImageConverter x:Key="ByteArrayToImage" />
         </ResourceDictionary>
     </base:AB_ContentWindowBase.Resources>
     <base:AB_ContentWindowBase.ap_DataPresentationStyles>
