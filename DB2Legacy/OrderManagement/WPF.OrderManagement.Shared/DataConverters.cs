@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using A4DN.Core.BOS.Base;
-using System.Globalization;
-using System.IO;
-using System.Windows.Media.Imaging;
 
 namespace WPF.OrderManagement.Shared
 {
