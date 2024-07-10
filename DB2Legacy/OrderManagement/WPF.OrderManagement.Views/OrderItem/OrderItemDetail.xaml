@@ -12,8 +12,8 @@
                     xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
                     xmlns:vm="clr-namespace:BOS.OrderItemViewModel;assembly=BOS.OrderManagement.ViewModels"
                     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-                    Height="450"
-                    Width="850">
+                    Height="440"
+                    Width="860">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -43,13 +43,11 @@
                 <ScrollViewer x:Name="FieldsScrollViewer"
                               Width="Auto"
                               Height="Auto"
-                              VerticalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto"
                               Background="{DynamicResource AB_Brush_TabItemSelectedBackground}"
                               Padding="10">
-                    <WrapPanel Orientation="Vertical"
-                               x:Name="FieldsPanel"
-                               Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
+                    <StackPanel x:Name="FieldsPanel" Orientation="Horizontal">
                         <Grid DockPanel.Dock="Top"
                               Margin="0 0 0 20">
                             <Grid.ColumnDefinitions>
@@ -197,12 +195,12 @@
 
                         <Image Height="205"
                                Width="225"
-                               Margin="20,0,10,0"
+                               Margin="20,0,0,0"
                                Source="{Binding ProductImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
 
-                    </WrapPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
 

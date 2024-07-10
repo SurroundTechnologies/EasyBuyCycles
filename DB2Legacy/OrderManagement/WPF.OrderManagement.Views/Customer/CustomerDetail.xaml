@@ -34,9 +34,9 @@
                         <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.DETAILTABTEXT}" Margin="5,0,0,0" />
                     </StackPanel>
                 </base:AB_DockingTabItem.Header>
-                <ScrollViewer x:Name="FieldsScrollViewer" Width="Auto" Height="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-                    <WrapPanel Orientation="Vertical" x:Name="FieldsPanel" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
-                        <Grid DockPanel.Dock="Top" Margin="0,0,20,10">
+                <ScrollViewer x:Name="FieldsScrollViewer" Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
+                    <DockPanel x:Name="FieldsPanel">
+                        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -54,7 +54,7 @@
                             <base:AB_FieldWithLabel Width="Auto" Grid.Row="2" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}" Margin="0,4,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
                         </Grid>
                         
-                        <Grid DockPanel.Dock="Top" Margin="0,0,20,10">
+                        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -75,8 +75,6 @@
 
                         <Grid Margin="0,0,0,10" DockPanel.Dock="Top">
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -114,9 +112,9 @@
                                 <TextBlock Margin="5,0,0,0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" Grid.RowSpan="2" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="55" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="5,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="346" />
                             </Grid>
-                            <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" />
                         </Grid>
-                    </WrapPanel>
+                        <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" />
+                    </DockPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
 

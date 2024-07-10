@@ -10,7 +10,7 @@
 	xmlns:vm="clr-namespace:BOS.ProductViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     xmlns:propCodeValue="clr-namespace:WPF.PropCodeValue;assembly=WPF.PropCodeValue"
-	Height="620" Width="800">
+	Height="505" Width="815">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -30,8 +30,8 @@
                         <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.DETAILTABTEXT}" Margin="5,0,0,0" />
                     </StackPanel>
                 </base:AB_DockingTabItem.Header>
-                <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-                    <WrapPanel Orientation="Vertical" x:Name="FieldsPanel" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}">
+                <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
+                    <DockPanel x:Name="FieldsPanel">
                         <Grid DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="500"/>
@@ -81,7 +81,7 @@
                             <base:AB_CheckBoxWithLabel Grid.Row="2" Grid.Column="2" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}" Margin="0,0,0,5" Width="100" />
                         </Grid>
                         <base:AB_FieldWithLabel ap_LabelWidth="90" ap_LabelPosition="Left" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="725" DockPanel.Dock="Top" />
-                    </WrapPanel>
+                    </DockPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
             <base:AB_DockingTabItem x:Name="AuditFieldsTab"  >
