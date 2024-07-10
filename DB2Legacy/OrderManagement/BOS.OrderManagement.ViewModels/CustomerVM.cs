@@ -111,6 +111,7 @@ namespace BOS.CustomerViewModel
 				case AB_RecordMode.Display:
 					break;
 				case AB_RecordMode.New:
+					inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = true;
 					IsMapTabVisible = false;
 					ValidateParentCustomer(inputArgs, currentDataContext);
                     break;
