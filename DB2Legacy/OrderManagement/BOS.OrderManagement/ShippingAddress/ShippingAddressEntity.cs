@@ -64,6 +64,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
         [DataMember]
+        [AB_RequiredField]
         public int? CustomerInternalID //Map Field: YD1S1CID
         {
             get => am_GetPropertyValue(CustomerInternalIDProperty);
@@ -75,6 +76,7 @@ namespace BOS.ShippingAddressDataEntity
         [AB_Length(50)]
         [AB_BroadcastMember("ShippingAddressName", AB_DataShouldBePassed.OnPreload)]
         [DataMember]
+        [AB_RequiredField]
         public string Name //Map Field: YD1SNM
         {
             get => am_GetPropertyValue(NameProperty);
@@ -96,6 +98,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "CONTACTFIRSTNAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string ContactFirstName //Map Field: YD1SCNFN
         {
             get => am_GetPropertyValue(ContactFirstNameProperty);
@@ -137,6 +140,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "ADDRESS2", ResourceType = typeof(DescriptionResource))]
         [AB_Length(30)]
         [DataMember]
+        [AB_RequiredField]
         public string Address2 //Map Field: YD1SSHA2
         {
             get => am_GetPropertyValue(Address2Property);
@@ -147,6 +151,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "ADDRESS3", ResourceType = typeof(DescriptionResource))]
         [AB_Length(30)]
         [DataMember]
+        [AB_RequiredField]
         public string Address3 //Map Field: YD1SSHA3
         {
             get => am_GetPropertyValue(Address3Property);
@@ -157,6 +162,7 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "POSTALCODE", ResourceType = typeof(DescriptionResource))]
         [AB_Length(10)]
         [DataMember]
+        [AB_RequiredField]
         public string PostalCode //Map Field: YD1SSHPC
         {
             get => am_GetPropertyValue(PostalCodeProperty);
@@ -167,12 +173,37 @@ namespace BOS.ShippingAddressDataEntity
         [Display(Name = "COUNTRY", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
+        [AB_RequiredField]
         public string Country //Map Field: YD1SSHCY
         {
             get => am_GetPropertyValue(CountryProperty);
             set => am_SetPropertyValue(CountryProperty, value);
         }
-        public static AB_PropertyMetadata<string> CountryProperty = am_CreatePropertyMetaData<string>(nameof(Country), DescriptionResource.COUNTRY, null); 
+        public static AB_PropertyMetadata<string> CountryProperty = am_CreatePropertyMetaData<string>(nameof(Country), DescriptionResource.COUNTRY, null);
+
+        [Display(Name = "SHIPPINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("Address1", "Address2", "Address3", "PostalCode", "Country")]
+        public string ShippingAddressLine
+        {
+            get
+            {
+                var shippingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: Address1, city: Address2, state: Address3, zip: PostalCode, country: Country);
+                return shippingAddressLine;
+            }
+        }
+        public static AB_PropertyMetadata<string> ShippingAddressLineProperty = am_CreatePropertyMetaData<string>("ShippingAddressLine", DescriptionResource.SHIPPINGADDRESS, null);
+
+        [Display(Name = "SHIPPINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("Address1", "Address2", "Address3", "PostalCode", "Country")]
+        public string ShippingAddressBlock
+        {
+            get
+            {
+                var shippingAddressBlock = AB_AddressHelper.am_FullAddressBlock(addressLine1: Address1, city: Address2, state: Address3, zip: PostalCode, country: Country);
+                return shippingAddressBlock;
+            }
+        }
+        public static AB_PropertyMetadata<string> ShippingAddressBlockProperty = am_CreatePropertyMetaData<string>("ShippingAddressBlock", DescriptionResource.BILLINGADDRESS, null);
 
         [Display(Name = "TELEPHONE", ResourceType = typeof(DescriptionResource))]
         [AB_Length(20)]
@@ -335,18 +366,19 @@ namespace BOS.ShippingAddressDataEntity
         }
         public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null);
 
-        [Display(Name = "SHIPPINGADDRESS", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
-        [AB_VirtualMember("Address1", "Address2", "Address3", "PostalCode", "Country")]
-        public string ShippingAddressLine
+        [Display(Name = "CONTACTFULLNAME", ResourceType = typeof(BOS.OrderManagement.Shared.Properties.DescriptionResource))]
+        [AB_VirtualMember("ContactFirstName", "ContactMiddleName", "ContactLastName")]
+        public string ContactFullName
         {
             get
             {
-                var shippingAddressLine = AB_AddressHelper.am_FullAddressLine(addressLine1: Address1, city: Address2, state: Address3, zip: PostalCode, country: Country);
-                return shippingAddressLine;
+                var array = new[] { ContactFirstName, ContactMiddleName, ContactLastName };
+                string contactFullName = string.Join(" ", array.Where(s => !string.IsNullOrEmpty(s)));
+
+                return contactFullName;
             }
         }
-
-        public static AB_PropertyMetadata<string> ShippingAddressLineProperty = am_CreatePropertyMetaData<string>("ShippingAddressLine", DescriptionResource.SHIPPINGADDRESS, null);
+        public static AB_PropertyMetadata<string> ContactFullNameProperty = am_CreatePropertyMetaData<string>("ContactFullName", DescriptionResource.CONTACTFULLNAME, null);
 
         #endregion //Properties
 

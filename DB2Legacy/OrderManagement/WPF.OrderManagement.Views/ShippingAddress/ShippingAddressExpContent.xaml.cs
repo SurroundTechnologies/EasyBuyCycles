@@ -15,6 +15,9 @@ using A4DN.Core.BOS.ViewModel;
 using BOS.ShippingAddressViewModel;
 using BOS.ShippingAddressDataEntity;
 using BOS.ShippingAddressDataMaps;
+using BOS.CustomerDataEntity;
+using BOS.OrderManagement.Shared;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.ShippingAddress
 {
@@ -86,29 +89,34 @@ namespace WPF.ShippingAddress
 		/// </summary>
 		protected override void am_BeforeProcessCommand(AB_Command command, RoutedEventArgs e)
 		{
-			// Access the Current Selected Entity
-		    //var selectedEntity = ap_SelectedEntity as ShippingAddressEntity;
-            //if (selectedEntity != null)
-            //{
-            //    var myVariable = selectedEntity.<Property>;
-            //}
+            var selectedEntity = ap_SelectedEntity as ShippingAddressEntity;
 
-			switch (command.ap_CommandID)
-			{
-				//case "<CommandID>":
-
-                //    Do Something ...
-
-              	//    set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
-
-				default:
-					break;
-			}
-			
-		}
+            switch (command.ap_CommandID)
+            {
+                case Constants.CMD_CopyAddressLine:
+                    Utilities.CopyToClipboard(selectedEntity.ShippingAddressLine);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CopyAddressBlock:
+                    Utilities.CopyToClipboard(selectedEntity.ShippingAddressBlock);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_OpenInMaps:
+                    Utilities.OpenWithGoogleMaps(selectedEntity.ShippingAddressLine);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_CallCustomer:
+                    Utilities.CallCustomer(selectedEntity.Telephone);
+                    e.Handled = true;
+                    break;
+                case Constants.CMD_EmailCustomer:
+                    Utilities.EmailCustomer(selectedEntity.Email);
+                    e.Handled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
 
 		/// <summary>
 		/// This method is called after the base object has processed the command.
