@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using A4DN.Core.BOS.Base;
 using A4DN.Core.WPF.Base;
 using BOS.CustomerDataEntity;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.Customer
 {
@@ -100,22 +101,24 @@ namespace WPF.Customer
 			//((CustomerEntity)ap_SearchEntity).MyProperty = "foo";
 			
 		}
-		
+
+		protected override void am_OnClearButtonClicked()
+		{
+			base.am_OnClearButtonClicked();
+
+			Utilities.ClearDateField(Field_CreateDateStart, Field_CreateDateEnd);
+			Utilities.ClearDateField(Field_LastChangeDateStart, Field_LastChangeDateEnd);
+		}
+
 		/// <summary>
 		/// Override for query object 
 		/// </summary>
 		protected override AB_Query am_BuildFilter()
 		{
 			var whereFilter = base.ap_SearchEntity.am_BuildDefaultQuery();
-			//=====================================================
-			/* Overrrides go here */
-			//=====================================================
-			// Example Overrides
-			//
-			//  if (string.IsNullOrEmpty(Field_CompanyName.ap_Value))
-			//  {
-			//      whereFilter.am_OverrideWhereClause("CompanyName", ">", "D");
-			//  }
+
+			Utilities.AddDateRangeFilter(whereFilter, Field_CreateDateStart.ap_Value, Field_CreateDateEnd.ap_Value, CustomerEntity.CreateDateProperty);
+			Utilities.AddDateRangeFilter(whereFilter, Field_LastChangeDateStart.ap_Value, Field_LastChangeDateEnd.ap_Value, CustomerEntity.LastChangeDateProperty);
 
 			return whereFilter;
 		}                

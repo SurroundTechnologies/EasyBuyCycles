@@ -106,6 +106,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average Discount.
+        /// </summary>
+        public static string AVERAGEDISCOUNT {
+            get {
+                return ResourceManager.GetString("AVERAGEDISCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Average Order Discount.
         /// </summary>
         public static string AVERAGEORDERDISCOUNT {
@@ -201,6 +210,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string BILLINGADDRESSBLOCK {
             get {
                 return ResourceManager.GetString("BILLINGADDRESSBLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Billing Address Line.
+        /// </summary>
+        public static string BILLINGADDRESSLINE {
+            get {
+                return ResourceManager.GetString("BILLINGADDRESSLINE", resourceCulture);
             }
         }
         
@@ -475,6 +493,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Number.
+        /// </summary>
+        public static string CUSTOMERNUMBER {
+            get {
+                return ResourceManager.GetString("CUSTOMERNUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delivery Memo.
         /// </summary>
         public static string DELIVERYMEMO {
@@ -520,6 +547,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discounted Order Count.
+        /// </summary>
+        public static string DISCOUNTEDORDERCOUNT {
+            get {
+                return ResourceManager.GetString("DISCOUNTEDORDERCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discount (Percent).
         /// </summary>
         public static string DISCOUNTPERCENT {
@@ -534,6 +570,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string EMAIL {
             get {
                 return ResourceManager.GetString("EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        public static string END {
+            get {
+                return ResourceManager.GetString("END", resourceCulture);
             }
         }
         
@@ -646,11 +691,56 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Order Date.
+        /// </summary>
+        public static string FIRSTORDERDATE {
+            get {
+                return ResourceManager.GetString("FIRSTORDERDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Order Time.
+        /// </summary>
+        public static string FIRSTORDERTIME {
+            get {
+                return ResourceManager.GetString("FIRSTORDERTIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name.
         /// </summary>
         public static string FULLNAME {
             get {
                 return ResourceManager.GetString("FULLNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highest Discount.
+        /// </summary>
+        public static string HIGHESTDISCOUNT {
+            get {
+                return ResourceManager.GetString("HIGHESTDISCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highest Order Subtotal.
+        /// </summary>
+        public static string HIGHESTORDERSUBTOTAL {
+            get {
+                return ResourceManager.GetString("HIGHESTORDERSUBTOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highest Order Total.
+        /// </summary>
+        public static string HIGHESTORDERTOTAL {
+            get {
+                return ResourceManager.GetString("HIGHESTORDERTOTAL", resourceCulture);
             }
         }
         
@@ -678,6 +768,24 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string IMAGEPATH {
             get {
                 return ResourceManager.GetString("IMAGEPATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete Order Count.
+        /// </summary>
+        public static string INCOMPLETEORDERCOUNT {
+            get {
+                return ResourceManager.GetString("INCOMPLETEORDERCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is a Parent Customer.
+        /// </summary>
+        public static string ISAPARENTCUSTOMER {
+            get {
+                return ResourceManager.GetString("ISAPARENTCUSTOMER", resourceCulture);
             }
         }
         
@@ -772,11 +880,74 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Order Date.
+        /// </summary>
+        public static string LASTORDERDATE {
+            get {
+                return ResourceManager.GetString("LASTORDERDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Order Date Time.
         /// </summary>
         public static string LASTORDERDATETIME {
             get {
                 return ResourceManager.GetString("LASTORDERDATETIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Order ID.
+        /// </summary>
+        public static string LASTORDERID {
+            get {
+                return ResourceManager.GetString("LASTORDERID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Order Status.
+        /// </summary>
+        public static string LASTORDERSTATUS {
+            get {
+                return ResourceManager.GetString("LASTORDERSTATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Order Time.
+        /// </summary>
+        public static string LASTORDERTIME {
+            get {
+                return ResourceManager.GetString("LASTORDERTIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Used Shipping Address ID.
+        /// </summary>
+        public static string LASTUSEDSHIPPINGADDRESSID {
+            get {
+                return ResourceManager.GetString("LASTUSEDSHIPPINGADDRESSID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Used Shipping Address Line.
+        /// </summary>
+        public static string LASTUSEDSHIPPINGADDRESSLINE {
+            get {
+                return ResourceManager.GetString("LASTUSEDSHIPPINGADDRESSLINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Used Shipping Address Name.
+        /// </summary>
+        public static string LASTUSEDSHIPPINGADDRESSNAME {
+            get {
+                return ResourceManager.GetString("LASTUSEDSHIPPINGADDRESSNAME", resourceCulture);
             }
         }
         
@@ -813,6 +984,33 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string LOGONTITLETEXT {
             get {
                 return ResourceManager.GetString("LOGONTITLETEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lowest Discount.
+        /// </summary>
+        public static string LOWESTDISCOUNT {
+            get {
+                return ResourceManager.GetString("LOWESTDISCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lowest Order Subtotal.
+        /// </summary>
+        public static string LOWESTORDERSUBTOTAL {
+            get {
+                return ResourceManager.GetString("LOWESTORDERSUBTOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lowest Order Total.
+        /// </summary>
+        public static string LOWESTORDERTOTAL {
+            get {
+                return ResourceManager.GetString("LOWESTORDERTOTAL", resourceCulture);
             }
         }
         
@@ -898,6 +1096,24 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ordered Items Count.
+        /// </summary>
+        public static string ORDEREDITEMSCOUNT {
+            get {
+                return ResourceManager.GetString("ORDEREDITEMSCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordered Products Count.
+        /// </summary>
+        public static string ORDEREDPRODUCTSCOUNT {
+            get {
+                return ResourceManager.GetString("ORDEREDPRODUCTSCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Internal ID.
         /// </summary>
         public static string ORDERINTERNALID {
@@ -975,6 +1191,51 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string PARENTCOMPANYNAME {
             get {
                 return ResourceManager.GetString("PARENTCOMPANYNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Customer Address Line.
+        /// </summary>
+        public static string PARENTCUSTOMERADDRESSLINE {
+            get {
+                return ResourceManager.GetString("PARENTCUSTOMERADDRESSLINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Customer Contact Full Name.
+        /// </summary>
+        public static string PARENTCUSTOMERCONTACTFULLNAME {
+            get {
+                return ResourceManager.GetString("PARENTCUSTOMERCONTACTFULLNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Customer Name.
+        /// </summary>
+        public static string PARENTCUSTOMERNAME {
+            get {
+                return ResourceManager.GetString("PARENTCUSTOMERNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Customer Number.
+        /// </summary>
+        public static string PARENTCUSTOMERNUMBER {
+            get {
+                return ResourceManager.GetString("PARENTCUSTOMERNUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Customer Telephone.
+        /// </summary>
+        public static string PARENTCUSTOMERTELEPHONE {
+            get {
+                return ResourceManager.GetString("PARENTCUSTOMERTELEPHONE", resourceCulture);
             }
         }
         
@@ -1105,6 +1366,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Products Ordered Count.
+        /// </summary>
+        public static string PRODUCTSORDEREDCOUNT {
+            get {
+                return ResourceManager.GetString("PRODUCTSORDEREDCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purchase Order Number.
         /// </summary>
         public static string PURCHASEORDERNUMBERID {
@@ -1204,6 +1474,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipping Address List.
+        /// </summary>
+        public static string SHIPPINGADDRESSLIST {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSLIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping Address Name.
         /// </summary>
         public static string SHIPPINGADDRESSNAME {
@@ -1245,6 +1524,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string STANDARDCOST {
             get {
                 return ResourceManager.GetString("STANDARDCOST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string START {
+            get {
+                return ResourceManager.GetString("START", resourceCulture);
             }
         }
         

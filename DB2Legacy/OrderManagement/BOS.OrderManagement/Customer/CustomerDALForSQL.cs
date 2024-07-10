@@ -24,23 +24,6 @@ namespace BOS.CustomerDataAccessLayer
 	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
 	public class CustomerDALForSQL : AB_BusinessObjectDALBaseForSQL<CustomerEntity>, BOS.CustomerDataAccessLayer.ICustomerDALServiceContract
 	{
-        ///// <summary>
-        ///// Override for default select data.
-        ///// </summary>
-        public override AB_SelectReturnArgs am_Select(AB_SelectInputArgs inputArgs)
-        {
-            var IsSubCustomerWC = inputArgs.ap_Query.ap_WhereClauses.FirstOrDefault(wc => wc.ap_Field == nameof(CustomerEntity.SearchIsSubCustomer));
-            if (IsSubCustomerWC != null)
-            {
-                if ((bool)IsSubCustomerWC.ap_Value == true) inputArgs.ap_Query.am_AddWhereClause(new AB_QueryWhereClause(nameof(CustomerEntity.ParentInternalID), "<>", 0));
-                if ((bool)IsSubCustomerWC.ap_Value == false) inputArgs.ap_Query.am_AddWhereClause(new AB_QueryWhereClause(nameof(CustomerEntity.ParentInternalID), "=", 0));
-                inputArgs.ap_Query.ap_WhereClauses.Remove(IsSubCustomerWC);
-            }
-
-            var retArgs = base.am_Select(inputArgs);
-            return retArgs;
-        }
-
         /// <summary>
         /// Used to pass static data for the instance constructor
         /// </summary>
@@ -147,7 +130,7 @@ namespace BOS.CustomerDataAccessLayer
 		//}
 
 		#endregion Standard Operations
-	  
+
 		//// A4DN_Tag: Add Custom Method Example - Step 2: Implement Method as defined in the Interface  ICustomerDALServiceContract
 		//// My Custom Method 
 		////=============================================================

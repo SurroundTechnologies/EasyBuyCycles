@@ -555,4 +555,100 @@
   <data name="ORDER" xml:space="preserve">
     <value>Order</value>
   </data>
+  <data name="CUSTOMERNUMBER" xml:space="preserve">
+    <value>Customer Number</value>
+  </data>
+  <data name="PARENTCUSTOMERNAME" xml:space="preserve">
+    <value>Parent Customer Name</value>
+  </data>
+  <data name="PARENTCUSTOMERNUMBER" xml:space="preserve">
+    <value>Parent Customer Number</value>
+  </data>
+  <data name="BILLINGADDRESSLINE" xml:space="preserve">
+    <value>Billing Address Line</value>
+  </data>
+  <data name="ISAPARENTCUSTOMER" xml:space="preserve">
+    <value>Is a Parent Customer</value>
+  </data>
+  <data name="ORDEREDITEMSCOUNT" xml:space="preserve">
+    <value>Ordered Items Count</value>
+  </data>
+  <data name="ORDEREDPRODUCTSCOUNT" xml:space="preserve">
+    <value>Ordered Products Count</value>
+  </data>
+  <data name="END" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="PRODUCTSORDEREDCOUNT" xml:space="preserve">
+    <value>Products Ordered Count</value>
+  </data>
+  <data name="START" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="PARENTCUSTOMERADDRESSLINE" xml:space="preserve">
+    <value>Parent Customer Address Line</value>
+  </data>
+  <data name="PARENTCUSTOMERCONTACTFULLNAME" xml:space="preserve">
+    <value>Parent Customer Contact Full Name</value>
+  </data>
+  <data name="PARENTCUSTOMERTELEPHONE" xml:space="preserve">
+    <value>Parent Customer Telephone</value>
+  </data>
+  <data name="SHIPPINGADDRESSLIST" xml:space="preserve">
+    <value>Shipping Address List</value>
+  </data>
+  <data name="AVERAGEDISCOUNT" xml:space="preserve">
+    <value>Average Discount</value>
+  </data>
+  <data name="DISCOUNTEDORDERCOUNT" xml:space="preserve">
+    <value>Discounted Order Count</value>
+  </data>
+  <data name="FIRSTORDERDATE" xml:space="preserve">
+    <value>First Order Date</value>
+  </data>
+  <data name="FIRSTORDERTIME" xml:space="preserve">
+    <value>First Order Time</value>
+  </data>
+  <data name="HIGHESTDISCOUNT" xml:space="preserve">
+    <value>Highest Discount</value>
+  </data>
+  <data name="HIGHESTORDERSUBTOTAL" xml:space="preserve">
+    <value>Highest Order Subtotal</value>
+  </data>
+  <data name="HIGHESTORDERTOTAL" xml:space="preserve">
+    <value>Highest Order Total</value>
+  </data>
+  <data name="INCOMPLETEORDERCOUNT" xml:space="preserve">
+    <value>Incomplete Order Count</value>
+  </data>
+  <data name="LOWESTDISCOUNT" xml:space="preserve">
+    <value>Lowest Discount</value>
+  </data>
+  <data name="LOWESTORDERSUBTOTAL" xml:space="preserve">
+    <value>Lowest Order Subtotal</value>
+  </data>
+  <data name="LOWESTORDERTOTAL" xml:space="preserve">
+    <value>Lowest Order Total</value>
+  </data>
+  <data name="LASTORDERDATE" xml:space="preserve">
+    <value>Last Order Date</value>
+  </data>
+  <data name="LASTORDERID" xml:space="preserve">
+    <value>Last Order ID</value>
+  </data>
+  <data name="LASTORDERSTATUS" xml:space="preserve">
+    <value>Last Order Status</value>
+  </data>
+  <data name="LASTORDERTIME" xml:space="preserve">
+    <value>Last Order Time</value>
+  </data>
+  <data name="LASTUSEDSHIPPINGADDRESSID" xml:space="preserve">
+    <value>Last Used Shipping Address ID</value>
+  </data>
+  <data name="LASTUSEDSHIPPINGADDRESSLINE" xml:space="preserve">
+    <value>Last Used Shipping Address Line</value>
+  </data>
+  <data name="LASTUSEDSHIPPINGADDRESSNAME" xml:space="preserve">
+    <value>Last Used Shipping Address Name</value>
+  </data>
 </root>
