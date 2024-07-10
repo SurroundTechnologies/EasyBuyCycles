@@ -98,10 +98,15 @@
                             <base:AB_FieldWithLabel Grid.Row="4" ap_LabelPosition="Top" x:Name="Field_BillingCountry" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingCountryProperty}" Margin="0,0,5,5" Height="37.96" VerticalAlignment="Bottom" />
 
                             <TextBlock Margin="4,0,0,5" Grid.Column="1" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.CONTACTINFO}" TextWrapping="Wrap"/>
-                            <base:AB_FieldWithLabel Grid.Column="1" Grid.Row="1" ap_LabelPosition="Top" x:Name="Field_Telephone" ap_PropertyMetaData="{x:Static entity:CustomerEntity.TelephoneProperty}" Margin="5,0,0,5" HorizontalAlignment="Left" Width="173" />
+                            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Telephone" ap_PropertyMetaData="{x:Static entity:CustomerEntity.TelephoneProperty}" Margin="5,0,0,5" HorizontalAlignment="Left" Width="173" />
+                                <Button Height="Auto" Width="100" Margin="5,10,0,5" VerticalAlignment="Bottom" Click="Telephone_Button_Click" Tag="{Binding Path=Telephone}">
+                                    <TextBlock Margin="5,2,0,0" Text="Call Customer"/>
+                                </Button>
+                            </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                                 <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Email" ap_PropertyMetaData="{x:Static entity:CustomerEntity.EmailProperty}" Margin="5,0,0,5" HorizontalAlignment="Left" Width="270" />
-                                <Button Height="Auto" Width="65" Margin="5,10,0,5" VerticalAlignment="Bottom" Click="Button_Click" Tag="{Binding Path=Email}">
+                                <Button Height="Auto" Width="65" Margin="5,10,0,5" VerticalAlignment="Bottom" Click="Email_Button_Click" Tag="{Binding Path=Email}">
                                     <TextBlock Margin="5,2,0,0" Text="Email"/>
                                 </Button>
                             </StackPanel>

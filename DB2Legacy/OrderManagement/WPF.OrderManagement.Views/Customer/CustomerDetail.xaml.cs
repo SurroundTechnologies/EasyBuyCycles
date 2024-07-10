@@ -171,11 +171,19 @@ namespace WPF.Customer
 			
 		}
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Email_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(((CustomerEntity)ap_CurrentEntity).Email))
             {
                 System.Diagnostics.Process.Start("mailto:" + ((CustomerEntity)ap_CurrentEntity).Email);
+            }
+        }
+
+        private void Telephone_Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(((CustomerEntity)ap_CurrentEntity).Telephone))
+            {
+                System.Diagnostics.Process.Start("callto:" + ((CustomerEntity)ap_CurrentEntity).Telephone);
             }
         }
     }
