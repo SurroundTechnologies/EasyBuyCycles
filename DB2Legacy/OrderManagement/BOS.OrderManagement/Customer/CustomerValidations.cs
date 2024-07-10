@@ -33,7 +33,7 @@ namespace BOS.CustomerDataEntity
         public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs InputArgs)
         {
             CustomerEntity entity = InputArgs.ap_EntityToValidate as CustomerEntity;
-            if (entity.ParentInternalID != null && string.IsNullOrEmpty(entity.ParentRelationship))
+            if (entity.ParentInternalID != null && entity.ParentInternalID != 0 && string.IsNullOrEmpty(entity.ParentRelationship))
             {
                 return new AB_ValidateMethodReturnArgs(false);
             }
