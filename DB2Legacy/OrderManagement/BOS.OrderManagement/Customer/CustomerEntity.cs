@@ -62,7 +62,7 @@ namespace BOS.CustomerDataEntity
 
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
         [Display(Name = "PARENTCUSTOMERNUMBER", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(8)]
+		[AB_Length(8)]
         [DataMember]
         public int? ParentInternalID //Map Field: YD1CPTID
         {
@@ -102,10 +102,9 @@ namespace BOS.CustomerDataEntity
         public static AB_PropertyMetadata<string> NameProperty = am_CreatePropertyMetaData<string>(nameof(Name), DescriptionResource.NAME, null);
 
         [Display(Name = "LEGALNAME", ResourceType = typeof(DescriptionResource))]
-		[AB_RequiredField]
 		[AB_Length(50)]
         [DataMember]
-        [AB_ValidationMethod(typeof(ValidateLegalName), "No Parent Relationship")]
+        [AB_ValidationMethod(typeof(ValidateLegalName), ErrorMessage = "Legal Name is required and cannot be blank")]
         public string LegalName //Map Field: YD1CNMLG
         {
             get => am_GetPropertyValue(LegalNameProperty);

@@ -1186,6 +1186,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parent.
+        /// </summary>
+        public static string PARENT {
+            get {
+                return ResourceManager.GetString("PARENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parent Company Name.
         /// </summary>
         public static string PARENTCOMPANYNAME {

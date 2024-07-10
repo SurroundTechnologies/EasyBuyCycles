@@ -29,7 +29,6 @@ namespace BOS.CustomerDataEntity
 
     public class ValidateParentRelationship : AB_IValidation
     {
-        //Put More Code Here
         public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs InputArgs)
         {
             CustomerEntity entity = InputArgs.ap_EntityToValidate as CustomerEntity;
@@ -46,10 +45,11 @@ namespace BOS.CustomerDataEntity
         public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs InputArgs)
         {
             CustomerEntity entity = InputArgs.ap_EntityToValidate as CustomerEntity;
-            if (entity.ParentName != null && string.IsNullOrEmpty(entity.LegalName))
-            {
-                return new AB_ValidateMethodReturnArgs(false);
-            }
+
+            if (entity.ParentInternalID != null && entity.ParentInternalID != 0) return new AB_ValidateMethodReturnArgs(true);
+
+			if (string.IsNullOrEmpty(entity.LegalName)) return new AB_ValidateMethodReturnArgs(false);
+            
             return new AB_ValidateMethodReturnArgs(true);
         }
     }

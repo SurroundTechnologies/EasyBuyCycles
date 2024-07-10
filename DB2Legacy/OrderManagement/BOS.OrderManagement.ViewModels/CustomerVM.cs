@@ -23,13 +23,6 @@ namespace BOS.CustomerViewModel
 	/// </summary>
 	public class CustomerVM : AB_ViewModel<CustomerEntity>
 	{
-        public CustomerEntity SelectedParentCustomer
-        {
-            get => (CustomerEntity)GetValue(SelectedParentCustomerProperty);
-            set => SetValue(SelectedParentCustomerProperty, value);
-        }
-        public static readonly DependencyProperty SelectedParentCustomerProperty = DependencyProperty.Register(nameof(SelectedParentCustomer), typeof(CustomerEntity), typeof(CustomerVM), new PropertyMetadata(null));
-
         public bool IsMapTabVisible
 		{
 			get { return (bool)GetValue(IsMapTabVisibleProperty); }
@@ -130,23 +123,56 @@ namespace BOS.CustomerViewModel
 		/// </summary>        
 		protected override void am_OnCurrentEntityPropertyChanged(AB_VisualModelInitArgs inputArgs, string propertyName, CustomerEntity currentEntity)
 		{
+			switch (propertyName)
+			{
+				case nameof(currentEntity.ParentInternalID):
+					ValidateParentCustomer(inputArgs, currentEntity);
+					break;
+
+				default:
+					break;
+
+			}
 
 		}
 
-		private void ValidateParentCustomer(AB_VisualModelInitArgs inputArgs, CustomerEntity currentDataContext)
+		private void ValidateParentCustomer(AB_VisualModelInitArgs inputArgs, CustomerEntity entity)
 		{
-            // Put More Code Here
-            if (currentDataContext.ParentInternalID == 0)
-            {
-                inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = true;
-            }
+			if (entity.ParentInternalID == null || entity.ParentInternalID == 0)
+			{
+				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = true; 
+				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_DisplayRequiredStyle = false;
+				entity.ParentRelationship = null;
+			}
+			else
+			{
+				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = false;
+				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_DisplayRequiredStyle = true;
+			}
+
+			if (entity.ParentInternalID != null && entity.ParentInternalID != 0)
+			{
+				inputArgs.ap_PropertyModelDictionary[CustomerEntity.LegalNameProperty.ap_PropertyName].ap_DisplayRequiredStyle = false;
+				//We have to change the value in this field and then change it back to trigger the RequiredStyle to be shown right away, this is because the validation attribute is only on LegalName, so it only gets triggered when that field changes
+				var currentLegalName = entity.LegalName;
+				entity.LegalName = "temp";
+				entity.LegalName = currentLegalName;
+			}
+			else
+			{
+				inputArgs.ap_PropertyModelDictionary[CustomerEntity.LegalNameProperty.ap_PropertyName].ap_DisplayRequiredStyle = true;
+				//We have to change the value in this field and then change it back to trigger the RequiredStyle to be shown right away, this is because the validation attribute is only on LegalName, so it only gets triggered when that field changes
+				var currentLegalName = entity.LegalName;
+				entity.LegalName = "temp";
+				entity.LegalName = currentLegalName;
+			}
 		}
 
+
+#if SILVERLIGHT
 		
-		#if SILVERLIGHT
-		
-		#else
-		
+#else
+
 		#region Standard Operations
 
 		///// <summary>
@@ -195,7 +221,7 @@ namespace BOS.CustomerViewModel
 		//}
 
 		#endregion Standard Operations
-		
-		#endif
+
+#endif
 	}
 }

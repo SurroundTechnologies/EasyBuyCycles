@@ -651,4 +651,7 @@
   <data name="LASTUSEDSHIPPINGADDRESSNAME" xml:space="preserve">
     <value>Last Used Shipping Address Name</value>
   </data>
+  <data name="PARENT" xml:space="preserve">
+    <value>Parent</value>
+  </data>
 </root>

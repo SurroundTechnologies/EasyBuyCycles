@@ -54,27 +54,6 @@ namespace WPF.Customer
 			AB_SystemController.ap_SystemPropertyMethods.am_EnrollResourceCultureInfo(typeof(CustomerDetail) , WPF.OrderManagement.Views.Properties.Resources.Culture);
 		}
 
-        private void dd_ParentInternalID_ae_ValueChanged(object sender, System.EventArgs e)
-        {
-            if (ap_DetailMode == AB_DetailModes.Uninitialized || ap_DetailMode == AB_DetailModes.Display || ap_DetailMode == AB_DetailModes.Preview)
-                return;
-
-            // Current Loaded Data Entity
-            var currentSelectedEntity = dd_ParentInternalID.ap_CurrentSelectedEntity as CustomerEntity;
-
-            _ViewModel.SelectedParentCustomer = dd_ParentInternalID.ap_CurrentSelectedEntity as CustomerEntity;
-
-            if (currentSelectedEntity == null)
-            {
-                Field_ParentRelationship.ap_Value = null;
-                Field_ParentRelationship.IsReadOnly = true;
-            }
-            else
-            {
-                Field_ParentRelationship.IsReadOnly = false;
-            }
-        }
-
         /// <summary>
         /// Sets properties of the parent class before it is instantiated.
         /// If it is necessary to override what is set here or set additional parent properties, use <c>am_SetParentProperties</c>.
