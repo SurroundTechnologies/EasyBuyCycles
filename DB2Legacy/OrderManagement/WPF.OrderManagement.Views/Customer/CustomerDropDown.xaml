@@ -23,13 +23,13 @@
         <base:AB_DropdownDetailControl>
             <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
                 <TextBox Text="{Binding ContactFullName, Mode=OneWay}"
-                         Style="{StaticResource DropdownTextBoxStyle}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
                          Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CustomerDropDown}}, Path=ContactFullName, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
                 <TextBox Text="{Binding Telephone, Mode=OneWay}"
-                         Style="{StaticResource DropdownTextBoxStyle}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
                          Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CustomerDropDown}}, Path=Telephone, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
                 <TextBox Text="{Binding BillingAddressBlock, Mode=OneWay}"
-                         Style="{StaticResource DropdownTextBoxStyle}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
                          Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CustomerDropDown}}, Path=BillingAddressBlock, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
             </StackPanel>
         </base:AB_DropdownDetailControl>

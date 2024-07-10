@@ -7,7 +7,7 @@
     <SolidColorBrush x:Key="SecondaryLogoBrush" Color="#363636"/>
     <SolidColorBrush x:Key="TertiaryLogoBrush" Color="#5A80B8"/>
 
-    <Style x:Key="DropdownTextBoxStyle" TargetType="TextBox">
+    <Style x:Key="NoBorderTextBoxStyle" TargetType="TextBox">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="Background" Value="Transparent" />
