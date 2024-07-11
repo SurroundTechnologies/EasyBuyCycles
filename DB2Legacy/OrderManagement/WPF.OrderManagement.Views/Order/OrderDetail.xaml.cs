@@ -94,15 +94,6 @@ namespace WPF.Order
 		{
 			base.am_OnInitialized();
 
-			// Current Loaded Data Entity
-			var currentEntity = ap_CurrentEntity as OrderEntity;
-
-			if (currentEntity != null && !currentEntity.OrderDate.HasValue && !currentEntity.OrderTime.HasValue)
-			{
-				var CurrentDatetime = System.DateTime.Now;
-                currentEntity.OrderDate = CurrentDatetime.Date;
-                currentEntity.OrderTime = CurrentDatetime.TimeOfDay;
-			}
 		}
 
 		/// <summary>
@@ -113,9 +104,14 @@ namespace WPF.Order
 			base.am_OnDataLoaded();
 
 			// Current Loaded Data Entity
-			//OrderEntity currentEntity = ap_CurrentEntity as OrderEntity;
+			var currentEntity = ap_CurrentEntity as OrderEntity;
 
-			
+			if (currentEntity != null && !currentEntity.OrderDate.HasValue && !currentEntity.OrderTime.HasValue)
+			{
+				var currentDatetime = System.DateTime.Now;
+				currentEntity.OrderDate = currentDatetime.Date;
+				currentEntity.OrderTime = currentDatetime.TimeOfDay;
+			}
 		}
 		
 		/// <summary>

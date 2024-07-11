@@ -74,6 +74,7 @@ namespace BOS.OrderDataEntity
 
         [Display(Name = "ORDERDATE", ResourceType = typeof(DescriptionResource))]
         [AB_ApplyDateFormat]
+        [AB_DoNotCopy]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
         [DataMember]
@@ -85,7 +86,8 @@ namespace BOS.OrderDataEntity
         public static AB_PropertyMetadata<DateTime?> OrderDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(OrderDate), DescriptionResource.ORDERDATE, null); 
 
         [Display(Name = "ORDERTIME", ResourceType = typeof(DescriptionResource))]
-        [DataMember]
+		[AB_DoNotCopy]
+		[DataMember]
         public TimeSpan? OrderTime //Map Field: YD1OTM
         {
             get => am_GetPropertyValue(OrderTimeProperty);
