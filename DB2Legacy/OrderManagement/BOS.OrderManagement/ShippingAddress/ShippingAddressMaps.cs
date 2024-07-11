@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using A4DN.Core.BOS.Base;
 using SharedSystemProperties = BOS.OrderManagement.Shared.Properties;
 using BOS.ShippingAddressDataEntity;
-using BOS.CustomerDataEntity;
 
 namespace BOS.ShippingAddressDataMaps
 {

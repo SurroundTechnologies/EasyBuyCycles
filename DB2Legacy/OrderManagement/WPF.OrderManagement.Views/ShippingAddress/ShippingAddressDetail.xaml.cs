@@ -13,7 +13,6 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
 using BOS.ShippingAddressDataEntity;
 using BOS.ShippingAddressViewModel;
-using BOS.CustomerDataEntity;
 using BOS.OrderManagement.Shared;
 using WPF.OrderManagement.Shared;
 
