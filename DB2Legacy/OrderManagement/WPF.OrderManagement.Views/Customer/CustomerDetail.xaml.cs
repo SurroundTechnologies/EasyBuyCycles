@@ -76,9 +76,10 @@ namespace WPF.Customer
 			
 			// View Model
 			_ViewModel = FindResource("CustomerVM") as CustomerVM;
-			ap_ViewModel = _ViewModel; 
+			ap_ViewModel = _ViewModel;
 
-		}
+            AddressControls.MessageConsole = ap_MessageConsole;
+        }
 		
 		/// <summary>
 		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
@@ -171,11 +172,19 @@ namespace WPF.Customer
 			
 		}
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Email_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(((CustomerEntity)ap_CurrentEntity).Email))
             {
                 System.Diagnostics.Process.Start("mailto:" + ((CustomerEntity)ap_CurrentEntity).Email);
+            }
+        }
+
+        private void Telephone_Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(((CustomerEntity)ap_CurrentEntity).Telephone))
+            {
+                System.Diagnostics.Process.Start("callto:" + ((CustomerEntity)ap_CurrentEntity).Telephone);
             }
         }
     }
