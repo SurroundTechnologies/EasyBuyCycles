@@ -115,7 +115,7 @@ namespace BOS.OrderViewModel
 			{
 				case nameof(currentEntity.OrderDate):
 					var givenDate = currentEntity.OrderDate;
-					var oldDate = DateTime.Today.AddDays(-2);
+					var oldDate = DateTime.Today.AddDays(-1);
 
 					inputArgs.ap_PropertyModelDictionary[OrderEntity.OrderDateProperty.ap_PropertyName].ap_ErrorMessage = new AB_Message("Order Date is in the Past", AB_MessageType.Error);
 					inputArgs.ap_PropertyModelDictionary[OrderEntity.OrderDateProperty.ap_PropertyName].ap_IsInError = givenDate <= oldDate;
