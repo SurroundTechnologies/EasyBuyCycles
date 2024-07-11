@@ -29,38 +29,6 @@ namespace WPF.Order
 		}
         public static readonly DependencyProperty OrderInternalIDProperty = DependencyProperty.Register(nameof(OrderInternalID), typeof(int?), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
 
-		[AB_DropdownNonKeyProperty]
-        public DateTime? OrderDate
-        {
-            get => (DateTime?)GetValue(OrderDateProperty);
-            set => SetValue(OrderDateProperty, value);
-        }
-        public static readonly DependencyProperty OrderDateProperty = DependencyProperty.Register(nameof(OrderDate), typeof(DateTime?), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-        [AB_DropdownNonKeyProperty]
-        public TimeSpan? OrderTime
-        {
-            get => (TimeSpan?)GetValue(OrderTimeProperty);
-            set => SetValue(OrderTimeProperty, value);
-        }
-        public static readonly DependencyProperty OrderTimeProperty = DependencyProperty.Register(nameof(OrderTime), typeof(TimeSpan?), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-        [AB_DropdownNonKeyProperty]
-        public string CustomerName
-        {
-            get => (string)GetValue(CustomerNameProperty);
-            set => SetValue(CustomerNameProperty, value);
-        }
-        public static readonly DependencyProperty CustomerNameProperty = DependencyProperty.Register(nameof(CustomerName), typeof(string), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-        [AB_DropdownNonKeyProperty]
-        public string PurchaseOrderNumberID
-        {
-            get => (string)GetValue(PurchaseOrderNumberIDProperty);
-            set => SetValue(PurchaseOrderNumberIDProperty, value);
-        }
-        public static readonly DependencyProperty PurchaseOrderNumberIDProperty = DependencyProperty.Register(nameof(PurchaseOrderNumberID), typeof(string), typeof(OrderDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
         /// <summary>
         /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
         /// </summary>

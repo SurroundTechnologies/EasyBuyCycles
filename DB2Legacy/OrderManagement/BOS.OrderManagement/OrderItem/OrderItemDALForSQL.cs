@@ -130,7 +130,7 @@ namespace BOS.OrderItemDataAccessLayer
 		//}
 
 		#endregion Standard Operations
-	  
+
 		//// A4DN_Tag: Add Custom Method Example - Step 2: Implement Method as defined in the Interface  IOrderItemDALServiceContract
 		//// My Custom Method 
 		////=============================================================

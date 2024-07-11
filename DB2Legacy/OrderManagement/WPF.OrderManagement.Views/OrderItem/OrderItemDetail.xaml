@@ -76,10 +76,6 @@
                                                      x:Name="Field_PurchaseOrderNumber"
                                                      ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"
                                                      OrderInternalID="{Binding Path=OrderInternalID, Mode=TwoWay}"
-                                                     OrderDate="{Binding Path=OrderDate, Mode=TwoWay}"
-                                                     OrderTime="{Binding Path=OrderTime, Mode=TwoWay}"
-                                                     CustomerName="{Binding Path=CustomerName, Mode=TwoWay}"
-                                                     PurchaseOrderNumberID="{Binding Path=PurchaseOrderNumberID, Mode=TwoWay}"
                                                      ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.ORDER}"
                                                      Margin="0,0,0,5" />
                             <WPF.Product:ProductDropDown Grid.Row="1"
@@ -91,11 +87,6 @@
                                                          x:Name="Field_ProductName"
                                                          ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}"
                                                          ProductInternalID="{Binding Path=ProductInternalID, Mode=TwoWay}"
-                                                         Code="{Binding Path=ProductCode, Mode=TwoWay}"
-                                                         Category="{Binding Path=ProductCategory, Mode=TwoWay}"
-                                                         ListPrice="{Binding Path=ProductListPrice, Mode=TwoWay}"
-                                                         Description="{Binding Path=ProductDescription, Mode=TwoWay}"
-                                                         ImagePath="{Binding Path=ProductImagePath, Mode=TwoWay}"
                                                          ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.PRODUCT}"
                                                          Margin="0,0,0,5"
                                                          ae_SelectionChanged="Field_ProductName_ae_SelectionChanged" />

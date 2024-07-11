@@ -342,49 +342,6 @@ namespace BOS.OrderItemDataEntity
         }
         public static AB_PropertyMetadata<string> PurchaseOrderNumberIDProperty = am_CreatePropertyMetaData<string>(nameof(PurchaseOrderNumberID), DescriptionResource.PURCHASEORDERNUMBERID, null);
 
-        [Display(Name = "CUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(50)]
-        [AB_BroadcastMember(AB_DataShouldBePassed.OnPreload)]
-        [DataMember]
-        public string CustomerName //Map Field: YD1C.YD1CNM
-        {
-            get => am_GetPropertyValue(CustomerNameProperty);
-            set => am_SetPropertyValue(CustomerNameProperty, value);
-        }
-        public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null);
-
-        [Display(Name = "CATEGORY", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(50)]
-        [DataMember]
-        public string ProductCategory //Map Field: YD1P.YD1PCT
-        {
-            get => am_GetPropertyValue(ProductCategoryProperty);
-            set => am_SetPropertyValue(ProductCategoryProperty, value);
-        }
-        public static AB_PropertyMetadata<string> ProductCategoryProperty = am_CreatePropertyMetaData<string>(nameof(ProductCategory), DescriptionResource.CATEGORY, null);
-
-        [Display(Name = "LISTPRICE", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(10)]
-        [DataType(DataType.Currency)]
-        [AB_ApplyStringFormat("C")]
-        [DataMember]
-        public decimal? ProductListPrice //Map Field: YD1P.YD1PLSPR
-        {
-            get => am_GetPropertyValue(ProductListPriceProperty);
-            set => am_SetPropertyValue(ProductListPriceProperty, value);
-        }
-        public static AB_PropertyMetadata<decimal?> ProductListPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(ProductListPrice), DescriptionResource.LISTPRICE, null);
-
-        [Display(Name = "DESCRIPTION", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(256)]
-        [DataMember]
-        public string ProductDescription //Map Field: YD1P.YD1PDS
-        {
-            get => am_GetPropertyValue(ProductDescriptionProperty);
-            set => am_SetPropertyValue(ProductDescriptionProperty, value);
-        }
-        public static AB_PropertyMetadata<string> ProductDescriptionProperty = am_CreatePropertyMetaData<string>(nameof(ProductDescription), DescriptionResource.DESCRIPTION, null);
-
         [Display(Name = "UNITDISCOUNT", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
         [DataType(DataType.Currency)]
