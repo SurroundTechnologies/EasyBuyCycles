@@ -228,6 +228,13 @@
                                           Padding="5">
                             <StackPanel>
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left"
+                                                        x:Name="Field_OrderInternalID"
+                                                        ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"
+                                                        Margin="0,0,0,5"
+                                                        HorizontalAlignment="Left"
+                                                        Width="240" />
+                                
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left"
                                                         x:Name="Field_CreateDate"
                                                         ap_PropertyMetaData="{x:Static entity:OrderItemEntity.CreateDateProperty}"
                                                         Margin="0,0,0,5"

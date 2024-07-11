@@ -46,7 +46,8 @@ namespace BOS.OrderItemDataEntity
         [AB_DoNotCopy]
         [Display(Name = "ORDERITEMINTERNALID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(12)]
-        [DataMember]
+		[AB_AutoIncrement]
+		[DataMember]
         public int? OrderItemInternalID //Map Field: YD1IIID
         {
             get => am_GetPropertyValue(OrderItemInternalIDProperty);
@@ -334,7 +335,6 @@ namespace BOS.OrderItemDataEntity
         [Display(Name = "PURCHASEORDERNUMBERID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
-        [AB_RequiredField]
         public string PurchaseOrderNumberID //Map Field: YD1OPONO
         {
             get => am_GetPropertyValue(PurchaseOrderNumberIDProperty);
