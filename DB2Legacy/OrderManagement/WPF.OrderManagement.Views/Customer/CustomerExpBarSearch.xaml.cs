@@ -120,6 +120,11 @@ namespace WPF.Customer
 			Utilities.AddDateRangeFilter(whereFilter, Field_CreateDateStart.ap_Value, Field_CreateDateEnd.ap_Value, CustomerEntity.CreateDateProperty);
 			Utilities.AddDateRangeFilter(whereFilter, Field_LastChangeDateStart.ap_Value, Field_LastChangeDateEnd.ap_Value, CustomerEntity.LastChangeDateProperty);
 
+			if (ap_CurrentView.ViewName == "YD1CLF2") // Parent Customer Name, Name View
+			{
+				whereFilter.am_AddWhereClause(CustomerEntity.ParentInternalIDProperty, "<>", 0);
+			}
+
 			return whereFilter;
 		}                
 	}
