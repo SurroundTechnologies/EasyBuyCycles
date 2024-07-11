@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using A4DN.Core.BOS.Base;
 using SharedSystemProperties = BOS.OrderManagement.Shared.Properties;
 using BOS.ShippingAddressDataEntity;
+using BOS.CustomerDataEntity;
 
 namespace BOS.ShippingAddressDataMaps
 {
@@ -78,18 +79,59 @@ namespace BOS.ShippingAddressDataMaps
 			maps.am_AddDataMap("YD1SLCUS", ShippingAddressEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1SLCJB", ShippingAddressEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1SLCJN", ShippingAddressEntity.LastChangeJobNumberProperty);
-			maps.am_AddDataMap(string.Format("{0}.{1}", YD1CTableName, "YD1CNM"), ShippingAddressEntity.CustomerNameProperty, targetTable: YD1CTableName);
+			
 
-			//TODO: ShippingAddressMaps Real Field Example
-			//maps.am_AddDataMap("<Field Name>", ShippingAddressEntity.<Property Name>);
-			//TODO: ShippingAddressMaps Virtual Field Example
-			//maps.am_AddDataMap("<Field Name>", ShippingAddressEntity.<Property Name>, isVirtual: true);
-			//TODO: ShippingAddressMaps Foreign Field Example
-			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ShippingAddressEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-			//TODO: ShippingAddressMaps Configure Example (for setting options not available as constructor arguments)
-			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
-		  
-			return maps;
+            #region Additional Fields
+
+            maps.am_AddDataMap("ContactFullName", ShippingAddressEntity.ContactFullNameProperty, isVirtual: true);
+
+            maps.am_AddDataMap("ContactFullNameSearch", ShippingAddressEntity.ContactFullNameSearchProperty).am_Configure(map =>
+                map.ap_FunctionExpression = $@"(TRIM(""{YD1STableName}"".""YD1SCNFN"")
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SCNMN"" WHEN '' THEN '' ELSE ' ' CONCAT TRIM(""{YD1STableName}"".""YD1SCNMN"") END
+                                               CONCAT ' ' CONCAT TRIM(""{YD1STableName}"".""YD1SCNLN"")
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SCNNN"" WHEN '' THEN '' ELSE ' ""' CONCAT TRIM(""{YD1STableName}"".""YD1SCNNN"") CONCAT '""' END)
+                                               AS ""ContactFullNameSearch""");
+
+            maps.am_AddDataMap("ShippingAddressLine", ShippingAddressEntity.ShippingAddressLineProperty, isVirtual: true);
+            maps.am_AddDataMap("ShippingAddressBlock", ShippingAddressEntity.ShippingAddressBlockProperty, isVirtual: true);
+
+            maps.am_AddDataMap("ShippingAddressLineSearch", ShippingAddressEntity.ShippingAddressLineSearchProperty).am_Configure(map =>
+                map.ap_FunctionExpression = $@"(""{YD1STableName}"".""YD1SSHA1""
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHA2"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1STableName}"".""YD1SSHA2"") END
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHA3"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1STableName}"".""YD1SSHA3"") END
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHPC"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1STableName}"".""YD1SSHPC"") END
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHCY"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1STableName}"".""YD1SSHCY"") END)
+                                               AS ""ShippingAddressLineSearch""");
+
+            #endregion
+
+            #region Customer Join
+
+            maps.am_AddDataMap("YD1CNM", ShippingAddressEntity.CustomerNameProperty, targetTable: YD1CTableName);
+            maps.am_AddDataMap("CustomerContactFullName", ShippingAddressEntity.CustomerContactFullNameProperty).am_Configure(map =>
+            {
+                map.am_RequiresTableNames(YD1CTableName);
+                map.ap_FunctionExpression = $@"(TRIM(""{YD1CTableName}"".""YD1CCNFN"")
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CCNMN"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1CTableName}"".""YD1CCNMN"") END
+                                               CONCAT SPACE(1) CONCAT TRIM(""{YD1CTableName}"".""YD1CCNLN"")
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CCNNN"" WHEN '' THEN '' ELSE ' ""' CONCAT TRIM(""{YD1CTableName}"".""YD1CCNNN"") CONCAT '""' END)
+                                               AS ""CustomerContactFullname""";
+            });
+            maps.am_AddDataMap("YD1CTL", ShippingAddressEntity.CustomerTelephoneProperty, targetTable: YD1CTableName);
+            maps.am_AddDataMap("CustomerBillingAddressLine", ShippingAddressEntity.CustomerBillingAddressLineProperty).am_Configure(map =>
+            {
+                map.am_RequiresTableNames(YD1CTableName);
+                map.ap_FunctionExpression = $@"(TRIM(""{YD1CTableName}"".""YD1CBLA1"")
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLA2"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1CTableName}"".""YD1CBLA2"") END
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLA3"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1CTableName}"".""YD1CBLA3"") END
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLPC"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1CTableName}"".""YD1CBLPC"") END
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLCY"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1CTableName}"".""YD1CBLCY"") END)
+                                               AS ""CustomerBillingAddressLineProperty""";
+            });
+
+            #endregion
+
+            return maps;
 		}
 
 	}

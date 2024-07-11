@@ -654,4 +654,19 @@
   <data name="PARENT" xml:space="preserve">
     <value>Parent</value>
   </data>
+  <data name="SHIPPINGADDRESSBLOCK" xml:space="preserve">
+    <value>Shipping Address Block</value>
+  </data>
+  <data name="SHIPPINGADDRESSLINE" xml:space="preserve">
+    <value>Shipping Address Line</value>
+  </data>
+  <data name="CUSTOMERBILLINGADDRESSLINE" xml:space="preserve">
+    <value>Customer Billing Address Line</value>
+  </data>
+  <data name="CUSTOMERCONTACTFULLNAME" xml:space="preserve">
+    <value>Customer Contact Full Name</value>
+  </data>
+  <data name="CUSTOMERTELEPHONE" xml:space="preserve">
+    <value>Customer Telephone</value>
+  </data>
 </root>
