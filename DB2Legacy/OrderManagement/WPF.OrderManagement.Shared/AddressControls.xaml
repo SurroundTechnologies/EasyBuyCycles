@@ -118,7 +118,7 @@
                     <Image Grid.Column="0"
                            Margin="2"
                            Width="16" Height="16"
-                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/LocationBlue_small.png" />
+                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/LocationRed_small.png" />
                 </Grid>
             </MenuItem.Icon>
 
@@ -126,7 +126,7 @@
                 <MenuItem.Icon>
                     <Image Margin="-2 -2 -6 -2"
                            Width="18" Height="18"
-                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/LocationBlue_small.png" />
+                           Source="/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/LocationRed_small.png" />
                 </MenuItem.Icon>
                 <MenuItem.Header>
                     <TextBlock Margin="0 0 -25 0">Open In Maps</TextBlock>
