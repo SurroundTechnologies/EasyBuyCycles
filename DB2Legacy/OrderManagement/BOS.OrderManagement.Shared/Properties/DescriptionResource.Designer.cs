@@ -466,6 +466,24 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Billing Address Line.
+        /// </summary>
+        public static string CUSTOMERBILLINGADDRESSLINE {
+            get {
+                return ResourceManager.GetString("CUSTOMERBILLINGADDRESSLINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Contact Full Name.
+        /// </summary>
+        public static string CUSTOMERCONTACTFULLNAME {
+            get {
+                return ResourceManager.GetString("CUSTOMERCONTACTFULLNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer Count.
         /// </summary>
         public static string CUSTOMERCOUNT {
@@ -498,6 +516,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string CUSTOMERNUMBER {
             get {
                 return ResourceManager.GetString("CUSTOMERNUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Telephone.
+        /// </summary>
+        public static string CUSTOMERTELEPHONE {
+            get {
+                return ResourceManager.GetString("CUSTOMERTELEPHONE", resourceCulture);
             }
         }
         
@@ -1465,6 +1492,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Block.
+        /// </summary>
+        public static string SHIPPINGADDRESSBLOCK {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSBLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping Address Count.
         /// </summary>
         public static string SHIPPINGADDRESSCOUNT {
@@ -1479,6 +1515,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string SHIPPINGADDRESSINTERNALID {
             get {
                 return ResourceManager.GetString("SHIPPINGADDRESSINTERNALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Line.
+        /// </summary>
+        public static string SHIPPINGADDRESSLINE {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSLINE", resourceCulture);
             }
         }
         
