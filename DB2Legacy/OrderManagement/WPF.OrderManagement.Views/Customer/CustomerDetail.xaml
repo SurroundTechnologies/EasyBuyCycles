@@ -52,13 +52,13 @@
                                 <TextBlock Text=" - " FontWeight="Bold" />
                                 <TextBox Text="{Binding CustomerInternalID, Mode=OneWay}" FontWeight="Bold" Style="{StaticResource NoBorderTextBoxStyle}" Foreground="Black" Margin="-4 0 0 0"/>
                             </StackPanel>
-                            
+
                             <base:AB_FieldWithLabel Width="Auto" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:CustomerEntity.NameProperty}" Margin="0,0,5,5" />
                             <base:AB_FieldWithLabel HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_LegalName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LegalNameProperty}" Margin="0,0,0,5" Width="Auto" />
                             <WPF.Customer:CustomerDropDown Width="345" Grid.Row="2" Grid.Column="0" x:Name="dd_ParentInternalID" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}" ap_LabelPosition="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENT}" />
                             <base:AB_FieldWithLabel Width="Auto" Grid.Row="2" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_ParentRelationship" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentRelationshipProperty}" Margin="0,4,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
                         </Grid>
-                        
+
                         <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -88,7 +88,19 @@
                                 <ColumnDefinition MaxWidth="355"/>
                                 <ColumnDefinition MaxWidth="355"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="0,0,0,5" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.BILLINGADDRESS}" TextWrapping="Wrap"/>
+
+
+
+
+                            <StackPanel Margin="0,0,0,5" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.BILLINGADDRESS}" TextWrapping="Wrap"/>
+                                <wpfShared:AddressControls Margin="5 0 0 0" VerticalAlignment="Top" x:Name="AddressControls" FullAddressBlock="{Binding BillingAddressBlock}" FullAddressLine="{Binding BillingAddressLine}" />
+                            </StackPanel>
+
+
+
+
+
                             <base:AB_FieldWithLabel Width="Auto" Grid.Column="0" Grid.Row="1" ap_LabelPosition="Top" x:Name="Field_BillingAddress1" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress1Property}" Margin="0,0,5,5" HorizontalAlignment="Stretch" />
                             <base:AB_FieldWithLabel Width="Auto" Grid.Column="0" Grid.Row="2" ap_LabelPosition="Top" x:Name="Field_BillingAddress2" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress2Property}" Margin="0,0,5,5" HorizontalAlignment="Stretch" />
                             <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" Width="Auto">

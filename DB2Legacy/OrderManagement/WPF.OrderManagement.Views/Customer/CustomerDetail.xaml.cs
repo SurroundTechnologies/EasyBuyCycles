@@ -76,9 +76,10 @@ namespace WPF.Customer
 			
 			// View Model
 			_ViewModel = FindResource("CustomerVM") as CustomerVM;
-			ap_ViewModel = _ViewModel; 
+			ap_ViewModel = _ViewModel;
 
-		}
+            AddressControls.MessageConsole = ap_MessageConsole;
+        }
 		
 		/// <summary>
 		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
