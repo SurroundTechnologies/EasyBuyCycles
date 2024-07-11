@@ -112,14 +112,21 @@ namespace BOS.CustomerDataAccessLayer
 		//	return retArgs;
 		//}
 
-		///// <summary>
-		///// Override for default to update data.
-		///// </summary>
-		//public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Update(inputArgs);
-		//	return retArgs;
-		//}
+		/// <summary>
+		/// Override for default to update data.
+		/// </summary>
+		public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
+		{
+			var entity = inputArgs.ap_InputEntity as CustomerEntity;
+			if (entity.ap_PropertyNamesChangedOnClient.ContainsKey(CustomerEntity.ParentInternalIDProperty.ap_PropertyName) && !entity.ParentInternalID.HasValue )
+			{
+				entity.ParentInternalID = 0;
+				entity.ParentRelationship = string.Empty;
+			}
+
+			var retArgs = base.am_Update(inputArgs);
+			return retArgs;
+		}
 
 		///// <summary>
 		///// Override for default to delete data.
