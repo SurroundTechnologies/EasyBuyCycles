@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using A4DN.Core.BOS.Base;
+using System.Globalization;
 
 namespace WPF.OrderManagement.Shared
 {
@@ -46,4 +47,22 @@ namespace WPF.OrderManagement.Shared
             throw new NotImplementedException();
         }
     }
+
+	public class TimeSpanToAmPmConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (value is TimeSpan timeSpan)
+			{
+				DateTime dateTime = DateTime.Today.Add(timeSpan);
+				return dateTime.ToString("hh:mm tt");
+			}
+			return value;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

@@ -669,4 +669,7 @@
   <data name="CUSTOMERTELEPHONE" xml:space="preserve">
     <value>Customer Telephone</value>
   </data>
+  <data name="ORDERSINFORMATION" xml:space="preserve">
+    <value>Orders Information</value>
+  </data>
 </root>

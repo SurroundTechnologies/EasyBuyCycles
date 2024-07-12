@@ -22,6 +22,7 @@
             <vm:CustomerVM x:Key="CustomerVM"/>
             <wpfShared:ZeroCheckToVisibilityConverter x:Key="ZeroCheckToVis" />
             <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <wpfShared:TimeSpanToAmPmConverter x:Key="timespanToAmPmConverter" />
         </ResourceDictionary>
     </base:AB_DetailBase.Resources>
 
@@ -88,19 +89,10 @@
                                 <ColumnDefinition MaxWidth="355"/>
                                 <ColumnDefinition MaxWidth="355"/>
                             </Grid.ColumnDefinitions>
-
-
-
-
                             <StackPanel Margin="0,0,0,5" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                                 <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.BILLINGADDRESS}" TextWrapping="Wrap"/>
                                 <wpfShared:AddressControls Margin="5 0 0 0" VerticalAlignment="Top" x:Name="AddressControls" FullAddressBlock="{Binding BillingAddressBlock}" FullAddressLine="{Binding BillingAddressLine}" />
                             </StackPanel>
-
-
-
-
-
                             <base:AB_FieldWithLabel Width="Auto" Grid.Column="0" Grid.Row="1" ap_LabelPosition="Top" x:Name="Field_BillingAddress1" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress1Property}" Margin="0,0,5,5" HorizontalAlignment="Stretch" />
                             <base:AB_FieldWithLabel Width="Auto" Grid.Column="0" Grid.Row="2" ap_LabelPosition="Top" x:Name="Field_BillingAddress2" ap_PropertyMetaData="{x:Static entity:CustomerEntity.BillingAddress2Property}" Margin="0,0,5,5" HorizontalAlignment="Stretch" />
                             <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" Width="Auto">
@@ -132,7 +124,61 @@
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" Grid.RowSpan="2" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="55" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="5,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="346" />
                             </Grid>
                         </Grid>
-                        <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" />
+                        <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" DockPanel.Dock="Top" />
+
+                        <Expander HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                  Background="Transparent" Margin="0 20 0 0"
+                                  IsExpanded="True" OverridesDefaultStyle="True"
+                                  Style="{DynamicResource AB_MinimalistExpanderStyle}">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.ORDERSINFORMATION}" FontWeight="Bold" />
+                                    <TextBlock Text=" - " FontWeight="Bold" />
+                                    <TextBlock Text="First Order: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding FirstOrderDate, StringFormat='MM/dd/yyyy'}" FontWeight="Bold" Margin="0 0 5 0"/>
+                                    <TextBlock Text="{Binding FirstOrderTime, Converter={StaticResource timespanToAmPmConverter}}" FontWeight="Bold" />
+                                </StackPanel>
+                                
+                            </Expander.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 5 50 10">
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.OrderCountProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.IncompleteOrderCountProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.DiscountedOrderCountProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="1" Margin="0 5 50 10">
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.HighestDiscountProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="220" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.AverageDiscountProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="220" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LowestDiscountProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="220" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 5 50 10">
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.HighestOrderSubtotalProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.AverageOrderSubtotalProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LowestOrderSubtotalProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="0 5 50 10">
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.HighestOrderTotalProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.AverageOrderTotalProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                    <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LowestOrderTotalProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                </StackPanel>
+                            </Grid>
+                        </Expander>
+                            
                     </DockPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>

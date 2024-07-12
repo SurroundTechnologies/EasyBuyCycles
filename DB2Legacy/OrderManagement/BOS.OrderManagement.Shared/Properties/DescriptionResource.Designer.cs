@@ -1195,6 +1195,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Orders Information.
+        /// </summary>
+        public static string ORDERSINFORMATION {
+            get {
+                return ResourceManager.GetString("ORDERSINFORMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Time.
         /// </summary>
         public static string ORDERTIME {
