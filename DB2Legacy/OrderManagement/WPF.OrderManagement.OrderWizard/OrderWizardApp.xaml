@@ -1,9 +1,0 @@
-﻿<main:App x:Class="WPF.OrderManagement.OrderWizard.OrderWizardApp"
-          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-          xmlns:local="clr-namespace:WPF.OrderManagement.OrderWizard"
-          xmlns:main="clr-namespace:WPF.OrderManagement;assembly=WPF.OrderManagement">
-    <main:App.Resources>
-
-    </main:App.Resources>
-</main:App>
