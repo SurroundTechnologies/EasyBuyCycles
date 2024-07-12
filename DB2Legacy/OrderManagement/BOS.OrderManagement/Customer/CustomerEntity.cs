@@ -840,9 +840,9 @@ namespace BOS.CustomerDataEntity
                             break;
                     }
  
-                    if (CustomerInternalID != null)
+                    if (CustomerInternalID.HasValue)
                     {
-                        title.AppendFormat(" - {0}", CustomerInternalID);
+                        title.AppendFormat(" - {0}", CustomerInternalID.Value);
                     }
  
                     if (!string.IsNullOrWhiteSpace(Name))
