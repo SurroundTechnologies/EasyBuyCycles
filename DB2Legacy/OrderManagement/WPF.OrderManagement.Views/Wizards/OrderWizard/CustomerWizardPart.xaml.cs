@@ -7,6 +7,7 @@ using BOS.OrderManagement.Shared.Properties;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using WPF.Customer;
 
@@ -78,6 +79,8 @@ namespace WPF.Wizards.OrderWizard
             {
                 var customer = _SharedObject.Customer;
 
+                _CustomerDetail.Expander_OrdersInformation.IsExpanded = false;
+
                 _CustomerDetail.Field_Name.ap_Value = customer.Name;
                 _CustomerDetail.Field_LegalName.ap_Value= customer.LegalName;
                 _CustomerDetail.Field_ContactFirstName.ap_Value = customer.ContactFirstName;
@@ -110,6 +113,8 @@ namespace WPF.Wizards.OrderWizard
         {
             ddCustomer.am_ClearDropDown();
             _SharedObject.ap_WizardMessageConsole.am_ClearMessages();
+
+            _CustomerDetail.Expander_OrdersInformation.IsExpanded = false;
         }
 
         private void rbSpecifyExisting_Checked(object sender, RoutedEventArgs e)
@@ -174,6 +179,26 @@ namespace WPF.Wizards.OrderWizard
                 _CustomerDetailReadOnly.Field_Email.IsReadOnly = true;
                 _CustomerDetailReadOnly.Field_Memo.IsReadOnly = true;
                 _CustomerDetailReadOnly.Field_PurchasePoints.IsReadOnly = true;
+
+                foreach(var child in LogicalTreeHelper.GetChildren(_CustomerDetailReadOnly.Expander_OrdersInformation))
+                {
+                    if (child is Grid grid)
+                    {
+                        foreach(var gridElement in grid.Children)
+                        {
+                            if (gridElement is StackPanel stackPanel)
+                            {
+                                foreach (var element in stackPanel.Children)
+                                {
+                                    if (element is AB_FieldWithLabel field)
+                                    {
+                                        field.IsReadOnly = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
