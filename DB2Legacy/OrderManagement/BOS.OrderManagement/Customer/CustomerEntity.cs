@@ -845,11 +845,6 @@ namespace BOS.CustomerDataEntity
                         title.AppendFormat(" - {0}", CustomerInternalID);
                     }
  
-                    //if (!string.IsNullOrWhiteSpace(ContactLastName))
-                    //{
-                    //    title.AppendFormat(" - {0}", ContactLastName);
-                    //}
- 
                     if (!string.IsNullOrWhiteSpace(Name))
                     {
                         title.AppendFormat(" - {0}", Name);
