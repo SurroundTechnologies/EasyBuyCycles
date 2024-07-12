@@ -50,9 +50,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOS.OrderManagement.Shared", "BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj", "{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.OrderManagement.OrderWizard", "WPF.OrderManagement.OrderWizard\WPF.OrderManagement.OrderWizard.csproj", "{DD71D0CD-0558-46BB-A953-C3E59D164A59}"
-	ProjectSection(ProjectDependencies) = postProject
-		{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6} = {47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
