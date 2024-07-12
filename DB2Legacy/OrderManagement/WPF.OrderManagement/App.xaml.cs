@@ -4,26 +4,29 @@
 // <A4DN_Template Name="WPF.System.Application.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
 using A4DN.Core.WPF.Base;
-using A4DN.Core.BOS.DataController;
+using BOS.OrderManagement.Shared;
+using System;
+using WPF.Wizards.OrderWizard;
 
 namespace WPF.OrderManagement
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : AB_Application
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : AB_Application
 	{
-		/// <summary>
-		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
-		/// </summary>
-		protected override void am_SetParentProperties()
+        protected override void am_Initialize()
+        {
+            base.am_Initialize();
+
+			AB_SystemController.ap_WizardModel.am_EnrollWizard(new AB_WizardEntity(typeof(OrderWizardWindow), Constants.CMD_ORDERWIZARD));
+		}
+
+        /// <summary>
+        /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
+        /// </summary>
+        protected override void am_SetParentProperties()
 		{
 			ap_MainWindowType = typeof(Browser);
 			ap_WpfLogonType = typeof(Logon);

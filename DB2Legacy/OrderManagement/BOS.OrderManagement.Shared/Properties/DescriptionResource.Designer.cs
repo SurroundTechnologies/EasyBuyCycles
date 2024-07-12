@@ -277,6 +277,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Completion.
+        /// </summary>
+        public static string COMPLETION {
+            get {
+                return ResourceManager.GetString("COMPLETION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string CONTACT {
@@ -853,6 +862,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        public static string ITEMS {
+            get {
+                return ResourceManager.GetString("ITEMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Largest Order Quantity.
         /// </summary>
         public static string LARGESTORDERQUANTITY {
@@ -1105,6 +1123,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Confirmation.
+        /// </summary>
+        public static string ORDERCONFIRMATION {
+            get {
+                return ResourceManager.GetString("ORDERCONFIRMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Count.
         /// </summary>
         public static string ORDERCOUNT {
@@ -1203,6 +1230,14 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        ///   Looks up a localized string similar to Order Successfully Created.
+        /// </summary>
+        public static string ORDERSUCCESSFULLYCREATED {
+            get {
+                return ResourceManager.GetString("ORDERSUCCESSFULLYCREATED", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Order Time.
         /// </summary>
@@ -1215,9 +1250,9 @@ namespace BOS.OrderManagement.Shared.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Order Wizard.
         /// </summary>
-        public static string ORDERWIZARDSPLASH {
+        public static string ORDERWIZARD {
             get {
-                return ResourceManager.GetString("ORDERWIZARDSPLASH", resourceCulture);
+                return ResourceManager.GetString("ORDERWIZARD", resourceCulture);
             }
         }
         
@@ -1488,6 +1523,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string SALESPERSONNAME {
             get {
                 return ResourceManager.GetString("SALESPERSONNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping.
+        /// </summary>
+        public static string SHIPPING {
+            get {
+                return ResourceManager.GetString("SHIPPING", resourceCulture);
             }
         }
         

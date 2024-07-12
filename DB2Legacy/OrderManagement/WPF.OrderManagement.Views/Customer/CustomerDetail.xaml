@@ -126,7 +126,8 @@
                         </Grid>
                         <base:AB_FieldWithLabel Grid.Row="5" ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:CustomerEntity.PurchasePointsProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="90" DockPanel.Dock="Top" />
 
-                        <Expander HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                        <Expander x:Name="Expander_OrdersInformation"
+                                  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
                                   Background="Transparent" Margin="0 20 0 0"
                                   IsExpanded="True" OverridesDefaultStyle="True"
                                   Style="{DynamicResource AB_MinimalistExpanderStyle}">

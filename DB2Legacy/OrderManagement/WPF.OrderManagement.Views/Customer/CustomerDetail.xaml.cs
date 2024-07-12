@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System;
 using WPF.OrderManagement.Shared;
 using BOS.OrderManagement.Shared;
+using System.Windows.Controls;
 
 namespace WPF.Customer
 {
@@ -26,12 +27,17 @@ namespace WPF.Customer
 	/// </summary>
 	public partial class CustomerDetail : AB_DetailBase
 	{        
-		CustomerVM _ViewModel; 
+		CustomerVM _ViewModel;
 
-		/// <summary>
-		/// Type initializer / static constructor
-		/// </summary>
-		static CustomerDetail()
+        public Panel WizardMainInfoPanel
+        {
+            get { return FieldsPanel; }
+        }
+
+        /// <summary>
+        /// Type initializer / static constructor
+        /// </summary>
+        static CustomerDetail()
 		{
 			RG_StaticInit();
 		}

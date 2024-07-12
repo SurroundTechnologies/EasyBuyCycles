@@ -4,24 +4,21 @@
 // <A4DN_Template Name="BOS.Module.ViewModel.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using A4DN.Core.BOS.ViewModel;
 using A4DN.Core.BOS.Base;
+using A4DN.Core.BOS.DataController;
+using A4DN.Core.BOS.ViewModel;
 using BOS.OrderBusinessProcess;
 using BOS.OrderDataEntity;
-using A4DN.Core.BOS.DataController;
+using System;
 
 namespace BOS.OrderViewModel
-{   
-	/// <summary>
-	/// The ViewModel houses all calls from the UI to the Business Process (BP). It also houses management of the visual state between the view and the data model.
-	/// Each call to the BP can be conditioned to call the BP as a web service or directly as an object in a referenced assembly. 
-	/// Examples of implementing this can be found within the body of this class.
-	/// </summary>
-	public class OrderVM : AB_ViewModel<OrderEntity>
+{
+    /// <summary>
+    /// The ViewModel houses all calls from the UI to the Business Process (BP). It also houses management of the visual state between the view and the data model.
+    /// Each call to the BP can be conditioned to call the BP as a web service or directly as an object in a referenced assembly. 
+    /// Examples of implementing this can be found within the body of this class.
+    /// </summary>
+    public class OrderVM : AB_ViewModel<OrderEntity>
 	{
 
 		/// <summary>
@@ -125,60 +122,60 @@ namespace BOS.OrderViewModel
 			}
 		}
 
+
+#if SILVERLIGHT
 		
-		#if SILVERLIGHT
-		
-		#else
-		
-		#region Standard Operations
+#else
 
-		///// <summary>
-		///// Calls the Business Process to insert data.
-		///// </summary>
-		//public override AB_InsertReturnArgs am_Insert(AB_InsertInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Insert(inputArgs);
-		//	return retArgs;
-		//}
+        #region Standard Operations
 
-		///// <summary>
-		///// Calls the Business Process to select data.
-		///// </summary>
-		//public override AB_SelectReturnArgs am_Select(AB_SelectInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Select(inputArgs);
-		//	return retArgs;
-		//}
+        ///// <summary>
+        ///// Calls the Business Process to insert data.
+        ///// </summary>
+        //public override AB_InsertReturnArgs am_Insert(AB_InsertInputArgs inputArgs)
+        //{
+        //	var retArgs = base.am_Insert(inputArgs);
+        //	return retArgs;
+        //}
 
-		///// <summary>
-		///// Calls the Business Process to fetch data.
-		///// </summary>
-		//public override AB_FetchReturnArgs am_Fetch(AB_FetchInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Fetch(inputArgs);
-		//	return retArgs;
-		//}
+        ///// <summary>
+        ///// Calls the Business Process to select data.
+        ///// </summary>
+        //public override AB_SelectReturnArgs am_Select(AB_SelectInputArgs inputArgs)
+        //{
+        //	var retArgs = base.am_Select(inputArgs);
+        //	return retArgs;
+        //}
 
-		///// <summary>
-		///// Calls the Business Process to update data.
-		///// </summary>
-		//public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Update(inputArgs);
-		//	return retArgs;
-		//}
+        ///// <summary>
+        ///// Calls the Business Process to fetch data.
+        ///// </summary>
+        //public override AB_FetchReturnArgs am_Fetch(AB_FetchInputArgs inputArgs)
+        //{
+        //	var retArgs = base.am_Fetch(inputArgs);
+        //	return retArgs;
+        //}
 
-		///// <summary>
-		///// Calls the Business Process to delete data.
-		///// </summary>
-		//public override AB_PermDeleteReturnArgs am_Delete(AB_PermDeleteInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Delete(inputArgs);
-		//	return retArgs;
-		//}
+        ///// <summary>
+        ///// Calls the Business Process to update data.
+        ///// </summary>
+        //public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
+        //{
+        //	var retArgs = base.am_Update(inputArgs);
+        //	return retArgs;
+        //}
 
-		#endregion Standard Operations
-		
-		#endif
-	}
+        ///// <summary>
+        ///// Calls the Business Process to delete data.
+        ///// </summary>
+        //public override AB_PermDeleteReturnArgs am_Delete(AB_PermDeleteInputArgs inputArgs)
+        //{
+        //	var retArgs = base.am_Delete(inputArgs);
+        //	return retArgs;
+        //}
+
+        #endregion Standard Operations
+
+#endif
+    }
 }

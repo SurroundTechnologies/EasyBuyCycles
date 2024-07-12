@@ -11,6 +11,7 @@ using WPF.OrderManagement;
 using WPF.OrderManagement.Shared;
 using System.Windows.Controls;
 using WPF.OrderManagement.TaskPanes;
+using BOS.OrderManagement.Shared;
 
 namespace WPF.OrderManagement
 {
@@ -44,12 +45,17 @@ namespace WPF.OrderManagement
 			{
 				//case "<CommandID>":
 
-                //    Do Something ...
+				//    Do Something ...
 
-                //    set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
-                //    e.Handled = true;
-                
-                //    break;
+				//    set e.Handled to true to prevent the higher level from executing its command click logic and to prevent further processing by the Detail.
+				//    e.Handled = true;
+
+				//    break;
+
+				case Constants.CMD_ORDERWIZARD:
+					e.Handled = true;
+					AB_SystemController.ap_WizardModel.am_ShowWizard(Constants.CMD_ORDERWIZARD);
+					break;
 
 				default:
 					break;
