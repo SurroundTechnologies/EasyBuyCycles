@@ -840,15 +840,15 @@ namespace BOS.CustomerDataEntity
                             break;
                     }
  
-                    if (!string.IsNullOrWhiteSpace(ContactFirstName))
+                    if (CustomerInternalID != null)
                     {
-                        title.AppendFormat(" - {0}", ContactFirstName);
+                        title.AppendFormat(" - {0}", CustomerInternalID);
                     }
  
-                    if (!string.IsNullOrWhiteSpace(ContactLastName))
-                    {
-                        title.AppendFormat(" - {0}", ContactLastName);
-                    }
+                    //if (!string.IsNullOrWhiteSpace(ContactLastName))
+                    //{
+                    //    title.AppendFormat(" - {0}", ContactLastName);
+                    //}
  
                     if (!string.IsNullOrWhiteSpace(Name))
                     {
