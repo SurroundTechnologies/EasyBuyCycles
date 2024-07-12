@@ -798,6 +798,14 @@ namespace BOS.CustomerDataEntity
 
 		#endregion
 
+		[DataMember]
+		public bool IsDropdownFetch
+		{
+			get => am_GetPropertyValue(IsDropdownFetchProperty);
+			set => am_SetPropertyValue(IsDropdownFetchProperty, value);
+		}
+		public static AB_PropertyMetadata<bool> IsDropdownFetchProperty = am_CreatePropertyMetaData<bool>(nameof(IsDropdownFetch), "IsDropDownFetch", false);
+
 		#endregion //Properties
 
 		#region Property Overrides

@@ -10,6 +10,7 @@ using A4DN.Core.WPF.Base;
 using BOS.CustomerViewModel;
 using BOS.CustomerDataEntity;
 using BOS.CustomerDataMaps;
+using A4DN.Core.BOS.Base;
 
 namespace WPF.Customer
 {
@@ -88,6 +89,16 @@ namespace WPF.Customer
 			// Turn on property change event triggers, and fire an event to respond to the changed keys.
 			ap_KeysPopulating = false;
 			am_OnIdChanged(new DependencyPropertyChangedEventArgs(CustomerInternalIDProperty, null, CustomerInternalID));
+		}
+
+		public override void am_FetchAsync(AB_FetchInputArgs fetchInputArgs)
+		{
+			if (fetchInputArgs.ap_InputEntity is CustomerEntity entity)
+			{
+				entity.IsDropdownFetch = true;
+			}
+
+			base.am_FetchAsync(fetchInputArgs);
 		}
 	}
 }

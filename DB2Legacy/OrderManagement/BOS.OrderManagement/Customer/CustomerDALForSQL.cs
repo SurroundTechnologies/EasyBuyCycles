@@ -94,23 +94,40 @@ namespace BOS.CustomerDataAccessLayer
 		//	return retArgs;
 		//}
 
-		///// <summary>
-		///// Override for default select data.
-		///// </summary>
-		//public override AB_SelectReturnArgs am_Select(AB_SelectInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Select(inputArgs);
-		//	return retArgs;
-		//}
+		/// <summary>
+		/// Override for default select data.
+		/// </summary>
+		public override AB_SelectReturnArgs am_Select(AB_SelectInputArgs inputArgs)
+		{
+			var entity = inputArgs.ap_InputEntity as CustomerEntity;
 
-		///// <summary>
-		///// Override for default to fetch data.
-		///// </summary>
-		//public override AB_FetchReturnArgs am_Fetch(AB_FetchInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Fetch(inputArgs);
-		//	return retArgs;
-		//}
+			if (inputArgs.ap_View == "YD1CLF1")
+			{
+				inputArgs.ap_Query.am_AddWhereClause(CustomerEntity.ParentInternalIDProperty, "!=", entity.CustomerInternalID);
+			}
+
+			var retArgs = base.am_Select(inputArgs);
+			return retArgs;
+		}
+
+		/// <summary>
+		/// Override for default to fetch data.
+		/// </summary>
+		public override AB_FetchReturnArgs am_Fetch(AB_FetchInputArgs inputArgs)
+		{
+			var entity = inputArgs.ap_InputEntity as CustomerEntity;
+
+			if (entity.IsDropdownFetch)
+			{
+				if(inputArgs.ap_Query == null) 
+					inputArgs.ap_Query = inputArgs.ap_InputEntity.am_BuildDefaultQuery(AB_BuildQueryOptions.UseEqualsOperatorForStrings);
+
+				inputArgs.ap_Query.am_AddWhereClause(CustomerEntity.CustomerInternalIDProperty, "!=", entity.CustomerInternalID);
+			}
+
+			var retArgs = base.am_Fetch(inputArgs);
+			return retArgs;
+		}
 
 		/// <summary>
 		/// Override for default to update data.
