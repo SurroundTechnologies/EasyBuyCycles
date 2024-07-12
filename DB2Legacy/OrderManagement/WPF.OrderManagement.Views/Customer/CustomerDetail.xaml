@@ -53,7 +53,6 @@
                                 <TextBlock Text=" - " FontWeight="Bold" />
                                 <TextBox Text="{Binding CustomerInternalID, Mode=OneWay}" FontWeight="Bold" Style="{StaticResource NoBorderTextBoxStyle}" Foreground="Black" Margin="-4 0 0 0"/>
                             </StackPanel>
-
                             <base:AB_FieldWithLabel Width="Auto" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:CustomerEntity.NameProperty}" Margin="0,0,5,5" />
                             <base:AB_FieldWithLabel HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" ap_LabelPosition="Top" x:Name="Field_LegalName" ap_PropertyMetaData="{x:Static entity:CustomerEntity.LegalNameProperty}" Margin="0,0,0,5" Width="Auto" />
                             <WPF.Customer:CustomerDropDown Width="345" Grid.Row="2" Grid.Column="0" x:Name="dd_ParentInternalID" ExcludeCustomerInternalID="{Binding CustomerInternalID, Mode=OneWay}" ap_PropertyMetaData="{x:Static entity:CustomerEntity.ParentInternalIDProperty}" CustomerInternalID="{Binding Path=ParentInternalID, Mode=TwoWay}"  ap_LabelPosition="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" ap_LabelText="{ x:Static systemSharedProperties:DescriptionResource.PARENT}" />
@@ -120,7 +119,14 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Margin="5,0,0,0" Grid.Row="0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="297" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="5,0,0,0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" />
+                                    <TextBlock x:Name="Field_Memo_Char_Counter" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" />
+                                </Grid>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" Grid.RowSpan="2" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="55" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="5,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="346" />
                             </Grid>
                         </Grid>

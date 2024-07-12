@@ -313,7 +313,7 @@ namespace BOS.OrderDataEntity
 		#endregion
 
 		#region Customer Fields
-
+      
 		[Display(Name = "CUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
 		[AB_ReadOnly]
 		[DataMember]
@@ -446,6 +446,46 @@ namespace BOS.OrderDataEntity
 		public static AB_PropertyMetadata<decimal?> OrderDiscountedTotalProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderDiscountedTotal), DescriptionResource.DISCOUNTEDTOTAL, null);
 
 		#endregion
+
+        public int OrderMemoCharacterCount
+        {
+            get => OrderMemo?.Length ?? 0;
+            set
+            {
+                am_SetPropertyValue(OrderMemoCharacterCountProperty, value);
+                am_FirePropertyChanged(OrderMemoCharacterCountStrProperty);
+            }
+        }
+        public static AB_PropertyMetadata<int> OrderMemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(OrderMemoCharacterCount), null, 0);
+
+        public string OrderMemoCharacterCountStr
+        {
+            get
+            {
+                return string.Format("{0}/100", OrderMemoCharacterCount);
+            }
+        }
+        public static AB_PropertyMetadata<string> OrderMemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(OrderMemoCharacterCountStr), null, null);
+
+        public int DeliveryMemoCharacterCount
+        {
+            get => DeliveryMemo?.Length ?? 0;
+            set
+            {
+                am_SetPropertyValue(DeliveryMemoCharacterCountProperty, value);
+                am_FirePropertyChanged(DeliveryMemoCharacterCountStrProperty);
+            }
+        }
+        public static AB_PropertyMetadata<int> DeliveryMemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(DeliveryMemoCharacterCount), null, 0);
+
+        public string DeliveryMemoCharacterCountStr
+        {
+            get
+            {
+                return string.Format("{0}/100", DeliveryMemoCharacterCount);
+            }
+        }
+        public static AB_PropertyMetadata<string> DeliveryMemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(DeliveryMemoCharacterCountStr), null, null);
 
 		#endregion //Properties
 

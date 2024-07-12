@@ -16,6 +16,8 @@ using BOS.ShippingAddressViewModel;
 using BOS.OrderManagement.Shared;
 using WPF.OrderManagement.Shared;
 using System.Windows.Controls;
+using BOS.CustomerDataEntity;
+using System;
 
 namespace WPF.ShippingAddress
 {
@@ -103,7 +105,9 @@ namespace WPF.ShippingAddress
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-		}
+
+            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
+        }
 
 		/// <summary>
 		/// This method is called after the data is loaded.
@@ -173,5 +177,21 @@ namespace WPF.ShippingAddress
 			}
 			
 		}
-	}
+
+        protected override void Dispose(bool Disposing)
+        {
+            if (Disposing)
+            {
+                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
+            }
+
+            base.Dispose(Disposing);
+        }
+
+        private void MemoCharacterCountChanged(object sender, EventArgs e)
+        {
+            var charCount = (Field_Memo.DataContext as ShippingAddressEntity).Memo?.Length ?? 0;
+            (ap_CurrentEntity as ShippingAddressEntity).MemoCharacterCount = charCount;
+        }
+    }
 }

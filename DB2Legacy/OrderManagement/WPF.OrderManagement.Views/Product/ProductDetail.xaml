@@ -46,7 +46,20 @@
                             <!-- Put More Code Here -->
                             <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" Width="Auto" />
                             <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
-                            <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                            <Grid Grid.Row="2" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="450" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="0,0,0,0" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0"/>
+                                <TextBlock x:Name="Field_Memo_Char_Counter" Margin="0,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" Grid.Row="0" />
+
+                                <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ap_LabelVisibility="Collapsed" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                            </Grid>
                             <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
                                  DockPanel.Dock="Top" Grid.Row="3" Grid.Column="0"
                                  Width="497" Margin="0 0 0 5" HorizontalAlignment="Left"
