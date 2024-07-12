@@ -366,16 +366,21 @@ namespace BOS.OrderDataEntity
                             break;
                     }
  
-                    if (!string.IsNullOrWhiteSpace(SalesPersonName))
+                    if (OrderInternalID.HasValue)
                     {
-                        title.AppendFormat(" - {0}", SalesPersonName);
+                        title.AppendFormat(" - {0}", OrderInternalID.Value);
                     }
  
-                    if (!string.IsNullOrWhiteSpace(WarehouseName))
+                    if (!string.IsNullOrWhiteSpace(CustomerName))
                     {
-                        title.AppendFormat(" - {0}", WarehouseName);
+                        title.AppendFormat(" - {0}", CustomerName);
                     }
-  
+
+                    if (OrderDate.HasValue && OrderTime.HasValue)
+                    {
+                        title.AppendFormat(" - {0} {1}", OrderDate.Value.ToString("MM-dd-yyy"), OrderTime);
+                    }
+
                     return title.ToString();
                 }
                 return base.ap_Title;

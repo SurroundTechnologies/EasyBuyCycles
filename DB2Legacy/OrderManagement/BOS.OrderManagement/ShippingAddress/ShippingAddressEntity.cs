@@ -467,16 +467,6 @@ namespace BOS.ShippingAddressDataEntity
                             break;
                     }
  
-                    if (!string.IsNullOrWhiteSpace(ContactFirstName))
-                    {
-                        title.AppendFormat(" - {0}", ContactFirstName);
-                    }
- 
-                    if (!string.IsNullOrWhiteSpace(ContactLastName))
-                    {
-                        title.AppendFormat(" - {0}", ContactLastName);
-                    }
- 
                     if (!string.IsNullOrWhiteSpace(Name))
                     {
                         title.AppendFormat(" - {0}", Name);
