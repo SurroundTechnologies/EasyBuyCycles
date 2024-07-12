@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using WPF.Wizards.OrderWizard;
+﻿using WPF.Wizards.OrderWizard;
 
 namespace WPF.OrderManagement.OrderWizard
 {
@@ -14,12 +12,6 @@ namespace WPF.OrderManagement.OrderWizard
             base.am_SetParentProperties();
 
             ap_MainWindowType = typeof(OrderWizardWindow);
-
-            AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += (sender, args) =>
-            {
-                return Assembly.ReflectionOnlyLoad(args.Name);
-            };
-
         }
     }
 }
