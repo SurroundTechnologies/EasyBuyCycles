@@ -140,6 +140,8 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            // FIXME: When running the wizard standalone, it crashes when attempting to close.
+            // It is expecting type of Browser for some reason.
             base.OnClosing(e);
             ap_SharedWizardObject = null;
         }
