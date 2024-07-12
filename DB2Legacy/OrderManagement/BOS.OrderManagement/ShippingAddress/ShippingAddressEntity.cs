@@ -434,20 +434,6 @@ namespace BOS.ShippingAddressDataEntity
 
         #endregion
 
-        [Display(Name = "CONTACTFULLNAME", ResourceType = typeof(DescriptionResource))]
-        [AB_VirtualMember("ContactFirstName", "ContactMiddleName", "ContactLastName")]
-        public string ContactFullName
-        {
-            get
-            {
-                var array = new[] { ContactFirstName, ContactMiddleName, ContactLastName };
-                string contactFullName = string.Join(" ", array.Where(s => !string.IsNullOrEmpty(s)));
-
-                return contactFullName;
-            }
-        }
-        public static AB_PropertyMetadata<string> ContactFullNameProperty = am_CreatePropertyMetaData<string>("ContactFullName", DescriptionResource.CONTACTFULLNAME, null);
-
         #endregion //Properties
 
         #region Property Overrides

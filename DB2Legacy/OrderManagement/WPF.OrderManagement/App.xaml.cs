@@ -5,7 +5,7 @@
 // </A4DN_GeneratedInformation>
 //===============================================================================================
 using A4DN.Core.WPF.Base;
-using BOS.OrderManagement.Shared.Properties;
+using BOS.OrderManagement.Shared;
 using System;
 using WPF.Wizards.OrderWizard;
 
@@ -20,8 +20,7 @@ namespace WPF.OrderManagement
         {
             base.am_Initialize();
 
-			AB_SystemController.ap_WizardModel.am_EnrollWizard(new AB_WizardEntity(typeof(OrderWizardWindow), DescriptionResource.ORDERWIZARD));
-
+			AB_SystemController.ap_WizardModel.am_EnrollWizard(new AB_WizardEntity(typeof(OrderWizardWindow), Constants.CMD_ORDERWIZARD));
 		}
 
         /// <summary>
