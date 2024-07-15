@@ -1,0 +1,26 @@
+/**************************************************************************/
+/*   To Create:                                                           */
+/*        CRTCLPGM PGM(XXX/SELFUPDC1) SRCFILE(XXX/QCLSRC)                 */
+/*                                                                        */
+/**************************************************************************/
+         PGM
+
+          /* Declare input parameters */
+          DCL        VAR(&DQDATA)   TYPE(*CHAR) LEN(5) VALUE('DATA ')
+          DCL        VAR(&DQDLEN)   TYPE(*DEC) LEN(5) VALUE(5)
+          DCL        VAR(&NUM)      TYPE(*DEC) LEN(5) VALUE(1)
+
+
+ /* SEND INPUT PARM TO THE DATA QUEUE */
+        LOOP:
+             CALL QSNDDTAQ PARM('SELFUPDQ' 'QGPL' &DQDLEN &DQDATA )
+             CHGVAR VAR(&NUM) VALUE(&NUM + 1)
+
+          /* END THE LOOP AFTER 164 ENTRIES PLACED ON DATA QUEUE */
+             IF COND(&NUM *GT 164) THEN(GOTO END)
+
+
+             GOTO LOOP
+
+
+       END:        ENDPGM

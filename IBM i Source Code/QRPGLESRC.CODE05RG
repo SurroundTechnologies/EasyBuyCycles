@@ -1,0 +1,65 @@
+      *
+      *  To compile:
+      *
+      *             CRTRPGPGM PGM(XXX/code05RG) SRCFILE(XXX/QRPGLESRC)
+      *
+      *=======================================================================
+     H DftActGrp(*No) ActGrp('NEWLOOK')
+     H Option(*nodebugio)
+     H Debug
+      *
+     Fcode05df  cf   e             workstn
+     Fyd1ilf3   if   e           k disk
+      *
+      *P=Postion To
+     Dcd05mode         S              1
+     Dcd05i1oid        S                   like(yd1i1oid)
+     Dcd05iiid         S                   like(yd1iiid)
+      *****************************************************************
+      *  Key Fields
+      *****************************************************************
+     C     yd1il3k       klist
+     C                   kfld                    yd1i1oid
+     C                   kfld                    yd1iiid
+      *
+     C     *entry        plist
+     C                   parm                    cd05mode
+     C                   parm                    cd05i1oid
+     C                   parm                    cd05iiid
+      *****************************************************************
+      *  Main Routine
+      *****************************************************************
+     C                   Select
+     C                   when      cd05mode = 'P'
+     C                   exsr      postcd
+     C                   endsl
+     C                   eval      *inlr = *on
+      *End of Main
+      *****************************************************************
+      *  Position Routine
+      *****************************************************************
+     C     postcd        begsr
+      *
+     C                   eval      w21oid   = cd05i1oid
+     C                   dou       *inkc or *inkl
+      *
+     C                   exfmt     window2
+     C                   eval      yd1i1oid = w21oid
+     C                   eval      yd1iiid  = w2iiid
+      *enter
+     C                   if        (not *inkc) and (not *inkl)
+      *by ID
+     c     yd1il3k       chain(e)  yd1ilf3
+     C                   if        %found
+     C                   eval      cd05iiid  = yd1iiid
+     C                   else
+     C                   eval      cd05iiid  = 0
+     C                   endif
+     C*
+     C                   leave
+      *-enter
+     C                   endif
+      *
+     C                   enddo
+      *
+     C                   endsr

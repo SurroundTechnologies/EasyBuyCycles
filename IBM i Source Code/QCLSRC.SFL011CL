@@ -1,0 +1,17 @@
+/*============================================================*/
+/*  To compile:                                               */
+/*                                                            */
+/*           CRTCLPGM PGM(XXX/SFL011CL) SRCFILE(XXX/QCLLESRC) */
+/*                                                            */
+/*============================================================*/
+PGM
+
+  DLTDTAQ    DTAQ(QTEMP/SFL011DQ)
+  MONMSG     MSGID(CPF2105)
+  CRTDTAQ    DTAQ(QTEMP/SFL011DQ) MAXLEN(256) SEQ(*KEYED) +
+                KEYLEN(20)
+  CALL       PGM(*LIBL/SFL011RG)
+
+ENDPGM
+
+

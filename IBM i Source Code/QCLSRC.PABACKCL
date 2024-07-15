@@ -1,0 +1,65 @@
+             PGM
+
+             DCL        VAR(&FILENAME) TYPE(*CHAR) LEN(10)
+
+             DCLF       FILE(PABACKD1) RCDFMT(*ALL)
+
+             MONMSG     MSGID(CPF0000)
+ START:      SNDRCVF    DEV(*FILE) RCDFMT(DSPR01)
+
+             IF         COND(&TAG = *BLANK *OR &TAG = '01PF') +
+                          THEN(GOTO CMDLBL(END))
+
+             IF         COND(&IN03 = '1' *OR &IN12 = '1') THEN(GOTO +
+                          CMDLBL(END))
+
+             IF         COND(&OPTION *EQ '1') THEN(DO)
+             CHGVAR     VAR(&FILENAME) VALUE('PAIT' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/PAIT01PF) +
+                          TOFILE(SAMPLELIB/&FILENAME) +
+                          MBROPT(*REPLACE) CRTFILE(*YES)
+             CHGVAR     VAR(&FILENAME) VALUE('PAMB' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/PAMB01PF) +
+                          TOFILE(SAMPLELIB/&FILENAME) +
+                          MBROPT(*REPLACE) CRTFILE(*YES)
+             CHGVAR     VAR(&FILENAME) VALUE('PAOH' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/PAOH01PF) +
+                          TOFILE(SAMPLELIB/&FILENAME) +
+                          MBROPT(*REPLACE) CRTFILE(*YES)
+             CHGVAR     VAR(&FILENAME) VALUE('PAOI' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/PAOI01PF) +
+                          TOFILE(SAMPLELIB/&FILENAME) +
+                          MBROPT(*REPLACE) CRTFILE(*YES)
+             ENDDO
+
+             IF         COND(&OPTION *EQ '2') THEN(DO)
+             CHGVAR     VAR(&FILENAME) VALUE('PAIT' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/&FILENAME) +
+                          TOFILE(SAMPLELIB/PAIT01PF) MBROPT(*REPLACE)
+             CHGVAR     VAR(&FILENAME) VALUE('PAMB' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/&FILENAME) +
+                          TOFILE(SAMPLELIB/PAMB01PF) MBROPT(*REPLACE)
+             CHGVAR     VAR(&FILENAME) VALUE('PAOH' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/&FILENAME) +
+                          TOFILE(SAMPLELIB/PAOH01PF) MBROPT(*REPLACE)
+             CHGVAR     VAR(&FILENAME) VALUE('PAOI' *CAT &TAG)
+             CPYF       FROMFILE(SAMPLELIB/&FILENAME) +
+                          TOFILE(SAMPLELIB/PAOI01PF) MBROPT(*REPLACE)
+             ENDDO
+
+             IF         COND(&OPTION *EQ '3') THEN(DO)
+             CHGVAR     VAR(&FILENAME) VALUE('PAIT' *CAT &TAG)
+             DLTF       FILE(SAMPLELIB/&FILENAME)
+             CHGVAR     VAR(&FILENAME) VALUE('PAMB' *CAT &TAG)
+             DLTF       FILE(SAMPLELIB/&FILENAME)
+             CHGVAR     VAR(&FILENAME) VALUE('PAOH' *CAT &TAG)
+             DLTF       FILE(SAMPLELIB/&FILENAME)
+             CHGVAR     VAR(&FILENAME) VALUE('PAOI' *CAT &TAG)
+             DLTF       FILE(SAMPLELIB/&FILENAME)
+             ENDDO
+
+
+             GOTO       CMDLBL(START)
+
+ END:        ENDPGM
+

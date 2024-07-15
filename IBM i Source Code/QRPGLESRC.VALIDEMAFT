@@ -1,0 +1,55 @@
+     H option(*srcstmt:*nodebugio)
+     H DftActGrp(*No) ActGrp('NEWLOOK')
+     H Debug
+
+     Fqsysprt   o    f  132        printer
+
+     D data            S             64    ctdata perrcd(1) dim(22)
+     D dx              s              5u 0
+     D Status          s              3p 0
+     D PrtStatus       s              7a
+     D
+     D/copy qcpysrc,validemail
+
+      /free
+          *inlr = *on;
+          for dx = 1 to %elem(data);
+             ValidateEmailAddress (Status: data(dx));
+             if (Status > *zero);
+                prtStatus = 'Invalid';
+             else;
+                clear prtStatus;
+             endif;
+             except pline;
+          endfor;
+          return;
+      /end-free
+
+     OQsysprt   e            pline       1
+     O                       dx            4
+     O                       status           +0001
+     O                       data(dx)         +0001
+     O                       prtStatus        +0001
+**
+small.pox@disease.net
+
+@tinkle.edu
+.
+@
+ billybob@xyz.com
+billybob@xyz
+billy.bob@xyz
+billybob@ xyz.com
+billybob@xyz.
+billybobxyz.com
+billybob@xyz.com
+billy.bob@abcdefg.net
+billy.bob@abcdefg.net    work
+billybob@xyz.co.br
+abc@def@com
+abc@def.com
+billy..bob@abcdefg.net
+billy.bob@abcdefg..net
+billy.bob@.bcdefg.net
+billy.bob.@.bcdefg.net
+small.pox@disease.net

@@ -1,0 +1,6 @@
+PGM
+             MONMSG     MSGID(CPF0000)
+             ADDLIBLE   LIB(SAMPLELIB)
+             GO         MENU(SFLMNU02)
+
+ENDPGM

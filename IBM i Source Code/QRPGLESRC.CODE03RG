@@ -1,0 +1,68 @@
+      *
+      *  To compile:
+      *
+      *             CRTRPGPGM PGM(XXX/code03RG) SRCFILE(XXX/QRPGLESRC)
+      *
+      *=======================================================================
+     H DftActGrp(*No) ActGrp('NEWLOOK')
+     H Option(*nodebugio)
+     H Debug
+      *
+     Fcode03df  cf   e             workstn
+     Fyd1o      if   e           k disk
+      *
+      *P=Postion To
+     Dcd03mode         S              1
+     Dcd03o1cid        S                   like(yd1o1cid)
+     Dcd03odt          S                   like(yd1odt)
+     Dcd03otm          S                   like(yd1otm)
+     Dcd03oiid         S                   like(yd1oiid)
+      *****************************************************************
+      *  Key Fields
+      *****************************************************************
+      *
+     C     *entry        plist
+     C                   parm                    cd03mode
+     C                   parm                    cd03o1cid
+     C                   parm                    cd03odt
+     C                   parm                    cd03otm
+     C                   parm                    cd03oiid
+      *****************************************************************
+      *  Main Routine
+      *****************************************************************
+     C                   Select
+     C                   when      cd03mode = 'P'
+     C                   exsr      postcd
+     C                   endsl
+     C                   eval      *inlr = *on
+      *End of Main
+      *****************************************************************
+      *  Position Routine
+      *****************************************************************
+     C     postcd        begsr
+      *
+     C                   dou       *inkc or *inkl
+      *
+     C                   exfmt     window2
+     C                   eval      cd03oiid = w2oiid
+      *enter
+     C                   if        (not *inkc) and (not *inkl)
+      *by ID
+     c     cd03oiid      chain(e)  yd1o
+     C                   if        %found
+     C                   eval      cd03o1cid = yd1o1cid
+     C                   eval      cd03odt   = yd1odt
+     C                   eval      cd03otm   = yd1otm
+     C                   eval      cd03oiid  = yd1oiid
+     C                   else
+     C                   eval      cd03o1cid = 0
+     C                   eval      cd03oiid  = 0
+     C                   endif
+     C*
+     C                   leave
+      *-enter
+     C                   endif
+      *
+     C                   enddo
+      *
+     C                   endsr

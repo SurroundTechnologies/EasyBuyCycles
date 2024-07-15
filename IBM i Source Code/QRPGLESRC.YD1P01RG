@@ -1,0 +1,604 @@
+      *
+      *  Products Maint
+      *
+      *             CRTRPGPGM PGM(XXX/yd1p01rg) SRCFILE(XXX/QRPGLESRC)
+      *
+      *=======================================================================
+     H option(*nodebugio)
+     H DftActGrp(*No) ActGrp('NEWLOOK')
+     H Debug
+      *
+
+     Fyd1p01df  cf   e             workstn
+     F                                     sfile(sf1:rrn1)
+     F                                     sfile(sf2:rrn2)
+     F                                     infds(info)
+     Fyd1plf1   if   e           k disk    rename(yd1ppr:lfr)
+     Fyd1p      uf a e           k disk
+      *
+     Dinfo             ds
+     D cfkey                 369    369
+      *
+     D                SDS
+     D JOB_NAME              244    253
+     D USER                  254    263
+     D JOB_NUM               264    269S 0
+     D JOB_DATE              270    275S 0
+     D RUN_DATE              276    281S 0
+     D RUN_TIME              282    287S 0
+      *
+     Dexit             C                   const(X'33')
+     Dcancel           C                   const(X'3C')
+     Dadd              C                   const(X'36')
+     Drefresh          C                   const(X'35')
+     Dauditkey         C                   const(X'3a')
+     Dposition         C                   const(X'b9')
+     Dview             C                   const(X'ba')
+     Denter            C                   const(X'F1')
+     Drollup           C                   const(X'F5')
+     Ddisplay          C                   const('5')
+     Daudit            C                   const('90')
+     Dchange           C                   const('2')
+     Ddelete           C                   const('4')
+      *
+     Dlstrrn           S              4  0 inz(0)
+     Dlstrrn2          S              4  0 inz(0)
+     Dcount            S              4  0 inz(0)
+     Dnew_id           S                   like(yd1piid)
+      *
+      * Edit Error
+      *
+     Dediterr          S              2A   inz(' ')
+      *
+     Discancel         S              1  0 inz(0)
+      *
+     Dsv1piid          S                   like(yd1piid)
+     Dsv1pcd           S                   like(yd1pcd  )
+     Dsv1pnm           S                   like(yd1pnm  )
+     Dsv1pds           S                   like(yd1pds  )
+     Dsv1pct           S                   like(yd1pct  )
+     Dsv1pstcs         S                   like(yd1pstcs)
+     Dsv1plspr         S                   like(yd1plspr)
+     Dsv1prolv         S                   like(yd1prolv)
+     Dsv1ptglv         S                   like(yd1ptglv)
+     Dsv1pmrqt         S                   like(yd1pmrqt)
+     Dsv1pdc           S                   like(yd1pdc  )
+     Dsv1pm1           S                   like(yd1pm1  )
+     Dsv1pimpt         S                   like(yd1pimpt)
+      *
+      * Window,Display,Position,View(Select)
+      *
+     Dcd02mode         S              1A   inz('W')
+     Dcd02iid          S                   like(yd1piid)
+     Dcd02nm           S                   like(yd1pnm)
+      *
+      * 01=by Name, 00=by IID
+      *
+     Dviewmode         S              2    inz('01')
+      *****************************************************************
+      *  Key Fields
+      *****************************************************************
+     C     yd1pl1k       klist
+     C                   kfld                    yd1pnm
+     C                   kfld                    yd1piid
+      *
+      *****************************************************************
+      *  Parameter Lists
+      *****************************************************************
+     C     plist2        plist
+     C                   parm                    cd02mode
+     C                   parm                    cd02iid
+     C                   parm                    cd02nm
+      *****************************************************************
+      *  Main Routine
+      *****************************************************************
+      *
+      * Clear then build the initial subfile
+      *
+     C                   exsr      clrsf1
+     C                   exsr      sflbld
+      *
+      * Do loop to process the subfile until F3 is pressed.  If F12
+      * is pressed from other screens, I still want to stay in this loop.
+      *
+     C                   dou       cfkey = exit
+      *
+     C                   write     sf1fkey1
+     C                   exfmt     sf1ctl
+     C                   clear                   msgf01
+      *
+      * Process screen to interrogate options selected by user
+      *
+   29C                   select
+     C                   when      cfkey = enter
+     C                   exsr      prcsfl
+      *
+      * User presses F5, clear and rebuild subfile
+      *
+     C                   when      cfkey = refresh
+     C     *loval        setll     yd1plf1
+     C                   exsr      clrsf1
+     C                   exsr      sflbld
+      *
+      *
+      * User presses F6, throw the add screen, clear, and rebuild subfile
+      *
+     C                   when      cfkey = add
+     C                   movel(p)  'Add   '      mode
+     c                   eval      *in88 = *off
+     C                   exsr      addrcd
+     C     *loval        setll     yd1plf1
+     C                   exsr      clrsf1
+     C                   exsr      sflbld
+     C                   when      cfkey = cancel
+     C                   leave
+      *
+      * User presses F21, position
+      *
+     C                   when      cfkey = position
+     C                   eval      cd02mode = 'P'
+     C                   call      'CODE02RG'    plist2
+     C*                  if        cd02iid  <> 0
+     C                   exsr      clrsf1
+     c* changed by code02rg
+     C                   if        cd02mode = '0'
+     C                   eval      viewmode = '00'
+     C     cd02iid       setll     yd1p
+     C                   else
+     C                   eval      viewmode = '01'
+     C                   eval      yd1pnm   = cd02nm
+     C                   eval      yd1piid  = cd02iid
+     C     yd1pl1k       setll     yd1plf1
+     C                   endif
+     C                   exsr      sflbld
+     C*                  endif
+      *
+      * User presses F22, Select View
+      *
+     C                   when      cfkey = view
+     C                   eval      cd02mode = 'V'
+     C                   call      'CODE02RG'    plist2
+     C                   eval      viewmode = %trim(cd02nm)
+     C                   exsr      clrsf1
+     C                   if        viewmode = '00'
+     C     *loval        setll     yd1p
+     C                   else
+     C     *loval        setll     yd1plf1
+     C                   endif
+     C                   exsr      sflbld
+     C                   endsl
+     C                   enddo
+      *
+     C                   eval      *inlr = *on
+      *
+      *****************************************************************
+      *  CLRSF1 - Clear the subfile
+      *****************************************************************
+      *
+     C     clrsf1        begsr
+      *
+      * Clear relative record numbers and subfile
+      *
+     C                   eval      rrn1 = *zero
+     C                   eval      lstrrn = *zero
+     C                   eval      *in31 = *on
+     C                   write     sf1ctl
+     C                   eval      *in31 = *off
+     C                   eval      *in32 = *off
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  CLRSF2 - Clear the subfile
+      *****************************************************************
+      *
+     C     clrsf2        begsr
+      *
+      * Clear relative record numbers and subfile for confirmation screen
+      *
+     C                   eval      rrn2 = *zero
+     C                   eval      lstrrn2 = *zero
+     C                   eval      *in41 = *on
+     C                   write     sf2ctl
+     C                   eval      *in41 = *off
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  sflput - put data from file
+      *****************************************************************
+      *
+     C     sflput        begsr
+      *
+     C                   eval      SF1IID   = yd1piid
+     C                   eval      SF1NM    = yd1pnm
+     C                   eval      SF1DS    = yd1pds
+     C                   eval      SF1CT    = yd1pct
+     C                   eval      SF1LSPR  = yd1plspr
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  SFLBLD - Build the List
+      *****************************************************************
+      *
+     C     sflbld        begsr
+      *
+      * Make RRN1 = to the last relative record number of the subfile
+      * so that the load process will correctly add records to the bottom
+      *
+     C                   eval      rrn1 = lstrrn
+      *
+      * Load data until end-of-file
+      *
+     C                   eval      *in90   = *off
+     C                   dow       *in90   = *off
+     C                   if        viewmode = '00'
+     C                   read      yd1p                                   90
+     C                   else
+     C                   read      yd1plf1                                90
+     C                   endif
+     C                   if        *in90
+     C                   leave
+     C                   endif
+     C                   eval      rrn1 = rrn1 + 1
+     C                   eval      sf1opt = *blank
+     C                   exsr      sflput
+     C                   write     sf1
+     C                   enddo
+      *
+      * If no records are loaded to subfile, don't display it
+      *    else display first page
+      *
+     C                   if        rrn1 = *zero
+     C                   eval      *in32 = *on
+     C                   else
+     C                   z-add     1             rrn1
+     C                   endif
+      *
+     C                   eval      lstrrn = rrn1
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  edityd1p- Varify YD1P; Product
+      *****************************************************************
+      *
+     C     edityd1p      begsr
+     C
+     C                   eval      *in75   = *off
+     C                   eval      *in76   = *off
+     C                   eval      *in77   = *off
+     C                   eval      *in78   = *off
+      *
+     C                   dow       editerr  = *blank
+      *
+     C                   if        YD1PNM   = *blank
+     C                   eval      *in75    = *on
+     C                   eval      msgf01   = 'Insert Name!'
+     C                   eval      editerr  = '75'
+     C                   leave
+     C                   endif
+      *
+     C                   if        YD1PCT   = *blank
+     C                   eval      *in76    = *on
+     C                   eval      msgf01   = 'Insert Category!'
+     C                   eval      editerr  = '76'
+     C                   leave
+     C                   endif
+      *
+     C                   if        YD1PSTCS = *zero
+     C                   eval      *in77    = *on
+     C                   eval      msgf01   = 'Insert Standard Cost!'
+     C                   eval      editerr  = '77'
+     C                   leave
+     C                   endif
+      *
+     C                   if        YD1PLSPR = *zero
+     C                   eval      *in78    = *on
+     C                   eval      msgf01   = 'Insert List Price!'
+     C                   eval      editerr  = '78'
+     C                   leave
+     C                   endif
+      *
+     C                   eval      editerr  = 'ED'
+      *
+     C                   enddo
+     C
+     C                   endsr
+      *
+      *****************************************************************
+      *  PRCSFL - Process the options selected
+      *****************************************************************
+      *
+     C     prcsfl        begsr
+      *
+      * Clear the confirmation subfile before starting
+      *
+     C                   exsr      clrsf2
+      *
+      * Read all the subfile records that were changed by the user
+      *
+     C                   readc     sf1
+      *
+      * Do loop to process until all changed records are read
+      *
+     C                   dow       not %eof
+
+     C                   select
+      *
+      * when a 90 is entered throw the AUDIT screen
+      * until F3 or F12 is pressed on that screen
+      *
+     C                   when      %trim(sf1opt) = audit
+     C                   eval      yd1pnm  = sf1nm
+     C     sf1iid        chain(e)  yd1p
+     C                   if        %found
+     C                   unlock    yd1p
+     C                   endif
+      *
+     C                   dou       (cfkey = exit) or (cfkey = cancel)
+     C                   exfmt     panel2
+     C                   enddo
+      *
+     C                   eval      sf1opt = *blank
+     C                   update    sf1
+   29 *
+      *
+      * when a 5 is entered throw the DISPLAY screen
+      * until F3 or F12 is pressed on that screen
+      *
+     C                   when      %trim(sf1opt) = display
+     C                   movel(p)  *blanks       mode
+     C                   eval      *in88  = *on
+     C     sf1iid        chain(e)  yd1p
+     C                   if        %found
+     C                   unlock    yd1p
+     C                   endif
+      *
+     C                   dou       (cfkey = exit) or (cfkey = cancel)
+     C                   exfmt     panel1
+     C                   if        (cfkey = auditkey)
+     C                   eval      yd1pnm  = sf1nm
+     C                   eval      iscancel = 0
+     C                   dou       (cfkey = exit) or (cfkey = cancel)
+     C                   exfmt     panel2
+     C                   if        (cfkey = cancel)
+     C                   eval      iscancel = 1
+     C                   endif
+     C                   enddo
+     C                   if        iscancel = 1
+     C                   clear                   cfkey
+     C                   endif
+     C                   endif
+     C                   enddo
+      *
+     C                   eval      sf1opt = *blank
+     C                   update    sf1
+     C                   if        (cfkey = exit) or (cfkey = cancel)
+     C                   leave
+     C                   endif
+      *
+      * when a 2 is entered execute the update subroutine,
+      * blank out the option field, and update the subfile record
+      *
+     C                   when      %trim(sf1opt) = change
+     C                   eval      *in88  = *off
+     C                   movel(p)  'Update'      mode
+     C                   exsr      chgdtl
+     C                   eval      sf1opt = *blank
+     C                   update    sf1
+     C                   if        (cfkey = exit) or (cfkey = cancel)
+     C                   leave
+     C                   endif
+      *
+      * when a 4 is entered write the record the the confirmation screen,
+      * set on the SFLNXTCHG indicator to mark this record as changed,
+      * and update the subfile.  I mark this record incase F12 is pressed
+      * from the confirmation screen and the user wants to keep his
+      * originally selected records
+      *
+     C                   when      %trim(sf1opt) = delete
+     C                   eval      rrn2     = rrn2 +1
+     C                   eval      sf2iid   = sf1iid
+     C                   eval      sf2nm    = sf1nm
+     C                   eval      sf2ds    = sf1ds
+     C                   eval      sf2ct    = sf1ct
+     C                   eval      sf2lspr  = sf1lspr
+     C                   write     sf2
+     C                   eval      *in74 = *on
+     C                   update    sf1
+     C                   eval      *in74 = *off
+
+     C                   endsl
+
+     C                   readc     sf1
+     C                   enddo
+      *
+      * If records were selected for delete (4), throw the subfile to
+      * screen.  If enter is pressed execute the DLTRCD subroutine to
+      * physically delete the records, clear, and rebuild the subfile
+      * from the last deleted record (you can certainly position the
+      * database file where ever you want)
+      *
+     C                   if        rrn2 > 0
+     C                   eval      lstrrn2 = rrn2
+     C                   eval      rrn2 = 1
+     C                   write     sf2fkey1
+     C                   exfmt     sf2ctl
+     C                   if        (cfkey <> exit) and (cfkey <> cancel)
+     C                   exsr      dltrcd
+     C                   eval      yd1pnm  = sf2nm
+     C                   eval      yd1piid = sf2iid
+     C     yd1pl1k       setll     yd1plf1
+     C                   exsr      clrsf1
+     C                   exsr      sflbld
+     C                   endif
+     C                   endif
+
+     C                   endsr
+      *
+      *****************************************************************
+      *  CHGDTL - allow user to change data
+      *****************************************************************
+      *
+     C     chgdtl        begsr
+      *
+      * chain to data file using selected subfile record
+      *
+     C     sf1iid        chain     yd1p
+      *
+      * If the record is found (it better be), throw the change screen.
+      * If F3 or F12 is pressed, do not update the data file
+      *
+     C                   if        %found
+     C                   unlock    yd1p
+      *because of lock; read again and move screen data to yd1ppr
+     C                   dou       (cfkey = exit) or (cfkey = cancel)
+     C                   exfmt     panel1
+      *
+      * Edit
+      *
+     C                   if        cfkey    = enter
+     C                   eval      editerr  = *blank
+     C                   exsr      edityd1p
+      *
+      *because of lock; read again and move screen data to yd1ppr
+      *
+     C                   if        editerr  = 'ED'
+     C                   eval      sv1piid  = yd1piid
+     C                   eval      sv1pcd   = yd1pcd
+     C                   eval      sv1pnm   = yd1pnm
+     C                   eval      sv1pds   = yd1pds
+     C                   eval      sv1pct   = yd1pct
+     C                   eval      sv1pstcs = yd1pstcs
+     C                   eval      sv1plspr = yd1plspr
+     C                   eval      sv1prolv = yd1prolv
+     C                   eval      sv1ptglv = yd1ptglv
+     C                   eval      sv1pmrqt = yd1pmrqt
+     C                   eval      sv1pdc   = yd1pdc
+     C                   eval      sv1pm1   = yd1pm1
+     C                   eval      sv1pimpt = yd1pimpt
+     C     yd1piid       chain     yd1p
+     C                   eval      yd1piid  = SV1piid
+     C                   eval      yd1pcd   = SV1pcd
+     C                   eval      yd1pnm   = SV1pnm
+     C                   eval      yd1pds   = SV1pds
+     C                   eval      yd1pct   = SV1pct
+     C                   eval      yd1pstcs = SV1pstcs
+     C                   eval      yd1plspr = SV1plspr
+     C                   eval      yd1prolv = SV1prolv
+     C                   eval      yd1ptglv = SV1ptglv
+     C                   eval      yd1pmrqt = SV1pmrqt
+     C                   eval      yd1pdc   = SV1pdc
+     C                   eval      yd1pm1   = SV1pm1
+     C                   eval      yd1pimpt = SV1pimpt
+      *update audit
+     C                   exsr      chgaud
+      *
+     C                   update    yd1ppr
+      *update sf1
+     C                   exsr      sflput
+     C                   eval      msgf01 = 'Customer updated ==> '
+     C                                    + sv1pnm
+     C                   endif
+      *end if edit
+     C                   endif
+      *end if enter
+     C                   enddo
+      *end if found
+     C                   endif
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  ADDRCD - allow user to add data
+      *****************************************************************
+      *
+     C     addrcd        begsr
+      *
+      * set to last record in the the file to get the last ID number
+      *
+     C     *hival        setgt     yd1p
+     C                   if        %eof
+     C                   eval      yd1piid = 0
+     C                   endif
+     C                   readp     yd1p
+     C                   eval      new_id = yd1piid + 1
+      *
+      * set a new unique ID and throw the screen
+      *
+     C
+     C                   clear                   yd1ppr
+     C                   unlock    yd1p
+     C                   dou       (cfkey = exit) or (cfkey = cancel)
+     C                   eval      yd1piid = new_id
+     C                   exfmt     panel1
+      *
+      * add a new record if the pressed key was not F3 or F12
+      *
+     C                   if        cfkey = enter
+      * Enter
+     C                   eval      editerr  = *blank
+     C                   exsr      edityd1p
+      * Edit
+     C                   if        editerr  = 'ED'
+     C                   exsr      addaud
+     C                   write(e)  yd1ppr
+     C                   if        %error
+     C     new_id        chain(e)  yd1p
+     C                   update    yd1ppr
+     C                   endif
+      * Edit
+     C                   endif
+      * Enter
+     C                   endif
+     C                   enddo
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  DLTRCD - delete records
+      *****************************************************************
+      *
+     C     dltrcd        begsr
+      *
+      * read all the records in the confirmation subfile
+      * and delete them from the data base file
+      *
+     C                   do        lstrrn2       count
+     C     count         chain     sf2
+     C                   if        %found
+     C     sf2iid        delete    yd1ppr                             99
+     C                   endif
+     C                   enddo
+
+     C                   endsr
+      *****************************************************************
+      *  CHGAUD - Change Audit Data
+      *****************************************************************
+      *
+     C     chgaud        begsr
+      *
+     C                   eval      yd1plcdt = RUN_DATE
+     C                   eval      yd1plctm = RUN_TIME
+     C                   eval      yd1plcus = USER
+     C                   eval      yd1plcjb = JOB_NAME
+     C                   eval      yd1plcjn = %char(JOB_NUM)
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  ADDAUD - Add Audit Data
+      *****************************************************************
+      *
+     C     addaud        begsr
+      *
+     C                   eval      yd1pcrdt = RUN_DATE
+     C                   eval      yd1pcrtm = RUN_TIME
+     C                   eval      yd1pcrus = USER
+     C                   eval      yd1pcrjb = JOB_NAME
+     C                   eval      yd1pcrjn = %char(JOB_NUM)
+      *
+     C                   endsr
+      *

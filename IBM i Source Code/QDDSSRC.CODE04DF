@@ -1,0 +1,31 @@
+     A*%%TS  SD  20100601  112218  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      PRINT
+     A                                      ERRSFL
+     A                                      CA01
+     A                                      CA03
+     A                                      CA12
+     A*
+     A          R WINDOW2
+     A*%%TS  SD  20100601  112218  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      WINDOW(2 2 15 70)
+     A                                  2  1'CODE04P'
+     A                                  2 28'Position To Ship'
+     A                                      DSPATR(HI)
+     A                                  2 54TIME
+     A                                  2 63DATE
+     A                                      EDTCDE(Y)
+     A                                  5  2'Please fill in the ID to open with-
+     A                                       positined by Shipping ID'
+     A                                      COLOR(BLU)
+     A                                  8  2'Position By ID   : '
+     A            W2IID          8Y 0B  8 22EDTCDE(4)
+     A                                 14  1'F3=Exit   F12=Cancel'
+     A                                      COLOR(BLU)
+     A*
+     A          R ASSUME
+     A*%%TS  SD  20091112  172647  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      ASSUME
+     A                                  1  3' '

@@ -1,0 +1,23 @@
+             PGM
+
+             DCLF       FILE(SFL016DF) RCDFMT(*ALL)
+             CHGVAR     VAR(&SDS_PROC) VALUE('SFL016CL')
+ START:      SNDF       DEV(*FILE) RCDFMT(MSGCTL)
+             SNDRCVF    DEV(*FILE) RCDFMT(SCREEN1)
+             RMVMSG     MSGQ(*PGMQ) CLEAR(*ALL)
+
+             IF         COND(&IN03 = '1' *OR &IN12 = '1') THEN(GOTO +
+                          CMDLBL(END))
+
+             IF         COND(&FIRST_NAME *NE 'Kevin') THEN(DO)
+             SNDPGMMSG  MSGID(SFL0001) MSGF(SFLMSGF) TOPGMQ(*SAME)
+             ENDDO
+
+             IF         COND(&LAST_NAME *NE 'Vandever') THEN(DO)
+             SNDPGMMSG  MSGID(SFL0002) MSGF(SFLMSGF) TOPGMQ(*SAME)
+             ENDDO
+
+             GOTO       CMDLBL(START)
+
+ END:        ENDPGM
+

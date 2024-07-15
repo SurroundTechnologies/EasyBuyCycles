@@ -1,0 +1,92 @@
+     A*%%TS  SD  20120517  010830  FRANCISCOH  REL-V6R1M0  5761-WDS
+     A*
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      PRINT
+     A                                      ERRSFL
+     A                                      CA01
+     A                                      CA03
+     A                                      CA12
+     A*
+     A          R WINDOW1                   SFL
+     A*%%TS  SD  20091108  155225  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A            CTLFLD         1Y 0H      SFLCHCCTL
+     A            YD1CIID   R        H      REFFLD(YD1CPR/YD1CIID *LIBL/YD1C)
+     A            YD1CNM    R        O  7  1REFFLD(YD1CPR/YD1CNM *LIBL/YD1C)
+     A*
+     A          R SF1CTL                    SFLCTL(WINDOW1)
+     A*%%TS  SD  20091109  110234  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      SFLSIZ(0500)
+     A                                      SFLPAG(0011)
+     A                                      WINDOW(*DFT 20 53 *NORSTCSR)
+     A                                      SFLSNGCHC(*RSTCSR)
+     A                                      SFLCSRRRN(&RRN1)
+     A N32                                  SFLDSP
+     A N31                                  SFLDSPCTL
+     A  31                                  SFLCLR
+     A N31                                  SFLEND(*MORE)
+     A                                      WDWBORDER((*COLOR PNK))
+     A            RRN1           5S 0H
+     A                                  2  2'CODE01'
+     A                                  2 17'Customer Code'
+     A                                      DSPATR(HI)
+     A                                  4  2'Place Cursor on Selection And Hit -
+     A                                      Enter. '
+     A                                      COLOR(BLU)
+     A                                  6  1'  Customer'
+     A                                      DSPATR(HI)
+     A          R WINDOW2
+     A*%%TS  SD  20120517  010830  FRANCISCOH  REL-V6R1M0  5761-WDS
+     A                                      WINDOW(2 2 15 70)
+     A                                  2  1'CODE01P'
+     A                                  2 23'Position To Customer'
+     A                                      DSPATR(HI)
+     A                                  2 54TIME
+     A                                  2 63DATE
+     A                                      EDTCDE(Y)
+     A                                  5  2'Please fill in the name to open wi-
+     A                                      th positined by name'
+     A                                      COLOR(BLU)
+     A                                  6  2'Clear the Name to Position by ID'
+     A                                      COLOR(BLU)
+     A                                  9  1'Position By Name  :'
+     A            W2CNM         50A  B  9 21CHECK(LC)
+     A                                 10  1'Position By ID    :'
+     A            W2CIID         8Y 0B 10 21EDTCDE(4)
+     A                                 14  1'F3=Exit   F12=Cancel'
+     A                                      COLOR(BLU)
+     A          R WINDOW3
+     A*%%TS  SD  20100531  160603  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      WINDOW(2 2 20 60)
+     A                                  2  1'CODE01V'
+     A                                  2 20'Customer View Selection'
+     A                                      DSPATR(HI)
+     A                                  2 53TIME
+     A                                  3 53DATE
+     A                                      EDTCDE(Y)
+     A                                  5  2'Enter View Selection'
+     A                                      COLOR(BLU)
+     A                                  7  2'View Selection:'
+     A            W3COPT         2A  B  7 18VALUES('00' '01')
+     A                                      DFTVAL('01')
+     A                                  9  2'Vw#'
+     A                                      DSPATR(HI)
+     A                                  9  7'View Description'
+     A                                      DSPATR(HI)
+     A                                  9 51'Dflt View'
+     A                                      DSPATR(HI)
+     A                                 10  2' 00'
+     A                                 10  7'View by Internal ID  '
+     A                                 10 56' '
+     A                                 11  2' 01'
+     A                                 11  7'View by Customer Name'
+     A                                 11 56'Y'
+     A                                 18 55'Bottom'
+     A                                      DSPATR(HI)
+     A                                 19  2'F3=Exit   F12=Cancel'
+     A                                      COLOR(BLU)
+     A*
+     A          R ASSUME
+     A*%%TS  SD  20091112  172647  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      ASSUME
+     A                                  1  3' '

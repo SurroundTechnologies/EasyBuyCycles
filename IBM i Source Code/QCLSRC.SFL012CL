@@ -1,0 +1,10 @@
+PGM
+             DCL        VAR(&EMPLOYEE) TYPE(*DEC) LEN(7 0) +
+                          VALUE(0000000)
+             CHGVAR     VAR(&EMPLOYEE) VALUE(0712003)
+
+             CALL       PGM(*LIBL/SFL012RG) PARM(&EMPLOYEE)
+
+ENDPGM
+
+

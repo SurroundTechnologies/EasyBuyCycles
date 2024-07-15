@@ -1,0 +1,85 @@
+     A* Free Form Menu: DEMO02
+     A*%%TS  SD  20140107  161135  LEE         REL-V7R1M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3                  -
+     A                                             27 132 *DS4)
+     A                                      CHGINPDFT
+     A                                      INDARA
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R DEMO02
+     A*%%TS  SD  20140107  161135  LEE         REL-V7R1M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      LOCK
+     A                                      SLNO(01)
+     A                                      CLRL(*ALL)
+     A                                      ALWROL
+     A                                      CF03
+     A                                      HELP
+     A                                      HOME
+     A                                      HLPRTN
+     A                                  1  2'DEMO02'
+     A                                      COLOR(BLU)
+     A                                  3  2'Select one of the following:'
+     A                                      COLOR(BLU)
+     A                                  5  7'1.'
+     A                                  6  7'2.'
+     A                                  7  7'3.'
+     A                                  8  7'4.'
+     A* CMDPROMPT  Do not delete this DDS spec.
+     A                                019  2'Selection or command              -
+     A                                          '
+     A                                  5 10'Work'
+     A                                  5 15'With'
+     A                                  5 20'Customers'
+     A                                  6 10'Work'
+     A                                  6 15'With'
+     A                                  7 10'Work'
+     A                                  7 15'with'
+     A                                  6 20'Orders'
+     A                                  7 20'Products'
+     A                                  8 10'Work'
+     A                                  8 15'with'
+     A                                  3 32' '
+     A                                  1 29'Customer'
+     A                                      COLOR(WHT)
+     A                                  1 38'Order'
+     A                                      COLOR(WHT)
+     A                                  1 44'System'
+     A                                      COLOR(WHT)
+     A                                  8 20'Shipping'
+     A                                  8 29'Address'
+     A                                 18  7'90.'
+     A                                      COLOR(RED)
+     A                                 18 11'Sign Off'
+     A                                      COLOR(RED)
+     A                                  2 71USER
+     A                                  1 71SYSNAME
+     A                                  3 71DATE
+     A                                      EDTCDE(Y)
+     A                                  4 71TIME
+     A                                  1 63'System:'
+     A                                  2 65'User:'
+     A                                  3 65'Date:'
+     A                                  4 65'Time:'
+     A                                 11  7'IBM i System Options'
+     A                                      COLOR(BLU)
+     A                                 11 44'IBM User Options'
+     A                                      COLOR(BLU)
+     A                                 12  7'70.'
+     A                                 12 11'All Active Jobs'
+     A                                 13  7'71.'
+     A                                 13 11'QINTER Active Jobs'
+     A                                 14  7'72.'
+     A                                 14 11'QBATCH Active Jobs'
+     A                                 15  7'73.'
+     A                                 15 11'Output Queues'
+     A                                 16  7'74.'
+     A                                 16 11'Job Queues'
+     A                                 12 44'80.'
+     A                                 12 48'Messages'
+     A                                 13 44'81.'
+     A                                 13 48'Spool Files'
+     A                                 14 44'82.'
+     A                                 14 48'Submited Jobs'
+     A                                 15 44'83.'
+     A                                 15 48'View All Printers'

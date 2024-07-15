@@ -1,0 +1,130 @@
+      *========================================================================*
+      * Module...: VALIDEMAIL - Validate an email address                      *
+      *========================================================================*
+      * To create:
+      *       CRTRPGMOD MODULE(xxx/VALIDEMAIL)
+      *                 SRCFILE(xxx/SRC)
+      *                 SRCMBR(VALIDEMAIL)
+      *========================================================================*
+     H nomain
+     H option(*srcstmt:*nodebugio)
+     H*DftActGrp(*No) ActGrp('NEWLOOK')
+     H Debug
+
+     D/copy qcpysrc,ValidEmail
+
+      * ==============================================================
+      * State table
+      * ==============================================================
+     D NbrOfRows       c                   const(6)
+     D NbrOfColumns    c                   const(5)
+
+     D StateTable      ds
+     D   Row                         40a   dim(NbrOfRows) ctdata perrcd(1)
+     D** size of Row must be NbrOfColumns * size of Action
+
+     D ptr             s               *   inz(%addr(StateTable))
+
+     D State           ds                  dim(NbrOfRows)
+     D   Action                       8a   dim(NbrOfColumns)
+
+      * ========================================================================
+
+     P ValidateEmailAddress...
+     P                 b                   export
+     D                 pi
+     D  ouStatus                      3p 0
+     D  inString                     64a   const
+
+     D Column          s             10u 0
+     D CurrAction      s              5a
+     D CurrentChar     s              1a
+     D CurrState       s             10u 0
+     D EOL             s              1a   inz(*loval)
+     D Ndx             s             10u 0
+     D StringLength    s             10u 0
+     D
+     D AtSign          c                   const('@')
+     D Period          c                   const('.')
+     D Slash           c                   const('/')
+     D QuestionMark    c                   const('?')
+     D Exclamation     c                   const('!')
+
+      /free
+
+         ouStatus = *zero;
+         Ndx = *zero;
+         StringLength = %len(%trimr(inString));
+         CurrState = 1;
+
+         dou (CurrState = *zero);
+            // get next character of input string
+            exsr GetCurrentChar;
+            // retrieve the action from the state table
+            CurrAction = %subst(State(CurrState).Action(Column):1:5);
+            // carry out the action
+            exsr DoAction;
+            // set new state
+            CurrState =
+               %uns(%subst(State(CurrState).Action(Column):7:1));
+         enddo;
+
+         return;
+
+         // ========================================
+
+         begsr GetCurrentChar;
+
+            // Access the next character of the string
+
+            Ndx += 1;
+            if (Ndx <= StringLength);
+               CurrentChar = %subst(inString:Ndx);
+            else;
+               CurrentChar = EOL; // End of line
+            endif;
+
+            // Determine which column of the state table to use
+
+            select;
+               when (CurrentChar = *blank
+                  or CurrentChar = Slash
+                  or CurrentChar = QuestionMark
+                  or CurrentChar = Exclamation);
+                  Column = 1;
+               when (CurrentChar = EOL);
+                  Column = 2;
+               when (CurrentChar = AtSign);
+                  Column = 3;
+               when (CurrentChar = Period);
+                  Column = 4;
+               other;
+                  Column = 5;
+            endsl;
+
+         endsr;
+
+         // ========================================
+
+         begsr DoAction;
+
+            if CurrAction = 'error';
+               ouStatus = Ndx;
+            endif;
+
+         endsr;
+
+      /end-free
+     P                 e
+
+      * State table
+
+bad   * eol     @       .       other
+======* ======= ======= ======= =======
+**
+error/0 error/0 error/0 error/0      /2
+error/0 error/0      /3      /1      /2
+error/0 error/0 error/0 error/0      /4
+error/0 error/0 error/0      /5      /4
+error/0 error/0 error/0 error/0      /6
+error/0      /0 error/0      /5      /6

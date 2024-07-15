@@ -1,0 +1,207 @@
+      *
+      *  To compile:
+      *
+      *             CRTRPGPGM PGM(XXX/CODE01RG) SRCFILE(XXX/QRPGLESRC)
+      *
+      *=======================================================================
+     H DftActGrp(*No) ActGrp('NEWLOOK')
+     H Option(*nodebugio)
+     H Debug
+      *
+     FCODE01df  cf   e             workstn
+     F                                     sfile(window1:rrn1)
+     FYD1C      if   e           k disk
+     FYD1CLF1   if   e           k disk    rename(yd1cpr:lfr)
+      *
+      *D=Retrive Data/W=Window
+     Dcd01mode         S              1
+     Dcd01iid          S                   like(yd1ciID)
+     Dcd01nm           S                   like(yd1cnm)
+      *
+      *****************************************************************
+      *  Key Fields
+      *****************************************************************
+     C     yd1cl1k       klist
+     C                   kfld                    yd1cnm
+     C                   kfld                    yd1ciid
+      *
+     C     *entry        plist
+     C                   parm                    cd01mode
+     C                   parm                    cd01iid
+     C                   parm                    cd01nm
+      *****************************************************************
+      *  Main Routine
+      *****************************************************************
+     C                   Select
+     C                   when      cd01mode = 'D'
+     C                   exsr      dspcd
+     C                   when      cd01mode = 'W'
+     C                   exsr      windowcd
+     C                   when      cd01mode = 'P'
+     C                   exsr      postcd
+     C                   when      cd01mode = 'V'
+     C                   exsr      viewcd
+     C                   endsl
+     C                   eval      *inlr = *on
+      *End of Main
+      *****************************************************************
+      *  Position Routine
+      *****************************************************************
+     C     postcd        begsr
+      *
+     C                   dou       *inkc or *inkl
+      *
+     C                   exfmt     window2
+     C                   eval      cd01nm  = %trim(w2cnm)
+     C                   eval      cd01iid = w2ciid
+     C* 0=search by id
+     C                   if        cd01nm   = *blank
+     C                   eval      cd01mode = '0'
+     C                   else
+     C                   eval      cd01mode = '1'
+     C                   endif
+      *enter
+     C                   if        (not *inkc) and (not *inkl)
+      *by Name
+     C                   if        cd01nm <> *blank
+     C                   eval      yd1cnm  = cd01nm
+     C                   eval      yd1ciid = cd01iid
+     C     yd1cl1k       chain(e)  yd1clf1
+     C                   if        %found
+     C                   leave
+     C                   else
+     C                   eval      yd1cnm  = cd01nm
+     C                   eval      yd1ciid = *loval
+     C     yd1cl1k       setll     yd1clf1
+     C                   if        %eof
+     C                   eval      cd01iid = *zero
+     C                   else
+     C                   read(e)   yd1clf1
+     C                   if        yd1cnm  = cd01nm
+     C                   eval      cd01iid = yd1ciid
+     C                   else
+     C                   eval      cd01iid = *zero
+     C                   endif
+      *
+     C                   endif
+      *-%eof
+     C                   endif
+      *-%found
+      *code else
+     C                   else
+     c     cd01iid       chain(e)  yd1c
+     C                   if        %found
+     C                   eval      cd01nm  = yd1cnm
+     C                   else
+     C                   eval      cd01iid = *zero
+     C                   endif
+      *-by Name
+     C                   endif
+     C                   leave
+     C                   endif
+      *-enter
+     C                   enddo
+      *
+     C                   endsr
+      *****************************************************************
+      *  Select View
+      *****************************************************************
+     C     viewcd        begsr
+      *
+     C                   dou       *inkc or *inkl
+      *
+     C                   exfmt     window3
+      *enter
+     C                   if        (not *inkc) and (not *inkl)
+     C                   eval      cd01nm  = w3copt
+     C                   leave
+     C                   endif
+      *
+     C                   enddo
+      *
+     C                   endsr
+      *****************************************************************
+      *  Retrieve
+      *****************************************************************
+     C     dspcd         begsr
+      *
+     C     cd01iid       chain(e)  yd1c
+     C                   if        not %found
+     C                   eval      cd01iid = 0
+     C                   eval      cd01nm  = '*err'
+     C                   else
+     C                   eval      cd01iid = yd1ciid
+     C                   eval      cd01nm  = yd1cnm
+     C                   endif
+      *
+     C                   endsr
+      *****************************************************************
+      *  Window Routine
+      *****************************************************************
+     C     windowcd      begsr
+      *
+      * Clear then build the initial subfile
+      *
+     C                   exsr      clrsf1
+     C                   exsr      sflbld
+      *
+     C                   dou       *inkc or *inkl
+     C                   exfmt     sf1ctl
+     C                   if        rrn1 > *zero
+      * Enter
+     C                   if        (not *inkc) and (not *inkl)
+     C     rrn1          chain     window1
+     C                   eval      cd01iid = yd1ciid
+     C                   eval      cd01nm  = yd1cnm
+     C                   leave
+     C                   else
+     C                   eval      cd01iid = 0
+     C                   eval      cd01nm  = '*err'
+     C                   endif
+     C                   endif
+     C                   enddo
+      *
+     C                   endsr
+      *****************************************************************
+      *  CLRSF1 - Clear the subfile
+      *****************************************************************
+      *
+     C     clrsf1        begsr
+      *
+      * Clear relative record numbers and subfile
+      *
+     C                   eval      rrn1 = *zero
+     C                   eval      *in31 = *on
+     C                   write     sf1ctl
+     C                   eval      *in31 = *off
+     C                   eval      *in32 = *off
+      *
+     C                   endsr
+      *
+      *****************************************************************
+      *  SFLBLD - Build the List
+      *****************************************************************
+      *
+     C     sflbld        begsr
+      *
+      * Load the subfile
+      *
+     C     *loval        setll     YD1CLF1
+     C                   dou       %eof
+     C                   read      YD1CLF1
+     C                   if        not %eof
+     C                   eval      rrn1 = rrn1 + 1
+     C                   write     window1
+     C                   endif
+     C                   enddo
+      *
+      * If no records are loaded to subfile, don't display it
+      *
+     C                   if        rrn1 = *zero
+     C                   eval      *in32 = *on
+     C                   else
+     C                   eval      rrn1 = 1
+     C                   endif
+     C
+      *
+     C                   endsr

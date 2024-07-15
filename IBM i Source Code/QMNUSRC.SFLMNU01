@@ -1,0 +1,46 @@
+     A* Free Form Menu: SFLMNU01
+     A*%%TS  SD  20080130  141424  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3                  -
+     A                                             27 132 *DS4)
+     A                                      CHGINPDFT
+     A                                      INDARA
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R SFLMNU01
+     A*%%TS  SD  20080130  141306  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      DSPMOD(*DS3)
+     A                                      LOCK
+     A                                      SLNO(01)
+     A                                      CLRL(*ALL)
+     A                                      ALWROL
+     A                                      CF03
+     A                                      HELP
+     A                                      HOME
+     A                                      HLPRTN
+     A                                  1  2'SFLMNU01'
+     A                                      COLOR(BLU)
+     A                                  1 32'Subfile  Menu'
+     A                                      DSPATR(HI)
+     A                                  3  2'Select one of the following:'
+     A                                      COLOR(BLU)
+     A                                  5  7'1. Name list'
+     A                                  6  7'2. Search Name-No PageUp'
+     A                                  7  7'3. Search Name'
+     A                                  8  7'4. Update Name'
+     A                                  9  7'5. Add Name'
+     A                                 10  7'6. Multiple Update'
+     A                                 11  7'7. Drop down list'
+     A* CMDPROMPT  Do not delete this DDS spec.
+     A                                019  2'Selection or command              -
+     A                                          '
+     A                                 12  7'8. Delete (windows/scroll bar)'
+     A                                 13  7'9. Windows sub program - Name)'
+     A                                 14  6'10. Message subfile (API)'
+     A                                 15  6'11. Message subfile (CLP)'
+     A                                 16  6'12. Multiple subfile'
+     A                                  5 42'13. Side-by-side subfile'
+     A                                  6 42'14. Using Data Queue Technique'
+     A                                  7 42'15. Self-Updating with Data Queue'
+     A                                  8 42'16. Dynamic Sort with Embedded SQL'
+     A                                  9 42'17. Recusive Subfile'
+     A                                 17  6'90. Sign Off'

@@ -1,0 +1,17 @@
+             PGM
+
+             DCLF       FILE(SAMPLELIB/TEST00004) RCDFMT(*ALL)
+
+             MONMSG     MSGID(CPF0000)
+ START:      SNDRCVF    DEV(*FILE) RCDFMT(DSPR01)
+
+             IF         COND(&IN03 = '1' *OR &IN12 = '1') THEN(GOTO +
+                          CMDLBL(END))
+
+             IF         COND(&IN01 = '1') THEN(CALL PGM(TST004RG1))
+
+
+             GOTO       CMDLBL(START)
+
+ END:        ENDPGM
+

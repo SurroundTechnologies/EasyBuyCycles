@@ -1,0 +1,288 @@
+     A*%%TS  SD  20120626  025907  FRANCISCOH  REL-V6R1M0  5761-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      PRINT
+     A                                      CA03
+     A                                      CA12
+     A                                      CA21
+     A          R SF1                       SFL
+     A*%%TS  SD  20091113  152650  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A  74                                  SFLNXTCHG
+     A            SF1IID         8S 0H
+     A            SF11CID        8S 0H
+     A            SF1OPT         2A  B  8  3VALUES(' ' '2' '4' '5' '90')
+     A            SF1STL    R        O  8 60REFFLD(YD1SPR/YD1STL *LIBL/YD1S)
+     A            SF1SSHCY      20A  O  8 38
+     A            SF1NM         30A  O  8  6
+     A            SF1SHA1       30A  O  9  6
+     A            SF1SHPC       10A  O  9 38
+     A            SF1EM         30A  O  9 50
+     A          R SF1CTL                    SFLCTL(SF1)
+     A*%%TS  SD  20100601  184937  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      CF05
+     A                                      CF06
+     A                                      OVERLAY
+     A N32                                  SFLDSP
+     A N31                                  SFLDSPCTL
+     A  31                                  SFLCLR
+     A  90                                  SFLEND(*MORE)
+     A N10                                  SFLDROP(CA11)
+     A  10                                  SFLFOLD(CA11)
+     A                                      SFLSIZ(0008)
+     A                                      SFLPAG(0007)
+     A            RRN1           4S 0H      SFLRCDNBR
+     A                                  1  2'YD1S01SF1'
+     A                                  1 62TIME
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  3  3'Select one of the following:'
+     A                                      COLOR(BLU)
+     A                                  4  3'2=Update'
+     A                                      COLOR(BLU)
+     A                                  4 14'4=Delete'
+     A                                      COLOR(BLU)
+     A                                  4 25'5=Display Detail'
+     A                                      COLOR(BLU)
+     A                                  4 44'90=Audit Info'
+     A                                      COLOR(BLU)
+     A                                  6 38'Country'
+     A                                      DSPATR(HI)
+     A                                  6 60'Telephone'
+     A                                      DSPATR(HI)
+     A                                  7  2'Opt'
+     A                                      DSPATR(HI)
+     A                                  7  6'Customer Name'
+     A                                      DSPATR(HI)
+     A                                  7 38'Postal Code'
+     A                                      DSPATR(HI)
+     A                                  7 60'Email'
+     A                                      DSPATR(HI)
+     A                                  1 28'Work With Shipping Address'
+     A                                      DSPATR(HI)
+     A          R SF1FKEY1
+     A*%%TS  SD  20100301  150829  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                 23  3'F3=Exit'
+     A                                      COLOR(BLU)
+     A            MSGF01        70A  O 24  3DSPATR(HI)
+     A                                 23 13'F5=Refresh   F6=Add   F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                 23 48'F21=Position To'
+     A                                      COLOR(BLU)
+     A          R SF2                       SFL
+     A*%%TS  SD  20091105  191119  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A  74                                  SFLNXTCHG
+     A            SF2SIID        8S 0H
+     A            SF2NM         30A  O  8  3
+     A            SF2SHA1       20A  O  8 36
+     A            SF2SHCY       20   O  8 59
+     A          R SF2CTL                    SFLCTL(SF2)
+     A*%%TS  SD  20091105  191119  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                      SFLSIZ(0015)
+     A                                      SFLPAG(0014)
+     A                                      OVERLAY
+     A                                      SFLDSP
+     A N41                                  SFLDSPCTL
+     A  41                                  SFLCLR
+     A N41                                  SFLEND(*MORE)
+     A            RRN2           4S 0H      SFLRCDNBR
+     A                                  1  2'YD1S01SF2'
+     A                                  1 28'Confirm Delete of Records'
+     A                                      DSPATR(HI)
+     A                                  1 63TIME
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  4  3'Press Enter to confirm your choice-
+     A                                      s for Delete.'
+     A                                      COLOR(BLU)
+     A                                  5  3'Press F12=Cancel to return to chan-
+     A                                      ge your choices'
+     A                                      COLOR(BLU)
+     A                                  7  3'Name'
+     A                                      DSPATR(HI)
+     A                                  7 36'Address'
+     A                                      DSPATR(HI)
+     A                                  7 59'Country'
+     A                                      DSPATR(HI)
+     A          R SF2FKEY1
+     A*%%TS  SD  20091105  191119  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                 23  3'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 14'F12=Cancel'
+     A                                      COLOR(BLU)
+     A            MSGF01        70A  O 24  3DSPATR(HI)
+     A          R PANEL1
+     A*%%TS  SD  20120626  025907  FRANCISCOH  REL-V6R1M0  5761-WDS
+     A                                      CF04
+     A  88                                  CF10
+     A                                      RTNCSRLOC(&RCD &FLD)
+     A            FLD           10A  H
+     A            RCD           10A  H
+     A            YD1SIID        8S 0H
+     A                                  1  2'YD1SPA01'
+     A                                  1 26'Shipping Address Detail'
+     A                                      DSPATR(HI)
+     A                                  1 63TIME
+     A                                  1 73DATE
+     A                                      EDTCDE(Y)
+     A            MODE           6A  O  2  2DSPATR(HI)
+     A                                  2 53'Purchase Points:'
+     A                                      COLOR(RED)
+     A            YD1SPRPT  R        B  2 71REFFLD(YD1SPR/YD1SPRPT *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      COLOR(RED)
+     A                                  4  1'------- Contact Info -------'
+     A                                      DSPATR(HI)
+     A                                  4 66'ID:'
+     A            YD1S1CID       8Y 0B  4 71EDTCDE(4)
+     A                                  5  2'Name  . . . . . . . . :'
+     A            YD1SNM    R     A  B  5 27REFFLD(YD1SPR/YD1SNM *LIBL/YD1S)
+     A  84                                  DSPATR(PC)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A N88                                  DSPATR(HI)
+     A                                      CHECK(LC)
+     A                                  5 78'+'
+     A  88                                  DSPATR(ND)
+     A                                  6  2'Contact Last Name . . :'
+     A                                      DSPATR(HI)
+     A            YD1SCNLN  R     A  B  6 27REFFLD(YD1SPR/YD1SCNLN *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A N88                                  DSPATR(HI)
+     A  75                                  DSPATR(PC)
+     A                                      CHECK(LC)
+     A                                  7  2'Contact First Name    :'
+     A                                      DSPATR(HI)
+     A            YD1SCNFN  R     A  B  7 27REFFLD(YD1SPR/YD1SCNFN *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A N88                                  DSPATR(HI)
+     A  76                                  DSPATR(PC)
+     A                                  8  2'Contact Middle Name   :'
+     A            YD1SCNMN  R     A  B  8 27REFFLD(YD1SPR/YD1SCNMN *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A                                  9  2'Contact Nick Name . . :'
+     A            YD1SCNNN  R     A  B  9 27REFFLD(YD1SPR/YD1SCNNN *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A                                 10  2'Email . . . . . . . . :'
+     A            YD1SEM    R     A  B 10 27REFFLD(YD1SPR/YD1SEM *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A                                 11  2'Telephone . . . . . . :'
+     A            YD1STL    R        B 11 27REFFLD(YD1SPR/YD1STL *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                 12  1'------- Address Info ------'
+     A                                      DSPATR(HI)
+     A                                 13  2'Address1  . . . . . . :'
+     A                                      DSPATR(HI)
+     A            YD1SSHA1  R     A  B 13 27REFFLD(YD1SPR/YD1SSHA1 *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A N88                                  DSPATR(HI)
+     A  77                                  DSPATR(PC)
+     A                                 14  2'Address2  . . . . . . :'
+     A            YD1SSHA2  R     A  B 14 27REFFLD(YD1SPR/YD1SSHA2 *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A                                 15  2'Address3  . . . . . . :'
+     A                                      DSPATR(HI)
+     A            YD1SSHA3  R     A  B 15 27REFFLD(YD1SPR/YD1SSHA3 *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A N88                                  DSPATR(HI)
+     A  78                                  DSPATR(PC)
+     A                                 16  2'Postal Code . . . . . :'
+     A                                      DSPATR(HI)
+     A            YD1SSHPC  R        B 16 27REFFLD(YD1SPR/YD1SSHPC *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A N88                                  DSPATR(HI)
+     A  79                                  DSPATR(PC)
+     A                                 17  2'Country . . . . . . . :'
+     A                                      DSPATR(HI)
+     A            YD1SSHCY  R     A  B 17 27REFFLD(YD1SPR/YD1SSHCY *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A N88                                  DSPATR(HI)
+     A  80                                  DSPATR(PC)
+     A                                 18  1'---------- Memo -----------'
+     A                                      DSPATR(HI)
+     A            YD1SM1    R     A  B 19  1REFFLD(YD1SPR/YD1SM1 *LIBL/YD1S)
+     A  88                                  DSPATR(PR)
+     A N88                                  DSPATR(UL)
+     A                                      CHECK(LC)
+     A                                 23  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 12'F12=Cancel'
+     A                                      COLOR(BLU)
+     A                                 23 25'F10=Audit'
+     A                                      COLOR(BLU)
+     A N88                                  DSPATR(ND)
+     A            MSGF01        70A  O 24  2DSPATR(HI)
+     A          R PANEL2
+     A*%%TS  SD  20100601  184937  FRANCISCOH  REL-V4R4M0  5769-PW1
+     A                                  1  2'YD1SPA02'
+     A                                  1 26'Shipping Address Detail'
+     A                                      DSPATR(HI)
+     A                                  1 63TIME
+     A                                  1 73DATE
+     A                                      EDTCDE(Y)
+     A                                  2 55'Purchase Points:'
+     A                                      COLOR(RED)
+     A            YD1SPRPT  R        O  2 73REFFLD(YD1SPR/YD1SPRPT *LIBL/YD1S)
+     A                                      COLOR(RED)
+     A                                  4  1'------- Contact Info -------'
+     A                                      DSPATR(HI)
+     A                                  5  2'Name  . . . . . . . . :'
+     A            YD1SNM    R     A  O  5 27REFFLD(YD1SPR/YD1SNM *LIBL/YD1S)
+     A                                  6  2'Telephone . . . . . . :'
+     A            YD1STL    R        O  6 27REFFLD(YD1SPR/YD1STL *LIBL/YD1S)
+     A                                  7  2'Email . . . . . . . . :'
+     A            YD1SEM    R     A  O  7 27REFFLD(YD1SPR/YD1SEM *LIBL/YD1S)
+     A                                  9  1'-------- Audit Info -------'
+     A                                      DSPATR(HI)
+     A                                 10  2'Internal ID   . . . . :'
+     A                                      DSPATR(HI)
+     A            YD1SIID   R        O 10 27REFFLD(YD1SPR/YD1SIID *LIBL/YD1S)
+     A                                      DSPATR(HI)
+     A                                 11  2'Customer Internal ID  :'
+     A                                      DSPATR(HI)
+     A            YD1S1CID  R        O 11 27REFFLD(YD1SPR/YD1S1CID *LIBL/YD1S)
+     A                                      DSPATR(HI)
+     A                                 12  2'Create Date . . . . . :'
+     A            YD1SCRDT  R        O 12 27REFFLD(YD1SPR/YD1SCRDT *LIBL/YD1S)
+     A                                 13  2'Create Time . . . . . :'
+     A            YD1SCRTM  R        O 13 27REFFLD(YD1SPR/YD1SCRTM *LIBL/YD1S)
+     A                                 14  2'Create User . . . . . :'
+     A            YD1SCRUS  R        O 14 27REFFLD(YD1SPR/YD1SCRUS *LIBL/YD1S)
+     A                                 15  2'Create Job  . . . . . :'
+     A            YD1SCRJB  R        O 15 27REFFLD(YD1SPR/YD1SCRJB *LIBL/YD1S)
+     A                                 16  2'Create Job Number . . :'
+     A            YD1SCRJN  R        O 16 27REFFLD(YD1SPR/YD1SCRJN *LIBL/YD1S)
+     A                                 17  2'Last Change Date  . . :'
+     A            YD1SLCDT  R        O 17 27REFFLD(YD1SPR/YD1SLCDT *LIBL/YD1S)
+     A                                 18  2'Last Change Time  . . :'
+     A            YD1SLCTM  R        O 18 27REFFLD(YD1SPR/YD1SLCTM *LIBL/YD1S)
+     A                                 19  2'Last Change User  . . :'
+     A            YD1SLCUS  R        O 19 27REFFLD(YD1SPR/YD1SLCUS *LIBL/YD1S)
+     A                                 20  2'Last Change Job . . . :'
+     A            YD1SLCJB  R        O 20 27REFFLD(YD1SPR/YD1SLCJB *LIBL/YD1S)
+     A                                 21  2'Last Change Job Number:'
+     A            YD1SLCJN  R        O 21 27REFFLD(YD1SPR/YD1SLCJN *LIBL/YD1S)
+     A                                 23  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 12'F12=Cancel'
+     A                                      COLOR(BLU)
+     A            MSGF01        70A  O 24  2DSPATR(HI)

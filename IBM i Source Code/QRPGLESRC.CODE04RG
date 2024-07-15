@@ -1,0 +1,62 @@
+      *
+      *  To compile:
+      *
+      *             CRTRPGPGM PGM(XXX/code04RG) SRCFILE(XXX/QRPGLESRC)
+      *
+      *=======================================================================
+     H DftActGrp(*No) ActGrp('NEWLOOK')
+     H Option(*nodebugio)
+     H Debug
+      *
+     Fcode04df  cf   e             workstn
+     Fyd1s      if   e           k disk
+      *
+      *P=Postion To
+     Dcd04mode         S              1
+     Dcd04nm           S                   like(yd1snm)
+     Dcd04iid          S                   like(yd1siid)
+      *****************************************************************
+      *  Key Fields
+      *****************************************************************
+      *
+     C     *entry        plist
+     C                   parm                    cd04mode
+     C                   parm                    cd04nm
+     C                   parm                    cd04iid
+      *****************************************************************
+      *  Main Routine
+      *****************************************************************
+     C                   Select
+     C                   when      cd04mode = 'P'
+     C                   exsr      postcd
+     C                   endsl
+     C                   eval      *inlr = *on
+      *End of Main
+      *****************************************************************
+      *  Position Routine
+      *****************************************************************
+     C     postcd        begsr
+      *
+     C                   dou       *inkc or *inkl
+      *
+     C                   exfmt     window2
+     C                   eval      cd04iid  = w2iid
+      *enter
+     C                   if        (not *inkc) and (not *inkl)
+      *by ID
+     c     cd04iid       chain(e)  yd1s
+     C                   if        %found
+     C                   eval      cd04nm    = yd1snm
+     C                   eval      cd04iid   = yd1siid
+     C                   else
+     C                   eval      cd04nm    = *blank
+     C                   eval      cd04iid   = *zero
+     C                   endif
+     C*
+     C                   leave
+      *-enter
+     C                   endif
+      *
+     C                   enddo
+      *
+     C                   endsr
