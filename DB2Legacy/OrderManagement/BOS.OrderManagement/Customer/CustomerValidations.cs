@@ -53,4 +53,17 @@ namespace BOS.CustomerDataEntity
             return new AB_ValidateMethodReturnArgs(true);
         }
     }
+
+	public class ValidateParentIsNotChild : AB_IValidation
+	{
+		public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs InputArgs)
+		{
+			CustomerEntity entity = InputArgs.ap_EntityToValidate as CustomerEntity;
+			if (entity.ParentInternalID != null && entity.ParentInternalID != 0 && entity.ParentInternalID == entity.CustomerInternalID)
+			    return new AB_ValidateMethodReturnArgs(false);
+			
+			return new AB_ValidateMethodReturnArgs(true);
+		}
+	}
+
 }

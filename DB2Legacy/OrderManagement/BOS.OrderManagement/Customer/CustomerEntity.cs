@@ -62,6 +62,7 @@ namespace BOS.CustomerDataEntity
 
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
         [Display(Name = "PARENTCUSTOMERNUMBER", ResourceType = typeof(DescriptionResource))]
+		[AB_ValidationMethod(typeof(ValidateParentIsNotChild), ErrorMessage = "Customer cannot be a parent of itself", ap_ValidationTriggers = AB_ValidationTrigger.OnSave | AB_ValidationTrigger.OnLostFocus | AB_ValidationTrigger.OnTextChanged)]
 		[AB_Length(8)]
         [DataMember]
         public int? ParentInternalID //Map Field: YD1CPTID
@@ -799,12 +800,12 @@ namespace BOS.CustomerDataEntity
 		#endregion
 
 		[DataMember]
-		public bool IsDropdownFetch
+		public int? ExcludeCustomerInternalID
 		{
-			get => am_GetPropertyValue(IsDropdownFetchProperty);
-			set => am_SetPropertyValue(IsDropdownFetchProperty, value);
+			get => am_GetPropertyValue(ExcludeCustomerInternalIDProperty);
+			set => am_SetPropertyValue(ExcludeCustomerInternalIDProperty, value);
 		}
-		public static AB_PropertyMetadata<bool> IsDropdownFetchProperty = am_CreatePropertyMetaData<bool>(nameof(IsDropdownFetch), "IsDropDownFetch", false);
+		public static AB_PropertyMetadata<int?> ExcludeCustomerInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(ExcludeCustomerInternalID), "", null);
 
 		#endregion //Properties
 

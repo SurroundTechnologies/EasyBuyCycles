@@ -32,6 +32,13 @@ namespace WPF.Customer
 		}
         public static readonly DependencyProperty CustomerInternalIDProperty = DependencyProperty.Register(nameof(CustomerInternalID), typeof(int?), typeof(CustomerDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
 
+		public int? ExcludeCustomerInternalID
+		{
+			get { return (int?)GetValue(ExcludeCustomerInternalIDProperty); }
+			set { SetValue(ExcludeCustomerInternalIDProperty, value); }
+		}
+		public static readonly DependencyProperty ExcludeCustomerInternalIDProperty = DependencyProperty.Register("ExcludeCustomerInternalID", typeof(int?), typeof(CustomerDropDown), new PropertyMetadata(null));
+
 		/// <summary>
 		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
 		/// </summary>
@@ -74,7 +81,7 @@ namespace WPF.Customer
 			// ap_StartLoadingFromSelectedItem = false;
 		}
 
-		
+
 		/// <summary>
 		/// This method is for setting keys via code behind.  If there are multiple keys in the file, a fetch will be done each time a key is 
 		/// set unless this method is called. ap_RequireAllKeysFilledForFetch only helps when the keys are empty, not when they're changing non-null values.
@@ -91,14 +98,32 @@ namespace WPF.Customer
 			am_OnIdChanged(new DependencyPropertyChangedEventArgs(CustomerInternalIDProperty, null, CustomerInternalID));
 		}
 
+
 		public override void am_FetchAsync(AB_FetchInputArgs fetchInputArgs)
 		{
-			if (fetchInputArgs.ap_InputEntity is CustomerEntity entity)
-			{
-				entity.IsDropdownFetch = true;
-			}
+			var entity = fetchInputArgs.ap_InputEntity as CustomerEntity;
 
-			base.am_FetchAsync(fetchInputArgs);
+			if (entity.CustomerInternalID != ExcludeCustomerInternalID)
+				base.am_FetchAsync(fetchInputArgs);
+		}
+
+		protected override void am_LoadCombo(AB_BusinessObjectEntityBase entityWithSearchParams, int maxCount, AB_Query query)
+		{
+			var entity = entityWithSearchParams as CustomerEntity;
+			if (ExcludeCustomerInternalID.HasValue)
+				entity.ExcludeCustomerInternalID = ExcludeCustomerInternalID.Value;
+
+			base.am_LoadCombo(entityWithSearchParams, maxCount, query);
+		}
+
+		protected override AB_BusinessObjectEntityBase am_GetSearchAndSelectSearchInitialSearchEntity()
+		{
+			var entity = base.am_GetSearchAndSelectSearchInitialSearchEntity() as CustomerEntity;
+
+			if (ExcludeCustomerInternalID.HasValue)
+				entity.ExcludeCustomerInternalID = ExcludeCustomerInternalID.Value;
+
+			return entity;
 		}
 	}
 }

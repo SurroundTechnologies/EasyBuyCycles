@@ -138,6 +138,7 @@ namespace BOS.CustomerViewModel
 
 		private void ValidateParentCustomer(AB_VisualModelInitArgs inputArgs, CustomerEntity entity)
 		{
+			// Enforce ParentRelationship when Parent is selected
 			if (entity.ParentInternalID == null || entity.ParentInternalID == 0)
 			{
 				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = true; 
@@ -150,6 +151,7 @@ namespace BOS.CustomerViewModel
 				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_DisplayRequiredStyle = true;
 			}
 
+			// Don't enforce LegalName when Parent is selected
 			if (entity.ParentInternalID != null && entity.ParentInternalID != 0)
 			{
 				inputArgs.ap_PropertyModelDictionary[CustomerEntity.LegalNameProperty.ap_PropertyName].ap_DisplayRequiredStyle = false;
