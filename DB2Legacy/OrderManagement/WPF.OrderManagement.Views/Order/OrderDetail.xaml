@@ -12,7 +12,7 @@
 	xmlns:vm="clr-namespace:BOS.OrderViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
 	xmlns:propCodeValue="clr-namespace:WPF.PropCodeValue;assembly=WPF.PropCodeValue"
-	Height="600" Width="620">
+	Height="500" Width="910">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,36 +33,52 @@
                     </StackPanel>
                 </base:AB_DockingTabItem.Header>
                 <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-                    <DockPanel x:Name="FieldsPanel">
-                        <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
-                        <WPF.ShippingAddress:ShippingAddressDropDown Margin="0,0,0,5"  x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}" ShippingAddressInternalID="{Binding Path=ShippingAddressInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,0">
-                            <base:AB_DatePicker ap_LabelPosition="Left" x:Name="Field_OrderDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  Width="260" />
-                            <base:AB_TimePicker ap_LabelPosition="Left" ap_LabelVisibility="Collapsed" x:Name="Field_OrderTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTimeProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left"  Width="100" ap_SecondsVisibility="Visible"/>
-                        </StackPanel>
-                        <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchaseOrderNumberID" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchaseOrderNumberIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="365"  DockPanel.Dock="Top" />
-                        <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_AccountStatus"
-                                                           DockPanel.Dock="Top"
-                                                           Width="365" Margin="0,0,0,5" HorizontalAlignment="Left"
-                                                           Code="{Binding Status, Mode=TwoWay}"
-                                                           PropertyCodeTable="SalesStatus"
-                                                           ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Left"
-                                                           ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}" />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />
+                    <StackPanel x:Name="FieldsPanel" Orientation="Horizontal">
+                        <DockPanel>
+                            <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
+                            <WPF.ShippingAddress:ShippingAddressDropDown Margin="0,0,0,5"  x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}" ShippingAddressInternalID="{Binding Path=ShippingAddressInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,0">
+                                <base:AB_DatePicker ap_LabelPosition="Left" x:Name="Field_OrderDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  Width="260" />
+                                <base:AB_TimePicker ap_LabelPosition="Left" ap_LabelVisibility="Collapsed" x:Name="Field_OrderTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTimeProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left"  Width="100" ap_SecondsVisibility="Visible"/>
+                            </StackPanel>
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchaseOrderNumberID" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchaseOrderNumberIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="365"  DockPanel.Dock="Top" />
+                            <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_AccountStatus"
+                                   DockPanel.Dock="Top"
+                                   Width="365" Margin="0,0,0,5" HorizontalAlignment="Left"
+                                   Code="{Binding Status, Mode=TwoWay}"
+                                   PropertyCodeTable="SalesStatus"
+                                   ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Left"
+                                   ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
+                            <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="230"  DockPanel.Dock="Top" />
 
-                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.ORDERMEMO}" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
-                                <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" ap_LabelPosition="Top" x:Name="Field_OrderMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderMemoProperty}"  Margin="0,0,0,5" ap_FillAvailableSpace="True" Height="95" HorizontalAlignment="Left" Width="270" />
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.ORDERMEMO}" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+                                    <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" ap_LabelPosition="Top" x:Name="Field_OrderMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderMemoProperty}"  Margin="0,0,0,5" ap_FillAvailableSpace="True" Height="95" HorizontalAlignment="Left" Width="270" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Margin="10,0,0,0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.DELIVERYMEMO}" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+                                    <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" ap_LabelPosition="Top" x:Name="Field_DeliveryMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.DeliveryMemoProperty}"  Margin="10,0,0,5" ap_FillAvailableSpace="True" Height="95" HorizontalAlignment="Left" Width="270" />
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel>
-                                <TextBlock Margin="10,0,0,0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.DELIVERYMEMO}" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
-                                <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" ap_LabelPosition="Top" x:Name="Field_DeliveryMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.DeliveryMemoProperty}"  Margin="10,0,0,5" ap_FillAvailableSpace="True" Height="95" HorizontalAlignment="Left" Width="270" />
+                        </DockPanel>
+                        
+
+                        <Expander x:Name="Expander_OrdersInformation"
+                                     HorizontalAlignment="Stretch" DockPanel.Dock="Right"
+                                     Background="Transparent" Margin="40 0 0 0" Header="{x:Static systemSharedProperties:DescriptionResource.ORDERITEMAGGREGATEINFORMATION}"
+                                     IsExpanded="True" OverridesDefaultStyle="True" 
+                                     Style="{DynamicResource AB_MinimalistExpanderStyle}">
+                            <StackPanel Margin="0 5 0 0">
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderItemCount" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderItemCountProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="200" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderTotal" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTotalProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderDiscount" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDiscountProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="210" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_OrderDiscountedTotal" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDiscountedTotalProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="240" />
                             </StackPanel>
-                        </StackPanel>
-                    </DockPanel>
+                        </Expander>
+                    </StackPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
             <base:AB_DockingTabItem x:Name="AuditFieldsTab"  >

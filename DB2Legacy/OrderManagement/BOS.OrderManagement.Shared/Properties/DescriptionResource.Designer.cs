@@ -592,6 +592,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discounted Total.
+        /// </summary>
+        public static string DISCOUNTEDTOTAL {
+            get {
+                return ResourceManager.GetString("DISCOUNTEDTOTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discount (Percent).
         /// </summary>
         public static string DISCOUNTPERCENT {
@@ -1186,6 +1195,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Item Aggregate Information.
+        /// </summary>
+        public static string ORDERITEMAGGREGATEINFORMATION {
+            get {
+                return ResourceManager.GetString("ORDERITEMAGGREGATEINFORMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Item Count.
         /// </summary>
         public static string ORDERITEMCOUNT {
@@ -1213,6 +1231,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Number.
+        /// </summary>
+        public static string ORDERNUMBER {
+            get {
+                return ResourceManager.GetString("ORDERNUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Price.
         /// </summary>
         public static string ORDERPRICE {
@@ -1230,6 +1257,7 @@ namespace BOS.OrderManagement.Shared.Properties {
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to Order Successfully Created.
         /// </summary>
         public static string ORDERSUCCESSFULLYCREATED {
@@ -1545,11 +1573,29 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Billing Address Line.
+        /// </summary>
+        public static string SHIPPINGADDRESSBILLINGADDRESSLINE {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSBILLINGADDRESSLINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping Address Block.
         /// </summary>
         public static string SHIPPINGADDRESSBLOCK {
             get {
                 return ResourceManager.GetString("SHIPPINGADDRESSBLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Contact Full Name.
+        /// </summary>
+        public static string SHIPPINGADDRESSCONTACTFULLNAME {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSCONTACTFULLNAME", resourceCulture);
             }
         }
         
@@ -1595,6 +1641,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string SHIPPINGADDRESSNAME {
             get {
                 return ResourceManager.GetString("SHIPPINGADDRESSNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Address Telephone.
+        /// </summary>
+        public static string SHIPPINGADDRESSTELEPHONE {
+            get {
+                return ResourceManager.GetString("SHIPPINGADDRESSTELEPHONE", resourceCulture);
             }
         }
         

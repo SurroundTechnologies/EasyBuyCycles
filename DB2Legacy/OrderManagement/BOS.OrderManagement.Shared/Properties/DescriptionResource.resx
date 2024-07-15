@@ -687,4 +687,22 @@
   <data name="ORDERSUCCESSFULLYCREATED" xml:space="preserve">
     <value>Order Successfully Created</value>
   </data>
+  <data name="SHIPPINGADDRESSBILLINGADDRESSLINE" xml:space="preserve">
+    <value>Shipping Address Billing Address Line</value>
+  </data>
+  <data name="SHIPPINGADDRESSCONTACTFULLNAME" xml:space="preserve">
+    <value>Shipping Address Contact Full Name</value>
+  </data>
+  <data name="SHIPPINGADDRESSTELEPHONE" xml:space="preserve">
+    <value>Shipping Address Telephone</value>
+  </data>
+  <data name="DISCOUNTEDTOTAL" xml:space="preserve">
+    <value>Discounted Total</value>
+  </data>
+  <data name="ORDERNUMBER" xml:space="preserve">
+    <value>Order Number</value>
+  </data>
+  <data name="ORDERITEMAGGREGATEINFORMATION" xml:space="preserve">
+    <value>Order Item Aggregate Information</value>
+  </data>
 </root>

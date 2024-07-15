@@ -24,28 +24,37 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
                     <StackPanel>
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerName" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ShippingAddressName" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_OrderDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
                         <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_OrderTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" ap_SecondsVisibility="Visible" />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchaseOrderNumberID" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchaseOrderNumberIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_WarehouseInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <WPF.ShippingAddress:ShippingAddressDropDown Margin="0,0,0,5"  x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}" ShippingAddressInternalID="{Binding Path=ShippingAddressInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Status" ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_SalesPersonInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchasePoints" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchasePointsProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerName" ap_PropertyMetaData="{x:Static entity:OrderEntity.CustomerNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ShippingAddressName" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderMemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_DeliveryMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.DeliveryMemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                     </StackPanel>
                 </Expander>
-                <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
+
+                <Expander Style="{DynamicResource AB_ExpanderStyle}" Header="{x:Static systemSharedProperties:DescriptionResource.ORDERITEMAGGREGATEINFORMATION}" Grid.Row="1" IsExpanded="True" >
+                    <StackPanel>
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderItemCount" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderItemCountProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderTotal" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTotalProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderDiscount" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDiscountProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderDiscountedTotal" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDiscountedTotalProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                    </StackPanel>
+                </Expander>
+
+                <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="2" IsExpanded="False" >
                     <StackPanel>
                         <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
                         <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />

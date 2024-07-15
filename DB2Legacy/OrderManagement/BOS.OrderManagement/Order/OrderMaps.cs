@@ -16,31 +16,43 @@ namespace BOS.OrderDataMaps
 		private const string YD1OTableName = "YD1O";
 		private const string YD1STableName = "YD1S";
 		private const string YD1CTableName = "YD1C";
+		private const string YD1ITableName = "YD1I";
+
+		private const string OrderItemsCTEName = "OrderItemsCTE";
 
 		public OrderMaps() : base() { }
 		public OrderMaps(string qualifier) : base(qualifier) { }
-		  
+
+		public override AB_CommonTableExpressionDictionary am_LoadCommonTableExpressions()
+		{
+			var ctes = new AB_CommonTableExpressionDictionary();
+
+			ctes.am_AddCTE(OrderItemsCTEName, $@"SELECT ""YD1I1OID""
+													,COUNT(*) AS ""OrderItemCount""
+													,DECIMAL(SUM(""YD1IQT"" * ""YD1IPRUN""),11,2) AS ""OrderTotal""
+													,DECIMAL(SUM(""YD1IQT"" * ""YD1IPRUN"" * (""YD1IDSPC"" * 0.01)),11,2) AS ""OrderDiscount""
+													,DECIMAL(SUM(""YD1IQT"" * ""YD1IPRUN"" * (1 - (""YD1IDSPC"" * 0.01))),11,2) AS ""OrderDiscountedTotal""
+												FROM ""{YD1ITableName}""
+												GROUP BY ""YD1I1OID""");
+
+			return ctes;
+		}
+
 		/// <summary>
 		/// Loads maps to join two database files.
 		/// </summary>
 		public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
-		   
-			// TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
-			// AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
-			// TODO: Table Relationships Step 2 - Add Joins for each relationship
-			// Two field Relationship 
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
-			// Single Field to Constant Relationship
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
-			// relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
-		 
-            relationshipMap.am_AddRelationshipMap(YD1STableName, useDistinctJoins: false)
-			.am_JoinWhere(primaryTableField:"YD1O1SID", joinTableField:"YD1SIID");
 
-            relationshipMap.am_AddRelationshipMap(YD1CTableName, useDistinctJoins: false)
-			.am_JoinWhere(primaryTableField:"YD1O1CID", joinTableField:"YD1CIID");
+			relationshipMap.am_AddRelationshipMap(YD1CTableName, useDistinctJoins: false)
+				.am_JoinWhere(primaryTableField: "YD1O1CID", joinTableField: "YD1CIID");
+
+			relationshipMap.am_AddRelationshipMap(YD1STableName, useDistinctJoins: false)
+				.am_JoinWhere(primaryTableField:"YD1O1SID", joinTableField:"YD1SIID");
+
+			relationshipMap.am_AddRelationshipMap(OrderItemsCTEName, useDistinctJoins: false)
+				.am_JoinWhere(primaryTableField: "YD1OIID", joinTableField: "YD1I1OID");
 
 			return relationshipMap;
 		}
@@ -70,6 +82,9 @@ namespace BOS.OrderDataMaps
 			maps.am_AddDataMap("YD1O1AID", OrderEntity.SalesPersonInternalIDProperty);
 			maps.am_AddDataMap("YD1O1ANM", OrderEntity.SalesPersonNameProperty);
 			maps.am_AddDataMap("YD1CPRPT", OrderEntity.PurchasePointsProperty);
+
+			#region Audit Stamps
+
 			maps.am_AddDataMap("YD1OCRDT", OrderEntity.CreateDateProperty, databaseFieldType: AB_EntityFieldType.Decimal);
 			maps.am_AddDataMap("YD1OCRTM", OrderEntity.CreateTimeProperty, databaseFieldType: AB_EntityFieldType.Decimal);
 			maps.am_AddDataMap("YD1OCRUS", OrderEntity.CreateUserProperty);
@@ -80,18 +95,70 @@ namespace BOS.OrderDataMaps
 			maps.am_AddDataMap("YD1OLCUS", OrderEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1OLCJB", OrderEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1OLCJN", OrderEntity.LastChangeJobNumberProperty);
-			maps.am_AddDataMap(string.Format("{0}.{1}", YD1CTableName, "YD1CNM"), OrderEntity.CustomerNameProperty, targetTable: YD1CTableName);
-			maps.am_AddDataMap(string.Format("{0}.{1}", YD1STableName, "YD1SNM"), OrderEntity.ShippingAddressNameProperty, targetTable: YD1STableName);
 
-			//TODO: OrderMaps Real Field Example
-			//maps.am_AddDataMap("<Field Name>", OrderEntity.<Property Name>);
-			//TODO: OrderMaps Virtual Field Example
-			//maps.am_AddDataMap("<Field Name>", OrderEntity.<Property Name>, isVirtual: true);
-			//TODO: OrderMaps Foreign Field Example
-			//maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), OrderEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-			//TODO: OrderMaps Configure Example (for setting options not available as constructor arguments)
-			//maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
-		  
+			#endregion
+
+			#region Customer Join
+
+			maps.am_AddDataMap("YD1CNM", OrderEntity.CustomerNameProperty, targetTable: YD1CTableName);
+			maps.am_AddDataMap("CustomerContactFullName", OrderEntity.CustomerContactFullNameProperty).am_Configure(map =>
+			{
+				map.am_RequiresTableNames(YD1CTableName);
+				map.ap_FunctionExpression = $@"(TRIM(""{YD1CTableName}"".""YD1CCNFN"")
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CCNMN"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1CTableName}"".""YD1CCNMN"") END
+                                               CONCAT SPACE(1) CONCAT TRIM(""{YD1CTableName}"".""YD1CCNLN"")
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CCNNN"" WHEN '' THEN '' ELSE ' ""' CONCAT TRIM(""{YD1CTableName}"".""YD1CCNNN"") CONCAT '""' END)
+                                               AS ""CustomerContactFullname""";
+			});
+			maps.am_AddDataMap("YD1CTL", OrderEntity.CustomerTelephoneProperty, targetTable: YD1CTableName);
+			maps.am_AddDataMap("CustomerBillingAddressLine", OrderEntity.CustomerBillingAddressLineProperty).am_Configure(map =>
+			{
+				map.am_RequiresTableNames(YD1CTableName);
+				map.ap_FunctionExpression = $@"(TRIM(""{YD1CTableName}"".""YD1CBLA1"")
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLA2"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1CTableName}"".""YD1CBLA2"") END
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLA3"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1CTableName}"".""YD1CBLA3"") END
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLPC"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1CTableName}"".""YD1CBLPC"") END
+                                               CONCAT CASE ""{YD1CTableName}"".""YD1CBLCY"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1CTableName}"".""YD1CBLCY"") END)
+                                               AS ""CustomerBillingAddressLineProperty""";
+			});
+
+			#endregion
+
+			#region Shipping Address Join
+
+			maps.am_AddDataMap("YD1SNM", OrderEntity.ShippingAddressNameProperty, targetTable: YD1STableName);
+			maps.am_AddDataMap("ShippingAddressContactFullName", OrderEntity.ShippingAddressContactFullNameProperty).am_Configure(map =>
+			{
+				map.am_RequiresTableNames(YD1STableName);
+				map.ap_FunctionExpression = $@"(TRIM(""{YD1STableName}"".""YD1SCNFN"")
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SCNMN"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1STableName}"".""YD1SCNMN"") END
+                                               CONCAT SPACE(1) CONCAT TRIM(""{YD1STableName}"".""YD1SCNLN"")
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SCNNN"" WHEN '' THEN '' ELSE ' ""' CONCAT TRIM(""{YD1STableName}"".""YD1SCNNN"") CONCAT '""' END)
+                                               AS ""ShippingAddressContactFullName""";
+			});
+			maps.am_AddDataMap("YD1STL", OrderEntity.ShippingAddressTelephoneProperty, targetTable: YD1STableName);
+			maps.am_AddDataMap("ShippingAddressLine", OrderEntity.ShippingAddressLineProperty).am_Configure(map =>
+			{
+				map.am_RequiresTableNames(YD1STableName);
+				map.ap_FunctionExpression = $@"(TRIM(""{YD1STableName}"".""YD1SSHA1"")
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHA2"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1STableName}"".""YD1SSHA2"") END
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHA3"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1STableName}"".""YD1SSHA3"") END
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHPC"" WHEN '' THEN '' ELSE SPACE(1) CONCAT TRIM(""{YD1STableName}"".""YD1SSHPC"") END
+                                               CONCAT CASE ""{YD1STableName}"".""YD1SSHCY"" WHEN '' THEN '' ELSE ', ' CONCAT TRIM(""{YD1STableName}"".""YD1SSHCY"") END)
+                                               AS ""ShippingAddressLine""";
+			});
+
+			#endregion
+
+			#region Order Item Fields
+
+			maps.am_AddDataMap("OrderItemCount", OrderEntity.OrderItemCountProperty, targetTable: OrderItemsCTEName);
+			maps.am_AddDataMap("OrderTotal", OrderEntity.OrderTotalProperty, targetTable: OrderItemsCTEName);
+			maps.am_AddDataMap("OrderDiscount", OrderEntity.OrderDiscountProperty, targetTable: OrderItemsCTEName);
+			maps.am_AddDataMap("OrderDiscountedTotal", OrderEntity.OrderDiscountedTotalProperty, targetTable: OrderItemsCTEName);
+
+			#endregion
+
 			return maps;
 		}
 
