@@ -452,11 +452,16 @@ namespace BOS.OrderItemDataEntity
                             break;
                     }
  
-                    if (OrderItemInternalID.HasValue)
+                    if (OrderInternalID.HasValue)
                     {
-                        title.AppendFormat(" - {0}", OrderItemInternalID.Value);
+                        title.AppendFormat(" - {0}", OrderInternalID.Value);
                     }
-  
+
+                    if (!string.IsNullOrWhiteSpace(ProductName))
+                    {
+                        title.AppendFormat(" - {0}", ProductName);
+                    }
+
                     return title.ToString();
                 }
                 return base.ap_Title;
