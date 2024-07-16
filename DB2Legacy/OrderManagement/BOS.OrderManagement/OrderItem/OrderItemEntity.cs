@@ -81,6 +81,8 @@ namespace BOS.OrderItemDataEntity
 
         [Display(Name = "QUANTITY", ResourceType = typeof(DescriptionResource))]
         [AB_Length(4)]
+        [AB_DefaultValueUse(AB_RecordMode.New)]
+        [AB_ValidationMethod(typeof(QuantityValidationMethod), ErrorMessage = "Quantity must be greater than 0", ap_ValidationTriggers = AB_ValidationTrigger.OnSave | AB_ValidationTrigger.OnLostFocus)]
         [DataMember]
         [AB_RequiredField]
         public int? Quantity //Map Field: YD1IQT
@@ -94,7 +96,7 @@ namespace BOS.OrderItemDataEntity
                 am_FirePropertyChanged(OrderTotalProperty);
             }
         }
-        public static AB_PropertyMetadata<int?> QuantityProperty = am_CreatePropertyMetaData<int?>(nameof(Quantity), DescriptionResource.QUANTITY, null); 
+        public static AB_PropertyMetadata<int?> QuantityProperty = am_CreatePropertyMetaData<int?>(nameof(Quantity), DescriptionResource.QUANTITY, 1); 
 
         [Display(Name = "UNITPRICE", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]

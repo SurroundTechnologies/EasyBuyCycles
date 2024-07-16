@@ -12,18 +12,16 @@ using A4DN.Core.BOS.Base;
 
 namespace BOS.OrderItemDataEntity
 {
-	//// A4DN_Tag: Validation Method Example
-	// public class MyValidateMethod : AB_IValidation
-	// {
-	//     public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs inputArgs)
-	//     {
-	//         OrderItemEntity entity = inputArgs.ap_EntityToValidate as OrderItemEntity;
-	//
-	//         //condition logic and return true or false in AB_ValidateMethodReturnArgs
-	//         if (MyConditionLogic)
-	//             return new AB_ValidateMethodReturnArgs(false);
-	//         else
-	//             return new AB_ValidateMethodReturnArgs(true);         
-	//      }
-	// }
+	public class QuantityValidationMethod : AB_IValidation
+	{
+		public AB_ValidateMethodReturnArgs Validate(AB_ValidateMethodsInputArgs inputArgs)
+		{
+			OrderItemEntity entity = inputArgs.ap_EntityToValidate as OrderItemEntity;
+
+			if (entity.Quantity < 1)
+				return new AB_ValidateMethodReturnArgs(false);
+			else
+				return new AB_ValidateMethodReturnArgs(true);
+		}
+	}
 }

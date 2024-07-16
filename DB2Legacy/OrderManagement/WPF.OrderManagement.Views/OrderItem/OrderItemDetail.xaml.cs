@@ -148,10 +148,7 @@ namespace WPF.OrderItem
 			
 			switch (command.ap_CommandID)
 			{
-                case AB_CommonCommandIDs.New:
-                    (ap_CurrentEntity as OrderItemEntity).Quantity = 1;
-                    break;
-
+                
                 default:
 					break;
 			}
