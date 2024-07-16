@@ -40,14 +40,14 @@ SET SCHEMA EASYBUYDEM;
     WITH "CTE_SubCustomers" AS (
         SELECT "YD1CPTID" AS "ParentInternalID"
                 ,COUNT(*) AS "SubCustomerCount"
-                ,CLOB(LISTAGG("YD1CIID" CONCAT '-' CONCAT "YD1CNM",', ' ON OVERFLOW TRUNCATE '...' WITH COUNT) WITHIN GROUP(ORDER BY "YD1CNM"),5000) AS "SubCustomerList"
+                ,CLOB(LISTAGG("YD1CIID" CONCAT '-' CONCAT RTRIM("YD1CNM"),', ' ON OVERFLOW TRUNCATE '...' WITH COUNT) WITHIN GROUP(ORDER BY "YD1CNM"),5000) AS "SubCustomerList"
             FROM "YD1C" AS "Customer"
             GROUP BY "YD1CPTID"
     )
     , "CTE_ShippingAddresses" AS (
         SELECT "YD1S1CID" AS "CustomerInternalID"
                 ,COUNT(*) AS "ShippingAddressCount"
-                ,CLOB(LISTAGG("YD1SIID" CONCAT '-' CONCAT "YD1SNM",', ' ON OVERFLOW TRUNCATE '...' WITH COUNT) WITHIN GROUP(ORDER BY "YD1SNM"),5000) AS "ShippingAddressList"
+                ,CLOB(LISTAGG("YD1SIID" CONCAT '-' CONCAT RTRIM("YD1SNM"),', ' ON OVERFLOW TRUNCATE '...' WITH COUNT) WITHIN GROUP(ORDER BY "YD1SNM"),5000) AS "ShippingAddressList"
             FROM "YD1S" AS "ShippingAddress"
             GROUP BY "YD1S1CID"
     )
@@ -90,56 +90,56 @@ SET SCHEMA EASYBUYDEM;
     )
     SELECT "Customer"."YD1CIID" AS "InternalID"
             ,"Customer"."YD1CPTID" AS "ParentInternalID"
-            ,"Customer"."YD1CPTRL" AS "ParentRelationship"
-            ,"Customer"."YD1CNM" AS "Name"
-            ,"Customer"."YD1CNMLG" AS "LegalName"
-            ,"Customer"."YD1CCNLN" AS "ContactLastName"
-            ,"Customer"."YD1CCNFN" AS "ContactFirstName"
-            ,"Customer"."YD1CCNMN" AS "ContactMiddleName"
-            ,"Customer"."YD1CCNNN" AS "ContactNickName"
-            ,"Customer"."YD1CBLA1" AS "BillingAddress1"
-            ,"Customer"."YD1CBLA2" AS "BillingAddress2"
-            ,"Customer"."YD1CBLA3" AS "BillingAddress3"
-            ,"Customer"."YD1CBLPC" AS "BillingPostalCode"
-            ,"Customer"."YD1CBLCY" AS "BillingCountry"
-            ,"Customer"."YD1CTL" AS "Telephone"
-            ,"Customer"."YD1CEM" AS "Email"
-            ,"Customer"."YD1CM1" AS "Memo"
+            ,RTRIM("Customer"."YD1CPTRL") AS "ParentRelationship"
+            ,RTRIM("Customer"."YD1CNM") AS "Name"
+            ,RTRIM("Customer"."YD1CNMLG") AS "LegalName"
+            ,RTRIM("Customer"."YD1CCNLN") AS "ContactLastName"
+            ,RTRIM("Customer"."YD1CCNFN") AS "ContactFirstName"
+            ,RTRIM("Customer"."YD1CCNMN") AS "ContactMiddleName"
+            ,RTRIM("Customer"."YD1CCNNN") AS "ContactNickName"
+            ,RTRIM("Customer"."YD1CBLA1") AS "BillingAddress1"
+            ,RTRIM("Customer"."YD1CBLA2") AS "BillingAddress2"
+            ,RTRIM("Customer"."YD1CBLA3") AS "BillingAddress3"
+            ,RTRIM("Customer"."YD1CBLPC") AS "BillingPostalCode"
+            ,RTRIM("Customer"."YD1CBLCY") AS "BillingCountry"
+            ,RTRIM("Customer"."YD1CTL") AS "Telephone"
+            ,RTRIM("Customer"."YD1CEM") AS "Email"
+            ,RTRIM("Customer"."YD1CM1") AS "Memo"
             ,"Customer"."YD1CPRPT" AS "PurchasePoints"
     
     -- Calculated Columns
-            ,"Customer"."YD1CCNFN" 
-               CONCAT CASE "Customer"."YD1CCNMN" WHEN '' THEN '' ELSE SPACE(1) CONCAT "Customer"."YD1CCNMN" END
-               CONCAT SPACE(1) CONCAT "Customer"."YD1CCNLN"
-               CONCAT CASE "Customer"."YD1CCNNN" WHEN '' THEN '' ELSE ' "' CONCAT "Customer"."YD1CCNNN" CONCAT '"' END
+            ,RTRIM("Customer"."YD1CCNFN")
+               CONCAT CASE RTRIM("Customer"."YD1CCNMN") WHEN '' THEN '' ELSE SPACE(1) CONCAT RTRIM("Customer"."YD1CCNMN") END
+               CONCAT SPACE(1) CONCAT RTRIM("Customer"."YD1CCNLN")
+               CONCAT CASE RTRIM("Customer"."YD1CCNNN") WHEN '' THEN '' ELSE ' "' CONCAT RTRIM("Customer"."YD1CCNNN") CONCAT '"' END
                AS "ContactFullName"
-            ,"Customer"."YD1CBLA1"
-               CONCAT CASE "Customer"."YD1CBLA2" WHEN '' THEN '' ELSE ', ' CONCAT "Customer"."YD1CBLA2" END
-               CONCAT CASE "Customer"."YD1CBLA3" WHEN '' THEN '' ELSE ', ' CONCAT "Customer"."YD1CBLA3" END
-               CONCAT CASE "Customer"."YD1CBLPC" WHEN '' THEN '' ELSE SPACE(1) CONCAT "Customer"."YD1CBLPC" END
-               CONCAT CASE "Customer"."YD1CBLCY" WHEN '' THEN '' ELSE ', ' CONCAT "Customer"."YD1CBLCY" END
+            ,RTRIM("Customer"."YD1CBLA1")
+               CONCAT CASE RTRIM("Customer"."YD1CBLA2") WHEN '' THEN '' ELSE ', ' CONCAT RTRIM("Customer"."YD1CBLA2") END
+               CONCAT CASE RTRIM("Customer"."YD1CBLA3") WHEN '' THEN '' ELSE ', ' CONCAT RTRIM("Customer"."YD1CBLA3") END
+               CONCAT CASE RTRIM("Customer"."YD1CBLPC") WHEN '' THEN '' ELSE SPACE(1) CONCAT RTRIM("Customer"."YD1CBLPC") END
+               CONCAT CASE RTRIM("Customer"."YD1CBLCY") WHEN '' THEN '' ELSE ', ' CONCAT RTRIM("Customer"."YD1CBLCY") END
                AS "BillingAddressLine"
-            ,"Customer"."YD1CBLA1"
-               CONCAT CASE "Customer"."YD1CBLA2" WHEN '' THEN '' ELSE CHR(13) CONCAT "Customer"."YD1CBLA2" END
-               CONCAT CASE "Customer"."YD1CBLA3" WHEN '' THEN '' ELSE CHR(13) CONCAT "Customer"."YD1CBLA3" END
-               CONCAT CASE "Customer"."YD1CBLPC" WHEN '' THEN '' ELSE SPACE(1) CONCAT "Customer"."YD1CBLPC" END
-               CONCAT CASE "Customer"."YD1CBLCY" WHEN '' THEN '' ELSE CHR(13) CONCAT "Customer"."YD1CBLCY" END
+            ,RTRIM("Customer"."YD1CBLA1")
+               CONCAT CASE RTRIM("Customer"."YD1CBLA2") WHEN '' THEN '' ELSE CHR(13) CONCAT RTRIM("Customer"."YD1CBLA2") END
+               CONCAT CASE RTRIM("Customer"."YD1CBLA3") WHEN '' THEN '' ELSE CHR(13) CONCAT RTRIM("Customer"."YD1CBLA3") END
+               CONCAT CASE RTRIM("Customer"."YD1CBLPC") WHEN '' THEN '' ELSE SPACE(1) CONCAT RTRIM("Customer"."YD1CBLPC") END
+               CONCAT CASE RTRIM("Customer"."YD1CBLCY") WHEN '' THEN '' ELSE CHR(13) CONCAT RTRIM("Customer"."YD1CBLCY") END
                AS "BillingAddressBlock"
             ,CASE "Customer"."YD1CPTID" WHEN 0 THEN 0 ELSE 1 END AS "IsaSubCustomer"
             
     -- Join to Parent Customer
-            ,"ParentCustomer"."YD1CNM" AS "ParentCustomerName"
-            ,"ParentCustomer"."YD1CCNFN" 
-               CONCAT CASE "ParentCustomer"."YD1CCNMN" WHEN '' THEN '' ELSE SPACE(1) CONCAT "ParentCustomer"."YD1CCNMN" END
-               CONCAT SPACE(1) CONCAT "ParentCustomer"."YD1CCNLN"
-               CONCAT CASE "ParentCustomer"."YD1CCNNN" WHEN '' THEN '' ELSE ' "' CONCAT "ParentCustomer"."YD1CCNNN" CONCAT '"' END
+            ,RTRIM("ParentCustomer"."YD1CNM") AS "ParentCustomerName"
+            ,RTRIM("ParentCustomer"."YD1CCNFN") 
+               CONCAT CASE RTRIM("ParentCustomer"."YD1CCNMN") WHEN '' THEN '' ELSE SPACE(1) CONCAT RTRIM("ParentCustomer"."YD1CCNMN") END
+               CONCAT SPACE(1) CONCAT RTRIM("ParentCustomer"."YD1CCNLN")
+               CONCAT CASE RTRIM("ParentCustomer"."YD1CCNNN") WHEN '' THEN '' ELSE ' "' CONCAT RTRIM("ParentCustomer"."YD1CCNNN") CONCAT '"' END
                AS "ParentCustomerContactFullname"
-            ,"ParentCustomer"."YD1CTL" AS "ParentCustomerTelephone"
-            ,"ParentCustomer"."YD1CBLA1"
-               CONCAT CASE "ParentCustomer"."YD1CBLA2" WHEN '' THEN '' ELSE CHR(13) CONCAT "ParentCustomer"."YD1CBLA2" END
-               CONCAT CASE "ParentCustomer"."YD1CBLA3" WHEN '' THEN '' ELSE CHR(13) CONCAT "ParentCustomer"."YD1CBLA3" END
-               CONCAT CASE "ParentCustomer"."YD1CBLPC" WHEN '' THEN '' ELSE SPACE(1) CONCAT "ParentCustomer"."YD1CBLPC" END
-               CONCAT CASE "ParentCustomer"."YD1CBLCY" WHEN '' THEN '' ELSE CHR(13) CONCAT "ParentCustomer"."YD1CBLCY" END
+            ,RTRIM("ParentCustomer"."YD1CTL") AS "ParentCustomerTelephone"
+            ,RTRIM("ParentCustomer"."YD1CBLA1")
+               CONCAT CASE RTRIM("ParentCustomer"."YD1CBLA2") WHEN '' THEN '' ELSE CHR(13) CONCAT RTRIM("ParentCustomer"."YD1CBLA2") END
+               CONCAT CASE RTRIM("ParentCustomer"."YD1CBLA3") WHEN '' THEN '' ELSE CHR(13) CONCAT RTRIM("ParentCustomer"."YD1CBLA3") END
+               CONCAT CASE RTRIM("ParentCustomer"."YD1CBLPC") WHEN '' THEN '' ELSE SPACE(1) CONCAT RTRIM("ParentCustomer"."YD1CBLPC") END
+               CONCAT CASE RTRIM("ParentCustomer"."YD1CBLCY") WHEN '' THEN '' ELSE CHR(13) CONCAT RTRIM("ParentCustomer"."YD1CBLCY") END
                AS "ParentCustomerAddressBlock"
             
     -- Aggregate Join to Sub Customers
@@ -176,12 +176,21 @@ SET SCHEMA EASYBUYDEM;
             ,"CTE_OrderedProducts"."ProductsOrderedCount"
     
     -- Audit Stamps
-            ,TIMESTAMP(DIGITS("Customer"."YD1CCRDT") CONCAT DIGITS("Customer"."YD1CCRTM")) AS "CreatedAt"
-            ,"Customer"."YD1CCRUS" AS "CreatedBy"
-            ,"Customer"."YD1CCRJN" CONCAT '/' CONCAT "Customer"."YD1CCRUS"  CONCAT '/' CONCAT  "Customer"."YD1CCRJB" AS "CreatedWith"
-            ,TIMESTAMP(DIGITS("Customer"."YD1CLCDT") CONCAT DIGITS("Customer"."YD1CLCTM")) AS "ModifiedAt"
-            ,"Customer"."YD1CLCUS" AS "LastChangedBy"
-            ,"Customer"."YD1CLCJN" CONCAT '/' CONCAT "Customer"."YD1CLCUS"  CONCAT '/' CONCAT  "Customer"."YD1CLCJB" AS "ModifiedWith"
+            ,"Customer"."YD1CCRDT"
+            ,"Customer"."YD1CCRTM"
+            ,CASE WHEN "Customer"."YD1CCRDT" != 0 THEN TIMESTAMP(DIGITS("Customer"."YD1CCRDT") CONCAT DIGITS("Customer"."YD1CCRTM")) END AS "CreatedAt"
+            ,RTRIM("Customer"."YD1CCRUS") AS "CreatedBy"
+            ,RTRIM("Customer"."YD1CCRJN") AS "CreateJobNumber"
+            ,RTRIM("Customer"."YD1CCRJB") AS "CreateJob"
+            ,CASE WHEN "Customer"."YD1CCRJB" != '' THEN RTRIM("Customer"."YD1CCRJN") CONCAT '/' CONCAT RTRIM("Customer"."YD1CCRUS")  CONCAT '/' CONCAT  RTRIM("Customer"."YD1CCRJB") END AS "CreatedWith"
+
+            ,"Customer"."YD1CLCDT"
+            ,"Customer"."YD1CLCTM"
+            ,CASE WHEN "Customer"."YD1CLCDT" != 0 THEN TIMESTAMP(DIGITS("Customer"."YD1CLCDT") CONCAT DIGITS("Customer"."YD1CLCTM")) END AS "ModifiedAt"
+            ,RTRIM("Customer"."YD1CLCUS") AS "LastChangedBy"
+            ,RTRIM("Customer"."YD1CLCJN") AS "LastChangeJobNumber"
+            ,RTRIM("Customer"."YD1CLCJB") AS "LastChangeJob"
+            ,CASE WHEN "Customer"."YD1CCRJB" != '' THEN RTRIM("Customer"."YD1CLCJN") CONCAT '/' CONCAT RTRIM("Customer"."YD1CLCUS")  CONCAT '/' CONCAT  RTRIM("Customer"."YD1CLCJB") END AS "ModifiedWith"
     
         FROM YD1C AS "Customer"
             LEFT JOIN LATERAL (
