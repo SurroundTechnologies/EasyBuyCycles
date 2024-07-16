@@ -158,8 +158,8 @@ CREATE OR REPLACE VIEW "VW_Customer_AllDetails"
             ,"ShippingAddresses"."ShippingAddressList"
             
     -- Aggregate Join to Orders
-            --,"Orders"."LastOrderDate" -- set from Last Order Join
-            ,"Orders"."FirstOrderDate"
+            --,"Orders"."LastOrderDateTime" -- set from Last Order Join
+            ,"Orders"."FirstOrderDateTime"
             ,"Orders"."OrderCount"
             ,"Orders"."IncompleteOrderCount"
             ,"Orders"."DiscountedOrderCount"
