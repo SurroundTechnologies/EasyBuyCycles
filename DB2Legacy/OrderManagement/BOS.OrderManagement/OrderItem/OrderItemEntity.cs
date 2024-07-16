@@ -57,7 +57,7 @@ namespace BOS.OrderItemDataEntity
 
         [AB_ReceivedBroadcastDataMember("OrderInternalID")]
         [AB_DropdownDisplay("~/Views/Order/_OrderDropdown.cshtml", new string[] { "Source: OrderInternalID ,Target: OrderInternalID" }, ap_ShowNewButton = true, ap_ShowOpenButton = true, ap_ShowSearchButton = true)]
-        [Display(Name = "ORDERINTERNALID", ResourceType = typeof(DescriptionResource))]
+        [Display(Name = "ORDERNUMBER", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
         [AB_RequiredField]
         [DataMember]
@@ -66,7 +66,7 @@ namespace BOS.OrderItemDataEntity
             get => am_GetPropertyValue(OrderInternalIDProperty);
             set => am_SetPropertyValue(OrderInternalIDProperty, value);
         }
-        public static AB_PropertyMetadata<int?> OrderInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(OrderInternalID), DescriptionResource.ORDERINTERNALID, null); 
+        public static AB_PropertyMetadata<int?> OrderInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(OrderInternalID), DescriptionResource.ORDERNUMBER, null); 
 
         [AB_ReceivedBroadcastDataMember("ProductInternalID")]
         [Display(Name = "PRODUCTINTERNALID", ResourceType = typeof(DescriptionResource))]
