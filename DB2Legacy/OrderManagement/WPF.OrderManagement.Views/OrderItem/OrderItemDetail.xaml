@@ -164,9 +164,7 @@
                                                VerticalAlignment="Top"
                                                Text="{Binding Path=MemoCharacterCountStr}"
                                                FontStyle="Italic"
-                                               Grid.Column="1">
-
-                                    </TextBlock>
+                                               Grid.Column="1" />
                                 </Grid>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed"
                                                         ap_LabelPosition="Top"

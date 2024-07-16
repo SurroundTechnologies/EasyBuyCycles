@@ -316,11 +316,31 @@ namespace BOS.CustomerDataEntity
 		}
 		public static AB_PropertyMetadata<string> BillingAddressLineSearchProperty = am_CreatePropertyMetaData<string>(nameof(BillingAddressLineSearch), DescriptionResource.BILLINGADDRESSLINE, null);
 
-		#endregion
+        public int MemoCharacterCount
+        {
+            get => Memo?.Length ?? 0;
+            set
+            {
+                am_SetPropertyValue(MemoCharacterCountProperty, value);
+                am_FirePropertyChanged(MemoCharacterCountStrProperty);
+            }
+        }
+        public static AB_PropertyMetadata<int> MemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(MemoCharacterCount), null, 0);
 
-		#region Parent Customer Join
+        public string MemoCharacterCountStr
+        {
+            get
+            {
+                return string.Format("{0}/100", MemoCharacterCount);
+            }
+        }
+        public static AB_PropertyMetadata<string> MemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(MemoCharacterCountStr), null, null);
 
-		[Display(Name = "PARENTCUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
+        #endregion
+
+        #region Parent Customer Join
+
+        [Display(Name = "PARENTCUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
 		[AB_ReadOnly]
 		[AB_BroadcastMember("CustomerName", AB_DataShouldBePassed.OnPreload)]
 		[DataMember]

@@ -59,7 +59,14 @@
                                 <TextBlock Margin="0,0,0,5" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.CONTACTINFO}" TextWrapping="Wrap"/>
                                 <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Telephone" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.TelephoneProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270" />
                                 <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Email" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.EmailProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="270" />
-                                <TextBlock Margin="0,0,8,0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" TextWrapping="Wrap"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="217" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" />
+                                    <TextBlock x:Name="Field_Memo_Char_Counter" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" />
+                                </Grid>
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_AllowMultilineInput="True" ap_FillAvailableSpace="True" ap_LabelVisibility="Collapsed" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.MemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Height="65" Width="270" />
                             </StackPanel>
                         </StackPanel>
