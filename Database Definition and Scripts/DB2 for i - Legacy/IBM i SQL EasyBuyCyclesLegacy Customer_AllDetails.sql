@@ -186,11 +186,11 @@ SET SCHEMA EASYBUYDEM;
 
             ,"Customer"."YD1CLCDT"
             ,"Customer"."YD1CLCTM"
-            ,CASE WHEN "Customer"."YD1CLCDT" != 0 THEN TIMESTAMP(DIGITS("Customer"."YD1CLCDT") CONCAT DIGITS("Customer"."YD1CLCTM")) END AS "ModifiedAt"
+            ,CASE WHEN "Customer"."YD1CLCDT" != 0 THEN TIMESTAMP(DIGITS("Customer"."YD1CLCDT") CONCAT DIGITS("Customer"."YD1CLCTM")) END AS "LastChangedAt"
             ,RTRIM("Customer"."YD1CLCUS") AS "LastChangedBy"
             ,RTRIM("Customer"."YD1CLCJN") AS "LastChangeJobNumber"
             ,RTRIM("Customer"."YD1CLCJB") AS "LastChangeJob"
-            ,CASE WHEN "Customer"."YD1CCRJB" != '' THEN RTRIM("Customer"."YD1CLCJN") CONCAT '/' CONCAT RTRIM("Customer"."YD1CLCUS")  CONCAT '/' CONCAT  RTRIM("Customer"."YD1CLCJB") END AS "ModifiedWith"
+            ,CASE WHEN "Customer"."YD1CCRJB" != '' THEN RTRIM("Customer"."YD1CLCJN") CONCAT '/' CONCAT RTRIM("Customer"."YD1CLCUS")  CONCAT '/' CONCAT  RTRIM("Customer"."YD1CLCJB") END AS "LastChangedWith"
     
         FROM YD1C AS "Customer"
             LEFT JOIN LATERAL (
