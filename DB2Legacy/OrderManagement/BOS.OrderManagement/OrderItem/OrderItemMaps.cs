@@ -18,6 +18,7 @@ namespace BOS.OrderItemDataMaps
 		private const string YD1ITableName = "YD1I";
 		private const string YD1OTableName = "YD1O";
 		private const string YD1PTableName = "YD1P";
+		private const string YD1CTableName = "YD1C";
 
 		public OrderItemMaps() : base() { }
 		public OrderItemMaps(string qualifier) : base(qualifier) { }
@@ -28,26 +29,19 @@ namespace BOS.OrderItemDataMaps
 		public override Dictionary<string, AB_RelationshipMap> am_LoadRelationshipMaps()
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
-		   
-			// TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
-			// AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
-			// TODO: Table Relationships Step 2 - Add Joins for each relationship
-			// Two field Relationship 
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
-			// Single Field to Constant Relationship
-			// map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
-			// relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
 		 
-            //relationshipMap.am_AddRelationshipMap(YD1OTableName, useDistinctJoins: false)
-			//.am_JoinWhere(primaryTableField:"YD1I1OID", joinTableField:"YD1OIID");
 
             relationshipMap.am_AddRelationshipMap(YD1PTableName, useDistinctJoins: false)
-			.am_JoinWhere(primaryTableField:"YD1I1PID", joinTableField:"YD1PIID");
+				.am_JoinWhere(primaryTableField:"YD1I1PID", joinTableField:"YD1PIID");
 
             relationshipMap.am_AddRelationshipMap(YD1OTableName, useDistinctJoins: false)
-            .am_JoinWhere(primaryTableField: "YD1I1OID", joinTableField: "YD1OIID");
+				.am_JoinWhere(primaryTableField: "YD1I1OID", joinTableField: "YD1OIID");
 
-            return relationshipMap;
+			relationshipMap.am_AddRelationshipMap(YD1CTableName, primaryTable: YD1OTableName, useDistinctJoins: false)
+				.am_JoinWhere(primaryTableField: "YD1O1CID", joinTableField: "YD1CIID");
+
+
+			return relationshipMap;
 		}
 		
 
@@ -68,6 +62,38 @@ namespace BOS.OrderItemDataMaps
 			maps.am_AddDataMap("YD1IPRUN", OrderItemEntity.UnitPriceProperty);
 			maps.am_AddDataMap("YD1IDSPC", OrderItemEntity.DiscountPercentProperty);
 			maps.am_AddDataMap("YD1IM1", OrderItemEntity.MemoProperty);
+
+			#region Virtual Fields
+
+			maps.am_AddDataMap("UnitDiscount", OrderItemEntity.UnitDiscountProperty, isVirtual: true);
+			maps.am_AddDataMap("OrderPrice", OrderItemEntity.OrderPriceProperty, isVirtual: true);
+			maps.am_AddDataMap("OrderDiscount", OrderItemEntity.OrderDiscountProperty, isVirtual: true);
+			maps.am_AddDataMap("OrderTotal", OrderItemEntity.OrderTotalProperty, isVirtual: true);
+
+			#endregion
+
+			#region Order Fields
+
+			maps.am_AddDataMap("YD1ODT", OrderItemEntity.OrderDateProperty, targetTable: YD1OTableName);
+			maps.am_AddDataMap("YD1OTM", OrderItemEntity.OrderTimeProperty, targetTable: YD1OTableName);
+			maps.am_AddDataMap("YD1CNM", OrderItemEntity.CustomerNameProperty, targetTable: YD1CTableName);
+			maps.am_AddDataMap("YD1OPONO", OrderItemEntity.PurchaseOrderNumberIDProperty, targetTable: YD1OTableName);
+
+			#endregion
+
+			#region Product Fields
+
+			maps.am_AddDataMap("YD1PCD", OrderItemEntity.ProductCodeProperty, targetTable: YD1PTableName);
+			maps.am_AddDataMap("YD1PNM", OrderItemEntity.ProductNameProperty, targetTable: YD1PTableName);
+			maps.am_AddDataMap("YD1PCT", OrderItemEntity.ProductCategoryProperty, targetTable: YD1PTableName);
+			maps.am_AddDataMap("YD1PLSPR", OrderItemEntity.ProductListPriceProperty, targetTable: YD1PTableName);
+			maps.am_AddDataMap("YD1PDS", OrderItemEntity.ProductDescriptionProperty, targetTable: YD1PTableName);
+			maps.am_AddDataMap("YD1PIMPT", OrderItemEntity.ProductImagePathProperty, targetTable: YD1PTableName);
+
+			#endregion
+
+			#region Audit Stamps
+
 			maps.am_AddDataMap("YD1ICRDT", OrderItemEntity.CreateDateProperty, databaseFieldType: AB_EntityFieldType.Decimal);
 			maps.am_AddDataMap("YD1ICRTM", OrderItemEntity.CreateTimeProperty, databaseFieldType: AB_EntityFieldType.Decimal);
 			maps.am_AddDataMap("YD1ICRUS", OrderItemEntity.CreateUserProperty);
@@ -78,23 +104,10 @@ namespace BOS.OrderItemDataMaps
 			maps.am_AddDataMap("YD1ILCUS", OrderItemEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1ILCJB", OrderItemEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1ILCJN", OrderItemEntity.LastChangeJobNumberProperty);
-            maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PCD"), OrderItemEntity.ProductCodeProperty, targetTable: YD1PTableName);
-            maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PNM"), OrderItemEntity.ProductNameProperty, targetTable: YD1PTableName);
-            maps.am_AddDataMap(string.Format("{0}.{1}", YD1PTableName, "YD1PIMPT"), OrderItemEntity.ProductImagePathProperty, targetTable: YD1PTableName);
-            maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1ODT"), OrderItemEntity.OrderDateProperty, targetTable: YD1OTableName);
-            maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1OTM"), OrderItemEntity.OrderTimeProperty, targetTable: YD1OTableName);
-            maps.am_AddDataMap(string.Format("{0}.{1}", YD1OTableName, "YD1OPONO"), OrderItemEntity.PurchaseOrderNumberIDProperty, targetTable: YD1OTableName);
 
-            //TODO: OrderItemMaps Real Field Example
-            //maps.am_AddDataMap("<Field Name>", OrderItemEntity.<Property Name>);
-            //TODO: OrderItemMaps Virtual Field Example
-            //maps.am_AddDataMap("<Field Name>", OrderItemEntity.<Property Name>, isVirtual: true);
-            //TODO: OrderItemMaps Foreign Field Example
-            //maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), OrderItemEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-            //TODO: OrderItemMaps Configure Example (for setting options not available as constructor arguments)
-            //maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+			#endregion
 
-            return maps;
+			return maps;
 		}
 
 	}

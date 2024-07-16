@@ -5,6 +5,7 @@
 // </A4DN_GeneratedInformation>
 //===============================================================================================
 using A4DN.Core.BOS.Base;
+using BOS.CustomerDataEntity;
 using BOS.OrderManagement.Shared.Properties;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -98,7 +99,7 @@ namespace BOS.OrderItemDataEntity
         }
         public static AB_PropertyMetadata<int?> QuantityProperty = am_CreatePropertyMetaData<int?>(nameof(Quantity), DescriptionResource.QUANTITY, 1); 
 
-        [Display(Name = "UNITPRICE", ResourceType = typeof(DescriptionResource))]
+        [Display(Name = "PERUNITPRICE", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
         [DataType(DataType.Currency)]
         [AB_ApplyStringFormat("C")]
@@ -115,26 +116,7 @@ namespace BOS.OrderItemDataEntity
                 am_FirePropertyChanged(OrderTotalProperty);
             }
         }
-        public static AB_PropertyMetadata<decimal?> UnitPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitPrice), DescriptionResource.UNITPRICE, null);
-
-        [Display(Name = "ORDERPRICE", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(8)]
-        [DataType(DataType.Currency)]
-        [AB_ApplyStringFormat("C")]
-        [DataMember]
-        [AB_ReadOnly]
-        public decimal? OrderPrice //Map Field: YD1IPRUN
-        {
-            get
-            {
-                return UnitPrice * Quantity;
-            }
-            set
-            {
-                am_SetPropertyValue(OrderPriceProperty, UnitPrice * Quantity);
-            }
-        }
-        public static AB_PropertyMetadata<decimal?> OrderPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderPrice), DescriptionResource.PRICE, null);
+        public static AB_PropertyMetadata<decimal?> UnitPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitPrice), DescriptionResource.PERUNITPRICE, null);
 
         [Display(Name = "DISCOUNTPERCENT", ResourceType = typeof(DescriptionResource))]
         [AB_Length(4)]
@@ -161,247 +143,323 @@ namespace BOS.OrderItemDataEntity
             get => am_GetPropertyValue(MemoProperty);
             set => am_SetPropertyValue(MemoProperty, value);
         }
-        public static AB_PropertyMetadata<string> MemoProperty = am_CreatePropertyMetaData<string>(nameof(Memo), DescriptionResource.MEMO, null); 
+        public static AB_PropertyMetadata<string> MemoProperty = am_CreatePropertyMetaData<string>(nameof(Memo), DescriptionResource.MEMO, null);
 
-        [Display(Name = "CREATEDATE", ResourceType = typeof(DescriptionResource))]
-        [AB_ApplyDateFormat]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
-        [AB_CreateDate]
+		#region Virtual Fields
+
+		[Display(Name = "UNITDISCOUNT", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(8)]
+		[DataType(DataType.Currency)]
+		[AB_ApplyStringFormat("C")]
+		[AB_ReadOnly]
+		[AB_VirtualMember]
+		public decimal? UnitDiscount
+		{
+			get
+			{
+				return UnitPrice * DiscountPercent;
+			}
+			set
+			{
+				am_SetPropertyValue(UnitDiscountProperty, UnitPrice * DiscountPercent);
+			}
+		}
+		public static AB_PropertyMetadata<decimal?> UnitDiscountProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitDiscount), DescriptionResource.UNITDISCOUNT, null);
+
+		[Display(Name = "ORDERPRICE", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(8)]
+		[DataType(DataType.Currency)]
+		[AB_ApplyStringFormat("C")]
+		[DataMember]
+		[AB_ReadOnly]
+		public decimal? OrderPrice
+		{
+			get
+			{
+				return UnitPrice * Quantity;
+			}
+			set
+			{
+				am_SetPropertyValue(OrderPriceProperty, UnitPrice * Quantity);
+			}
+		}
+		public static AB_PropertyMetadata<decimal?> OrderPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderPrice), DescriptionResource.PRICE, null);
+
+		[Display(Name = "ORDERDISCOUNT", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(8)]
+		[DataType(DataType.Currency)]
+		[AB_ApplyStringFormat("C")]
+		[AB_ReadOnly]
+		[AB_VirtualMember]
+		public decimal? OrderDiscount
+		{
+			get
+			{
+				return OrderPrice * DiscountPercent;
+			}
+			set
+			{
+				am_SetPropertyValue(OrderDiscountProperty, OrderPrice * DiscountPercent);
+			}
+		}
+		public static AB_PropertyMetadata<decimal?> OrderDiscountProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderDiscount), DescriptionResource.DISCOUNT, null);
+
+		[Display(Name = "ORDERTOTAL", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(8)]
+		[DataType(DataType.Currency)]
+		[AB_ApplyStringFormat("C")]
+		[AB_ReadOnly]
+		[AB_VirtualMember]
+		public decimal? OrderTotal
+		{
+			get
+			{
+				return OrderPrice - OrderDiscount;
+			}
+			set
+			{
+				am_SetPropertyValue(OrderTotalProperty, OrderPrice - OrderDiscount);
+			}
+		}
+		public static AB_PropertyMetadata<decimal?> OrderTotalProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderTotal), DescriptionResource.TOTAL, null);
+
+		#endregion
+
+		#region Order Fields
+
+		[Display(Name = "ORDERDATE", ResourceType = typeof(DescriptionResource))]
+		[AB_ApplyDateFormat]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         [AB_ReadOnly]
-        [DataMember]
-        public DateTime? CreateDate //Map Field: YD1ICRDT
-        {
-            get => am_GetPropertyValue(CreateDateProperty);
-            set => am_SetPropertyValue(CreateDateProperty, value);
-        }
-        public static AB_PropertyMetadata<DateTime?> CreateDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(CreateDate), DescriptionResource.CREATEDATE, null); 
+		[DataMember]
+		public DateTime? OrderDate //Map Field: YD1ODT
+		{
+			get => am_GetPropertyValue(OrderDateProperty);
+			set => am_SetPropertyValue(OrderDateProperty, value);
+		}
+		public static AB_PropertyMetadata<DateTime?> OrderDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(OrderDate), DescriptionResource.ORDERDATE, null);
 
-        [Display(Name = "CREATETIME", ResourceType = typeof(DescriptionResource))]
-        [AB_CreateTime]
-        [AB_ReadOnly]
-        [DataMember]
-        public TimeSpan? CreateTime //Map Field: YD1ICRTM
-        {
-            get => am_GetPropertyValue(CreateTimeProperty);
-            set => am_SetPropertyValue(CreateTimeProperty, value);
-        }
-        public static AB_PropertyMetadata<TimeSpan?> CreateTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(CreateTime), DescriptionResource.CREATETIME, null); 
+		[Display(Name = "ORDERTIME", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public TimeSpan? OrderTime //Map Field: YD1OTM
+		{
+			get => am_GetPropertyValue(OrderTimeProperty);
+			set => am_SetPropertyValue(OrderTimeProperty, value);
+		}
+		public static AB_PropertyMetadata<TimeSpan?> OrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(OrderTime), DescriptionResource.ORDERTIME, null);
 
-        [Display(Name = "CREATEUSER", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(10)]
-        [AB_CreateUser]
-        [AB_ReadOnly]
-        [DataMember]
-        public string CreateUser //Map Field: YD1ICRUS
-        {
-            get => am_GetPropertyValue(CreateUserProperty);
-            set => am_SetPropertyValue(CreateUserProperty, value);
-        }
-        public static AB_PropertyMetadata<string> CreateUserProperty = am_CreatePropertyMetaData<string>(nameof(CreateUser), DescriptionResource.CREATEUSER, null); 
+		[Display(Name = "CUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string CustomerName
+		{
+			get => am_GetPropertyValue(CustomerNameProperty);
+			set => am_SetPropertyValue(CustomerNameProperty, value);
+		}
+		public static AB_PropertyMetadata<string> CustomerNameProperty = am_CreatePropertyMetaData<string>(nameof(CustomerName), DescriptionResource.CUSTOMERNAME, null);
 
-        [Display(Name = "CREATEJOB", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(10)]
-        [AB_ReadOnly]
-        [DataMember]
-        public string CreateJob //Map Field: YD1ICRJB
-        {
-            get => am_GetPropertyValue(CreateJobProperty);
-            set => am_SetPropertyValue(CreateJobProperty, value);
-        }
-        public static AB_PropertyMetadata<string> CreateJobProperty = am_CreatePropertyMetaData<string>(nameof(CreateJob), DescriptionResource.CREATEJOB, null); 
+		[Display(Name = "PONUMBER", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string PurchaseOrderNumberID
+		{
+			get => am_GetPropertyValue(PurchaseOrderNumberIDProperty);
+			set => am_SetPropertyValue(PurchaseOrderNumberIDProperty, value);
+		}
+		public static AB_PropertyMetadata<string> PurchaseOrderNumberIDProperty = am_CreatePropertyMetaData<string>(nameof(PurchaseOrderNumberID), DescriptionResource.PONUMBER, null);
 
-        [Display(Name = "CREATEJOBNUMBER", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(6)]
-        [AB_ReadOnly]
-        [DataMember]
-        public string CreateJobNumber //Map Field: YD1ICRJN
-        {
-            get => am_GetPropertyValue(CreateJobNumberProperty);
-            set => am_SetPropertyValue(CreateJobNumberProperty, value);
-        }
-        public static AB_PropertyMetadata<string> CreateJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(CreateJobNumber), DescriptionResource.CREATEJOBNUMBER, null); 
+		#endregion
 
-        [Display(Name = "LASTCHANGEDATE", ResourceType = typeof(DescriptionResource))]
-        [AB_ApplyDateFormat]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
-        [AB_LastChangeDate]
-        [AB_ReadOnly]
-        [DataMember]
-        public DateTime? LastChangeDate //Map Field: YD1ILCDT
-        {
-            get => am_GetPropertyValue(LastChangeDateProperty);
-            set => am_SetPropertyValue(LastChangeDateProperty, value);
-        }
-        public static AB_PropertyMetadata<DateTime?> LastChangeDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(LastChangeDate), DescriptionResource.LASTCHANGEDATE, null); 
+		#region Product Fields
 
-        [Display(Name = "LASTCHANGETIME", ResourceType = typeof(DescriptionResource))]
-        [AB_LastChangeTime]
-        [AB_ReadOnly]
-        [DataMember]
-        public TimeSpan? LastChangeTime //Map Field: YD1ILCTM
-        {
-            get => am_GetPropertyValue(LastChangeTimeProperty);
-            set => am_SetPropertyValue(LastChangeTimeProperty, value);
-        }
-        public static AB_PropertyMetadata<TimeSpan?> LastChangeTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(LastChangeTime), DescriptionResource.LASTCHANGETIME, null); 
+		[Display(Name = "PRODUCTCODE", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ProductCode
+		{
+			get { return am_GetPropertyValue(ProductCodeProperty); }
+			set { am_SetPropertyValue(ProductCodeProperty, value); }
+		}
+		public static AB_PropertyMetadata<string> ProductCodeProperty = am_CreatePropertyMetaData<string>("ProductCode", DescriptionResource.PRODUCTCODE, null);
 
-        [Display(Name = "LASTCHANGEUSER", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(10)]
-        [AB_LastChangeUser]
-        [AB_ReadOnly]
-        [DataMember]
-        public string LastChangeUser //Map Field: YD1ILCUS
-        {
-            get => am_GetPropertyValue(LastChangeUserProperty);
-            set => am_SetPropertyValue(LastChangeUserProperty, value);
-        }
-        public static AB_PropertyMetadata<string> LastChangeUserProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeUser), DescriptionResource.LASTCHANGEUSER, null); 
+		[Display(Name = "PRODUCTNAME", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ProductName
+		{
+			get => am_GetPropertyValue(ProductNameProperty);
+			set => am_SetPropertyValue(ProductNameProperty, value);
+		}
+		public static AB_PropertyMetadata<string> ProductNameProperty = am_CreatePropertyMetaData<string>(nameof(ProductName), DescriptionResource.PRODUCTNAME, null);
 
-        [Display(Name = "LASTCHANGEJOB", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(10)]
-        [AB_ReadOnly]
-        [DataMember]
-        public string LastChangeJob //Map Field: YD1ILCJB
-        {
-            get => am_GetPropertyValue(LastChangeJobProperty);
-            set => am_SetPropertyValue(LastChangeJobProperty, value);
-        }
-        public static AB_PropertyMetadata<string> LastChangeJobProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJob), DescriptionResource.LASTCHANGEJOB, null); 
+		[Display(Name = "PRODUCTCATEGORY", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ProductCategory
+		{
+			get => am_GetPropertyValue(ProductCategoryProperty);
+			set => am_SetPropertyValue(ProductCategoryProperty, value);
+		}
+		public static AB_PropertyMetadata<string> ProductCategoryProperty = am_CreatePropertyMetaData<string>(nameof(ProductCategory), DescriptionResource.PRODUCTCATEGORY, null);
 
-        [Display(Name = "LASTCHANGEJOBNUMBER", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(6)]
-        [AB_ReadOnly]
-        [DataMember]
-        public string LastChangeJobNumber //Map Field: YD1ILCJN
-        {
-            get => am_GetPropertyValue(LastChangeJobNumberProperty);
-            set => am_SetPropertyValue(LastChangeJobNumberProperty, value);
-        }
-        public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
+		[Display(Name = "PRODUCTLISTPRICE", ResourceType = typeof(DescriptionResource))]
+		[AB_ApplyStringFormat("C")]
+		[AB_ReadOnly]
+		[DataMember]
+		public decimal? ProductListPrice
+		{
+			get => am_GetPropertyValue(ProductListPriceProperty);
+			set => am_SetPropertyValue(ProductListPriceProperty, value);
+		}
+		public static AB_PropertyMetadata<decimal?> ProductListPriceProperty = am_CreatePropertyMetaData<decimal?>(nameof(ProductListPrice), DescriptionResource.PRODUCTLISTPRICE, null);
+		
+		[Display(Name = "PRODUCTDESCRIPTION", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ProductDescription
+		{
+			get => am_GetPropertyValue(ProductDescriptionProperty);
+			set => am_SetPropertyValue(ProductDescriptionProperty, value);
+		}
+		public static AB_PropertyMetadata<string> ProductDescriptionProperty = am_CreatePropertyMetaData<string>(nameof(ProductDescription), DescriptionResource.PRODUCTDESCRIPTION, null);
 
-        [AB_DropdownDisplay("~/Views/Product/_ProductDropdown.cshtml", new string[] { "Source: ProductInternalID ,Target: ProductInternalID" }, ap_ShowNewButton = true, ap_ShowOpenButton = true, ap_ShowSearchButton = true)]
-        [Display(Name = "PRODUCTNAME", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(50)]
-        [AB_BroadcastMember(AB_DataShouldBePassed.OnPreload)]
-        [DataMember]
-        public string ProductName //Map Field: YD1P.YD1PNM
-        {
-            get => am_GetPropertyValue(ProductNameProperty);
-            set => am_SetPropertyValue(ProductNameProperty, value);
-        }
-        public static AB_PropertyMetadata<string> ProductNameProperty = am_CreatePropertyMetaData<string>(nameof(ProductName), DescriptionResource.PRODUCTNAME, null);
+		[Display(Name = "IMAGEPATH", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ProductImagePath
+		{
+			get => am_GetPropertyValue(ProductImagePathProperty);
+			set => am_SetPropertyValue(ProductImagePathProperty, value);
+		}
+		public static AB_PropertyMetadata<string> ProductImagePathProperty = am_CreatePropertyMetaData<string>(nameof(ProductImagePath), DescriptionResource.IMAGEPATH, null);
 
-        [Display(Name = "PRODUCTCODE", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(25)]
-        [DataMember]
-        public string ProductCode //Map Field: YD1P.YD1PCD
-        {
-            get { return am_GetPropertyValue(ProductCodeProperty); }
-            set { am_SetPropertyValue(ProductCodeProperty, value); }
-        }
-        public static AB_PropertyMetadata<string> ProductCodeProperty = am_CreatePropertyMetaData<string>("ProductCode", DescriptionResource.PRODUCTCODE, null);
+		#endregion
 
-        [Display(Name = "IMAGEPATH", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(256)]
-        [DataMember]
-        public string ProductImagePath //Map Field: YD1PIMPT
-        {
-            get => am_GetPropertyValue(ProductImagePathProperty);
-            set => am_SetPropertyValue(ProductImagePathProperty, value);
-        }
-        public static AB_PropertyMetadata<string> ProductImagePathProperty = am_CreatePropertyMetaData<string>(nameof(ProductImagePath), DescriptionResource.IMAGEPATH, null);
+		#region Audit Stamps
 
-        [Display(Name = "ORDERDATE", ResourceType = typeof(DescriptionResource))]
-        [AB_ApplyDateFormat]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        [DataMember]
-        public DateTime? OrderDate //Map Field: YD1ODT
-        {
-            get => am_GetPropertyValue(OrderDateProperty);
-            set => am_SetPropertyValue(OrderDateProperty, value);
-        }
-        public static AB_PropertyMetadata<DateTime?> OrderDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(OrderDate), DescriptionResource.ORDERDATE, null);
+		[Display(Name = "CREATEDATE", ResourceType = typeof(DescriptionResource))]
+		[AB_ApplyDateFormat]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+		[AB_CreateDate]
+		[AB_ReadOnly]
+		[DataMember]
+		public DateTime? CreateDate //Map Field: YD1ICRDT
+		{
+			get => am_GetPropertyValue(CreateDateProperty);
+			set => am_SetPropertyValue(CreateDateProperty, value);
+		}
+		public static AB_PropertyMetadata<DateTime?> CreateDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(CreateDate), DescriptionResource.CREATEDATE, null);
 
-        [Display(Name = "ORDERTIME", ResourceType = typeof(DescriptionResource))]
-        [DataMember]
-        public TimeSpan? OrderTime //Map Field: YD1OTM
-        {
-            get => am_GetPropertyValue(OrderTimeProperty);
-            set => am_SetPropertyValue(OrderTimeProperty, value);
-        }
-        public static AB_PropertyMetadata<TimeSpan?> OrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(OrderTime), DescriptionResource.ORDERTIME, null);
+		[Display(Name = "CREATETIME", ResourceType = typeof(DescriptionResource))]
+		[AB_CreateTime]
+		[AB_ReadOnly]
+		[DataMember]
+		public TimeSpan? CreateTime //Map Field: YD1ICRTM
+		{
+			get => am_GetPropertyValue(CreateTimeProperty);
+			set => am_SetPropertyValue(CreateTimeProperty, value);
+		}
+		public static AB_PropertyMetadata<TimeSpan?> CreateTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(CreateTime), DescriptionResource.CREATETIME, null);
 
-        [Display(Name = "PURCHASEORDERNUMBERID", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(50)]
-        [DataMember]
-        public string PurchaseOrderNumberID //Map Field: YD1OPONO
-        {
-            get => am_GetPropertyValue(PurchaseOrderNumberIDProperty);
-            set => am_SetPropertyValue(PurchaseOrderNumberIDProperty, value);
-        }
-        public static AB_PropertyMetadata<string> PurchaseOrderNumberIDProperty = am_CreatePropertyMetaData<string>(nameof(PurchaseOrderNumberID), DescriptionResource.PURCHASEORDERNUMBERID, null);
+		[Display(Name = "CREATEUSER", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(10)]
+		[AB_CreateUser]
+		[AB_ReadOnly]
+		[DataMember]
+		public string CreateUser //Map Field: YD1ICRUS
+		{
+			get => am_GetPropertyValue(CreateUserProperty);
+			set => am_SetPropertyValue(CreateUserProperty, value);
+		}
+		public static AB_PropertyMetadata<string> CreateUserProperty = am_CreatePropertyMetaData<string>(nameof(CreateUser), DescriptionResource.CREATEUSER, null);
 
-        [Display(Name = "UNITDISCOUNT", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(8)]
-        [DataType(DataType.Currency)]
-        [AB_ApplyStringFormat("C")]
-        [AB_ReadOnly]
-        [AB_VirtualMember]
-        public decimal? UnitDiscount
-        {
-            get
-            {
-                return UnitPrice * DiscountPercent;
-            }
-            set
-            {
-                am_SetPropertyValue(UnitDiscountProperty, UnitPrice * DiscountPercent);
-            }
-        }
-        public static AB_PropertyMetadata<decimal?> UnitDiscountProperty = am_CreatePropertyMetaData<decimal?>(nameof(UnitDiscount), DescriptionResource.UNITDISCOUNT, null);
+		[Display(Name = "CREATEJOB", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(10)]
+		[AB_ReadOnly]
+		[DataMember]
+		public string CreateJob //Map Field: YD1ICRJB
+		{
+			get => am_GetPropertyValue(CreateJobProperty);
+			set => am_SetPropertyValue(CreateJobProperty, value);
+		}
+		public static AB_PropertyMetadata<string> CreateJobProperty = am_CreatePropertyMetaData<string>(nameof(CreateJob), DescriptionResource.CREATEJOB, null);
 
-        [Display(Name = "ORDERDISCOUNT", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(8)]
-        [DataType(DataType.Currency)]
-        [AB_ApplyStringFormat("C")]
-        [AB_ReadOnly]
-        [AB_VirtualMember]
-        public decimal? OrderDiscount
-        {
-            get
-            {
-                return OrderPrice * DiscountPercent;
-            }
-            set
-            {
-                am_SetPropertyValue(OrderDiscountProperty, OrderPrice * DiscountPercent);
-            }
-        }
-        public static AB_PropertyMetadata<decimal?> OrderDiscountProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderDiscount), DescriptionResource.DISCOUNT, null);
+		[Display(Name = "CREATEJOBNUMBER", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(6)]
+		[AB_ReadOnly]
+		[DataMember]
+		public string CreateJobNumber //Map Field: YD1ICRJN
+		{
+			get => am_GetPropertyValue(CreateJobNumberProperty);
+			set => am_SetPropertyValue(CreateJobNumberProperty, value);
+		}
+		public static AB_PropertyMetadata<string> CreateJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(CreateJobNumber), DescriptionResource.CREATEJOBNUMBER, null);
 
-        [Display(Name = "ORDERTOTAL", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(8)]
-        [DataType(DataType.Currency)]
-        [AB_ApplyStringFormat("C")]
-        [AB_ReadOnly]
-        [AB_VirtualMember]
-        public decimal? OrderTotal
-        {
-            get
-            {
-                return OrderPrice - OrderDiscount;
-            }
-            set
-            {
-                am_SetPropertyValue(OrderTotalProperty, OrderPrice - OrderDiscount);
-            }
-        }
-        public static AB_PropertyMetadata<decimal?> OrderTotalProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderTotal), DescriptionResource.TOTAL, null);
+		[Display(Name = "LASTCHANGEDATE", ResourceType = typeof(DescriptionResource))]
+		[AB_ApplyDateFormat]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+		[AB_LastChangeDate]
+		[AB_ReadOnly]
+		[DataMember]
+		public DateTime? LastChangeDate //Map Field: YD1ILCDT
+		{
+			get => am_GetPropertyValue(LastChangeDateProperty);
+			set => am_SetPropertyValue(LastChangeDateProperty, value);
+		}
+		public static AB_PropertyMetadata<DateTime?> LastChangeDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(LastChangeDate), DescriptionResource.LASTCHANGEDATE, null);
 
-        public int MemoCharacterCount
+		[Display(Name = "LASTCHANGETIME", ResourceType = typeof(DescriptionResource))]
+		[AB_LastChangeTime]
+		[AB_ReadOnly]
+		[DataMember]
+		public TimeSpan? LastChangeTime //Map Field: YD1ILCTM
+		{
+			get => am_GetPropertyValue(LastChangeTimeProperty);
+			set => am_SetPropertyValue(LastChangeTimeProperty, value);
+		}
+		public static AB_PropertyMetadata<TimeSpan?> LastChangeTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(LastChangeTime), DescriptionResource.LASTCHANGETIME, null);
+
+		[Display(Name = "LASTCHANGEUSER", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(10)]
+		[AB_LastChangeUser]
+		[AB_ReadOnly]
+		[DataMember]
+		public string LastChangeUser //Map Field: YD1ILCUS
+		{
+			get => am_GetPropertyValue(LastChangeUserProperty);
+			set => am_SetPropertyValue(LastChangeUserProperty, value);
+		}
+		public static AB_PropertyMetadata<string> LastChangeUserProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeUser), DescriptionResource.LASTCHANGEUSER, null);
+
+		[Display(Name = "LASTCHANGEJOB", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(10)]
+		[AB_ReadOnly]
+		[DataMember]
+		public string LastChangeJob //Map Field: YD1ILCJB
+		{
+			get => am_GetPropertyValue(LastChangeJobProperty);
+			set => am_SetPropertyValue(LastChangeJobProperty, value);
+		}
+		public static AB_PropertyMetadata<string> LastChangeJobProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJob), DescriptionResource.LASTCHANGEJOB, null);
+
+		[Display(Name = "LASTCHANGEJOBNUMBER", ResourceType = typeof(DescriptionResource))]
+		[AB_Length(6)]
+		[AB_ReadOnly]
+		[DataMember]
+		public string LastChangeJobNumber //Map Field: YD1ILCJN
+		{
+			get => am_GetPropertyValue(LastChangeJobNumberProperty);
+			set => am_SetPropertyValue(LastChangeJobNumberProperty, value);
+		}
+		public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
+
+		#endregion
+
+		public int MemoCharacterCount
         {
             get => Memo?.Length ?? 0;
             set

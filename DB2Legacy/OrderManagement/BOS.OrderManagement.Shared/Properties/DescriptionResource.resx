@@ -705,4 +705,19 @@
   <data name="ORDERITEMAGGREGATEINFORMATION" xml:space="preserve">
     <value>Order Item Aggregate Information</value>
   </data>
+  <data name="PRODUCTCATEGORY" xml:space="preserve">
+    <value>Product Category</value>
+  </data>
+  <data name="PRODUCTDESCRIPTION" xml:space="preserve">
+    <value>Product Description</value>
+  </data>
+  <data name="PRODUCTLISTPRICE" xml:space="preserve">
+    <value>Product List Price</value>
+  </data>
+  <data name="PERUNITPRICE" xml:space="preserve">
+    <value>Per Unit Price</value>
+  </data>
+  <data name="PONUMBER" xml:space="preserve">
+    <value>PO Number</value>
+  </data>
 </root>

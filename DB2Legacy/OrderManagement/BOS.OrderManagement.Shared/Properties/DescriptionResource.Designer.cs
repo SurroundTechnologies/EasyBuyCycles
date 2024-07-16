@@ -1375,6 +1375,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Per Unit Price.
+        /// </summary>
+        public static string PERUNITPRICE {
+            get {
+                return ResourceManager.GetString("PERUNITPRICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Pick Customer.
         /// </summary>
         public static string PLEASEPICKCUSTOMER {
@@ -1389,6 +1398,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string PLEASEPICKSHIPPINGADDRESS {
             get {
                 return ResourceManager.GetString("PLEASEPICKSHIPPINGADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PO Number.
+        /// </summary>
+        public static string PONUMBER {
+            get {
+                return ResourceManager.GetString("PONUMBER", resourceCulture);
             }
         }
         
@@ -1447,6 +1465,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Category.
+        /// </summary>
+        public static string PRODUCTCATEGORY {
+            get {
+                return ResourceManager.GetString("PRODUCTCATEGORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Code.
         /// </summary>
         public static string PRODUCTCODE {
@@ -1456,11 +1483,29 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Description.
+        /// </summary>
+        public static string PRODUCTDESCRIPTION {
+            get {
+                return ResourceManager.GetString("PRODUCTDESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Internal ID.
         /// </summary>
         public static string PRODUCTINTERNALID {
             get {
                 return ResourceManager.GetString("PRODUCTINTERNALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product List Price.
+        /// </summary>
+        public static string PRODUCTLISTPRICE {
+            get {
+                return ResourceManager.GetString("PRODUCTLISTPRICE", resourceCulture);
             }
         }
         
