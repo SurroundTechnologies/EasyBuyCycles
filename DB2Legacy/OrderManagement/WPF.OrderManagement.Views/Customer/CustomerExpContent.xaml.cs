@@ -74,31 +74,34 @@ namespace WPF.Customer
             ap_ViewModel = _ViewModel;
             ap_MainDetailType = typeof(CustomerDetail);
 
-            ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(1, typeof(CustomerDetail), 0, items => (from CustomerEntity item in items
+            ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(Constants.MODULE_Customer, typeof(CustomerDetail), 0, items => (from CustomerEntity item in items
                                                                                                        select new TreeEntity
                                                                                                        {
                                                                                                            Name = item.Name,
-                                                                                                           Contact_Sales_ProductCode = item.ContactFullName,
+                                                                                                           ID = item.CustomerInternalID.Value,
                                                                                                            Address_Quantity = item.BillingAddressLine,
-                                                                                                           Email = item.Email,
-                                                                                                           Telephone_OrderDate = item.Telephone,
+                                                                                                           Telephone_PONumber_UnitPrice = item.Telephone,
+                                                                                                           Email_OrderDate_Price = item.Email,
                                                                                                            ap_Entity = item
                                                                                                        })));
-            ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(3, "OrderDetail", 1, items => (from OrderEntity item in items
+            ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(Constants.MODULE_Order, "OrderDetail", 1, items => (from OrderEntity item in items
                                                                                               select new TreeEntity
                                                                                               {
-                                                                                                  Telephone_OrderDate = item.OrderDate.GetValueOrDefault().ToShortDateString(),
                                                                                                   Name = item.ShippingAddressName,
-                                                                                                  Address_Quantity = item.CustomerName,
-                                                                                                  Contact_Sales_ProductCode = item.SalesPersonName,
+                                                                                                  ID = item.OrderInternalID.Value,
+                                                                                                  Address_Quantity = item.ShippingAddressLine,
+                                                                                                  Telephone_PONumber_UnitPrice = item.PurchaseOrderNumberID,
+                                                                                                  Email_OrderDate_Price = item.OrderDate.GetValueOrDefault().ToShortDateString(),
                                                                                                   ap_Entity = item
                                                                                               }).OrderBy(x => (x.ap_Entity as OrderEntity).OrderInternalID)));
-            ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(2, "OrderItemDetail", 2, items => (from OrderItemEntity item in items
+            ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(Constants.MODULE_OrderItem, "OrderItemDetail", 2, items => (from OrderItemEntity item in items
                                                                                                   select new TreeEntity
                                                                                                   {
                                                                                                       Name = item.ProductName,
-                                                                                                      Contact_Sales_ProductCode = item.ProductCode,
+                                                                                                      ID = item.ProductInternalID.Value,
                                                                                                       Address_Quantity = item.Quantity.GetValueOrDefault().ToString(),
+                                                                                                      Telephone_PONumber_UnitPrice = "$" + item.UnitPrice.ToString(),
+																									  Email_OrderDate_Price = "$" + item.OrderPrice.ToString(),
                                                                                                       ap_Entity = item
                                                                                                   }).OrderBy(x => (x.ap_Entity as OrderItemEntity).OrderItemInternalID)));
         }
@@ -135,35 +138,34 @@ namespace WPF.Customer
 
             columns.Add(new AB_TreeListViewColumn
             {
-                ap_SortProperty = "Contact_Sales_ProductCode",
-                DisplayMemberBinding = new Binding("Contact_Sales_ProductCode"),
-                Width = 200,
-                Header = "Contact/Sales"
-            });
-
+                ap_SortProperty = "CustomerInternalID",
+                DisplayMemberBinding = new Binding("ID"),
+                Width = 80,
+                Header = "ID"
+			});
 
             columns.Add(new AB_TreeListViewColumn
             {
-                ap_SortProperty = "Address_Quantity",
+                ap_SortProperty = "BillingAddressLine",
                 DisplayMemberBinding = new Binding("Address_Quantity"),
-                Width = 200,
+                Width = 400,
                 Header = "Address/Quantity"
             });
 
             columns.Add(new AB_TreeListViewColumn
             {
-                ap_SortProperty = "Telephone_OrderDate",
-                DisplayMemberBinding = new Binding("Telephone_OrderDate"),
-                Width = 200,
-                Header = "Telephone/OrderDate"
+                ap_SortProperty = "Telephone",
+                DisplayMemberBinding = new Binding("Telephone_PONumber_UnitPrice"),
+                Width = 190,
+                Header = "Telephone/PO Number/Unit Price"
             });
 
             columns.Add(new AB_TreeListViewColumn
             {
                 ap_SortProperty = "Email",
-                DisplayMemberBinding = new Binding("Email"),
+                DisplayMemberBinding = new Binding("Email_OrderDate_Price"),
                 Width = 200,
-                Header = "Email"
+                Header = "Email/Order Date/Price"
             });
 
             //Define the final level to avoid unnecessary expander.
@@ -328,12 +330,12 @@ namespace WPF.Customer
         }
     }
 
-        public class TreeEntity : AB_TreeListEntity
-        {
-            public string Name { get; set; }
-            public string Contact_Sales_ProductCode { get; set; }
-            public string Address_Quantity { get; set; }
-            public string Telephone_OrderDate { get; set; }
-            public string Email { get; set; }
-        }
+    public class TreeEntity : AB_TreeListEntity
+    {
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Address_Quantity { get; set; }
+        public string Telephone_PONumber_UnitPrice { get; set; }
+        public string Email_OrderDate_Price { get; set; }
+    }
 }
