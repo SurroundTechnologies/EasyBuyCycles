@@ -24,6 +24,31 @@
                                          ap_KeyPropertyName="CustomerInternalID" ap_Trigger="PropertyChanged" />
     </base:AB_DropDownBase.ap_LeftComboBox>
 
+    <base:AB_DropDownBase.ap_ItemTemplate>
+        <DataTemplate>
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding CustomerInternalID}"
+                            Grid.Column="0" Margin="5 0 20 0"
+                            ToolTip="{x:Static systemSharedProperties:DescriptionResource.CUSTOMERINTERNALID}"
+                            ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding Name}"
+                            Grid.Column="1" Margin="5 0 20 0"
+                            ToolTip="{x:Static systemSharedProperties:DescriptionResource.NAME}"
+                            ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding BillingAddressLine}"
+                            Grid.Column="2" Margin="5 0 20 0"
+                            ToolTip="{x:Static systemSharedProperties:DescriptionResource.BILLINGADDRESSLINE}"
+                            ToolTipService.InitialShowDelay="10" />
+            </Grid>
+        </DataTemplate>
+    </base:AB_DropDownBase.ap_ItemTemplate>
+
     <base:AB_DropDownBase.ap_BelowComboBox>
         <base:AB_DropdownDetailControl>
             <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
