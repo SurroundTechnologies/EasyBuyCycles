@@ -378,7 +378,7 @@ namespace BOS.OrderDataEntity
 
                     if (OrderDate.HasValue && OrderTime.HasValue)
                     {
-                        title.AppendFormat(" - {0} {1}", OrderDate.Value.ToString("MM-dd-yyy"), OrderTime);
+                        title.AppendFormat(" - {0} {1}", OrderDate.Value.ToString("MM/dd/yyyy"), OrderTime);
                     }
 
                     return title.ToString();
