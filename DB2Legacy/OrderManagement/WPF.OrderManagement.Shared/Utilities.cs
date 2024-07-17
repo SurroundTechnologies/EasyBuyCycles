@@ -101,6 +101,33 @@ namespace WPF.OrderManagement.Shared
 				whereFilter.am_AddWhereClause(propertyName, "<", endDate.Value);
 			}
 		}
+		public static void AddDateTimeRangeFilter(AB_Query whereFilter, DateTime? startDateTime, DateTime? endDateTime, AB_IPropertyMetadata dateProperty, AB_IPropertyMetadata timeProperty)
+		{
+			if (startDateTime != null)
+			{
+                var dateAndTimeWhereClauses = new List<AB_QueryWhereClause>()
+                {
+					new AB_QueryWhereClause(dateProperty, "=", startDateTime.Value.Date, false),
+					new AB_QueryWhereClause(timeProperty, ">=", startDateTime.Value.TimeOfDay, false)
+				};
+
+                var dateAndTimeWhereClause = new AB_QueryWhereClause(dateAndTimeWhereClauses, "AND");
+                var dateWhereClause = new AB_QueryWhereClause(dateProperty, ">=", startDateTime.Value.Date, false);
+				whereFilter.am_AddWhereClause(new AB_QueryWhereClause(new List<AB_QueryWhereClause>() { dateAndTimeWhereClause, dateWhereClause}, "OR"));
+			}
+			if (endDateTime != null)
+			{
+				var dateAndTimeWhereClauses = new List<AB_QueryWhereClause>()
+				{
+					new AB_QueryWhereClause(dateProperty, "=", endDateTime.Value.Date, false),
+					new AB_QueryWhereClause(timeProperty, "<", endDateTime.Value.TimeOfDay, false)
+				};
+
+				var dateAndTimeWhereClause = new AB_QueryWhereClause(dateAndTimeWhereClauses, "AND");
+				var dateWhereClause = new AB_QueryWhereClause(dateProperty, "<", endDateTime.Value.Date, false);
+				whereFilter.am_AddWhereClause(new AB_QueryWhereClause(new List<AB_QueryWhereClause>() { dateAndTimeWhereClause, dateWhereClause }, "OR"));
+			}
+		}
 
 		public static void ClearDateField(AB_DatePicker startDateField, AB_DatePicker endDateField)
 		{
@@ -110,5 +137,13 @@ namespace WPF.OrderManagement.Shared
 			(endDateField.Content as DatePicker).SelectedDate = DateTime.Today;
 			endDateField.ap_Value = null;
 		}
+
+		public static void ClearDateTimeField(AB_DateTimePickerWithLabel startDateField, AB_DateTimePickerWithLabel endDateField)
+		{
+			startDateField.ap_Value = null;
+			endDateField.ap_Value = null;
+		}
+
+
 	}
 }
