@@ -4,14 +4,62 @@
     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.ORDERINTERNALID}"
+    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.ORDER}"
+    ap_BelowComboBoxVisibility="Visible"
+    xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
+    xmlns:local="clr-namespace:WPF.Order"
     >
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Order/OrderResourceDictionary.xaml"/>  
-       
             </ResourceDictionary.MergedDictionaries>
+            <wpfshared:NullCheckToVisibilityConverter x:Key="nullCheckToVis" />
         </ResourceDictionary>
     </base:AB_DropDownBase.Resources>
+
+    <base:AB_DropDownBase.ap_ItemTemplate>
+        <DataTemplate>
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding OrderInternalID}"
+                         Grid.Column="0" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.ORDERNUMBER}"
+                         ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding OrderDateTime}"
+                         Grid.Column="1" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.ORDERDATETIME}"
+                         ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding CustomerName}"
+                         Grid.Column="2" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.CUSTOMERNAME}"
+                         ToolTipService.InitialShowDelay="10" />
+            </Grid>
+        </DataTemplate>
+    </base:AB_DropDownBase.ap_ItemTemplate>
+
+    <base:AB_DropDownBase.ap_BelowComboBox>
+        <base:AB_DropdownDetailControl>
+            <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
+                <TextBox Text="{Binding OrderDateTime, Mode=OneWay}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
+                         Visibility="{Binding OrderDateTime, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding CustomerName, Mode=OneWay}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
+                         Visibility="{Binding CustomerName, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding PurchaseOrderNumberID, Mode=OneWay}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
+                         Visibility="{Binding PurchaseOrderNumberID, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding ShippingAddressLine, Mode=OneWay}"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
+                         Visibility="{Binding ShippingAddressLine, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+            </StackPanel>
+        </base:AB_DropdownDetailControl>
+    </base:AB_DropDownBase.ap_BelowComboBox>
+
 </base:AB_DropDownBase>

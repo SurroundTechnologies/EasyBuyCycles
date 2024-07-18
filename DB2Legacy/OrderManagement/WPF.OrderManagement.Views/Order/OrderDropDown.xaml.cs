@@ -49,7 +49,7 @@ namespace WPF.Order
 			ap_CurrentView = "YD1O";
 			
 			//The name of the property that should be displayed in the Drop Down
-			ap_ComboBoxDisplayMemberPath = OrderEntity.PurchaseOrderNumberIDProperty.ap_PropertyName;
+			ap_ComboBoxDisplayMemberPath = OrderEntity.OrderInternalIDProperty.ap_PropertyName;
 			
 			// The type of entity that will be loaded in this drop down
 			ap_EntityType = typeof(OrderEntity);
@@ -68,7 +68,7 @@ namespace WPF.Order
 			// ap_RequireAllKeysFilledForFetch = ap_KeyDependencyProperties.Length > 1;
 
 			// Set to false when entire collection can load into the combo box popup
-			// ap_StartLoadingFromSelectedItem = false;
+			ap_StartLoadingFromSelectedItem = true;
 		}
 
 		
