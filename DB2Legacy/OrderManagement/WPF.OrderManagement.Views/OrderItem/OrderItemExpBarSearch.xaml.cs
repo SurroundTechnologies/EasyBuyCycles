@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using A4DN.Core.BOS.Base;
 using A4DN.Core.WPF.Base;
 using BOS.OrderItemDataEntity;
+using WPF.OrderManagement.Shared;
 
 namespace WPF.OrderItem
 {
@@ -100,24 +101,26 @@ namespace WPF.OrderItem
 			//((OrderItemEntity)ap_SearchEntity).MyProperty = "foo";
 			
 		}
-		
+
+		protected override void am_OnClearButtonClicked()
+		{
+			base.am_OnClearButtonClicked();
+
+			Utilities.ClearDateTimeField(Field_CreateDateTimeStart, Field_CreateDateTimeEnd);
+			Utilities.ClearDateTimeField(Field_LastChangeDateTimeStart, Field_LastChangeDateTimeEnd);
+		}
+
 		/// <summary>
 		/// Override for query object 
 		/// </summary>
 		protected override AB_Query am_BuildFilter()
 		{
 			var whereFilter = base.ap_SearchEntity.am_BuildDefaultQuery();
-			//=====================================================
-			/* Overrrides go here */
-			//=====================================================
-			// Example Overrides
-			//
-			//  if (string.IsNullOrEmpty(Field_CompanyName.ap_Value))
-			//  {
-			//      whereFilter.am_OverrideWhereClause("CompanyName", ">", "D");
-			//  }
+
+			Utilities.AddDateTimeRangeFilter(whereFilter, Field_CreateDateTimeStart.ap_Value, Field_CreateDateTimeEnd.ap_Value, OrderItemEntity.CreateDateProperty, OrderItemEntity.CreateTimeProperty);
+			Utilities.AddDateTimeRangeFilter(whereFilter, Field_LastChangeDateTimeStart.ap_Value, Field_LastChangeDateTimeEnd.ap_Value, OrderItemEntity.LastChangeDateProperty, OrderItemEntity.LastChangeTimeProperty);
 
 			return whereFilter;
-		}                
+		}
 	}
 }

@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using A4DN.Core.BOS.Base;
 using SharedSystemProperties = BOS.OrderManagement.Shared.Properties;
 using BOS.OrderItemDataEntity;
-using BOS.ProductDataEntity;
-using BOS.OrderDataEntity;
 
 namespace BOS.OrderItemDataMaps
 {
@@ -104,6 +102,9 @@ namespace BOS.OrderItemDataMaps
 			maps.am_AddDataMap("YD1ILCUS", OrderItemEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1ILCJB", OrderItemEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1ILCJN", OrderItemEntity.LastChangeJobNumberProperty);
+
+			maps.am_AddDataMap("CreateDateTime", OrderItemEntity.CreateDateTimeProperty, isVirtual: true);
+			maps.am_AddDataMap("LastChangeDateTime", OrderItemEntity.LastChangeDateTimeProperty, isVirtual: true);
 
 			#endregion
 

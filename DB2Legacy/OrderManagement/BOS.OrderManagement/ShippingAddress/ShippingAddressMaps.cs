@@ -78,11 +78,14 @@ namespace BOS.ShippingAddressDataMaps
 			maps.am_AddDataMap("YD1SLCUS", ShippingAddressEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1SLCJB", ShippingAddressEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1SLCJN", ShippingAddressEntity.LastChangeJobNumberProperty);
-			
 
-            #region Additional Fields
+			maps.am_AddDataMap("CreateDateTime", ShippingAddressEntity.CreateDateTimeProperty, isVirtual: true);
+			maps.am_AddDataMap("LastChangeDateTime", ShippingAddressEntity.LastChangeDateTimeProperty, isVirtual: true);
 
-            maps.am_AddDataMap("ContactFullName", ShippingAddressEntity.ContactFullNameProperty, isVirtual: true);
+
+			#region Additional Fields
+
+			maps.am_AddDataMap("ContactFullName", ShippingAddressEntity.ContactFullNameProperty, isVirtual: true);
 
             maps.am_AddDataMap("ContactFullNameSearch", ShippingAddressEntity.ContactFullNameSearchProperty).am_Configure(map =>
                 map.ap_FunctionExpression = $@"(TRIM(""{YD1STableName}"".""YD1SCNFN"")

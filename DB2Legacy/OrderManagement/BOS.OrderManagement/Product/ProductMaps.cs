@@ -111,7 +111,11 @@ namespace BOS.ProductDataMaps
 			maps.am_AddDataMap("YD1PLCUS", ProductEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1PLCJB", ProductEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1PLCJN", ProductEntity.LastChangeJobNumberProperty);
-            maps.am_AddDataMap("ORDERCOUNT", ProductEntity.OrderCountProperty, targetTable: OrderItemsCTE);
+
+			maps.am_AddDataMap("CreateDateTime", ProductEntity.CreateDateTimeProperty, isVirtual: true);
+			maps.am_AddDataMap("LastChangeDateTime", ProductEntity.LastChangeDateTimeProperty, isVirtual: true);
+
+			maps.am_AddDataMap("ORDERCOUNT", ProductEntity.OrderCountProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("ORDERITEMCOUNT", ProductEntity.OrderItemCountProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("AVERAGEORDERQUANTITY", ProductEntity.AverageOrderQuantityProperty, targetTable: OrderItemsCTE);
             maps.am_AddDataMap("SMALLESTORDERQUANTITY", ProductEntity.SmallestOrderQuantityProperty, targetTable: OrderItemsCTE);

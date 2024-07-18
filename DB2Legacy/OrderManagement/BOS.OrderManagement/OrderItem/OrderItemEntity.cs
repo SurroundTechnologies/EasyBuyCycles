@@ -457,6 +457,50 @@ namespace BOS.OrderItemDataEntity
 		}
 		public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
 
+		[Display(Name = "CREATEDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("CreateDate", "CreateTime")]
+		public DateTime? CreateDateTime
+		{
+			get
+			{
+				if (CreateDate.HasValue && CreateTime.HasValue)
+				{
+					var date = CreateDate.Value.ToString("MM/dd/yyyy");
+					var time = DateTime.Today.Add(CreateTime.Value).ToString("hh:mm:ss tt");
+
+					if (DateTime.TryParse(date + " " + time, out var createDateTime))
+						return createDateTime;
+					else return null;
+				}
+				else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> CreateDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(CreateDateTime), DescriptionResource.CREATEDATETIME, null);
+
+		[Display(Name = "LASTCHANGEDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("LastChangeDate", "LastChangeTime")]
+		public DateTime? LastChangeDateTime
+		{
+			get
+			{
+				if (LastChangeDate.HasValue && LastChangeTime.HasValue)
+				{
+					var date = LastChangeDate.Value.ToString("MM/dd/yyyy");
+					var time = DateTime.Today.Add(LastChangeTime.Value).ToString("hh:mm:ss tt");
+
+					if (DateTime.TryParse(date + " " + time, out var lastChangeDateTime))
+						return lastChangeDateTime;
+					else return null;
+				}
+				else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> LastChangeDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(LastChangeDateTime), DescriptionResource.LASTCHANGEDATETIME, null);
+
 		#endregion
 
 		public int MemoCharacterCount

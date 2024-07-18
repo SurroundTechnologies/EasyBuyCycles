@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using A4DN.Core.BOS.Base;
 using SharedSystemProperties = BOS.OrderManagement.Shared.Properties;
 using BOS.CustomerDataEntity;
+using BOS.OrderItemDataEntity;
 
 namespace BOS.CustomerDataMaps
 {
@@ -280,6 +281,9 @@ namespace BOS.CustomerDataMaps
 			maps.am_AddDataMap("YD1CLCUS", CustomerEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1CLCJB", CustomerEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1CLCJN", CustomerEntity.LastChangeJobNumberProperty);
+
+			maps.am_AddDataMap("CreateDateTime", CustomerEntity.CreateDateTimeProperty, isVirtual: true);
+			maps.am_AddDataMap("LastChangeDateTime", CustomerEntity.LastChangeDateTimeProperty, isVirtual: true);
 
 			#endregion
 

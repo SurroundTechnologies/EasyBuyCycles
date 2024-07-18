@@ -106,8 +106,8 @@ namespace WPF.Customer
 		{
 			base.am_OnClearButtonClicked();
 
-			Utilities.ClearDateField(Field_CreateDateStart, Field_CreateDateEnd);
-			Utilities.ClearDateField(Field_LastChangeDateStart, Field_LastChangeDateEnd);
+			Utilities.ClearDateTimeField(Field_CreateDateTimeStart, Field_CreateDateTimeEnd);
+			Utilities.ClearDateTimeField(Field_LastChangeDateTimeStart, Field_LastChangeDateTimeEnd);
 		}
 
 		/// <summary>
@@ -117,8 +117,8 @@ namespace WPF.Customer
 		{
 			var whereFilter = base.ap_SearchEntity.am_BuildDefaultQuery();
 
-			Utilities.AddDateRangeFilter(whereFilter, Field_CreateDateStart.ap_Value, Field_CreateDateEnd.ap_Value, CustomerEntity.CreateDateProperty);
-			Utilities.AddDateRangeFilter(whereFilter, Field_LastChangeDateStart.ap_Value, Field_LastChangeDateEnd.ap_Value, CustomerEntity.LastChangeDateProperty);
+			Utilities.AddDateTimeRangeFilter(whereFilter, Field_CreateDateTimeStart.ap_Value, Field_CreateDateTimeEnd.ap_Value, CustomerEntity.CreateDateProperty, CustomerEntity.CreateTimeProperty);
+			Utilities.AddDateTimeRangeFilter(whereFilter, Field_LastChangeDateTimeStart.ap_Value, Field_LastChangeDateTimeEnd.ap_Value, CustomerEntity.LastChangeDateProperty, CustomerEntity.LastChangeTimeProperty);
 
 			if (ap_CurrentView.ViewName == "YD1CLF2") // Parent Customer Name, Name View
 			{
@@ -126,6 +126,6 @@ namespace WPF.Customer
 			}
 
 			return whereFilter;
-		}                
+		}               
 	}
 }
