@@ -77,7 +77,7 @@ namespace WPF.ShippingAddress
 			ap_RequireAllKeysFilledForFetch = ap_KeyDependencyProperties.Length > 1;
 
 			// Set to false when entire collection can load into the combo box popup
-			// ap_StartLoadingFromSelectedItem = false;
+			ap_StartLoadingFromSelectedItem = true;
 		}
 
 		

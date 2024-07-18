@@ -4,14 +4,54 @@
     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.SHIPPINGADDRESSNAME}"
+    xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
+    xmlns:local="clr-namespace:WPF.ShippingAddress"
+    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.SHIPPINGADDRESS}"
+    ap_BelowComboBoxVisibility="Visible"
     >
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/ShippingAddress/ShippingAddressResourceDictionary.xaml"/>  
-       
+                <ResourceDictionary Source="/WPF.OrderManagement.Views;component/ShippingAddress/ShippingAddressResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <wpfshared:NullCheckToVisibilityConverter x:Key="nullCheckToVis" />
         </ResourceDictionary>
     </base:AB_DropDownBase.Resources>
+
+    <base:AB_DropDownBase.ap_ItemTemplate>
+        <DataTemplate>
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="210" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding Name}"
+                         Grid.Column="0" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.NAME}"
+                         ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding ShippingAddressLine}"
+                         Grid.Column="1" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.SHIPPINGADDRESSLINE}"
+                         ToolTipService.InitialShowDelay="10" />
+            </Grid>
+        </DataTemplate>
+    </base:AB_DropDownBase.ap_ItemTemplate>
+
+    <base:AB_DropDownBase.ap_BelowComboBox>
+        <base:AB_DropdownDetailControl>
+            <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
+                <TextBox Text="{Binding ContactFullName, Mode=OneWay}"
+                      Style="{StaticResource NoBorderTextBoxStyle}"
+                      Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ShippingAddressDropDown}}, Path=ContactFullName, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding Telephone, Mode=OneWay}"
+                      Style="{StaticResource NoBorderTextBoxStyle}"
+                      Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ShippingAddressDropDown}}, Path=Telephone, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding ShippingAddressBlock, Mode=OneWay}"
+                      Style="{StaticResource NoBorderTextBoxStyle}"
+                      Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ShippingAddressDropDown}}, Path=ShippingAddressBlock, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+            </StackPanel>
+        </base:AB_DropdownDetailControl>
+    </base:AB_DropDownBase.ap_BelowComboBox>
+    
 </base:AB_DropDownBase>
