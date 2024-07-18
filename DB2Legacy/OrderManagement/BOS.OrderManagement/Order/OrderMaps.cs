@@ -153,6 +153,12 @@ namespace BOS.OrderDataMaps
                                                AS ""ShippingAddressLine""";
 			});
 
+			maps.am_AddDataMap("YD1SSHA1", OrderEntity.ShippingAddressLine1Property, targetTable: YD1STableName);
+			maps.am_AddDataMap("YD1SSHA2", OrderEntity.ShippingAddressLine2Property, targetTable: YD1STableName);
+			maps.am_AddDataMap("YD1SSHA3", OrderEntity.ShippingAddressLine3Property, targetTable: YD1STableName);
+			maps.am_AddDataMap("YD1SSHPC", OrderEntity.ShippingAddressPostalCodeProperty, targetTable: YD1STableName);
+			maps.am_AddDataMap("YD1SSHCY", OrderEntity.ShippingAddressCountryProperty, targetTable: YD1STableName);
+
 			#endregion
 
 			#region Order Item Fields

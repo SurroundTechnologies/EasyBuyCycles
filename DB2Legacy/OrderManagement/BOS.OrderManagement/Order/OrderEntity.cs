@@ -464,6 +464,56 @@ namespace BOS.OrderDataEntity
 		}
 		public static AB_PropertyMetadata<string> ShippingAddressLineProperty = am_CreatePropertyMetaData<string>(nameof(ShippingAddressLine), DescriptionResource.SHIPPINGADDRESSLINE, null);
 
+		[Display(Name = "ADDRESS1", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ShippingAddressLine1
+		{
+			get => am_GetPropertyValue(ShippingAddressLine1Property);
+			set => am_SetPropertyValue(ShippingAddressLine1Property, value);
+		}
+		public static AB_PropertyMetadata<string> ShippingAddressLine1Property = am_CreatePropertyMetaData<string>(nameof(ShippingAddressLine1), DescriptionResource.ADDRESS1, null);
+
+		[Display(Name = "ADDRESS2", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ShippingAddressLine2
+		{
+			get => am_GetPropertyValue(ShippingAddressLine2Property);
+			set => am_SetPropertyValue(ShippingAddressLine2Property, value);
+		}
+		public static AB_PropertyMetadata<string> ShippingAddressLine2Property = am_CreatePropertyMetaData<string>(nameof(ShippingAddressLine2), DescriptionResource.ADDRESS2, null);
+
+		[Display(Name = "ADDRESS3", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ShippingAddressLine3
+		{
+			get => am_GetPropertyValue(ShippingAddressLine3Property);
+			set => am_SetPropertyValue(ShippingAddressLine3Property, value);
+		}
+		public static AB_PropertyMetadata<string> ShippingAddressLine3Property = am_CreatePropertyMetaData<string>(nameof(ShippingAddressLine3), DescriptionResource.ADDRESS3, null);
+
+		[Display(Name = "POSTALCODE", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ShippingAddressPostalCode
+		{
+			get => am_GetPropertyValue(ShippingAddressPostalCodeProperty);
+			set => am_SetPropertyValue(ShippingAddressPostalCodeProperty, value);
+		}
+		public static AB_PropertyMetadata<string> ShippingAddressPostalCodeProperty = am_CreatePropertyMetaData<string>(nameof(ShippingAddressPostalCode), DescriptionResource.POSTALCODE, null);
+
+		[Display(Name = "COUNTRY", ResourceType = typeof(DescriptionResource))]
+		[AB_ReadOnly]
+		[DataMember]
+		public string ShippingAddressCountry
+		{
+			get => am_GetPropertyValue(ShippingAddressCountryProperty);
+			set => am_SetPropertyValue(ShippingAddressCountryProperty, value);
+		}
+		public static AB_PropertyMetadata<string> ShippingAddressCountryProperty = am_CreatePropertyMetaData<string>(nameof(ShippingAddressCountry), DescriptionResource.COUNTRY, null);
+
 		#endregion
 
 		#region Order Items Fields
