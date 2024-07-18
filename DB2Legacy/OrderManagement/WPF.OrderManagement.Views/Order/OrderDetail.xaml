@@ -12,7 +12,7 @@
 	xmlns:vm="clr-namespace:BOS.OrderViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
 	xmlns:propCodeValue="clr-namespace:WPF.PropCodeValue;assembly=WPF.PropCodeValue"
-	Height="500" Width="910">
+	Height="680" Width="920">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
