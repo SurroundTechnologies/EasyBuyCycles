@@ -367,6 +367,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Date/Time.
+        /// </summary>
+        public static string CREATEDATETIME {
+            get {
+                return ResourceManager.GetString("CREATEDATETIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Job.
         /// </summary>
         public static string CREATEJOB {
@@ -898,6 +907,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Change Date/Time.
+        /// </summary>
+        public static string LASTCHANGEDATETIME {
+            get {
+                return ResourceManager.GetString("LASTCHANGEDATETIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Change Job.
         /// </summary>
         public static string LASTCHANGEJOB {
@@ -1155,6 +1173,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string ORDERDATE {
             get {
                 return ResourceManager.GetString("ORDERDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Date/Time.
+        /// </summary>
+        public static string ORDERDATETIME {
+            get {
+                return ResourceManager.GetString("ORDERDATETIME", resourceCulture);
             }
         }
         

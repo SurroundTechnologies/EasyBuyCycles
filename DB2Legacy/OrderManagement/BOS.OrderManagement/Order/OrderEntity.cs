@@ -93,9 +93,9 @@ namespace BOS.OrderDataEntity
             get => am_GetPropertyValue(OrderTimeProperty);
             set => am_SetPropertyValue(OrderTimeProperty, value);
         }
-        public static AB_PropertyMetadata<TimeSpan?> OrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(OrderTime), DescriptionResource.ORDERTIME, null); 
+        public static AB_PropertyMetadata<TimeSpan?> OrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>(nameof(OrderTime), DescriptionResource.ORDERTIME, null);
 
-        [Display(Name = "PURCHASEORDERNUMBERID", ResourceType = typeof(DescriptionResource))]
+		[Display(Name = "PURCHASEORDERNUMBERID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
         [DataMember]
         [AB_RequiredField]
@@ -200,6 +200,28 @@ namespace BOS.OrderDataEntity
         }
         public static AB_PropertyMetadata<int?> PurchasePointsProperty = am_CreatePropertyMetaData<int?>(nameof(PurchasePoints), DescriptionResource.PURCHASEPOINTS, null);
 
+		[Display(Name = "ORDERDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("OrderDate", "OrderTime")]
+		public DateTime? OrderDateTime
+		{
+			get
+			{
+				if (OrderDate.HasValue && OrderTime.HasValue)
+				{
+					var date = OrderDate.Value.ToString("MM/dd/yyyy");
+					var time = DateTime.Today.Add(OrderTime.Value).ToString("hh:mm:ss tt");
+
+					if (DateTime.TryParse(date + " " + time, out var orderDateTime))
+						return orderDateTime;
+					else return null;
+				}
+				else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> OrderDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(OrderDateTime), DescriptionResource.ORDERDATETIME, null);
+
 		#region Audit Stamps
 
 		[Display(Name = "CREATEDATE", ResourceType = typeof(DescriptionResource))]
@@ -211,7 +233,7 @@ namespace BOS.OrderDataEntity
 		public DateTime? CreateDate //Map Field: YD1OCRDT
 		{
 			get => am_GetPropertyValue(CreateDateProperty);
-			set => am_SetPropertyValue(CreateDateProperty, value);
+            set => am_SetPropertyValue(CreateDateProperty, value);
 		}
 		public static AB_PropertyMetadata<DateTime?> CreateDateProperty = am_CreatePropertyMetaData<DateTime?>(nameof(CreateDate), DescriptionResource.CREATEDATE, null);
 
@@ -310,11 +332,55 @@ namespace BOS.OrderDataEntity
 		}
 		public static AB_PropertyMetadata<string> LastChangeJobNumberProperty = am_CreatePropertyMetaData<string>(nameof(LastChangeJobNumber), DescriptionResource.LASTCHANGEJOBNUMBER, null);
 
-		#endregion
+		[Display(Name = "CREATEDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("CreateDate", "CreateTime")]
+		public DateTime? CreateDateTime
+		{
+			get
+			{
+                if (CreateDate.HasValue && CreateTime.HasValue)
+                {
+                    var date = CreateDate.Value.ToString("MM/dd/yyyy");
+                    var time = DateTime.Today.Add(CreateTime.Value).ToString("hh:mm:ss tt");
 
-		#region Customer Fields
-      
-		[Display(Name = "CUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
+					if (DateTime.TryParse(date + " " + time, out var createDateTime))
+					    return createDateTime;
+					else return null;
+				}
+                else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> CreateDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(CreateDateTime), DescriptionResource.CREATEDATETIME, null);
+
+		[Display(Name = "LASTCHANGEDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("LastChangeDate", "LastChangeTime")]
+		public DateTime? LastChangeDateTime
+		{
+			get
+			{
+				if (LastChangeDate.HasValue && LastChangeTime.HasValue)
+				{
+					var date = LastChangeDate.Value.ToString("MM/dd/yyyy");
+					var time = DateTime.Today.Add(LastChangeTime.Value).ToString("hh:mm:ss tt");
+
+					if (DateTime.TryParse(date + " " + time, out var lastChangeDateTime))
+					    return lastChangeDateTime;
+					else return null;
+				}
+				else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> LastChangeDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(LastChangeDateTime), DescriptionResource.LASTCHANGEDATETIME, null);
+
+        #endregion
+
+        #region Customer Fields
+
+        [Display(Name = "CUSTOMERNAME", ResourceType = typeof(DescriptionResource))]
 		[AB_ReadOnly]
 		[DataMember]
 		public string CustomerName

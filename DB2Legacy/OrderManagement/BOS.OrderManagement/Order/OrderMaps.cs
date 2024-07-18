@@ -71,7 +71,7 @@ namespace BOS.OrderDataMaps
 			maps.am_AddDataMap("YD1OIID", OrderEntity.OrderInternalIDProperty);
 			maps.am_AddDataMap("YD1O1CID", OrderEntity.CustomerInternalIDProperty);
 			maps.am_AddDataMap("YD1ODT", OrderEntity.OrderDateProperty, databaseFieldType: AB_EntityFieldType.Date);
-			maps.am_AddDataMap("YD1OTM", OrderEntity.OrderTimeProperty);
+			maps.am_AddDataMap("YD1OTM", OrderEntity.OrderTimeProperty, databaseFieldType: AB_EntityFieldType.Time);
 			maps.am_AddDataMap("YD1OPONO", OrderEntity.PurchaseOrderNumberIDProperty);
 			maps.am_AddDataMap("YD1O1WID", OrderEntity.WarehouseInternalIDProperty);
 			maps.am_AddDataMap("YD1O1WNM", OrderEntity.WarehouseNameProperty);
@@ -82,6 +82,8 @@ namespace BOS.OrderDataMaps
 			maps.am_AddDataMap("YD1O1AID", OrderEntity.SalesPersonInternalIDProperty);
 			maps.am_AddDataMap("YD1O1ANM", OrderEntity.SalesPersonNameProperty);
 			maps.am_AddDataMap("YD1CPRPT", OrderEntity.PurchasePointsProperty);
+
+			maps.am_AddDataMap("OrderDateTime", OrderEntity.OrderDateTimeProperty, isVirtual: true);
 
 			#region Audit Stamps
 
@@ -95,6 +97,9 @@ namespace BOS.OrderDataMaps
 			maps.am_AddDataMap("YD1OLCUS", OrderEntity.LastChangeUserProperty);
 			maps.am_AddDataMap("YD1OLCJB", OrderEntity.LastChangeJobProperty);
 			maps.am_AddDataMap("YD1OLCJN", OrderEntity.LastChangeJobNumberProperty);
+
+			maps.am_AddDataMap("CreateDateTime", OrderEntity.CreateDateTimeProperty, isVirtual: true);
+			maps.am_AddDataMap("LastChangeDateTime", OrderEntity.LastChangeDateTimeProperty, isVirtual: true);
 
 			#endregion
 

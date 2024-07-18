@@ -34,8 +34,25 @@
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ShippingAddressName" ap_PropertyMetaData="{x:Static entity:OrderEntity.ShippingAddressNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_OrderDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_OrderTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" ap_SecondsVisibility="Visible" />
+
+                        <base:AB_DatePicker x:Name="Field_OrderDateStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" >
+                            <base:AB_DatePicker.ap_Label>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.ORDERDATE}" />
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.START}" />
+                                </MultiBinding>
+                            </base:AB_DatePicker.ap_Label>
+                        </base:AB_DatePicker>
+
+                        <base:AB_DatePicker x:Name="Field_OrderDateEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" >
+                            <base:AB_DatePicker.ap_Label>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.ORDERDATE}" />
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.END}" />
+                                </MultiBinding>
+                            </base:AB_DatePicker.ap_Label>
+                        </base:AB_DatePicker>
+                        
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_PurchaseOrderNumberID" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchaseOrderNumberIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Status" ap_PropertyMetaData="{x:Static entity:OrderEntity.StatusProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_SalesPersonName" ap_PropertyMetaData="{x:Static entity:OrderEntity.SalesPersonNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
@@ -56,13 +73,47 @@
 
                 <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="2" IsExpanded="False" >
                     <StackPanel>
-                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
+                        
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                            <base:AB_DateTimePickerWithLabel.ap_Label>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.CREATEDATETIME}" />
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.START}" />
+                                </MultiBinding>
+                            </base:AB_DateTimePickerWithLabel.ap_Label>
+                        </base:AB_DateTimePickerWithLabel>
+
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                            <base:AB_DateTimePickerWithLabel.ap_Label>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.CREATEDATETIME}" />
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.END}" />
+                                </MultiBinding>
+                            </base:AB_DateTimePickerWithLabel.ap_Label>
+                        </base:AB_DateTimePickerWithLabel>
+                        
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:OrderEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_DatePicker ap_LabelPosition="Top" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.LastChangeDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  MinWidth="105" />
-                        <base:AB_TimePicker ap_LabelPosition="Top" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.LastChangeTimeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  ap_SecondsVisibility="Visible" />
+                        
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_LastChangeDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                            <base:AB_DateTimePickerWithLabel.ap_Label>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.LASTCHANGEDATETIME}" />
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.START}" />
+                                </MultiBinding>
+                            </base:AB_DateTimePickerWithLabel.ap_Label>
+                        </base:AB_DateTimePickerWithLabel>
+
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_LastChangeDateTimeEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                            <base:AB_DateTimePickerWithLabel.ap_Label>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.LASTCHANGEDATETIME}" />
+                                    <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.END}" />
+                                </MultiBinding>
+                            </base:AB_DateTimePickerWithLabel.ap_Label>
+                        </base:AB_DateTimePickerWithLabel>
+
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:OrderEntity.LastChangeUserProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:OrderEntity.LastChangeJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:OrderEntity.LastChangeJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />

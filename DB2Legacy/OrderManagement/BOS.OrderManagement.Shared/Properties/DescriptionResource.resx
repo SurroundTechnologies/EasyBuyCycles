@@ -720,4 +720,13 @@
   <data name="PONUMBER" xml:space="preserve">
     <value>PO Number</value>
   </data>
+  <data name="CREATEDATETIME" xml:space="preserve">
+    <value>Create Date/Time</value>
+  </data>
+  <data name="LASTCHANGEDATETIME" xml:space="preserve">
+    <value>Last Change Date/Time</value>
+  </data>
+  <data name="ORDERDATETIME" xml:space="preserve">
+    <value>Order Date/Time</value>
+  </data>
 </root>
