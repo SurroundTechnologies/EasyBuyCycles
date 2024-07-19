@@ -538,6 +538,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer, Order, and Order Item Information.
+        /// </summary>
+        public static string CUSTOMERORDERANDORDERITEMINFORMATION {
+            get {
+                return ResourceManager.GetString("CUSTOMERORDERANDORDERITEMINFORMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer Telephone.
         /// </summary>
         public static string CUSTOMERTELEPHONE {
@@ -750,6 +759,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string FIRSTORDERDATE {
             get {
                 return ResourceManager.GetString("FIRSTORDERDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Order Date Time.
+        /// </summary>
+        public static string FIRSTORDERDATETIME {
+            get {
+                return ResourceManager.GetString("FIRSTORDERDATETIME", resourceCulture);
             }
         }
         
@@ -1092,6 +1110,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         public static string LOWESTORDERUNITPRICE {
             get {
                 return ResourceManager.GetString("LOWESTORDERUNITPRICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margin.
+        /// </summary>
+        public static string MARGIN {
+            get {
+                return ResourceManager.GetString("MARGIN", resourceCulture);
             }
         }
         

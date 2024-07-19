@@ -25,22 +25,28 @@
                 </Grid.RowDefinitions>
                 <Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
                     <StackPanel>
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:ProductEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Category" ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Margin" ap_PropertyMetaData="{x:Static entity:ProductEntity.MarginProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Discontinued" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CustomerCount" ap_PropertyMetaData="{x:Static entity:ProductEntity.CustomerCountProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderCount" ap_PropertyMetaData="{x:Static entity:ProductEntity.OrderCountProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                     </StackPanel>
                 </Expander>
                 <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
                     <StackPanel>
-                        
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:ProductEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+
                         <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
                             <base:AB_DateTimePickerWithLabel.ap_Label>
                                 <MultiBinding StringFormat="{}{0} - {1}">

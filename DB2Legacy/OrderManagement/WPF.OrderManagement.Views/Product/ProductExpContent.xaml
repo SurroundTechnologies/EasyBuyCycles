@@ -18,8 +18,8 @@
         </ResourceDictionary>
     </base:AB_ContentWindowBase.Resources>
     <base:AB_ContentWindowBase.ap_DataPresentationStyles>
-        <base:AB_StyleHolder ap_Style="{StaticResource ProductCustomListBoxStyle}" ap_IsDefault="True" />
-        <base:AB_StyleHolder ap_Style="{DynamicResource AB_DataGridDefaultStyle}" />
+        <base:AB_StyleHolder ap_Style="{DynamicResource AB_DataGridDefaultStyle}"  ap_IsDefault="True" />
+        <base:AB_StyleHolder ap_Style="{StaticResource ProductCustomListBoxStyle}" />
         <base:AB_StyleHolder ap_Style="{StaticResource DefaultCardStyle}" />
         <base:AB_StyleHolder ap_Style="{StaticResource AlbumCardStyle}" />
         <base:AB_StyleHolder ap_Style="{StaticResource ThumbnailCardStyle}" />

@@ -729,4 +729,13 @@
   <data name="ORDERDATETIME" xml:space="preserve">
     <value>Order Date/Time</value>
   </data>
+  <data name="MARGIN" xml:space="preserve">
+    <value>Margin</value>
+  </data>
+  <data name="FIRSTORDERDATETIME" xml:space="preserve">
+    <value>First Order Date Time</value>
+  </data>
+  <data name="CUSTOMERORDERANDORDERITEMINFORMATION" xml:space="preserve">
+    <value>Customer, Order, and Order Item Information</value>
+  </data>
 </root>

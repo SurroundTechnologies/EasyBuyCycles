@@ -16,7 +16,7 @@ namespace BOS.ProductDataMaps
 		private const string YD1PTableName = "YD1P";
         // CTE Names
         private const string OrderedProductsCTE = "ORDEREDPRODUCTSCTE";
-        private const string OrderItemsCTE = "ORDERITEMS";
+        private const string OrderItemsCTE = "OrderItemsCTE";
 
         public const string CAT_CustomerOrderedProducts = "Category_CustomerOrderedProducts";
 
@@ -30,21 +30,23 @@ namespace BOS.ProductDataMaps
         {
             var ctes = new AB_CommonTableExpressionDictionary();
 
-            // Add CTE's here
-            ctes.am_AddCTE(OrderItemsCTE, @"SELECT YD1I1PID,
-                                    COUNT(DISTINCT YD1I.YD1IIID) AS ORDERCOUNT,
-                                    COUNT(*) AS ORDERITEMCOUNT,
-                                    DECIMAL(AVG(YD1I.YD1IQT), 6, 2) AS AVERAGEORDERQUANTITY,
-                                    MIN(YD1I.YD1IQT) AS SMALLESTORDERQUANTITY,
-                                    MAX(YD1I.YD1IQT) AS LARGESTORDERQUANTITY,
-                                    DECIMAL(AVG(YD1I.YD1IPRUN), 8, 2) AS AVERAGEORDERUNITPRICE,
-                                    MIN(YD1I.YD1IPRUN) AS LOWESTORDERUNITPRICE,
-                                    MAX(YD1I.YD1IPRUN) AS HIGHESTORDERUNITPRICE,
-                                    MAX(YD1O.YD1ODT) AS LASTORDERDATETIME,
-                                    COUNT(DISTINCT YD1O.YD1O1CID) AS CUSTOMERCOUNT
-                                 FROM YD1I
-                                 LEFT JOIN YD1O ON YD1O.YD1OIID = YD1I.YD1IIID
-                                 GROUP BY YD1I1PID");
+            ctes.am_AddCTE(OrderItemsCTE, @"SELECT ""YD1I1PID""
+                                                ,COUNT(DISTINCT ""YD1O"".""YD1O1CID"") AS ""CustomerCount""
+                                                ,COUNT(DISTINCT ""YD1I"".""YD1I1OID"") AS ""OrderCount""
+                                                ,COUNT(*) AS ""OrderItemCount""
+                                                ,DECIMAL(AVG(""YD1I"".""YD1IQT""),6,2) AS ""AverageOrderQuantity""
+                                                ,MIN(""YD1I"".""YD1IQT"") AS ""SmallestOrderQuantity""
+                                                ,MAX(""YD1I"".""YD1IQT"") AS ""LargestOrderQuantity""
+                                                ,DECIMAL(AVG(""YD1I"".""YD1IPRUN""),8,2) AS ""AverageOrderUnitPrice""
+                                                ,MIN(""YD1I"".""YD1IPRUN"") AS ""LowestOrderUnitPrice""
+                                                ,MAX(""YD1I"".""YD1IPRUN"") AS ""HighestOrderUnitPrice""
+                                                ,MIN(""YD1O"".""YD1ODT"") AS ""FirstOrderDate""
+                                                ,MIN(""YD1O"".""YD1OTM"") AS ""FirstOrderTime""
+                                                ,MAX(""YD1O"".""YD1ODT"") AS ""LastOrderDate""
+                                                ,MAX(""YD1O"".""YD1OTM"") AS ""LastOrderTime""
+                                            FROM ""YD1I""
+                                                LEFT JOIN ""YD1O"" ON ""YD1O"".""YD1OIID"" = ""YD1I"".""YD1I1OID""
+                                            GROUP BY ""YD1I1PID""");
 
             ctes.am_AddCTE(OrderedProductsCTE, @"SELECT DISTINCT YD1I1PID,
                                              YD1O.YD1O1CID AS CUSTOMERINTERNALID
@@ -61,17 +63,11 @@ namespace BOS.ProductDataMaps
 		{            
 			var relationshipMap = new AB_RelationshipMapsDictionary(ap_PrimaryTable);
 
-            // TODO: Table Relationships Step 1 - Define and relationships and join conditions for each file and add relationships (Change 0 to 1, 2, ... n for each new file map)
-            // AB_RelationshipMap map0 = new AB_RelationshipMap("PrimaryFile", "SecondaryFile", JoinType.LeftOuter);  // Create a map to a single file
-            // TODO: Table Relationships Step 2 - Add Joins for each relationship
-            // Two field Relationship 
-            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryField("FileName", "FieldName")));
-            // Single Field to Constant Relationship
-            // map0.ap_JoinConditions.Add(new AB_JoinCondition(new AB_QueryField("FileName", "FieldName"), "=", new AB_QueryConstant("ConstantValue")));
-            // relationshipMap.Add("Y06T", map0); // Add to the relationship Dictionary keyed by Secondary File
+            relationshipMap.am_AddRelationshipMap(OrderItemsCTE, useDistinctJoins: false)
+                .am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
 
-            relationshipMap.am_AddRelationshipMap(OrderItemsCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
-            relationshipMap.am_AddRelationshipMap(OrderedProductsCTE, useDistinctJoins: false).am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
+            relationshipMap.am_AddRelationshipMap(OrderedProductsCTE, useDistinctJoins: false)
+                .am_JoinWhere(primaryTableField: "YD1PIID", joinTableField: "YD1I1PID");
 
             return relationshipMap;
 		}
@@ -98,9 +94,12 @@ namespace BOS.ProductDataMaps
 			maps.am_AddDataMap("YD1PROLV", ProductEntity.ReorderLevelProperty);
 			maps.am_AddDataMap("YD1PTGLV", ProductEntity.TargetLevelProperty);
 			maps.am_AddDataMap("YD1PMRQT", ProductEntity.MinimumReorderQuantityProperty);
-			maps.am_AddDataMap("YD1PDC", ProductEntity.DiscontinuedProperty);
+			maps.am_AddDataMap("YD1PDC", ProductEntity.DiscontinuedProperty, dbTrueEquivalent: "Y", dbFalseEquivalent: "N");
 			maps.am_AddDataMap("YD1PM1", ProductEntity.MemoProperty);
 			maps.am_AddDataMap("YD1PIMPT", ProductEntity.ImagePathProperty);
+
+			#region Audit Stamps
+
 			maps.am_AddDataMap("YD1PCRDT", ProductEntity.CreateDateProperty, databaseFieldType: AB_EntityFieldType.Decimal);
 			maps.am_AddDataMap("YD1PCRTM", ProductEntity.CreateTimeProperty, databaseFieldType: AB_EntityFieldType.Decimal);
 			maps.am_AddDataMap("YD1PCRUS", ProductEntity.CreateUserProperty);
@@ -115,26 +114,37 @@ namespace BOS.ProductDataMaps
 			maps.am_AddDataMap("CreateDateTime", ProductEntity.CreateDateTimeProperty, isVirtual: true);
 			maps.am_AddDataMap("LastChangeDateTime", ProductEntity.LastChangeDateTimeProperty, isVirtual: true);
 
-			maps.am_AddDataMap("ORDERCOUNT", ProductEntity.OrderCountProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("ORDERITEMCOUNT", ProductEntity.OrderItemCountProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("AVERAGEORDERQUANTITY", ProductEntity.AverageOrderQuantityProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("SMALLESTORDERQUANTITY", ProductEntity.SmallestOrderQuantityProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("LARGESTORDERQUANTITY", ProductEntity.LargestOrderQuantityProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("AVERAGEORDERUNITPRICE", ProductEntity.AverageOrderUnitPriceProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("LOWESTORDERUNITPRICE", ProductEntity.LowestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("HIGHESTORDERUNITPRICE", ProductEntity.HighestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("LASTORDERDATETIME", ProductEntity.LastOrderDateTimeProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("CUSTOMERCOUNT", ProductEntity.CustomerCountProperty, targetTable: OrderItemsCTE);
-            maps.am_AddDataMap("CUSTOMERINTERNALID", ProductEntity.CustomerInternalIDProperty, targetTable: OrderedProductsCTE, dataCategories: new List<string> { CAT_CustomerOrderedProducts });
+			#endregion
 
-            //TODO: ProductMaps Real Field Example
-            //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>);
-            //TODO: ProductMaps Virtual Field Example
-            //maps.am_AddDataMap("<Field Name>", ProductEntity.<Property Name>, isVirtual: true);
-            //TODO: ProductMaps Foreign Field Example
-            //maps.am_AddDataMap(string.Format("{0}.{1}", "<Target Table Name>", "<Field Name>"), ProductEntity.<Property Name>, targetTable: "<Target Table Name>"); 
-            //TODO: ProductMaps Configure Example (for setting options not available as constructor arguments)
-            //maps.am_AddDataMap(...).am_Configure((map) => { map.ap_FunctionExpresion = "..."; });
+			#region Virtual Fields
+
+			maps.am_AddDataMap("Margin", ProductEntity.MarginProperty).am_Configure(map =>
+                map.ap_FunctionExpression = $@"(""YD1P"".""YD1PLSPR"" - ""YD1P"".""YD1PSTCS"") AS ""Margin""");
+
+			#endregion
+
+			#region Order Item Fields
+
+			maps.am_AddDataMap("CustomerCount", ProductEntity.CustomerCountProperty, targetTable: OrderItemsCTE);
+			maps.am_AddDataMap("OrderCount", ProductEntity.OrderCountProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("OrderItemCount", ProductEntity.OrderItemCountProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("AverageOrderQuantity", ProductEntity.AverageOrderQuantityProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("SmallestOrderQuantity", ProductEntity.SmallestOrderQuantityProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LargestOrderQuantity", ProductEntity.LargestOrderQuantityProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("AverageOrderUnitPrice", ProductEntity.AverageOrderUnitPriceProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LowestOrderUnitPrice", ProductEntity.LowestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("HighestOrderUnitPrice", ProductEntity.HighestOrderUnitPriceProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("FirstOrderDate", ProductEntity.FirstOrderDateProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("FirstOrderTime", ProductEntity.FirstOrderTimeProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LastOrderDate", ProductEntity.LastOrderDateProperty, targetTable: OrderItemsCTE);
+            maps.am_AddDataMap("LastOrderTime", ProductEntity.LastOrderTimeProperty, targetTable: OrderItemsCTE);
+
+			maps.am_AddDataMap("FirstOrderDateTime", ProductEntity.FirstOrderDateTimeProperty, isVirtual: true);
+			maps.am_AddDataMap("LastOrderDateTime", ProductEntity.LastOrderDateTimeProperty, isVirtual: true);
+
+			#endregion
+
+			maps.am_AddDataMap("CUSTOMERINTERNALID", ProductEntity.CustomerInternalIDProperty, targetTable: OrderedProductsCTE, dataCategories: new List<string> { CAT_CustomerOrderedProducts });
 
             return maps;
 		}

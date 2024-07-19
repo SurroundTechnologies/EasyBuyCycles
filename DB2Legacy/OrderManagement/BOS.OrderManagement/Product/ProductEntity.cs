@@ -159,14 +159,15 @@ namespace BOS.ProductDataEntity
         public static AB_PropertyMetadata<int?> MinimumReorderQuantityProperty = am_CreatePropertyMetaData<int?>(nameof(MinimumReorderQuantity), DescriptionResource.MINIMUMREORDERQUANTITY, null); 
 
         [Display(Name = "DISCONTINUED", ResourceType = typeof(DescriptionResource))]
+        [AB_DefaultValueUse(AB_RecordMode.New)]
         [AB_Length(1)]
         [DataMember]
-        public string Discontinued //Map Field: YD1PDC
+        public bool? Discontinued //Map Field: YD1PDC
         {
             get => am_GetPropertyValue(DiscontinuedProperty);
             set => am_SetPropertyValue(DiscontinuedProperty, value);
         }
-        public static AB_PropertyMetadata<string> DiscontinuedProperty = am_CreatePropertyMetaData<string>(nameof(Discontinued), DescriptionResource.DISCONTINUED, null); 
+        public static AB_PropertyMetadata<bool?> DiscontinuedProperty = am_CreatePropertyMetaData<bool?>(nameof(Discontinued), DescriptionResource.DISCONTINUED, false); 
 
         [Display(Name = "MEMO", ResourceType = typeof(DescriptionResource))]
         [AB_Length(100)]
@@ -186,9 +187,11 @@ namespace BOS.ProductDataEntity
             get => am_GetPropertyValue(ImagePathProperty);
             set => am_SetPropertyValue(ImagePathProperty, value);
         }
-        public static AB_PropertyMetadata<string> ImagePathProperty = am_CreatePropertyMetaData<string>(nameof(ImagePath), DescriptionResource.IMAGEPATH, null); 
+        public static AB_PropertyMetadata<string> ImagePathProperty = am_CreatePropertyMetaData<string>(nameof(ImagePath), DescriptionResource.IMAGEPATH, null);
 
-        [Display(Name = "CREATEDATE", ResourceType = typeof(DescriptionResource))]
+		#region Audit Stamps
+
+		[Display(Name = "CREATEDATE", ResourceType = typeof(DescriptionResource))]
         [AB_ApplyDateFormat]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
@@ -340,10 +343,36 @@ namespace BOS.ProductDataEntity
 		}
 		public static AB_PropertyMetadata<DateTime?> LastChangeDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(LastChangeDateTime), DescriptionResource.LASTCHANGEDATETIME, null);
 
+		#endregion
+
+		[Display(Name = "MARGIN", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.Currency)]
+		[AB_ApplyStringFormat("C")]
+		[DataMember]
+		[AB_ReadOnly]
+		public decimal? Margin
+		{
+			get { return am_GetPropertyValue(MarginProperty); }
+			set { am_SetPropertyValue(MarginProperty, value); }
+		}
+		public static AB_PropertyMetadata<decimal?> MarginProperty = am_CreatePropertyMetaData<decimal?>("Margin", DescriptionResource.MARGIN, null);
+
+		#region Order Item Fields
+
+		[Display(Name = "CUSTOMERCOUNT", ResourceType = typeof(DescriptionResource))]
+		[DataMember]
+		[AB_ReadOnly]
+		public int? CustomerCount
+		{
+			get { return am_GetPropertyValue(CustomerCountProperty); }
+			set { am_SetPropertyValue(CustomerCountProperty, value); }
+		}
+		public static AB_PropertyMetadata<int?> CustomerCountProperty = am_CreatePropertyMetaData<int?>("CustomerCount", DescriptionResource.CUSTOMERCOUNT, null);
+
 		[Display(Name = "ORDERCOUNT", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? OrderCount //Map Field: ORDERCOUNT
+        public int? OrderCount
         {
             get { return am_GetPropertyValue(OrderCountProperty); }
             set { am_SetPropertyValue(OrderCountProperty, value); }
@@ -353,7 +382,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "ORDERITEMCOUNT", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? OrderItemCount //Map Field: ORDERITEMCOUNT
+        public int? OrderItemCount
         {
             get { return am_GetPropertyValue(OrderItemCountProperty); }
             set { am_SetPropertyValue(OrderItemCountProperty, value); }
@@ -363,7 +392,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "AVERAGEORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public decimal? AverageOrderQuantity //Map Field: AVERAGEORDERQUANTITY
+        public decimal? AverageOrderQuantity
         {
             get { return am_GetPropertyValue(AverageOrderQuantityProperty); }
             set { am_SetPropertyValue(AverageOrderQuantityProperty, value); }
@@ -373,7 +402,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "SMALLESTORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? SmallestOrderQuantity //Map Field: SMALLESTORDERQUANTITY
+        public int? SmallestOrderQuantity
         {
             get { return am_GetPropertyValue(SmallestOrderQuantityProperty); }
             set { am_SetPropertyValue(SmallestOrderQuantityProperty, value); }
@@ -383,7 +412,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "LARGESTORDERQUANTITY", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? LargestOrderQuantity //Map Field: LARGESTORDERQUANTITY
+        public int? LargestOrderQuantity
         {
             get { return am_GetPropertyValue(LargestOrderQuantityProperty); }
             set { am_SetPropertyValue(LargestOrderQuantityProperty, value); }
@@ -393,7 +422,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "AVERAGEORDERUNITPRICE", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public decimal? AverageOrderUnitPrice //Map Field: AVERAGEORDERUNITPRICE
+        public decimal? AverageOrderUnitPrice
         {
             get { return am_GetPropertyValue(AverageOrderUnitPriceProperty); }
             set { am_SetPropertyValue(AverageOrderUnitPriceProperty, value); }
@@ -403,7 +432,7 @@ namespace BOS.ProductDataEntity
         [Display(Name = "LOWESTORDERUNITPRICE", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? LowestOrderUnitPrice //Map Field: LOWESTORDERUNITPRICE
+        public int? LowestOrderUnitPrice
         {
             get { return am_GetPropertyValue(LowestOrderUnitPriceProperty); }
             set { am_SetPropertyValue(LowestOrderUnitPriceProperty, value); }
@@ -413,33 +442,106 @@ namespace BOS.ProductDataEntity
         [Display(Name = "HIGHESTORDERUNITPRICE", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? HighestOrderUnitPrice //Map Field: HIGHESTORDERUNITPRICE
+        public int? HighestOrderUnitPrice
         {
             get { return am_GetPropertyValue(HighestOrderUnitPriceProperty); }
             set { am_SetPropertyValue(HighestOrderUnitPriceProperty, value); }
         }
         public static AB_PropertyMetadata<int?> HighestOrderUnitPriceProperty = am_CreatePropertyMetaData<int?>("HighestOrderUnitPrice", DescriptionResource.HIGHESTORDERUNITPRICE, null);
 
-        [Display(Name = "LASTORDERDATETIME", ResourceType = typeof(DescriptionResource))]
-        [DataMember]
-        [AB_ReadOnly]
-        public DateTime? LastOrderDateTime //Map Field: LASTORDERDATETIME
-        {
-            get { return am_GetPropertyValue(LastOrderDateTimeProperty); }
-            set { am_SetPropertyValue(LastOrderDateTimeProperty, value); }
-        }
-        public static AB_PropertyMetadata<DateTime?> LastOrderDateTimeProperty = am_CreatePropertyMetaData<DateTime?>("LastOrderDateTime", DescriptionResource.LASTORDERDATETIME, null);
+		[Display(Name = "FIRSTORDERDATE", ResourceType = typeof(DescriptionResource))]
+		[AB_ApplyDateFormat]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+		[DataMember]
+		[AB_ReadOnly]
+		public DateTime? FirstOrderDate
+		{
+			get { return am_GetPropertyValue(FirstOrderDateProperty); }
+			set { am_SetPropertyValue(FirstOrderDateProperty, value); }
+		}
+		public static AB_PropertyMetadata<DateTime?> FirstOrderDateProperty = am_CreatePropertyMetaData<DateTime?>("FirstOrderDate", DescriptionResource.FIRSTORDERDATE, null);
 
-        [Display(Name = "CUSTOMERCOUNT", ResourceType = typeof(DescriptionResource))]
+		[Display(Name = "FIRSTORDERTIME", ResourceType = typeof(DescriptionResource))]
+		[DataMember]
+		[AB_ReadOnly]
+		public TimeSpan? FirstOrderTime
+		{
+			get { return am_GetPropertyValue(FirstOrderTimeProperty); }
+			set { am_SetPropertyValue(FirstOrderTimeProperty, value); }
+		}
+		public static AB_PropertyMetadata<TimeSpan?> FirstOrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>("FirstOrderTime", DescriptionResource.FIRSTORDERTIME, null);
+
+		[Display(Name = "LASTORDERDATE", ResourceType = typeof(DescriptionResource))]
+		[AB_ApplyDateFormat]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+		[DataMember]
+		[AB_ReadOnly]
+		public DateTime? LastOrderDate
+		{
+			get { return am_GetPropertyValue(LastOrderDateProperty); }
+			set { am_SetPropertyValue(LastOrderDateProperty, value); }
+		}
+		public static AB_PropertyMetadata<DateTime?> LastOrderDateProperty = am_CreatePropertyMetaData<DateTime?>("LastOrderDate", DescriptionResource.LASTORDERDATE, null);
+
+		[Display(Name = "LASTORDERTIME", ResourceType = typeof(DescriptionResource))]
         [DataMember]
         [AB_ReadOnly]
-        public int? CustomerCount //Map Field: CUSTOMERCOUNT
+        public TimeSpan? LastOrderTime
         {
-            get { return am_GetPropertyValue(CustomerCountProperty); }
-            set { am_SetPropertyValue(CustomerCountProperty, value); }
+            get { return am_GetPropertyValue(LastOrderTimeProperty); }
+            set { am_SetPropertyValue(LastOrderTimeProperty, value); }
         }
-        public static AB_PropertyMetadata<int?> CustomerCountProperty = am_CreatePropertyMetaData<int?>("CustomerCount", DescriptionResource.CUSTOMERCOUNT, null);
-        [Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
+        public static AB_PropertyMetadata<TimeSpan?> LastOrderTimeProperty = am_CreatePropertyMetaData<TimeSpan?>("LastOrderTime", DescriptionResource.LASTORDERTIME, null);
+
+		[Display(Name = "FIRSTORDERDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("FirstOrderDate", "FirstOrderTime")]
+		public DateTime? FirstOrderDateTime
+		{
+			get
+			{
+				if (FirstOrderDate.HasValue && FirstOrderTime.HasValue)
+				{
+					var date = FirstOrderDate.Value.ToString("MM/dd/yyyy");
+					var time = DateTime.Today.Add(FirstOrderTime.Value).ToString("hh:mm:ss tt");
+
+					if (DateTime.TryParse(date + " " + time, out var firstOrderDateTime))
+						return firstOrderDateTime;
+					else return null;
+				}
+				else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> FirstOrderDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(FirstOrderDateTime), DescriptionResource.FIRSTORDERDATETIME, null);
+
+		[Display(Name = "LASTORDERDATETIME", ResourceType = typeof(DescriptionResource))]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "MM/dd/yyyy hh:mm:ss tt", ApplyFormatInEditMode = true)]
+		[AB_VirtualMember("LastOrderDate", "LastOrderTime")]
+		public DateTime? LastOrderDateTime
+		{
+			get
+			{
+				if (LastOrderDate.HasValue && LastOrderTime.HasValue)
+				{
+					var date = LastOrderDate.Value.ToString("MM/dd/yyyy");
+					var time = DateTime.Today.Add(LastOrderTime.Value).ToString("hh:mm:ss tt");
+
+					if (DateTime.TryParse(date + " " + time, out var lastOrderDateTime))
+						return lastOrderDateTime;
+					else return null;
+				}
+				else return null;
+			}
+		}
+		public static AB_PropertyMetadata<DateTime?> LastOrderDateTimeProperty = am_CreatePropertyMetaData<DateTime?>(nameof(LastOrderDateTime), DescriptionResource.LASTORDERDATETIME, null);
+
+		#endregion
+
+		[Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
         [DataMember]
         public int? CustomerInternalID

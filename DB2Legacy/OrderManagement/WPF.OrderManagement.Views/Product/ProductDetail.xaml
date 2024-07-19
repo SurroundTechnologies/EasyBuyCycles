@@ -10,7 +10,7 @@
 	xmlns:vm="clr-namespace:BOS.ProductViewModel;assembly=BOS.OrderManagement.ViewModels"  
 	xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
     xmlns:propCodeValue="clr-namespace:WPF.PropCodeValue;assembly=WPF.PropCodeValue"
-	Height="505" Width="815">
+	Height="540" Width="1200">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,70 +31,95 @@
                     </StackPanel>
                 </base:AB_DockingTabItem.Header>
                 <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
-                    <DockPanel x:Name="FieldsPanel">
-                        <Grid DockPanel.Dock="Top">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="500"/>
-                                <ColumnDefinition Width="250"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <!-- Put More Code Here -->
-                            <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" Width="Auto" />
-                            <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
-                            <Grid Grid.Row="2" Grid.Column="0">
+                    <StackPanel x:Name="FieldsPanel" Orientation="Horizontal">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Top">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="450" />
+                                    <ColumnDefinition Width="500"/>
+                                    <ColumnDefinition Width="250"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Margin="0,0,0,0" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0"/>
-                                <TextBlock x:Name="Field_Memo_Char_Counter" Margin="0,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" Grid.Row="0" />
+                                <!-- Put More Code Here -->
+                                <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ProductEntity.NameProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" Width="Auto" />
+                                <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" ap_LabelPosition="Top" x:Name="Field_Description" ap_PropertyMetaData="{x:Static entity:ProductEntity.DescriptionProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                                <Grid Grid.Row="2" Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="450" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Margin="0,0,0,0" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0"/>
+                                    <TextBlock x:Name="Field_Memo_Char_Counter" Margin="0,0,3,0" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" Grid.Row="0" />
 
-                                <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ap_LabelVisibility="Collapsed" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                                    <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ap_LabelVisibility="Collapsed" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ProductEntity.MemoProperty}" Margin="0,0,0,5" HorizontalAlignment="Stretch" ap_AllowMultilineInput="True" MaxHeight="120" Width="Auto" />
+                                </Grid>
+                                <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
+                                     DockPanel.Dock="Top" Grid.Row="3" Grid.Column="0"
+                                     Width="497" Margin="0 0 0 5" HorizontalAlignment="Left"
+                                     Code="{Binding Category, Mode=TwoWay}"
+                                     PropertyCodeTable="ProductCategory"
+                                     ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Top"
+                                     ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}" />
+                                <Image Height="205" Width="225" Grid.Column="1" Margin="10,5,5,5" Grid.Row="0" Grid.RowSpan="4" Source="{Binding ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}" MouseLeftButtonUp="Image_MouseLeftButtonUp" Cursor="Hand"/>
                             </Grid>
-                            <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_ProductCategory"
-                                 DockPanel.Dock="Top" Grid.Row="3" Grid.Column="0"
-                                 Width="497" Margin="0 0 0 5" HorizontalAlignment="Left"
-                                 Code="{Binding Category, Mode=TwoWay}"
-                                 PropertyCodeTable="ProductCategory"
-                                 ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_BtnSearchAndSelectVisibility="Collapsed" ap_LabelPosition="Top"
-                                 ap_PropertyMetaData="{x:Static entity:ProductEntity.CategoryProperty}" />
-                            <Image Height="205" Width="225" Grid.Column="1" Margin="10,5,5,5" Grid.Row="0" Grid.RowSpan="4" Source="{Binding ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}" MouseLeftButtonUp="Image_MouseLeftButtonUp" Cursor="Hand"/>
-                        </Grid>
 
-                        <Grid DockPanel.Dock="Top" Width="600" HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <!-- Put More Code Here -->
-                            <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="0" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}" Margin="0,0,10,5" HorizontalAlignment="Left" Width="237" />
-                            <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
-                            <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="2" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
-                            <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}" Margin="0,0,5,5" HorizontalAlignment="Left" Width="189" />
-                            <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
-                            <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
-                            <base:AB_CheckBoxWithLabel Grid.Row="2" Grid.Column="2" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}" Margin="0,0,0,5" Width="100" />
-                        </Grid>
-                        <base:AB_FieldWithLabel ap_LabelWidth="90" ap_LabelPosition="Left" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="725" DockPanel.Dock="Top" />
-                    </DockPanel>
+                            <Grid DockPanel.Dock="Top" Width="600" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <!-- Put More Code Here -->
+                                <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="0" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}" Margin="0,0,10,5" HorizontalAlignment="Left" Width="237" />
+                                <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
+                                <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="2" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
+                                <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="3" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Margin" ap_PropertyMetaData="{x:Static entity:ProductEntity.MarginProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
+                                <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}" Margin="0,0,5,5" HorizontalAlignment="Left" Width="189" />
+                                <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
+                                <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
+                                <base:AB_CheckBoxWithLabel Grid.Row="3" Grid.Column="1" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" ap_LabelPosition="Left"/>
+                            </Grid>
+                            <base:AB_FieldWithLabel ap_LabelWidth="90" ap_LabelPosition="Left" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="725" DockPanel.Dock="Top" />
+                        </DockPanel>
+
+                        <Expander x:Name="Expander_CustomerOrderOrderItemInformation"
+                                  HorizontalAlignment="Stretch" DockPanel.Dock="Top"
+                                  Background="Transparent" Margin="50 0 0 0" 
+                                  IsExpanded="True" OverridesDefaultStyle="True"
+                                  Style="{DynamicResource AB_MinimalistExpanderStyle}"
+                                  Header="{x:Static systemSharedProperties:DescriptionResource.CUSTOMERORDERANDORDERITEMINFORMATION}">
+                            <StackPanel>
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.CustomerCountProperty}" Margin="0,10,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.OrderCountProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.OrderItemCountProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.AverageOrderQuantityProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.SmallestOrderQuantityProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.LargestOrderQuantityProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.AverageOrderUnitPriceProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.LowestOrderUnitPriceProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.HighestOrderUnitPriceProperty}" Margin="0,0,0,5" Width="240" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.FirstOrderDateTimeProperty}" Margin="0,0,0,5" Width="300" HorizontalAlignment="Left" />
+                                <base:AB_FieldWithLabel ap_PropertyMetaData="{x:Static entity:ProductEntity.LastOrderDateTimeProperty}" Margin="0,0,0,5" Width="300" HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
                 </ScrollViewer>
             </base:AB_DockingTabItem>
             <base:AB_DockingTabItem x:Name="AuditFieldsTab"  >
