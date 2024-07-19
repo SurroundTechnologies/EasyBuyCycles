@@ -4,14 +4,71 @@
     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.PRODUCTNAME}"
-    >
+    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.PRODUCT}"
+    ap_BelowComboBoxVisibility="Visible"
+    xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
+    xmlns:local="clr-namespace:WPF.Customer"
+    ap_LeftComboBoxVisibility="Visible">
+    
     <base:AB_DropDownBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/WPF.OrderManagement.Views;component/Product/ProductResourceDictionary.xaml"/>  
-       
             </ResourceDictionary.MergedDictionaries>
+            <wpfshared:NullCheckToVisibilityConverter x:Key="nullCheckToVis" />
         </ResourceDictionary>
     </base:AB_DropDownBase.Resources>
+
+    <base:AB_DropDownBase.ap_LeftComboBox>
+        <base:AB_DropdownKeyFieldControl Margin="0 0 5 0"
+                                      Width="80"
+                                      ap_KeyPropertyName="Code" ap_Trigger="PropertyChanged" />
+    </base:AB_DropDownBase.ap_LeftComboBox>
+
+    <base:AB_DropDownBase.ap_ItemTemplate>
+        <DataTemplate>
+            <Grid HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding Code}"
+                         Grid.Column="0" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.CODE}"
+                         ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding Name}"
+                         Grid.Column="1" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.NAME}"
+                         ToolTipService.InitialShowDelay="10" />
+                <TextBlock Text="{Binding Category}"
+                         Grid.Column="2" Margin="5 0 20 0"
+                         ToolTip="{x:Static systemSharedProperties:DescriptionResource.CATEGORY}"
+                         ToolTipService.InitialShowDelay="10" />
+            </Grid>
+        </DataTemplate>
+    </base:AB_DropDownBase.ap_ItemTemplate>
+
+    <base:AB_DropDownBase.ap_BelowComboBox>
+        <base:AB_DropdownDetailControl>
+            <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
+                <TextBox Text="{Binding Code, Mode=OneWay}"
+                      Style="{StaticResource NoBorderTextBoxStyle}"
+                      Visibility="{Binding Code, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding Category, Mode=OneWay}"
+                      Style="{StaticResource NoBorderTextBoxStyle}"
+                      Visibility="{Binding Category, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding ListPrice, Mode=OneWay, StringFormat='{}{0:C}'}"
+                      Style="{StaticResource NoBorderTextBoxStyle}"
+                      Visibility="{Binding ListPrice, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding Description, Mode=OneWay}" TextWrapping="Wrap"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
+                         Visibility="{Binding Description, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+                <TextBox Text="{Binding ImagePath, Mode=OneWay}" TextWrapping="Wrap"
+                         Style="{StaticResource NoBorderTextBoxStyle}"
+                         Visibility="{Binding ImagePath, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
+            </StackPanel>
+        </base:AB_DropdownDetailControl>
+    </base:AB_DropDownBase.ap_BelowComboBox>
 </base:AB_DropDownBase>

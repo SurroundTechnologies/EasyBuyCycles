@@ -12,7 +12,7 @@
                     xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
                     xmlns:vm="clr-namespace:BOS.OrderItemViewModel;assembly=BOS.OrderManagement.ViewModels"
                     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-                    Height="500"
+                    Height="620"
                     Width="860">
     <base:AB_DetailBase.Resources>
         <ResourceDictionary>

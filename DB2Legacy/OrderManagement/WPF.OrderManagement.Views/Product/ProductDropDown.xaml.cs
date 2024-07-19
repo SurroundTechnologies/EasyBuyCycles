@@ -28,10 +28,26 @@ namespace WPF.Product
 		}
         public static readonly DependencyProperty ProductInternalIDProperty = DependencyProperty.Register(nameof(ProductInternalID), typeof(int?), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
 
-        /// <summary>
-        /// Sets properties to change the parent initialization. This method is called during the parent's constructor.
-        /// </summary>
-        protected override void am_SetParentProperties()
+		[AB_DropdownNonKeyProperty]
+		public string Code
+		{
+			get { return (string)GetValue(CodeProperty); }
+			set { SetValue(CodeProperty, value); }
+		}
+		public static readonly DependencyProperty CodeProperty =DependencyProperty.Register("Code", typeof(string), typeof(ProductDropDown), new PropertyMetadata(null));
+
+		[AB_DropdownFilterProperty]
+		public bool? Discontinued
+		{
+			get { return (bool?)GetValue(DiscontinuedProperty); }
+			set { SetValue(DiscontinuedProperty, value); }
+		}
+		public static readonly DependencyProperty DiscontinuedProperty = DependencyProperty.Register(nameof(Discontinued), typeof(bool?), typeof(ProductDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.FilterIdChanged)));
+
+		/// <summary>
+		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
+		/// </summary>
+		protected override void am_SetParentProperties()
 		{
 			InitializeComponent();
 			
@@ -67,7 +83,7 @@ namespace WPF.Product
 			ap_RequireAllKeysFilledForFetch = ap_KeyDependencyProperties.Length > 1;
 
 			// Set to false when entire collection can load into the combo box popup
-			// ap_StartLoadingFromSelectedItem = false;
+			ap_StartLoadingFromSelectedItem = true;
 		}
 
 		
