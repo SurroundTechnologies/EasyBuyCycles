@@ -34,7 +34,7 @@
                 </base:AB_DockingTabItem.Header>
                 <ScrollViewer x:Name="FieldsScrollViewer"  Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="{DynamicResource AB_Brush_TabItemSelectedBackground}" Padding="10" >
                     <DockPanel x:Name="FieldsPanel">
-                        <WPF.Customer:CustomerDropDown Margin="0,0,0,5"  x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
+                        <WPF.Customer:CustomerDropDown Margin="0,0,0,5" x:Name="Field_CustomerInternalID" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CustomerInternalIDProperty}" CustomerInternalID="{Binding Path=CustomerInternalID, Mode=TwoWay}" ap_LabelPosition="Left" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="550"  />
                         <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_Name" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.NameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                         <TextBlock Margin="0,0,0,10" DockPanel.Dock="Top" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.CONTACT}" TextWrapping="Wrap"/>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10" DockPanel.Dock="Top">
@@ -99,26 +99,26 @@
                         <!-- Put More Code Here -->
                         <base:AB_Expander Grid.Row="0" Grid.Column="0" IsExpanded="True" Header="{x:Static systemSharedProperties:DescriptionResource.CREATESTAMPS}" Padding="5">
                             <StackPanel>
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateDateProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateTimeProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240"/>
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateUserProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateJobProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateJobNumberProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_CreateDate" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateDateProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_CreateTime" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateTimeProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240"/>
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_CreateUser" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateUserProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateJobProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CreateJobNumberProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                             </StackPanel>
                         </base:AB_Expander>
                         <base:AB_Expander Grid.Row="1" Grid.Column="0" Header="{x:Static systemSharedProperties:DescriptionResource.IDS}" Padding="5">
                             <StackPanel>
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.ShippingAddressInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_CustomerInternalIDAudit" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CustomerInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_ShippingAddressInternalID" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.ShippingAddressInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_CustomerInternalIDAudit" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.CustomerInternalIDProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                             </StackPanel>
                         </base:AB_Expander>
                         <base:AB_Expander Grid.Row="0" Grid.Column="1" IsExpanded="True" Header="{x:Static systemSharedProperties:DescriptionResource.CHANGESTAMPS}" Padding="5">
                             <StackPanel>
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeDateProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeTimeProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeUserProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeJobProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
-                                <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeJobNumberProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_LastChangeDate" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeDateProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_LastChangeTime" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeTimeProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_LastChangeUser" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeUserProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_LastChangeJob" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeJobProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
+                                <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_LabelWidth="165" x:Name="Field_LastChangeJobNumber" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.LastChangeJobNumberProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="240" />
                             </StackPanel>
                         </base:AB_Expander>
                     </Grid>

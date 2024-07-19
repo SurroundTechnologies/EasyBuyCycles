@@ -61,7 +61,7 @@ namespace BOS.ShippingAddressDataEntity
         public static AB_PropertyMetadata<int?> ShippingAddressInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(ShippingAddressInternalID), DescriptionResource.SHIPPINGADDRESSINTERNALID, null); 
 
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
-        [Display(Name = "CUSTOMERINTERNALID", ResourceType = typeof(DescriptionResource))]
+        [Display(Name = "CUSTOMERNUMBER", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
         [DataMember]
         [AB_RequiredField]
@@ -70,7 +70,7 @@ namespace BOS.ShippingAddressDataEntity
             get => am_GetPropertyValue(CustomerInternalIDProperty);
             set => am_SetPropertyValue(CustomerInternalIDProperty, value);
         }
-        public static AB_PropertyMetadata<int?> CustomerInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(CustomerInternalID), DescriptionResource.CUSTOMERINTERNALID, null); 
+        public static AB_PropertyMetadata<int?> CustomerInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(CustomerInternalID), DescriptionResource.CUSTOMERNUMBER, null); 
 
         [Display(Name = "NAME", ResourceType = typeof(DescriptionResource))]
         [AB_Length(50)]
