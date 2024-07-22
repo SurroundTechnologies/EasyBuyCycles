@@ -27,19 +27,20 @@
                 </Grid.RowDefinitions>
                 <Expander Style="{DynamicResource AB_ExpanderStyle}" Header="Basic" Grid.Row="0" IsExpanded="True" >
                     <StackPanel>
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderItemInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderItemInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <WPF.Order:OrderDropDown Margin="0,0,0,5"  x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}" OrderInternalID="{Binding Path=OrderInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
-                        <WPF.Product:ProductDropDown Margin="0,0,0,5"  x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}" ProductInternalID="{Binding Path=ProductInternalID, Mode=TwoWay}" ap_BtnNewDetailVisibility="Collapsed" ap_BtnOpenDetailVisibility="Collapsed" ap_LabelWidth="{x:Static sys:Double.NaN}" ap_LabelPosition="Top"  />
-                        <!--<base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />-->
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductCode" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductCodeProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductName" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Quantity" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.QuantityProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_UnitPrice" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.UnitPriceProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_DiscountPercent" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.DiscountPercentProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
-                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_ProductName" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.ProductNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.MemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                     </StackPanel>
                 </Expander>
                 <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
                     <StackPanel>
+                        <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_OrderItemInternalID" ap_PropertyMetaData="{x:Static entity:OrderItemEntity.OrderItemInternalIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
+
                         <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
                             <base:AB_DateTimePickerWithLabel.ap_Label>
                                 <MultiBinding StringFormat="{}{0} - {1}">

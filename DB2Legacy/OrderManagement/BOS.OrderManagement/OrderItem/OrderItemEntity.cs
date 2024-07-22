@@ -72,7 +72,8 @@ namespace BOS.OrderItemDataEntity
         [AB_ReceivedBroadcastDataMember("ProductInternalID")]
         [Display(Name = "PRODUCTINTERNALID", ResourceType = typeof(DescriptionResource))]
         [AB_Length(8)]
-        [DataMember]
+		[AB_RequiredField]
+		[DataMember]
         public int? ProductInternalID //Map Field: YD1I1PID
         {
             get => am_GetPropertyValue(ProductInternalIDProperty);
