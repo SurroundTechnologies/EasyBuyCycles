@@ -297,4 +297,7 @@
       <Name>BOS.OrderManagement</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EasyBuyCyclesMainPage.png" />
+  </ItemGroup>
 </Project>

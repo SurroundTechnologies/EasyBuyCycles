@@ -25,10 +25,8 @@ namespace WPF.OrderManagement
 			// Set the Splash Window Type
 			ap_SplashWindowType = typeof(Splash);
 
-			// TODO: Image for Wallpaper used as background when there are not any Module Explorer Tabs open
-			// Set the image name and any other settings to get the desired look.
-			// ap_WallpaperImageName = "MyWallPaper.jpg";
-			// ap_Wallpaper.Margin = new Thickness(50, 0, 50, 0);
+			ap_WallpaperImageName = "EasyBuyCyclesMainPage.png";
+			//ap_Wallpaper.Margin = new Thickness(0, 0, 0, 0);
 			// ap_Wallpaper.Width = ...;		   
 
 			InitializeComponent();
