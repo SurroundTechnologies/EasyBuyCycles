@@ -58,7 +58,7 @@
                 </Expander>
                 <Expander Style="{DynamicResource AB_ExpanderStyle}"  Header="Extended" Grid.Row="1" IsExpanded="False" >
                     <StackPanel>
-                        <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default" PreviewMouseWheel="DisabledMouseWheelInput">
                             <base:AB_DateTimePickerWithLabel.ap_Label>
                                 <MultiBinding StringFormat="{}{0} - {1}">
                                     <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.CREATEDATETIME}" />
@@ -67,7 +67,7 @@
                             </base:AB_DateTimePickerWithLabel.ap_Label>
                         </base:AB_DateTimePickerWithLabel>
 
-                        <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_CreateDateTimeEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default" PreviewMouseWheel="DisabledMouseWheelInput">
                             <base:AB_DateTimePickerWithLabel.ap_Label>
                                 <MultiBinding StringFormat="{}{0} - {1}">
                                     <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.CREATEDATETIME}" />
@@ -80,7 +80,7 @@
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJob" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateJobProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
                         <base:AB_FieldWithLabel ap_LabelPosition="Top" x:Name="Field_CreateJobNumber" ap_PropertyMetaData="{x:Static entity:CustomerEntity.CreateJobNumberProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Stretch"     />
 
-                        <base:AB_DateTimePickerWithLabel x:Name="Field_LastChangeDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_LastChangeDateTimeStart" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default" PreviewMouseWheel="DisabledMouseWheelInput">
                             <base:AB_DateTimePickerWithLabel.ap_Label>
                                 <MultiBinding StringFormat="{}{0} - {1}">
                                     <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.LASTCHANGEDATETIME}" />
@@ -89,7 +89,7 @@
                             </base:AB_DateTimePickerWithLabel.ap_Label>
                         </base:AB_DateTimePickerWithLabel>
 
-                        <base:AB_DateTimePickerWithLabel x:Name="Field_LastChangeDateTimeEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default">
+                        <base:AB_DateTimePickerWithLabel x:Name="Field_LastChangeDateTimeEnd" Margin="0 0 0 5" HorizontalAlignment="Stretch" ap_LabelPosition="Top" ap_ShowCalendarIcon="True" ap_Format="Default" PreviewMouseWheel="DisabledMouseWheelInput">
                             <base:AB_DateTimePickerWithLabel.ap_Label>
                                 <MultiBinding StringFormat="{}{0} - {1}">
                                     <Binding Path="." Source="{x:Static systemSharedProperties:DescriptionResource.LASTCHANGEDATETIME}" />

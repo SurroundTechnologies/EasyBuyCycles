@@ -124,5 +124,20 @@ namespace WPF.Order
 
 			return whereFilter;
 		}
+
+		private void DisabledMouseWheelInput(object sender, MouseWheelEventArgs e)
+		{
+			var scrollViewer = AB_WPFHelperMethods.am_FindVisualParent<ScrollViewer>((UIElement)sender);
+			if (scrollViewer != null)
+			{
+				// Pass the mouse wheel event to the ScrollViewer
+				var e2 = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+				e2.RoutedEvent = UIElement.MouseWheelEvent;
+				scrollViewer.RaiseEvent(e2);
+
+				// Mark the event as handled to prevent it from being processed by the ListBox
+				e.Handled = true;
+			}
+		}
 	}
 }
