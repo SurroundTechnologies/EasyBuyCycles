@@ -871,6 +871,16 @@ namespace BOS.CustomerDataEntity
 		}
 		public static AB_PropertyMetadata<int?> ExcludeCustomerInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(ExcludeCustomerInternalID), "", null);
 
+		[AB_ReceivedBroadcastDataMember("ProductEntity.ProductInternalID")]
+		[DataMember]
+		public int? ProductInternalID
+		{
+			get => am_GetPropertyValue(ProductInternalIDProperty);
+			set => am_SetPropertyValue(ProductInternalIDProperty, value);
+		}
+		public static AB_PropertyMetadata<int?> ProductInternalIDProperty = am_CreatePropertyMetaData<int?>(nameof(ProductInternalID), DescriptionResource.PRODUCTINTERNALID, null);
+
+
 		#endregion //Properties
 
 		#region Property Overrides

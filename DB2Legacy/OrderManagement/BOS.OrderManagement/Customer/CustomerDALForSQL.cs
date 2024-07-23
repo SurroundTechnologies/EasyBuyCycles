@@ -83,6 +83,25 @@ namespace BOS.CustomerDataAccessLayer
 			return overrideParms;
 		}
 
+		protected override AB_SelectInputArgs am_OverRideView(AB_SelectInputArgs inputArgs)
+		{
+			var entity = inputArgs.ap_InputEntity as CustomerEntity;
+
+			if (entity.ProductInternalID.HasValue)
+			{
+				var sql = $@"(SELECT YD1C.YD1CIID
+							  FROM YD1C
+							  LEFT JOIN YD1O ON YD1O.YD1O1CID = YD1C.YD1CIID
+							  LEFT JOIN YD1I ON YD1I.YD1I1OID = YD1O.YD1OIID
+							  LEFT JOIN YD1P ON YD1P.YD1PIID = YD1I.YD1I1PID
+							  WHERE YD1P.YD1PIID = {entity.ProductInternalID})";
+				var wc = new AB_QueryWhereClause(CustomerEntity.CustomerInternalIDProperty, "IN", sql, false);
+				inputArgs.ap_Query.am_AddWhereClause(wc);
+			}
+
+			return base.am_OverRideView(inputArgs);
+		}
+		
 		#region Standard Operations
 
 		///// <summary>

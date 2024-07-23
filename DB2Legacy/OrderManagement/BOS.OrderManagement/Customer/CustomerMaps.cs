@@ -287,6 +287,8 @@ namespace BOS.CustomerDataMaps
 
 			#endregion
 
+			maps.am_AddDataMap("ProductInternalID", CustomerEntity.ProductInternalIDProperty, isVirtual: true);
+
 			return maps;
 		}
 
