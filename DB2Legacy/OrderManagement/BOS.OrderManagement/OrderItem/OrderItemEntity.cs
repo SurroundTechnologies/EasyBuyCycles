@@ -215,11 +215,11 @@ namespace BOS.OrderItemDataEntity
 		{
 			get
 			{
-				return OrderPrice - OrderDiscount;
+				return OrderPrice - (OrderDiscount ?? 0);
 			}
 			set
 			{
-				am_SetPropertyValue(OrderTotalProperty, OrderPrice - OrderDiscount);
+				am_SetPropertyValue(OrderTotalProperty, OrderPrice - (OrderDiscount ?? 0));
 			}
 		}
 		public static AB_PropertyMetadata<decimal?> OrderTotalProperty = am_CreatePropertyMetaData<decimal?>(nameof(OrderTotal), DescriptionResource.TOTAL, null);

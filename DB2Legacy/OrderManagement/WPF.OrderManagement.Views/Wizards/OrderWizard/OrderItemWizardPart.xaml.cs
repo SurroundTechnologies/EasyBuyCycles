@@ -85,12 +85,29 @@ namespace WPF.Wizards.OrderWizard
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            if (_OrderItemDetail.EntityInTheDropDown == null)
+            {
+                ap_MessageConsole.am_AddMessage(new AB_Message(DescriptionResource.NOORDERITEMS), true, true);
+                return;
+            }
+
+            int.TryParse(_OrderItemDetail.Field_Quantity.ap_Value, out int quantity);
+
+            if (quantity == 0)
+            {
+                ap_MessageConsole.am_AddMessage(new AB_Message("Quantity is required."), true, true);
+                return;
+            }
+
+            ap_MessageConsole.am_ClearMessages();
+
             CurrentOrderItemEntity.ProductCode = _OrderItemDetail.EntityInTheDropDown.Code;
             CurrentOrderItemEntity.ProductName = _OrderItemDetail.EntityInTheDropDown.Name;
             var currentEntity = CurrentOrderItemEntity.am_DataContractDeepClone();
             _SharedObject.OrderItems.Add(currentEntity);
 
             CurrentOrderItemEntity = new OrderItemEntity() { ap_RecordMode = AB_RecordMode.New };
+            _OrderItemDetail.EntityInTheDropDown = null;
             _OrderItemDetail.Field_PurchaseOrderNumber.Visibility = Visibility.Collapsed;
         }
 

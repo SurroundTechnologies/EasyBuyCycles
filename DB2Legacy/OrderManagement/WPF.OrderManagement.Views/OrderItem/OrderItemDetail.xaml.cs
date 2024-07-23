@@ -167,7 +167,14 @@ namespace WPF.OrderItem
 
         private void Field_ProductName_ae_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-			EntityInTheDropDown = Field_ProductName.ap_CurrentSelectedEntity as ProductEntity;
+			if (Field_ProductName.ap_CurrentSelectedEntity != null)
+			{
+				EntityInTheDropDown = Field_ProductName.ap_CurrentSelectedEntity as ProductEntity;
+			}
+			else if (Field_ProductName.ap_ResultSet != null)
+			{
+                EntityInTheDropDown = Field_ProductName.ap_ResultSet[0] as ProductEntity;
+			}
 		}
 
 		private void MemoCharacterCountChanged(object sender, EventArgs e)
