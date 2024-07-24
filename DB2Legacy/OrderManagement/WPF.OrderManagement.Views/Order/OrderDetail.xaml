@@ -40,7 +40,7 @@
                             <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_WarehouseName" ap_PropertyMetaData="{x:Static entity:OrderEntity.WarehouseNameProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="550"  DockPanel.Dock="Top" />
                             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,0">
                                 <base:AB_DatePicker ap_LabelPosition="Left" x:Name="Field_OrderDate" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderDateProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left"  Width="260" />
-                                <base:AB_TimePicker ap_LabelPosition="Left" ap_LabelVisibility="Collapsed" x:Name="Field_OrderTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTimeProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left"  Width="100" ap_SecondsVisibility="Visible"/>
+                                <base:AB_TimePicker ap_LabelPosition="Left" ap_LabelVisibility="Collapsed" x:Name="Field_OrderTime" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderTimeProperty}"  Margin="5,0,0,5"  HorizontalAlignment="Left"  Width="120" ap_SecondsVisibility="Visible"/>
                             </StackPanel>
                             <base:AB_FieldWithLabel ap_LabelPosition="Left" x:Name="Field_PurchaseOrderNumberID" ap_PropertyMetaData="{x:Static entity:OrderEntity.PurchaseOrderNumberIDProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Width="365"  DockPanel.Dock="Top" />
                             <propCodeValue:PropCodeValueDropDown03 x:Name="PropCodeDD_AccountStatus"
