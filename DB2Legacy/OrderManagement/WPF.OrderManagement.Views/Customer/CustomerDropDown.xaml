@@ -4,7 +4,7 @@
     xmlns:base="clr-namespace:A4DN.Core.WPF.Base;assembly=A4DN.Core.WPF.Base"
 	xmlns:entityProperties="clr-namespace:BOS.OrderManagement.Properties;assembly=BOS.OrderManagement"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.CUSTOMERNAME}"
+    ap_LabelText="{x:Static systemSharedProperties:DescriptionResource.CUSTOMER}"
     ap_BelowComboBoxVisibility="Visible"
     xmlns:wpfshared="clr-namespace:WPF.OrderManagement.Shared;assembly=WPF.OrderManagement.Shared"
     xmlns:local="clr-namespace:WPF.Customer"
