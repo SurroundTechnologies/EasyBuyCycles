@@ -17,6 +17,8 @@ using BOS.CustomerDataEntity;
 using System.Windows.Controls;
 using System.Windows;
 using System;
+using BOS.ShippingAddressViewModel;
+using BOS.ShippingAddressDataEntity;
 
 namespace WPF.Order
 {
@@ -200,5 +202,29 @@ namespace WPF.Order
             (ap_CurrentEntity as OrderEntity).DeliveryMemoCharacterCount = charCount;
         }
 
-    }
+		private void Field_ShippingAddressInternalID_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (ap_CurrentEntity is OrderEntity entity)
+			{
+				AB_WPFHelperMethods.am_CallInBackground(
+				inBackground: () =>
+				{
+					using (var vm = new ShippingAddressVM())
+					{
+						var inArgs = new AB_SelectInputArgs<ShippingAddressEntity>(new ShippingAddressEntity() { CustomerInternalID = entity.CustomerInternalID });
+						return vm.am_Select(inArgs);
+					}
+				},
+				onSuccess: (retArgs) =>
+				{
+					if (retArgs.ap_OutputRecords.Count > 0)
+						entity.ShippingAddressInternalID = (retArgs.ap_OutputRecords[0] as ShippingAddressEntity).ShippingAddressInternalID;
+				},
+				onError: (retArgs) =>
+				{
+					entity.ShippingAddressInternalID = null;
+				});
+			}
+		}
+	}
 }
