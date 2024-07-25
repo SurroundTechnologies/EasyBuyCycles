@@ -1231,6 +1231,15 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Entry Wizard.
+        /// </summary>
+        public static string ORDERENTRYWIZARD {
+            get {
+                return ResourceManager.GetString("ORDERENTRYWIZARD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Internal ID.
         /// </summary>
         public static string ORDERINTERNALID {

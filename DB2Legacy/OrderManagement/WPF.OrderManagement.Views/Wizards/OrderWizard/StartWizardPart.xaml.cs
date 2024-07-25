@@ -19,12 +19,12 @@ namespace WPF.Wizards.OrderWizard
 
         public StartWizardPart(AB_WizardPartInitArgs InputArgs) : base(InputArgs)
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         protected override void am_EnrollWizardSteps()
         {
-            am_AddStep(new AB_WizardStep(Step_Start, DescriptionResource.WIZARDSTART, DescriptionResource.ORDERWIZARD, "MyCompanySquare_48_48_32.png"));
+            am_AddStep(new AB_WizardStep(Step_Start, DescriptionResource.WIZARDSTART, DescriptionResource.ORDERENTRYWIZARD, "FlagGreen_large.png"));
         }
 
         public override void am_InitializeOrResetWizardPart()

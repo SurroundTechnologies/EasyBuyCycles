@@ -2,10 +2,12 @@
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderManagement.Shared.Properties;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Media.Imaging;
 
 namespace WPF.Wizards.OrderWizard
 {
@@ -41,16 +43,27 @@ namespace WPF.Wizards.OrderWizard
             ResizeMode = ResizeMode.CanResize;
             Width = 1200;
             Height = 1040;
-            Title = DescriptionResource.ORDERWIZARD;
+            Title = DescriptionResource.ORDERENTRYWIZARD;
+            Icon = getWizardIcon();
 
             base.am_SetParentProperties();
 
             ap_SharedObjectType = typeof(OrderWizardSharedObject);
+            //ap_SplashWindowType = typeof(OrderWizardSplash);
             ap_TreeViewIconsStyle = AB_TreeViewIconsStyles.LargeIcons;
             ap_ShowNavigator = true;
             ap_UseTransitions = false;
             ap_MessageConsoleVisibility = Visibility.Visible;
         }
+
+        BitmapImage getWizardIcon()
+        {
+			BitmapImage icon = new BitmapImage();
+			icon.BeginInit();
+			icon.UriSource = new Uri("pack://application:,,,/A4DN.Core.WPF.Base;component/ImagesLineFlat2020/InternationalPackageMagicWand_large.png");
+			icon.EndInit();
+            return icon;
+		}
 
         public override AB_WizardStep am_GetNextWizardStep(AB_WizardStep step)
         {

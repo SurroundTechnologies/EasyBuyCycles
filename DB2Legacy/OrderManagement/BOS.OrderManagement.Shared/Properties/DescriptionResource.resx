@@ -738,4 +738,7 @@
   <data name="CUSTOMERORDERANDORDERITEMINFORMATION" xml:space="preserve">
     <value>Customer, Order, and Order Item Information</value>
   </data>
+  <data name="ORDERENTRYWIZARD" xml:space="preserve">
+    <value>Order Entry Wizard</value>
+  </data>
 </root>
