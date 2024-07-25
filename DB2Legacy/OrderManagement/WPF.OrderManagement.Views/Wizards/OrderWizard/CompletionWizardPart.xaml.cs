@@ -1,9 +1,7 @@
 ﻿using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base.WizardBase;
-using BOS.OrderItemDataEntity;
 using BOS.OrderManagement.Shared.Properties;
 using System;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace WPF.Wizards.OrderWizard

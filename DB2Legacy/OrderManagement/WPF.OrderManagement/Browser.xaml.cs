@@ -4,21 +4,20 @@
 // <A4DN_Template Name="WPF.System.Browser.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System.Windows;
-using A4DN.Core.WPF.Base;
 using A4DN.Core.BOS.ViewModel;
-using WPF.OrderManagement;
-using WPF.OrderManagement.Shared;
-using System.Windows.Controls;
-using WPF.OrderManagement.TaskPanes;
+using A4DN.Core.WPF.Base;
 using BOS.OrderManagement.Shared;
+using System.Windows;
+using System.Windows.Controls;
+using WPF.OrderManagement.Shared;
+using WPF.OrderManagement.TaskPanes;
 
 namespace WPF.OrderManagement
 {
-	/// <summary>
-	/// Interaction logic for Browser.xaml
-	/// </summary>
-	public partial class Browser : AB_Browser
+    /// <summary>
+    /// Interaction logic for Browser.xaml
+    /// </summary>
+    public partial class Browser : AB_Browser
 	{
 		public Browser()
 		{

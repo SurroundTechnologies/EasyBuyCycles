@@ -103,9 +103,6 @@
     <Compile Include="Wizards\OrderWizard\StartWizardPart.xaml.cs">
       <DependentUpon>StartWizardPart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Wizards\OrderWizard\OrderWizardSplash.xaml.cs">
-      <DependentUpon>OrderWizardSplash.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Wizards\OrderWizard\OrderWizardWindow.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -339,10 +336,6 @@
     <Page Include="Wizards\OrderWizard\StartWizardPart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Wizards\OrderWizard\OrderWizardSplash.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup Label="A4DNReferences">

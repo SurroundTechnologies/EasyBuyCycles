@@ -20,7 +20,7 @@ namespace WPF.OrderItem
     public partial class OrderItemDetail : AB_DetailBase
 	{        
 		OrderItemVM _ViewModel;
-        public Panel OrderItemDetailLayout
+        public Panel OrderItemDetailWizardPanel
         {
             get { return FieldsPanel; }
         }

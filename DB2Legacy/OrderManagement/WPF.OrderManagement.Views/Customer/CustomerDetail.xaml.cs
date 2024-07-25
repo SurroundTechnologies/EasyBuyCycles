@@ -30,7 +30,7 @@ namespace WPF.Customer
 	{        
 		CustomerVM _ViewModel;
 
-        public Panel WizardMainInfoPanel
+        public Panel CustomerDetailWizardPanel
         {
             get { return FieldsPanel; }
         }

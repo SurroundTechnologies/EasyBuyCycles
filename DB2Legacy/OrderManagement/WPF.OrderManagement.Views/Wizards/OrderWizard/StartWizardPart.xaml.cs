@@ -27,11 +27,6 @@ namespace WPF.Wizards.OrderWizard
             am_AddStep(new AB_WizardStep(Step_Start, DescriptionResource.WIZARDSTART, DescriptionResource.ORDERENTRYWIZARD, "FlagGreen_large.png"));
         }
 
-        public override void am_InitializeOrResetWizardPart()
-        {
-
-        }
-
         public override void am_SetWizardButtonStates()
         {
             ap_BtnNextVisibility = Visibility.Visible;

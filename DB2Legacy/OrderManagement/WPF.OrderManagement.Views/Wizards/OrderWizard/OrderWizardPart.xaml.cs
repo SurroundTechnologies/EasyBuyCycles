@@ -8,6 +8,7 @@ using BOS.CustomerViewModel;
 using BOS.OrderDataEntity;
 using BOS.OrderItemDataEntity;
 using BOS.OrderItemViewModel;
+using BOS.OrderManagement.Shared;
 using BOS.OrderManagement.Shared.Properties;
 using BOS.OrderViewModel;
 using BOS.ShippingAddressDataEntity;
@@ -16,6 +17,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using WPF.Order;
@@ -48,15 +50,17 @@ namespace WPF.Wizards.OrderWizard
         {
             InitializeComponent();
 
-            _OrderDetail = new OrderDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(3), ap_MessageConsole, true));
-            _OrderDetail.NonWizardControlsVisibility = Visibility.Collapsed;
-            _OrderDetail.OrderDetailLayout.SetBinding(DataContextProperty, new Binding(nameof(CurrentOrderEntity))
+            _OrderDetail = new OrderDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(Constants.MODULE_Order), ap_MessageConsole, true));
+            _OrderDetail.OrderDetailWizardPanel.SetBinding(DataContextProperty, new Binding(nameof(CurrentOrderEntity))
             {
                 Source = this,
                 Mode = BindingMode.OneWay,
             });
 
-            presenter.Content = _OrderDetail.OrderDetailLayout;
+            var expanderOrdersInformation = _OrderDetail.OrderDetailWizardPanel.am_FindChildren<Expander>().First(x => x.Name == "Expander_OrdersInformation");
+            expanderOrdersInformation.Visibility = Visibility.Collapsed;
+
+            presenter.Content = _OrderDetail.OrderDetailWizardPanel;
             CurrentOrderEntity = new OrderEntity() { ap_RecordMode = AB_RecordMode.New };
 
             _SharedObject.NewOrderStarted += OnNewOrderStarted;
@@ -140,6 +144,13 @@ namespace WPF.Wizards.OrderWizard
 
             am_MarkCurrentStepComplete();
         }
+
+        private void OnNewOrderStarted(object sender, EventArgs e)
+        {
+            am_MarkStepIncomplete(Step_Order);
+        }
+
+        #region Record Processing
 
         private void ProcessRecords()
         {
@@ -394,10 +405,6 @@ namespace WPF.Wizards.OrderWizard
             }
         }
 
-        private void OnNewOrderStarted(object sender, EventArgs e)
-        {
-            am_MarkStepIncomplete(Step_Order);
-        }
-
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace WPF.ShippingAddress
 	{        
 		ShippingAddressVM _ViewModel;
 
-        public Panel ShippingAddressDetailLayout
+        public Panel ShippingAddressDetailWizardPanel
         {
             get { return FieldsPanel; }
         }

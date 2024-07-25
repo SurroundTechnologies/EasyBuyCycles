@@ -1510,7 +1510,7 @@ namespace BOS.OrderManagement.Shared.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proccessing Started.
+        ///   Looks up a localized string similar to Processing Started.
         /// </summary>
         public static string PROCESSINGSTARTED {
             get {

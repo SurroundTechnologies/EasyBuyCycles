@@ -4,42 +4,30 @@
 // <A4DN_Template Name="WPF.Module.Detail.t4" Version="8.0.0.93" GeneratedDate="5/29/2024" />
 // </A4DN_GeneratedInformation>
 //===============================================================================================
-using System.Collections.Generic;
-using System.Windows.Documents;
-using System.Globalization;
-using A4DN.Core.WPF.Base;
 using A4DN.Core.BOS.Base;
-using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.BOS.ViewModel;
+using A4DN.Core.WPF.Base;
 using BOS.OrderDataEntity;
 using BOS.OrderViewModel;
-using BOS.CustomerDataEntity;
-using System.Windows.Controls;
-using System.Windows;
-using System;
-using BOS.ShippingAddressViewModel;
 using BOS.ShippingAddressDataEntity;
+using BOS.ShippingAddressViewModel;
+using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WPF.Order
 {
-	/// <summary>
-	/// Interaction logic for OrderDetail.xaml
-	/// </summary>
-	public partial class OrderDetail : AB_DetailBase
+    /// <summary>
+    /// Interaction logic for OrderDetail.xaml
+    /// </summary>
+    public partial class OrderDetail : AB_DetailBase
 	{        
 		private OrderVM _ViewModel;
 
-        public Panel OrderDetailLayout
+        public Panel OrderDetailWizardPanel
         {
             get { return FieldsPanel; }
         }
-
-        public Visibility NonWizardControlsVisibility
-        {
-            get { return (Visibility)GetValue(NonWizardControlsVisibilityProperty); }
-            set { SetValue(NonWizardControlsVisibilityProperty, value); }
-        }
-        public static readonly DependencyProperty NonWizardControlsVisibilityProperty = DependencyProperty.Register("NonWizardControlsVisibility", typeof(Visibility), typeof(OrderDetail), new UIPropertyMetadata(Visibility.Visible));
 
 		/// <summary>
 		/// Type initializer / static constructor

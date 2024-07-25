@@ -4,6 +4,7 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderItemDataEntity;
+using BOS.OrderManagement.Shared;
 using BOS.OrderManagement.Shared.Properties;
 using System;
 using System.Windows;
@@ -40,14 +41,14 @@ namespace WPF.Wizards.OrderWizard
             InitializeComponent();
 
             CurrentOrderItemEntity = new OrderItemEntity() { ap_RecordMode = AB_RecordMode.New };
-            _OrderItemDetail = new OrderItemDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(2), ap_MessageConsole, true));
-            _OrderItemDetail.OrderItemDetailLayout.SetBinding(DataContextProperty, new Binding(nameof(CurrentOrderItemEntity))
+            _OrderItemDetail = new OrderItemDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(Constants.MODULE_OrderItem), ap_MessageConsole, true));
+            _OrderItemDetail.OrderItemDetailWizardPanel.SetBinding(DataContextProperty, new Binding(nameof(CurrentOrderItemEntity))
             {
                 Source = this,
                 Mode = BindingMode.OneWay,
             });
             _OrderItemDetail.Field_PurchaseOrderNumber.Visibility = Visibility.Collapsed;
-            itemsDetail.Content = _OrderItemDetail.OrderItemDetailLayout;
+            itemsDetail.Content = _OrderItemDetail.OrderItemDetailWizardPanel;
             dgOrderItems.ItemsSource = _SharedObject.OrderItems;
 
             _OrderItemDetail.Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;

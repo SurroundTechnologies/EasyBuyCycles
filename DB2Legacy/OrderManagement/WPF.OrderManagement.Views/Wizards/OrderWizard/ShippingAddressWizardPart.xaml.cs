@@ -2,6 +2,7 @@
 using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
+using BOS.OrderManagement.Shared;
 using BOS.OrderManagement.Shared.Properties;
 using BOS.ShippingAddressDataEntity;
 using System;
@@ -32,16 +33,16 @@ namespace WPF.Wizards.OrderWizard
         {
             InitializeComponent();
 
-            _ShippingAddressDetail = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(5), ap_MessageConsole, true));
-            _ShippingAddressDetailReadOnly = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(5), ap_MessageConsole, true));
-            _ShippingAddressDetailReadOnly.ShippingAddressDetailLayout.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
+            _ShippingAddressDetail = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(Constants.MODULE_ShippingAddress), ap_MessageConsole, true));
+            _ShippingAddressDetailReadOnly = new ShippingAddressDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(Constants.MODULE_Customer), ap_MessageConsole, true));
+            _ShippingAddressDetailReadOnly.ShippingAddressDetailWizardPanel.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
             {
                 Source = ddShipAddress,
                 Mode = BindingMode.OneWay
             });
 
-            addShipAddress.Content = _ShippingAddressDetail.ShippingAddressDetailLayout;
-            readOnlyDetail.Content = _ShippingAddressDetailReadOnly.ShippingAddressDetailLayout;
+            addShipAddress.Content = _ShippingAddressDetail.ShippingAddressDetailWizardPanel;
+            readOnlyDetail.Content = _ShippingAddressDetailReadOnly.ShippingAddressDetailWizardPanel;
 
             layoutRoot.DataContext = _SharedObject;
 
@@ -205,6 +206,5 @@ namespace WPF.Wizards.OrderWizard
                 _ShippingAddressDetailReadOnly.Field_PurchasePoints.IsReadOnly = true;
             }
         }
-
     }
 }

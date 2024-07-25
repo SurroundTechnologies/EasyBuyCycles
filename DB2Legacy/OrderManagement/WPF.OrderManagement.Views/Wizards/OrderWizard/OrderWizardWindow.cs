@@ -1,5 +1,4 @@
 ﻿using A4DN.Core.BOS.FrameworkEntity;
-using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
 using BOS.OrderManagement.Shared.Properties;
 using System;
@@ -22,10 +21,10 @@ namespace WPF.Wizards.OrderWizard
             am_AddWizardPart(typeof(OrderWizardPart));
             am_AddWizardPart(typeof(CompletionWizardPart));
 
-            SetupSummaryBlocks();
+            AddSummaryItemsToSummaryPanel();
         }
 
-        private void SetupSummaryBlocks()
+        private void AddSummaryItemsToSummaryPanel()
         {
             var sharedWizardObject = ap_SharedWizardObject as OrderWizardSharedObject;
 
@@ -46,10 +45,7 @@ namespace WPF.Wizards.OrderWizard
             Title = DescriptionResource.ORDERENTRYWIZARD;
             Icon = getWizardIcon();
 
-            base.am_SetParentProperties();
-
             ap_SharedObjectType = typeof(OrderWizardSharedObject);
-            //ap_SplashWindowType = typeof(OrderWizardSplash);
             ap_TreeViewIconsStyle = AB_TreeViewIconsStyles.LargeIcons;
             ap_ShowNavigator = true;
             ap_UseTransitions = false;
@@ -153,8 +149,6 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            // FIXME: When running the wizard standalone, it crashes when attempting to close.
-            // It is expecting type of Browser for some reason.
             base.OnClosing(e);
             ap_SharedWizardObject = null;
         }

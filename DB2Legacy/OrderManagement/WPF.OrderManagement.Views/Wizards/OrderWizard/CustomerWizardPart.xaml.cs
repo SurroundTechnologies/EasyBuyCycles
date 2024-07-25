@@ -3,6 +3,7 @@ using A4DN.Core.BOS.FrameworkEntity;
 using A4DN.Core.WPF.Base;
 using A4DN.Core.WPF.Base.WizardBase;
 using BOS.CustomerDataEntity;
+using BOS.OrderManagement.Shared;
 using BOS.OrderManagement.Shared.Properties;
 using System;
 using System.Collections.ObjectModel;
@@ -33,16 +34,16 @@ namespace WPF.Wizards.OrderWizard
         {
             InitializeComponent();
 
-            _CustomerDetail = new CustomerDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(1), ap_MessageConsole, true));
-            _CustomerDetailReadOnly = new CustomerDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(1), ap_MessageConsole, true));
-            _CustomerDetailReadOnly.WizardMainInfoPanel.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
+            _CustomerDetail = new CustomerDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(Constants.MODULE_Customer), ap_MessageConsole, true));
+            _CustomerDetailReadOnly = new CustomerDetail(new AB_DetailInitializationArgs(AB_SystemController.ap_SystemPropertyMethods.am_GetModuleEntity(Constants.MODULE_Customer), ap_MessageConsole, true));
+            _CustomerDetailReadOnly.CustomerDetailWizardPanel.SetBinding(DataContextProperty, new Binding("ap_CurrentSelectedEntity")
             {
                 Source = ddCustomer,
                 Mode = BindingMode.OneWay
             });
 
-            addCustomer.Content = _CustomerDetail.WizardMainInfoPanel;
-            readOnlyDetail.Content = _CustomerDetailReadOnly.WizardMainInfoPanel;
+            addCustomer.Content = _CustomerDetail.CustomerDetailWizardPanel;
+            readOnlyDetail.Content = _CustomerDetailReadOnly.CustomerDetailWizardPanel;
 
             _SharedObject.NewOrderStarted += OnNewOrderStarted;
         }

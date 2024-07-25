@@ -12,6 +12,8 @@ namespace WPF.Wizards.OrderWizard
 {
     public class OrderWizardSharedObject : AB_WizardSharedObjectBase
     {
+        #region Part Entities
+
         public CustomerEntity Customer { get; set; }
         public ObservableCollection<OrderItemEntity> OrderItems { get; set; } = new ObservableCollection<OrderItemEntity>();
         public ShippingAddressEntity ShippingAddress { get; set; }
@@ -35,9 +37,10 @@ namespace WPF.Wizards.OrderWizard
             }
         }
 
-        public int OrdersCreated { get; set; }
-        public decimal OrdersTotal { get; set; }
-        public decimal OrdersDiscountedTotal { get; set; }
+        #endregion
+
+        #region Summary Item Text Blocks
+
         public TextBlock CurrentOrderSummaryHeaderTextBlock { get; set; } = new TextBlock { Margin = new Thickness(5, 5, 5, 0) };
         public TextBlock CustomerSummaryItemTextBlock { get; set; } = new TextBlock { Margin = new Thickness(5, 0, 5, 0) };
         public TextBlock OrderItemsSummaryItemTextBlock { get; set; } = new TextBlock { Margin = new Thickness(5, 0, 5, 0) };
@@ -45,6 +48,17 @@ namespace WPF.Wizards.OrderWizard
         public TextBlock WizardSessionSummaryHeaderTextBlock { get; set; } = new TextBlock { Margin = new Thickness(5, 0, 5, 0) };
         public TextBlock WizardSessionSummaryContentsTextBlock { get; set; } = new TextBlock { Margin = new Thickness(5, 0, 5, 5) };
 
+        #endregion
+
+        #region Wizard Session Summary Properties
+
+        public int OrdersCreated { get; set; }
+        public decimal OrdersTotal { get; set; }
+        public decimal OrdersDiscountedTotal { get; set; }
+
+        #endregion
+
+        #region Event Handlers
 
         public event EventHandler RecordsProcessed;
         protected void OnRecordsProcessed()
@@ -58,6 +72,10 @@ namespace WPF.Wizards.OrderWizard
             NewOrderStarted?.Invoke(this, EventArgs.Empty);
         }
 
+        #endregion
+
+        #region Methods
+
         public void ResetPropertiesForNextLoop()
         {
             Order = null;
@@ -68,5 +86,7 @@ namespace WPF.Wizards.OrderWizard
             OrderItemsSummaryItemTextBlock.Text = string.Empty;
             ShippingAddressSummaryItemTextBlock.Text = string.Empty;
         }
+
+        #endregion
     }
 }
