@@ -50,7 +50,7 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void am_EnrollWizardSteps()
         {
-            am_AddStep(new AB_WizardStep(Step_Customer, DescriptionResource.CUSTOMER, DescriptionResource.ENTERCUSTOMERINFORMATION, "Customer.png"));
+            am_AddStep(new AB_WizardStep(Step_Customer, DescriptionResource.CUSTOMER, DescriptionResource.ENTERCUSTOMERINFORMATION, "Customer_small.png"));
         }
 
         public override void am_InitializeOrResetWizardPart()

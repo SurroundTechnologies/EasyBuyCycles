@@ -29,7 +29,7 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void am_EnrollWizardSteps()
         {
-            am_AddStep(new AB_WizardStep(Step_Completion, DescriptionResource.COMPLETION, DescriptionResource.ORDERSUCCESSFULLYCREATED, "ShoppingCartBlueOk_large.png"));
+            am_AddStep(new AB_WizardStep(Step_Completion, DescriptionResource.COMPLETION, DescriptionResource.ORDERSUCCESSFULLYCREATED, "ShoppingCartBlueOk_small.png"));
         }
 
         public override void am_SetWizardButtonStates()

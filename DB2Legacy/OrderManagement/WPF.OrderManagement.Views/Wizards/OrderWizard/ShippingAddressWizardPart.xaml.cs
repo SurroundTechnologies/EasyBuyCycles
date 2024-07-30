@@ -51,7 +51,7 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void am_EnrollWizardSteps()
         {
-            am_AddStep(new AB_WizardStep(Step_ShippingAddress, DescriptionResource.SHIPPING, DescriptionResource.ENTERSHIPPINGADDRESSINFORMATION, "ShippingAddress.png"));
+            am_AddStep(new AB_WizardStep(Step_ShippingAddress, DescriptionResource.SHIPPING, DescriptionResource.ENTERSHIPPINGADDRESSINFORMATION, "ShippingAddress"));
         }
 
         public override void am_InitializeOrResetWizardPart()

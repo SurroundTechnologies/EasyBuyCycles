@@ -68,7 +68,7 @@ namespace WPF.Wizards.OrderWizard
 
         protected override void am_EnrollWizardSteps()
         {
-            am_AddStep(new AB_WizardStep(Step_Order, DescriptionResource.ORDERCONFIRMATION, DescriptionResource.ENTERORDERINFORMATION, "Order.png"));
+            am_AddStep(new AB_WizardStep(Step_Order, DescriptionResource.ORDERCONFIRMATION, DescriptionResource.ENTERORDERINFORMATION, "Order_small.png"));
         }
 
         public override void am_InitializeOrResetWizardPart()
