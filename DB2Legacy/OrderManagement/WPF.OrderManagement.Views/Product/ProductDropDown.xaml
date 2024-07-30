@@ -53,9 +53,6 @@
     <base:AB_DropDownBase.ap_BelowComboBox>
         <base:AB_DropdownDetailControl>
             <StackPanel Margin="0 0 0 0" Visibility="{Binding Path=., Converter={StaticResource nullCheckToVis}}">
-                <TextBox Text="{Binding Code, Mode=OneWay}"
-                      Style="{StaticResource NoBorderTextBoxStyle}"
-                      Visibility="{Binding Code, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
                 <TextBox Text="{Binding Category, Mode=OneWay}"
                       Style="{StaticResource NoBorderTextBoxStyle}"
                       Visibility="{Binding Category, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
@@ -65,9 +62,6 @@
                 <TextBox Text="{Binding Description, Mode=OneWay}" TextWrapping="Wrap"
                          Style="{StaticResource NoBorderTextBoxStyle}"
                          Visibility="{Binding Description, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
-                <TextBox Text="{Binding ImagePath, Mode=OneWay}" TextWrapping="Wrap"
-                         Style="{StaticResource NoBorderTextBoxStyle}"
-                         Visibility="{Binding ImagePath, Mode=OneWay, Converter={StaticResource nullCheckToVis}}" />
             </StackPanel>
         </base:AB_DropdownDetailControl>
     </base:AB_DropDownBase.ap_BelowComboBox>
