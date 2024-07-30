@@ -72,6 +72,7 @@ namespace BOS.ProductDataEntity
         public static AB_PropertyMetadata<string> CodeProperty = am_CreatePropertyMetaData<string>(nameof(Code), DescriptionResource.CODE, null); 
 
         [Display(Name = "NAME", ResourceType = typeof(DescriptionResource))]
+        [AB_RequiredField]
         [AB_Length(50)]
         [AB_BroadcastMember("ProductName", AB_DataShouldBePassed.OnPreload)]
         [DataMember]

@@ -75,7 +75,6 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
@@ -87,14 +86,14 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <!-- Put More Code Here -->
-                                <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="0" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}" Margin="0,0,10,5" HorizontalAlignment="Left" Width="237" />
+                                <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="0" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Code" ap_PropertyMetaData="{x:Static entity:ProductEntity.CodeProperty}" Margin="0,0,10,5" HorizontalAlignment="Left" Width="237" FontWeight="Bold" />
                                 <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="1" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_StandardCost" ap_PropertyMetaData="{x:Static entity:ProductEntity.StandardCostProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
                                 <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="2" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_ListPrice" ap_PropertyMetaData="{x:Static entity:ProductEntity.ListPriceProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
                                 <base:AB_FieldWithLabel ap_LabelWidth="90" Grid.Row="3" Grid.Column="0" ap_LabelPosition="Left" x:Name="Field_Margin" ap_PropertyMetaData="{x:Static entity:ProductEntity.MarginProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="237" />
-                                <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}" Margin="0,0,5,5" HorizontalAlignment="Left" Width="189" />
-                                <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
-                                <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="189" />
-                                <base:AB_CheckBoxWithLabel Grid.Row="3" Grid.Column="1" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" ap_LabelPosition="Left"/>
+                                <base:AB_FieldWithLabel Grid.Row="0" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_TargetLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.TargetLevelProperty}" Margin="0,0,5,5" HorizontalAlignment="Left" Width="220" ap_LabelWidth="175" />
+                                <base:AB_FieldWithLabel Grid.Row="1" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_MinimumReorderQuantity" ap_PropertyMetaData="{x:Static entity:ProductEntity.MinimumReorderQuantityProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="220" ap_LabelWidth="175"  />
+                                <base:AB_FieldWithLabel Grid.Row="2" Grid.Column="1" ap_LabelPosition="Left" x:Name="Field_ReorderLevel" ap_PropertyMetaData="{x:Static entity:ProductEntity.ReorderLevelProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="220" ap_LabelWidth="175" />
+                                <base:AB_CheckBoxWithLabel Grid.Row="3" Grid.Column="1" ap_PropertyMetaData="{x:Static entity:ProductEntity.DiscontinuedProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" ap_LabelPosition="Left" Width="220" ap_LabelWidth="175"/>
                             </Grid>
                             <base:AB_FieldWithLabel ap_LabelWidth="90" ap_LabelPosition="Left" x:Name="Field_ImagePath" ap_PropertyMetaData="{x:Static entity:ProductEntity.ImagePathProperty}" Margin="0,0,0,5" HorizontalAlignment="Left" Width="725" DockPanel.Dock="Top" />
                         </DockPanel>
