@@ -22,17 +22,17 @@ namespace WPF.OrderManagement
         {
             InitializeComponent();
 
-			// Multilingual Support
-			//am_EnrollCulture(new List<System.Globalization.CultureInfo>() {
-            //    new System.Globalization.CultureInfo("en-US"),
-            //    new System.Globalization.CultureInfo("es-ES"),
-            //    new System.Globalization.CultureInfo("fr-FR"),
-            //    new System.Globalization.CultureInfo("ja-JP"),
-            //    new System.Globalization.CultureInfo("pt-BR"),
-            //    new System.Globalization.CultureInfo("zh-CN"),
-            //});
+            // Multilingual Support
+            am_EnrollCulture(new List<System.Globalization.CultureInfo>() {
+                new System.Globalization.CultureInfo("en-US"),
+                new System.Globalization.CultureInfo("es-ES"),
+                new System.Globalization.CultureInfo("fr-FR"),
+                new System.Globalization.CultureInfo("ja-JP"),
+                new System.Globalization.CultureInfo("pt-BR"),
+                new System.Globalization.CultureInfo("zh-CN"),
+            });
 
-            //ap_LanguageComboBoxVisibility = Visibility.Visible;
+            ap_LanguageComboBoxVisibility = Visibility.Visible;
         }
     }
 }
