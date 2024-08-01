@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:logonBase="clr-namespace:A4DN.Core.WPF.LogonBase;assembly=A4DN.Core.WPF.LogonBase"
     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-    Title="{x:Static systemSharedProperties:DescriptionResource.LOGONTITLETEXT}" ap_ContentHorizontalAlignment="Left">
+    Title="{x:Static systemSharedProperties:DescriptionResource.LOGONTITLETEXT}" ap_ContentHorizontalAlignment="Left"
+    Height="280">
     <Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

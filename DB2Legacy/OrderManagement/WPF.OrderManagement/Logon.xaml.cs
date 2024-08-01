@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using A4DN.Core.WPF.LogonBase;
 
 namespace WPF.OrderManagement
@@ -33,6 +34,14 @@ namespace WPF.OrderManagement
             });
 
             ap_LanguageComboBoxVisibility = Visibility.Visible;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            var versionSP = this.Template.FindName("PanelVersion", this) as StackPanel;
+            versionSP.Margin = new Thickness(5, 2, 10, 10);
+
+            base.OnApplyTemplate();
         }
     }
 }
