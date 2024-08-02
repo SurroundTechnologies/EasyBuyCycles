@@ -8,8 +8,8 @@
     <Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Image Height="70" Width="70"  Source="/WPF.OrderManagement.Shared;component/images/EasyBuyv4Logo_256_256_32.png"/>
-            <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.LOGONSYSTEMNAME}" Margin="5,0,0,0" FontSize="24" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource PrimaryLogoBrush}"/>
+            <Image Height="60"  Source="/WPF.OrderManagement.Shared;component/Images/EasyBuyHorizontalSquareLogo.png" />
+            <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.LOGONSYSTEMNAME}" Margin="20,0,10,0" FontSize="24" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource PrimaryLogoBrush}"/>
         </StackPanel>
 
     </Grid>
