@@ -18,8 +18,7 @@
     </base:AB_ContentWindowBase.Resources>
 	<base:AB_ContentWindowBase.ap_DataContainers>
         <base:AB_DataGrid ap_Style="{DynamicResource AB_DataGridDefaultStyle}" base:AB_ContentWindow.ap_IsDefaultContainer="True" base:AB_ContentWindow.ap_IsDefaultSearchAndSelectContainer="True" base:AB_ContentWindow.ap_IsDefaultFilterContainer="True" />
-		<base:AB_ListBox ap_Style="{StaticResource DefaultCardStyle}"/>
-		<base:AB_ListBox ap_Style="{StaticResource AlbumCardStyle}"/>
+		
     </base:AB_ContentWindowBase.ap_DataContainers>
     <!--<base:AB_ContentWindowBase.ap_DataPresentationStyles>
         <base:AB_StyleHolder ap_Style="{DynamicResource AB_DataGridDefaultStyle}" ap_IsDefault="True" />
