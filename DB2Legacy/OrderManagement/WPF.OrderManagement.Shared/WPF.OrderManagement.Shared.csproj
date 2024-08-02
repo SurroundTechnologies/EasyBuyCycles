@@ -303,4 +303,9 @@
   <ItemGroup>
     <Resource Include="Images\EasyBuyCycleOrderEntryWizard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EasyBuyHorizontalLogo.png" />
+    <Resource Include="Images\EasyBuyHorizontalSquareLogo.png" />
+    <Resource Include="Images\EasyBuyVerticalSquareLogo.png" />
+  </ItemGroup>
 </Project>
