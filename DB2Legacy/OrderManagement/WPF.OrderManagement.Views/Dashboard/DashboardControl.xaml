@@ -20,10 +20,17 @@
                                                      Width="800" Margin="5" VerticalAlignment="Top"
                                                      ap_Title="{x:Static systemSharedProperties:DescriptionResource.RECENTORDERS}"
                                                      ap_LoadAutomatically="True" />
+
                 <local:PopularProductsImagesDashboardPart x:Name="PopularProductsImages"
                                                           Width="800" Margin="5"
                                                           ap_Title="{x:Static systemSharedProperties:DescriptionResource.POPULARPRODUCTS}"
                                                           ap_LoadAutomatically="True" />
+
+                <local:ProductOrdersDashboardPart x:Name="ProductOrders"
+                                                  Width="400" Height="450" Margin="5"
+                                                  ap_Title="{x:Static systemSharedProperties:DescriptionResource.POPULARPRODUCTS}"
+                                                  ap_LoadAutomatically="True" />
+
                 <!--<local:WeatherInfoDashboardPart x:Name="WeatherInfo"
                                                 Width="1610" Height="800" Margin="5" VerticalAlignment="Top"
                                                 ap_Title="{x:Static systemSharedProperties:DescriptionResource.WEATHER}"

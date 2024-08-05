@@ -1,0 +1,63 @@
+﻿<db:AB_DashboardPart Name="ordersPart"
+                     x:Class="WPF.Dashboard.ProductOrdersDashboardPart"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
+                     xmlns:db="clr-namespace:A4DN.Core.WPF.Base.DataPresentation.Dashboard;assembly=A4DN.Core.WPF.Base"
+                     xmlns:System_Windows_Controls_DataVisualization_Charting_Primitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=DotNetProjects.DataVisualization.Toolkit"
+                     xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
+                     xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
+                     d:DesignHeight="500"
+                     d:DesignWidth="600"
+                     mc:Ignorable="d">
+    <Grid>
+        <TextBlock Name="tbNoRecords" Text="{x:Static systemSharedProperties:DescriptionResource.NORECORDS}"
+                   Visibility="Collapsed" FontSize="14" FontWeight="Bold" Foreground="Red" />
+
+        <charting:Chart Name="chart" BorderThickness="0">
+            <charting:Chart.Series>
+                <charting:PieSeries ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type db:AB_DashboardPart}}, Path=OrderItems}"
+                                    DependentValueBinding="{Binding Quantity}"
+                                    IndependentValueBinding="{Binding ProductName}" />
+            </charting:Chart.Series>
+            <charting:Chart.Template>
+                <ControlTemplate TargetType="{x:Type charting:Chart}">
+                    <Border Padding="10"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <datavis:Title Style="{TemplateBinding TitleStyle}" Content="{TemplateBinding Title}" />
+
+                            <Grid Grid.Row="1" Margin="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <System_Windows_Controls_DataVisualization_Charting_Primitives:EdgePanel x:Name="ChartArea"
+                                                                                                         Grid.Row="0"
+                                                                                                         Width="240" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                                                                         Style="{TemplateBinding ChartAreaStyle}">
+                                    <Grid Panel.ZIndex="-1" Style="{TemplateBinding PlotAreaStyle}" />
+                                    <Border Panel.ZIndex="10"
+                                            BorderBrush="#FF919191" BorderThickness="1" />
+                                </System_Windows_Controls_DataVisualization_Charting_Primitives:EdgePanel>
+
+                                <datavis:Legend x:Name="Legend"
+                                                Grid.Row="1" HorizontalAlignment="Stretch"
+                                                Style="{TemplateBinding LegendStyle}" />
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </charting:Chart.Template>
+        </charting:Chart>
+    </Grid>
+</db:AB_DashboardPart>
