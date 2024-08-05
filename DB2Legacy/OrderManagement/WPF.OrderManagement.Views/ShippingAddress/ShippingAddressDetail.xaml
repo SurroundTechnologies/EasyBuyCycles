@@ -64,7 +64,7 @@
                                         <ColumnDefinition Width="50" />
                                         <ColumnDefinition Width="217" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" />
+                                    <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" />
                                     <TextBlock x:Name="Field_Memo_Char_Counter" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" />
                                 </Grid>
                                 <base:AB_FieldWithLabel ap_LabelPosition="Left" ap_AllowMultilineInput="True" ap_FillAvailableSpace="True" ap_LabelVisibility="Collapsed" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:ShippingAddressEntity.MemoProperty}"  Margin="0,0,0,5"  HorizontalAlignment="Left" Height="65" Width="270" />
