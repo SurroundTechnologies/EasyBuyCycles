@@ -178,6 +178,21 @@ namespace WPF.ShippingAddress
 			
 		}
 
+        private void Email_Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(((ShippingAddressEntity)ap_CurrentEntity).Email))            {
+                System.Diagnostics.Process.Start("mailto:" + ((ShippingAddressEntity)ap_CurrentEntity).Email);
+            }
+        }
+
+        private void Telephone_Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(((ShippingAddressEntity)ap_CurrentEntity).Telephone))
+            {
+                System.Diagnostics.Process.Start("callto:" + ((ShippingAddressEntity)ap_CurrentEntity).Telephone);
+            }
+        }
+
         protected override void Dispose(bool Disposing)
         {
             if (Disposing)
