@@ -124,7 +124,7 @@
                                         <ColumnDefinition Width="50" />
                                         <ColumnDefinition Width="297" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Margin="5,0,0,0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" />
+                                    <TextBlock Margin="5,0,0,0" Text="{x:Static systemSharedProperties:DescriptionResource.MEMO}" VerticalAlignment="Top" Grid.Column="0" />
                                     <TextBlock x:Name="Field_Memo_Char_Counter" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=MemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" />
                                 </Grid>
                                 <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" Grid.Row="1" Grid.RowSpan="2" ap_LabelWidth="0" ap_AllowMultilineInput="True" Height="55" ap_LabelPosition="Top" ap_FillAvailableSpace="True" x:Name="Field_Memo" ap_PropertyMetaData="{x:Static entity:CustomerEntity.MemoProperty}" Margin="5,0,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="346" />

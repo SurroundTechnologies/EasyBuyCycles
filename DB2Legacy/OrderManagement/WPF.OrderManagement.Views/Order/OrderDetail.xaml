@@ -59,7 +59,7 @@
                                             <ColumnDefinition Width="100" />
                                             <ColumnDefinition Width="167" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.ORDERMEMO}" VerticalAlignment="Top" Grid.Column="0" />
+                                        <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.ORDERMEMO}" VerticalAlignment="Top" Grid.Column="0" />
                                         <TextBlock x:Name="Field_OrderMemo_Char_Counter" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=OrderMemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" />
                                     </Grid>
                                     <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" ap_LabelPosition="Top" x:Name="Field_OrderMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.OrderMemoProperty}"  Margin="0,0,0,5" ap_FillAvailableSpace="True" ap_AllowMultilineInput="True" Height="95" HorizontalAlignment="Left" Width="270" />
@@ -70,7 +70,7 @@
                                             <ColumnDefinition Width="100" />
                                             <ColumnDefinition Width="177" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Margin="10,0,0,0" FontWeight="Bold" Text="{x:Static systemSharedProperties:DescriptionResource.DELIVERYMEMO}" VerticalAlignment="Top" Grid.Column="0" />
+                                        <TextBlock Margin="10,0,0,0" Text="{x:Static systemSharedProperties:DescriptionResource.DELIVERYMEMO}" VerticalAlignment="Top" Grid.Column="0" />
                                         <TextBlock x:Name="Field_DeliveryMemo_Char_Counter" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding Path=DeliveryMemoCharacterCountStr}" FontStyle="Italic" Grid.Column="1" />
                                     </Grid>
                                     <base:AB_FieldWithLabel ap_LabelVisibility="Collapsed" ap_LabelPosition="Top" x:Name="Field_DeliveryMemo" ap_PropertyMetaData="{x:Static entity:OrderEntity.DeliveryMemoProperty}"  Margin="10,0,0,5" ap_FillAvailableSpace="True" ap_AllowMultilineInput="True" Height="95" HorizontalAlignment="Left" Width="270" />
