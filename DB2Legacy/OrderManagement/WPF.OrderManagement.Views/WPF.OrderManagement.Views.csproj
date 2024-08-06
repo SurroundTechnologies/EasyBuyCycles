@@ -36,9 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="A4DN.Core.WPF.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Accelerator for .NET\Master\Core\DotNetDebug\A4DN.Core.WPF.Controls.dll</HintPath>
+    <Reference Include="A4DN.Core.WPF.Controls, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.WPF.Controls.dll</HintPath>
     </Reference>
     <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>..\NuGetPackages\DotNetProjects.WpfToolkit.DataVisualization.6.1.94\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
