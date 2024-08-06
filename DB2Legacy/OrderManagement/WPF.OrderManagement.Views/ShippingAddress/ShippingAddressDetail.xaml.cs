@@ -81,7 +81,9 @@ namespace WPF.ShippingAddress
 			
 			// View Model
 			_ViewModel = FindResource("ShippingAddressVM") as ShippingAddressVM;
-			ap_ViewModel = _ViewModel; 
+			ap_ViewModel = _ViewModel;
+			
+			AddressControls.MessageConsole = ap_MessageConsole;
 
 		}
 		
