@@ -8,34 +8,34 @@
                                xmlns:local="clr-namespace:WPF.Dashboard"
                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                mc:Ignorable="d">
-    <dp:AB_DashboardModuleExplorer.ap_Dashboard>
-        <dp:AB_Dashboard ap_VerticalScrollBarVisibility="Auto">
-            <!--  Layout (Grid)  -->
-            <dp:AB_Dashboard.ap_DashboardLayout>
-                <WrapPanel />
-            </dp:AB_Dashboard.ap_DashboardLayout>
-            <!--  Dashboard Parts  -->
-            <dp:AB_Dashboard.ap_DashboardParts>
-                <local:FiveRecentOrdersDashboardPart x:Name="FiveRecentOrders"
+	<dp:AB_DashboardModuleExplorer.ap_Dashboard>
+		<dp:AB_Dashboard ap_VerticalScrollBarVisibility="Auto">
+			<!--  Layout (Grid)  -->
+			<dp:AB_Dashboard.ap_DashboardLayout>
+				<WrapPanel />
+			</dp:AB_Dashboard.ap_DashboardLayout>
+			<!--  Dashboard Parts  -->
+			<dp:AB_Dashboard.ap_DashboardParts>
+				<local:FiveRecentOrdersDashboardPart x:Name="FiveRecentOrders"
                                                      Width="800" Margin="5" VerticalAlignment="Top"
                                                      ap_Title="{x:Static systemSharedProperties:DescriptionResource.RECENTORDERS}"
                                                      ap_LoadAutomatically="True" />
 
-                <local:PopularProductsImagesDashboardPart x:Name="PopularProductsImages"
-                                                          Width="800" Margin="5"
+				<local:PopularProductsImagesDashboardPart x:Name="PopularProductsImages"
+                                                          Width="800" Margin="5" VerticalAlignment="Top"
                                                           ap_Title="{x:Static systemSharedProperties:DescriptionResource.POPULARPRODUCTS}"
                                                           ap_LoadAutomatically="True" />
 
-                <local:ProductOrdersDashboardPart x:Name="ProductOrders"
-                                                  Width="400" Height="450" Margin="5"
+				<local:ProductOrdersDashboardPart x:Name="ProductOrders"
+                                                  Width="400" Height="450" Margin="5" VerticalAlignment="Top"
                                                   ap_Title="{x:Static systemSharedProperties:DescriptionResource.POPULARPRODUCTS}"
                                                   ap_LoadAutomatically="True" />
 
-                <!--<local:WeatherInfoDashboardPart x:Name="WeatherInfo"
+				<!--<local:WeatherInfoDashboardPart x:Name="WeatherInfo"
                                                 Width="1610" Height="800" Margin="5" VerticalAlignment="Top"
                                                 ap_Title="{x:Static systemSharedProperties:DescriptionResource.WEATHER}"
                                                 ap_LoadAutomatically="True" />-->
-            </dp:AB_Dashboard.ap_DashboardParts>
-        </dp:AB_Dashboard>
-    </dp:AB_DashboardModuleExplorer.ap_Dashboard>
+			</dp:AB_Dashboard.ap_DashboardParts>
+		</dp:AB_Dashboard>
+	</dp:AB_DashboardModuleExplorer.ap_Dashboard>
 </dp:AB_DashboardModuleExplorer>

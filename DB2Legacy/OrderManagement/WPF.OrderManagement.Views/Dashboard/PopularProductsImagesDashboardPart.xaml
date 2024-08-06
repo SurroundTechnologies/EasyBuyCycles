@@ -6,8 +6,10 @@
                      xmlns:db="clr-namespace:A4DN.Core.WPF.Base.DataPresentation.Dashboard;assembly=A4DN.Core.WPF.Base"
                      xmlns:local="clr-namespace:WPF.Dashboard"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:baseControls="clr-namespace:A4DN.Core.WPF.Controls;assembly=A4DN.Core.WPF.Controls"
                      xmlns:systemSharedProperties="clr-namespace:BOS.OrderManagement.Shared.Properties;assembly=BOS.OrderManagement.Shared"
-                     mc:Ignorable="d">
+                     mc:Ignorable="d"
+                     Height="450">
     <db:AB_DashboardPart.Resources>
         <DataTemplate x:Key="buttonTemplate">
             <Grid>
@@ -20,32 +22,50 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
-                       Width="50" Height="50" Margin="0 0 0 0" HorizontalAlignment="Left"
+                <Image Grid.Row="0"
+                       Grid.RowSpan="2"
+                       Grid.Column="0"
+                       Width="50"
+                       Height="50"
+                       Margin="0 0 0 0"
+                       HorizontalAlignment="Left"
                        Source="{Binding Path=ImagePath, FallbackValue=http://services.surroundtech.com/EasyBuyCycles/ProductPhoto/no_image_available_large.png}" />
 
                 <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.PRODUCTNAME}"
-                           Grid.Row="0" Grid.Column="1"
-                           Margin="10 0 0 0" HorizontalAlignment="Right"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Margin="10 0 0 0"
+                           HorizontalAlignment="Right"
                            FontWeight="Bold" />
                 <TextBlock Text="{x:Static systemSharedProperties:DescriptionResource.PRODUCTCODE}"
-                           Grid.Row="1" Grid.Column="1"
-                           Margin="10 0 0 0" HorizontalAlignment="Right"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="10 0 0 0"
+                           HorizontalAlignment="Right"
                            FontWeight="Bold" />
                 <TextBlock Text="{Binding Path=Name}"
-                           Grid.Row="0" Grid.Column="2"
+                           Grid.Row="0"
+                           Grid.Column="2"
                            Margin="5 0 0 0"
                            TextTrimming="CharacterEllipsis" />
                 <TextBlock Text="{Binding Path=Code}"
-                           Grid.Row="1" Grid.Column="2"
+                           Grid.Row="1"
+                           Grid.Column="2"
                            Margin="5 0 0 0"
                            TextTrimming="CharacterEllipsis" />
             </Grid>
         </DataTemplate>
     </db:AB_DashboardPart.Resources>
     <Grid>
-        <TextBlock Name="tbNoRecords" Text="{x:Static systemSharedProperties:DescriptionResource.NORECORDS}"
-                   FontSize="14" FontWeight="Bold" Foreground="Red" Visibility="Collapsed" />
-        <StackPanel Name="buttonsPanel" Margin="0 5 0 0" />
+        <TextBlock Name="tbNoRecords"
+                   Text="{x:Static systemSharedProperties:DescriptionResource.NORECORDS}"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Foreground="Red"
+                   Visibility="Collapsed" />
+        <baseControls:AB_Spinner x:Name="LoadingSpinner" />
+        <StackPanel Name="buttonsPanel"
+                    Margin="0 5 0 0"
+                    Visibility="Collapsed" />
     </Grid>
 </db:AB_DashboardPart>
