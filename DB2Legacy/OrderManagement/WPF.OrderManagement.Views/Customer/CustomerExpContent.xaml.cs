@@ -75,35 +75,35 @@ namespace WPF.Customer
             ap_MainDetailType = typeof(CustomerDetail);
 
             ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(Constants.MODULE_Customer, typeof(CustomerDetail), 0, items => (from CustomerEntity item in items
-                                                                                                       select new TreeEntity
-                                                                                                       {
-                                                                                                           Name = item.Name,
-                                                                                                           ID = item.CustomerInternalID.Value,
-                                                                                                           Address_Quantity = item.BillingAddressLine,
-                                                                                                           Telephone_PONumber_UnitPrice = item.Telephone,
-                                                                                                           Email_OrderDate_Price = item.Email,
-                                                                                                           ap_Entity = item
-                                                                                                       })));
+                                                                                                                               select new TreeEntity
+                                                                                                                               {
+                                                                                                                                   Name = item.Name,
+                                                                                                                                   ID = item.CustomerInternalID.Value,
+                                                                                                                                   Address_Quantity = item.BillingAddressLine,
+                                                                                                                                   Telephone_PONumber_UnitPrice = item.Telephone,
+                                                                                                                                   Email_OrderDate_Price = item.Email,
+                                                                                                                                   ap_Entity = item
+                                                                                                                               })));
             ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(Constants.MODULE_Order, "OrderDetail", 1, items => (from OrderEntity item in items
-                                                                                              select new TreeEntity
-                                                                                              {
-                                                                                                  Name = item.ShippingAddressName,
-                                                                                                  ID = item.OrderInternalID.Value,
-                                                                                                  Address_Quantity = item.ShippingAddressLine,
-                                                                                                  Telephone_PONumber_UnitPrice = item.PurchaseOrderNumberID,
-                                                                                                  Email_OrderDate_Price = item.OrderDate.GetValueOrDefault().ToShortDateString(),
-                                                                                                  ap_Entity = item
-                                                                                              }).OrderBy(x => (x.ap_Entity as OrderEntity).OrderInternalID)));
+                                                                                                                   select new TreeEntity
+                                                                                                                   {
+                                                                                                                       Name = item.ShippingAddressName,
+                                                                                                                       ID = item.OrderInternalID.Value,
+                                                                                                                       Address_Quantity = item.ShippingAddressLine,
+                                                                                                                       Telephone_PONumber_UnitPrice = item.PurchaseOrderNumberID,
+                                                                                                                       Email_OrderDate_Price = item.OrderDate.GetValueOrDefault().ToShortDateString(),
+                                                                                                                       ap_Entity = item
+                                                                                                                   }).OrderBy(x => (x.ap_Entity as OrderEntity).OrderInternalID)));
             ap_ModuleDetails.Add(new AB_ModuleDetailDefinition(Constants.MODULE_OrderItem, "OrderItemDetail", 2, items => (from OrderItemEntity item in items
-                                                                                                  select new TreeEntity
-                                                                                                  {
-                                                                                                      Name = item.ProductName,
-                                                                                                      ID = item.ProductInternalID.Value,
-                                                                                                      Address_Quantity = item.Quantity.GetValueOrDefault().ToString(),
-                                                                                                      Telephone_PONumber_UnitPrice = "$" + item.UnitPrice.ToString(),
-																									  Email_OrderDate_Price = "$" + item.OrderPrice.ToString(),
-                                                                                                      ap_Entity = item
-                                                                                                  }).OrderBy(x => (x.ap_Entity as OrderItemEntity).OrderItemInternalID)));
+                                                                                                                           select new TreeEntity
+                                                                                                                           {
+                                                                                                                               Name = item.ProductName,
+                                                                                                                               ID = item.ProductInternalID.Value,
+                                                                                                                               Address_Quantity = item.Quantity.GetValueOrDefault().ToString(),
+                                                                                                                               Telephone_PONumber_UnitPrice = "$" + item.UnitPrice.ToString(),
+                                                                                                                               Email_OrderDate_Price = "$" + item.OrderPrice.ToString(),
+                                                                                                                               ap_Entity = item
+                                                                                                                           }).OrderBy(x => (x.ap_Entity as OrderItemEntity).OrderItemInternalID)));
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace WPF.Customer
                 DisplayMemberBinding = new Binding("ID"),
                 Width = 80,
                 Header = "ID"
-			});
+            });
 
             columns.Add(new AB_TreeListViewColumn
             {
@@ -176,69 +176,78 @@ namespace WPF.Customer
             }
         }
 
-        private void _FetchOrders(object sender, DoWorkEventArgs e)
+        private void _FetchOrders(TreeEntity treeEntity)
         {
-            var treeEntity = (TreeEntity)e.Argument;
             var customer = (CustomerEntity)treeEntity.ap_Entity;
 
             var searchEntity = new OrderEntity { CustomerInternalID = customer.CustomerInternalID };
             var inArgs = new AB_SelectInputArgs<OrderEntity>("YD10", AB_SearchMethods.InitialSearch, searchEntity, searchEntity.am_BuildDefaultQuery(), 25, true);
 
-            var orderVM = new OrderVM();
-
-            e.Result = new object[] { orderVM.am_Select(inArgs), treeEntity };
-        }
-
-        private void _FetchOrders_Complete(object sender, RunWorkerCompletedEventArgs e)
-        {
-            var args = (object[])e.Result;
-
-            var retArgs = (AB_SelectReturnArgs<OrderEntity>)args[0];
-            var treeEntity = (TreeEntity)args[1];
-
-            if (retArgs != null && retArgs.ap_ReturnCode == "OK")
-            {
-                var levelSetting = ap_DataPresenter.ap_TreeList.ap_LevelSettings.FirstOrDefault(o => o.ap_Level == (treeEntity.ap_Level + 1));
-                if (levelSetting != null && levelSetting.ap_DataTransform != null)
+            AB_WPFHelperMethods.am_CallInBackground(
+                beforeBackground: () =>
                 {
-                    var list = levelSetting.ap_DataTransform(retArgs.ap_RecordSet).ToList();
-                    list.ForEach(o => treeEntity.ap_Children.Add(o));
+                    ap_ModuleExplorerComponent.am_StartSpinner();
+                },
+                inBackground: () =>
+                {
+                    using (var vm = new OrderVM())
+                    {
+                        return vm.am_Select(inArgs).am_Cast<OrderEntity>();
+                    }
+                },
+                onSuccess: (retArgs) =>
+                {
+                    var levelSetting = ap_DataPresenter.ap_TreeList.ap_LevelSettings.FirstOrDefault(o => o.ap_Level == (treeEntity.ap_Level + 1));
+                    if (levelSetting != null && levelSetting.ap_DataTransform != null)
+                    {
+                        var list = levelSetting.ap_DataTransform(retArgs.ap_RecordSet).ToList();
+                        list.ForEach(o => treeEntity.ap_Children.Add(o));
+                    }
+                    ap_ModuleExplorerComponent.am_StopSpinner();
+                },
+                onError: (retArgs) =>
+                {
+                    am_AddMessages(retArgs.ap_Messages, true);
+                    ap_ModuleExplorerComponent.am_StopSpinner();
                 }
-            }
-
-            ap_ModuleExplorerComponent.am_StopSpinner();
+            );
         }
 
-        private void _FetchOrderItems(object sender, DoWorkEventArgs e)
+        private void _FetchOrderItems(TreeEntity treeEntity)
         {
-            var treeEntity = (TreeEntity)e.Argument;
             var order = (OrderEntity)treeEntity.ap_Entity;
 
             var searchEntity = new OrderItemEntity { OrderInternalID = order.OrderInternalID };
             var inArgs = new AB_SelectInputArgs<OrderItemEntity>("YD10", AB_SearchMethods.InitialSearch, searchEntity, searchEntity.am_BuildDefaultQuery(), 25, true);
 
-            var orderItemVM = new OrderItemVM();
-            e.Result = new object[] { orderItemVM.am_Select(inArgs), treeEntity };
-        }
-
-        private void _FetchOrderItems_Complete(object sender, RunWorkerCompletedEventArgs e)
-        {
-            var args = (object[])e.Result;
-
-            var retArgs = (AB_SelectReturnArgs<OrderItemEntity>)args[0];
-            var treeEntity = (TreeEntity)args[1];
-
-            if (retArgs != null && retArgs.ap_ReturnCode == "OK")
-            {
-                var levelSetting = ap_DataPresenter.ap_TreeList.ap_LevelSettings.FirstOrDefault(o => o.ap_Level == (treeEntity.ap_Level + 1));
-                if (levelSetting != null && levelSetting.ap_DataTransform != null)
+            AB_WPFHelperMethods.am_CallInBackground(
+                beforeBackground: () =>
                 {
-                    var list = levelSetting.ap_DataTransform(retArgs.ap_RecordSet).ToList();
-                    list.ForEach(o => treeEntity.ap_Children.Add(o));
+                    ap_ModuleExplorerComponent.am_StartSpinner();
+                },
+                inBackground: () =>
+                {
+                    using (var vm = new OrderItemVM())
+                    {
+                        return vm.am_Select(inArgs).am_Cast<OrderItemEntity>();
+                    }
+                },
+                onSuccess: (retArgs) =>
+                {
+                    var levelSetting = ap_DataPresenter.ap_TreeList.ap_LevelSettings.FirstOrDefault(o => o.ap_Level == (treeEntity.ap_Level + 1));
+                    if (levelSetting != null && levelSetting.ap_DataTransform != null)
+                    {
+                        var list = levelSetting.ap_DataTransform(retArgs.ap_RecordSet).ToList();
+                        list.ForEach(o => treeEntity.ap_Children.Add(o));
+                    }
+                    ap_ModuleExplorerComponent.am_StopSpinner();
+                },
+                onError: (retArgs) =>
+                {
+                    am_AddMessages(retArgs.ap_Messages, true);
+                    ap_ModuleExplorerComponent.am_StopSpinner();
                 }
-            }
-
-            ap_ModuleExplorerComponent.am_StopSpinner();
+            );
         }
 
         private void Tree_ItemExpanded(object sender, AB_ItemExpandedEventArgs e)
@@ -247,29 +256,18 @@ namespace WPF.Customer
             if (treeEntity.ap_Children.Count > 0 || e.Loaded) //Skip if data already loaded.
                 return;
 
-            var background = new BackgroundWorker();
-
-            //Define work to be done at each level.
+            // Define work to be done at each level.
             switch (e.Level)
             {
-                case 0:
-                    {
-                        background.DoWork += _FetchOrders;
-                        background.RunWorkerCompleted += _FetchOrders_Complete;
-                    }
+                case 0: 
+                    _FetchOrders(treeEntity);
                     break;
                 case 1:
-                    {
-                        background.DoWork += _FetchOrderItems;
-                        background.RunWorkerCompleted += _FetchOrderItems_Complete;
-                    }
+                    _FetchOrderItems(treeEntity);
                     break;
                 default:
                     return;
             }
-
-            ap_ModuleExplorerComponent.am_StartSpinner();
-            background.RunWorkerAsync(treeEntity);
         }
 
         /// <summary>
