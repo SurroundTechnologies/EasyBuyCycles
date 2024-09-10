@@ -98,9 +98,6 @@ namespace WPF.Order
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-
-            Field_OrderMemo.ae_ValueChanged += OrderMemoCharacterCountChanged;
-            Field_DeliveryMemo.ae_ValueChanged += DeliveryMemoCharacterCountChanged;
         }
 
 		/// <summary>
@@ -166,29 +163,6 @@ namespace WPF.Order
 			}
 			
 		}
-
-        protected override void Dispose(bool Disposing)
-        {
-            if (Disposing)
-            {
-                Field_OrderMemo.ae_ValueChanged -= OrderMemoCharacterCountChanged;
-                Field_DeliveryMemo.ae_ValueChanged -= DeliveryMemoCharacterCountChanged;
-            }
-
-            base.Dispose(Disposing);
-        }
-
-        private void OrderMemoCharacterCountChanged(object sender, EventArgs e)
-        {
-            var charCount = (Field_OrderMemo.DataContext as OrderEntity).OrderMemo?.Length ?? 0;
-            (ap_CurrentEntity as OrderEntity).OrderMemoCharacterCount = charCount;
-        }
-
-        private void DeliveryMemoCharacterCountChanged(object sender, EventArgs e)
-        {
-            var charCount = (Field_DeliveryMemo.DataContext as OrderEntity).DeliveryMemo?.Length ?? 0;
-            (ap_CurrentEntity as OrderEntity).DeliveryMemoCharacterCount = charCount;
-        }
 
 		private void Field_ShippingAddressInternalID_Loaded(object sender, RoutedEventArgs e)
 		{

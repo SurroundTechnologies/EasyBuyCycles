@@ -51,7 +51,6 @@ namespace WPF.Wizards.OrderWizard
             itemsDetail.Content = _OrderItemDetail.OrderItemDetailWizardPanel;
             dgOrderItems.ItemsSource = _SharedObject.OrderItems;
 
-            _OrderItemDetail.Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
             _SharedObject.NewOrderStarted += OnNewOrderStarted;
         }
 
@@ -135,11 +134,6 @@ namespace WPF.Wizards.OrderWizard
             am_MarkCurrentStepComplete();
         }
 
-        private void MemoCharacterCountChanged(object sender, EventArgs e)
-        {
-            var charCount = (_OrderItemDetail.Field_Memo.DataContext as OrderItemEntity).Memo?.Length ?? 0;
-            CurrentOrderItemEntity.MemoCharacterCount = charCount;
-        }
         private void OnNewOrderStarted(object sender, EventArgs e)
         {
             am_MarkStepIncomplete(Step_OrderItem);

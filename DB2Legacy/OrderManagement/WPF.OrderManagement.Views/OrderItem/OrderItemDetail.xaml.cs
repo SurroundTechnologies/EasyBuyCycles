@@ -101,8 +101,6 @@ namespace WPF.OrderItem
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-
-            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
         }
 
 		/// <summary>
@@ -155,16 +153,6 @@ namespace WPF.OrderItem
 			
 		}
 
-        protected override void Dispose(bool Disposing)
-        {
-			if (Disposing)
-			{
-                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
-            }
-
-            base.Dispose(Disposing);
-        }
-
         private void Field_ProductName_ae_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 			if (Field_ProductName.ap_CurrentSelectedEntity != null)
@@ -176,11 +164,5 @@ namespace WPF.OrderItem
                 EntityInTheDropDown = Field_ProductName.ap_ResultSet[0] as ProductEntity;
 			}
 		}
-
-		private void MemoCharacterCountChanged(object sender, EventArgs e)
-		{
-			var charCount = (Field_Memo.DataContext as OrderItemEntity).Memo?.Length ?? 0;
-			(ap_CurrentEntity as OrderItemEntity).MemoCharacterCount = charCount;
-        }
     }
 }

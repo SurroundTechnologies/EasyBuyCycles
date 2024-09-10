@@ -107,8 +107,6 @@ namespace WPF.ShippingAddress
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-
-            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
         }
 
 		/// <summary>
@@ -193,22 +191,6 @@ namespace WPF.ShippingAddress
             {
                 System.Diagnostics.Process.Start("callto:" + ((ShippingAddressEntity)ap_CurrentEntity).Telephone);
             }
-        }
-
-        protected override void Dispose(bool Disposing)
-        {
-            if (Disposing)
-            {
-                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
-            }
-
-            base.Dispose(Disposing);
-        }
-
-        private void MemoCharacterCountChanged(object sender, EventArgs e)
-        {
-            var charCount = (Field_Memo.DataContext as ShippingAddressEntity).Memo?.Length ?? 0;
-            (ap_CurrentEntity as ShippingAddressEntity).MemoCharacterCount = charCount;
         }
     }
 }

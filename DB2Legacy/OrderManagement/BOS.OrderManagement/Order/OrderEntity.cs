@@ -133,8 +133,13 @@ namespace BOS.OrderDataEntity
         public string DeliveryMemo //Map Field: YD1ODLM1
         {
             get => am_GetPropertyValue(DeliveryMemoProperty);
-            set => am_SetPropertyValue(DeliveryMemoProperty, value);
-        }
+			set
+			{
+				am_SetPropertyValue(DeliveryMemoProperty, value);
+				am_FirePropertyChanged(DeliveryMemoCharacterCountProperty);
+				am_FirePropertyChanged(DeliveryMemoCharacterCountStrProperty);
+			}
+		}
         public static AB_PropertyMetadata<string> DeliveryMemoProperty = am_CreatePropertyMetaData<string>(nameof(DeliveryMemo), DescriptionResource.DELIVERYMEMO, null); 
 
         [AB_ReceivedBroadcastDataMember("ShippingAddressInternalID")]
@@ -155,8 +160,13 @@ namespace BOS.OrderDataEntity
         public string OrderMemo //Map Field: YD1OM1
         {
             get => am_GetPropertyValue(OrderMemoProperty);
-            set => am_SetPropertyValue(OrderMemoProperty, value);
-        }
+			set
+			{
+				am_SetPropertyValue(OrderMemoProperty, value);
+				am_FirePropertyChanged(OrderMemoCharacterCountProperty);
+				am_FirePropertyChanged(OrderMemoCharacterCountStrProperty);
+			}
+		}
         public static AB_PropertyMetadata<string> OrderMemoProperty = am_CreatePropertyMetaData<string>(nameof(OrderMemo), DescriptionResource.ORDERMEMO, null); 
 
         [Display(Name = "STATUS", ResourceType = typeof(DescriptionResource))]
@@ -566,40 +576,25 @@ namespace BOS.OrderDataEntity
         public int OrderMemoCharacterCount
         {
             get => OrderMemo?.Length ?? 0;
-            set
-            {
-                am_SetPropertyValue(OrderMemoCharacterCountProperty, value);
-                am_FirePropertyChanged(OrderMemoCharacterCountStrProperty);
-            }
         }
         public static AB_PropertyMetadata<int> OrderMemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(OrderMemoCharacterCount), null, 0);
 
         public string OrderMemoCharacterCountStr
         {
-            get
-            {
-                return string.Format("{0}/100", OrderMemoCharacterCount);
-            }
+            get => string.Format("{0}/100", OrderMemoCharacterCount);
+            
         }
         public static AB_PropertyMetadata<string> OrderMemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(OrderMemoCharacterCountStr), null, null);
 
         public int DeliveryMemoCharacterCount
         {
             get => DeliveryMemo?.Length ?? 0;
-            set
-            {
-                am_SetPropertyValue(DeliveryMemoCharacterCountProperty, value);
-                am_FirePropertyChanged(DeliveryMemoCharacterCountStrProperty);
-            }
         }
         public static AB_PropertyMetadata<int> DeliveryMemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(DeliveryMemoCharacterCount), null, 0);
 
         public string DeliveryMemoCharacterCountStr
         {
-            get
-            {
-                return string.Format("{0}/100", DeliveryMemoCharacterCount);
-            }
+            get => string.Format("{0}/100", DeliveryMemoCharacterCount);
         }
         public static AB_PropertyMetadata<string> DeliveryMemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(DeliveryMemoCharacterCountStr), null, null);
 

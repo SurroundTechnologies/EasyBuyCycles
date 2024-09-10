@@ -108,8 +108,6 @@ namespace WPF.Customer
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-
-            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
         }
 
         /// <summary>
@@ -195,22 +193,6 @@ namespace WPF.Customer
             {
                 System.Diagnostics.Process.Start("callto:" + ((CustomerEntity)ap_CurrentEntity).Telephone);
             }
-        }
-
-        protected override void Dispose(bool Disposing)
-        {
-            if (Disposing)
-            {
-                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
-            }
-
-            base.Dispose(Disposing);
-        }
-
-        private void MemoCharacterCountChanged(object sender, EventArgs e)
-        {
-            var charCount = (Field_Memo.DataContext as CustomerEntity).Memo?.Length ?? 0;
-            (ap_CurrentEntity as CustomerEntity).MemoCharacterCount = charCount;
         }
     }
 }

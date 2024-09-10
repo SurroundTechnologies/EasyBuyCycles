@@ -176,8 +176,13 @@ namespace BOS.ProductDataEntity
         public string Memo //Map Field: YD1PM1
         {
             get => am_GetPropertyValue(MemoProperty);
-            set => am_SetPropertyValue(MemoProperty, value);
-        }
+			set
+			{
+				am_SetPropertyValue(MemoProperty, value);
+				am_FirePropertyChanged(MemoCharacterCountProperty);
+				am_FirePropertyChanged(MemoCharacterCountStrProperty);
+			}
+		}
         public static AB_PropertyMetadata<string> MemoProperty = am_CreatePropertyMetaData<string>(nameof(Memo), DescriptionResource.MEMO, null); 
 
         [Display(Name = "IMAGEPATH", ResourceType = typeof(DescriptionResource))]
@@ -555,20 +560,12 @@ namespace BOS.ProductDataEntity
         public int MemoCharacterCount
         {
             get => Memo?.Length ?? 0;
-            set
-            {
-                am_SetPropertyValue(MemoCharacterCountProperty, value);
-                am_FirePropertyChanged(MemoCharacterCountStrProperty);
-            }
         }
         public static AB_PropertyMetadata<int> MemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(MemoCharacterCount), null, 0);
 
         public string MemoCharacterCountStr
         {
-            get
-            {
-                return string.Format("{0}/100", MemoCharacterCount);
-            }
+            get => string.Format("{0}/100", MemoCharacterCount);
         }
         public static AB_PropertyMetadata<string> MemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(MemoCharacterCountStr), null, null);
 

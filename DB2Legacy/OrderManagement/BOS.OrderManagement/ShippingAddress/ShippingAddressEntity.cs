@@ -207,7 +207,12 @@ namespace BOS.ShippingAddressDataEntity
         public string Memo //Map Field: YD1SM1
         {
             get => am_GetPropertyValue(MemoProperty);
-            set => am_SetPropertyValue(MemoProperty, value);
+            set
+            {
+                am_SetPropertyValue(MemoProperty, value);
+                am_FirePropertyChanged(MemoCharacterCountProperty);
+                am_FirePropertyChanged(MemoCharacterCountStrProperty);
+			}
         }
         public static AB_PropertyMetadata<string> MemoProperty = am_CreatePropertyMetaData<string>(nameof(Memo), DescriptionResource.MEMO, null); 
 
@@ -481,20 +486,12 @@ namespace BOS.ShippingAddressDataEntity
         public int MemoCharacterCount
         {
             get => Memo?.Length ?? 0;
-            set
-            {
-                am_SetPropertyValue(MemoCharacterCountProperty, value);
-                am_FirePropertyChanged(MemoCharacterCountStrProperty);
-            }
         }
         public static AB_PropertyMetadata<int> MemoCharacterCountProperty = am_CreatePropertyMetaData<int>(nameof(MemoCharacterCount), null, 0);
 
         public string MemoCharacterCountStr
         {
-            get
-            {
-                return string.Format("{0}/100", MemoCharacterCount);
-            }
+            get => string.Format("{0}/100", MemoCharacterCount);
         }
         public static AB_PropertyMetadata<string> MemoCharacterCountStrProperty = am_CreatePropertyMetaData<string>(nameof(MemoCharacterCountStr), null, null);
 

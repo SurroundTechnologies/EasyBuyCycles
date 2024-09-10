@@ -95,8 +95,6 @@ namespace WPF.Product
 		protected override void am_OnInitialized()
 		{
 			base.am_OnInitialized();
-
-            Field_Memo.ae_ValueChanged += MemoCharacterCountChanged;
         }
 
 		/// <summary>
@@ -169,21 +167,5 @@ namespace WPF.Product
 
 			largeImageView.Show();
 		}
-
-        protected override void Dispose(bool Disposing)
-        {
-            if (Disposing)
-            {
-                Field_Memo.ae_ValueChanged -= MemoCharacterCountChanged;
-            }
-
-            base.Dispose(Disposing);
-        }
-
-        private void MemoCharacterCountChanged(object sender, EventArgs e)
-        {
-            var charCount = (Field_Memo.DataContext as ProductEntity).Memo?.Length ?? 0;
-            (ap_CurrentEntity as ProductEntity).MemoCharacterCount = charCount;
-        }
     }
 }
