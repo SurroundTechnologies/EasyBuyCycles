@@ -161,7 +161,9 @@ namespace WPF.OrderItem
 			}
 			else if (Field_ProductName.ap_ResultSet != null)
 			{
-                EntityInTheDropDown = Field_ProductName.ap_ResultSet[0] as ProductEntity;
+				if (Field_ProductName.ap_ResultSet.Count > 0)
+					EntityInTheDropDown = Field_ProductName.ap_ResultSet[0] as ProductEntity;
+				else EntityInTheDropDown = null;
 			}
 		}
     }

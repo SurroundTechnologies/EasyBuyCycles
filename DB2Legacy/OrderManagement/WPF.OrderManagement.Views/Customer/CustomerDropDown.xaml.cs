@@ -17,7 +17,7 @@ namespace WPF.Customer
 	/// <summary>
 	/// Interaction logic for CustomerDropDown.xaml
 	/// </summary>
-	public partial class  CustomerDropDown : AB_DropDownBase
+	public partial class CustomerDropDown : AB_DropDownBase
 	{
 		/// <summary>
 		/// Dependency Property for Binding of foreign keys.  As this property is updated, a fetch will occur to load the drop down appropriately
@@ -30,7 +30,20 @@ namespace WPF.Customer
 			get => (int?)GetValue(CustomerInternalIDProperty);
 			set => SetValue(CustomerInternalIDProperty, value);
 		}
-        public static readonly DependencyProperty CustomerInternalIDProperty = DependencyProperty.Register(nameof(CustomerInternalID), typeof(int?), typeof(CustomerDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(AB_DropDownBase.IdChanged)));
+        public static readonly DependencyProperty CustomerInternalIDProperty = DependencyProperty.Register(nameof(CustomerInternalID), typeof(int?), typeof(CustomerDropDown), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnCustomerInternalIDChanged)));
+
+		private static void OnCustomerInternalIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			// If Number is changing to null (because the user cleared the textbox or put in something that int.Parse() fails on)
+			// change the Number to 0 instead of calling the base class IdChanged event handler.
+			if (e.NewValue == null)
+			{
+				(d as CustomerDropDown).CustomerInternalID = 0;
+				return;
+			}
+
+			AB_DropDownBase.IdChanged(d, e);
+		}
 
 		public int? ExcludeCustomerInternalID
 		{
@@ -45,6 +58,7 @@ namespace WPF.Customer
 		protected override void am_SetParentProperties()
 		{
 			InitializeComponent();
+			Loaded += CustomerDropDown_Loaded;
 			
 			// The SB Interface ID used to get a handle to the module entity in order show a Detail or Search and Select window
 			ap_SbInterfaceReferenceID = "CustomerDropDown";
@@ -79,6 +93,11 @@ namespace WPF.Customer
 
 			// Set to false when entire collection can load into the combo box popup
 			// ap_StartLoadingFromSelectedItem = false;
+		}
+
+		private void CustomerDropDown_Loaded(object sender, RoutedEventArgs e)
+		{
+			ctl_KeyField.ap_IsKeyFieldValueAllowedForNullEntity = (keyString) => keyString == "0" || string.IsNullOrWhiteSpace(keyString);
 		}
 
 
