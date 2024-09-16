@@ -15,6 +15,7 @@ using System.Reflection;
 using A4DN.Core.BOS.Base;
 using BOS.ShippingAddressDataEntity;
 using BOS.ShippingAddressDataAccessLayer;
+using BOS.OrderManagement;
 
 namespace BOS.ShippingAddressBusinessProcess
 {
@@ -100,10 +101,10 @@ namespace BOS.ShippingAddressBusinessProcess
 					// stored procedure or Web Service.
 					return base.am_ProcessRequest(inputArgs);
 			}
-		} 
+		}
 
 		//// A4DN_Tag: Add Custom Method Example - Step 2: Implement Method as defined in the Interface IContactBPServiceContract
-		 //// My Custom Method 
+		//// My Custom Method 
 		////=============================================================
 		//public MyCustomReturnArgs MyCustomMethod(MyCustomInputArgs inputArgs)
 		//{
@@ -119,7 +120,7 @@ namespace BOS.ShippingAddressBusinessProcess
 		//        return ((ShippingAddressDALForSQL)ap_DalObject).MyCustomMethod(inputArgs);
 		//    }
 		//}
-		
+
 		//// A4DN_Tag: Add Custom Select Method Example
 		//// My Custom Select
 		////=============================================================
@@ -131,17 +132,18 @@ namespace BOS.ShippingAddressBusinessProcess
 		//}
 
 		#region Standard Operations
-		
-		///// <summary>
-		///// Inserts data. Can be overriden if the insert functionality for an entire module
-		///// should be different than what the parent Business Process (BP) does by default.
-		///// </summary>
-		//public override AB_InsertReturnArgs am_Insert(AB_InsertInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Insert(inputArgs);
-		//	return retArgs;
-		//}
-		
+
+		/// <summary>
+		/// Inserts data. Can be overriden if the insert functionality for an entire module
+		/// should be different than what the parent Business Process (BP) does by default.
+		/// </summary>
+		public override AB_InsertReturnArgs am_Insert(AB_InsertInputArgs inputArgs)
+		{
+			if (!this.AreDropdownCodesValid(inputArgs, out AB_InsertReturnArgs error)) return error;
+			var retArgs = base.am_Insert(inputArgs);
+			return retArgs;
+		}
+
 		///// <summary>
 		///// Selects data. Can be overriden if the insert functionality for an entire module
 		///// should be different than what the parent Business Process (BP) does by default.
@@ -151,7 +153,7 @@ namespace BOS.ShippingAddressBusinessProcess
 		//	var retArgs = base.am_Select(inputArgs);
 		//	return retArgs;
 		//}
-		
+
 		///// <summary>
 		///// Standard fetch IO operation. Can be overriden if the insert functionality for an entire module
 		///// should be different than what the parent Business Process (BP) does by default.
@@ -162,16 +164,17 @@ namespace BOS.ShippingAddressBusinessProcess
 		//	return retArgs;
 		//}
 
-		///// <summary>
-		///// Updates data. Can be overriden if the insert functionality for an entire module
-		///// should be different than what the parent Business Process (BP) does by default.
-		///// </summary>
-		//public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
-		//{
-		//	var retArgs = base.am_Update(inputArgs);
-		//	return retArgs;
-		//}
-		
+		/// <summary>
+		/// Updates data. Can be overriden if the insert functionality for an entire module
+		/// should be different than what the parent Business Process (BP) does by default.
+		/// </summary>
+		public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
+		{
+			if (!this.AreDropdownCodesValid(inputArgs, out AB_UpdateReturnArgs error)) return error;
+			var retArgs = base.am_Update(inputArgs);
+			return retArgs;
+		}
+
 		///// <summary>
 		///// Deletes data. Can be overriden if the insert functionality for an entire module
 		///// should be different than what the parent Business Process (BP) does by default.

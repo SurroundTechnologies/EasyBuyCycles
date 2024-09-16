@@ -11,6 +11,7 @@ using BOS.OrderDataAccessLayer;
 using BOS.OrderDataEntity;
 using BOS.OrderItemBusinessProcess;
 using BOS.OrderItemDataEntity;
+using BOS.OrderManagement;
 using BOS.OrderManagement.Shared.Properties;
 using BOS.ShippingAddressBusinessProcess;
 using BOS.ShippingAddressDataEntity;
@@ -133,15 +134,16 @@ namespace BOS.OrderBusinessProcess
 
         #region Standard Operations
 
-        ///// <summary>
-        ///// Inserts data. Can be overriden if the insert functionality for an entire module
-        ///// should be different than what the parent Business Process (BP) does by default.
-        ///// </summary>
-        //public override AB_InsertReturnArgs am_Insert(AB_InsertInputArgs inputArgs)
-        //{
-        //	var retArgs = base.am_Insert(inputArgs);
-        //	return retArgs;
-        //}
+        /// <summary>
+        /// Inserts data. Can be overriden if the insert functionality for an entire module
+        /// should be different than what the parent Business Process (BP) does by default.
+        /// </summary>
+        public override AB_InsertReturnArgs am_Insert(AB_InsertInputArgs inputArgs)
+        {
+			if (!this.AreDropdownCodesValid(inputArgs, out AB_InsertReturnArgs error)) return error;
+			var retArgs = base.am_Insert(inputArgs);
+			return retArgs;
+		}
 
         ///// <summary>
         ///// Selects data. Can be overriden if the insert functionality for an entire module
@@ -163,15 +165,16 @@ namespace BOS.OrderBusinessProcess
         //	return retArgs;
         //}
 
-        ///// <summary>
-        ///// Updates data. Can be overriden if the insert functionality for an entire module
-        ///// should be different than what the parent Business Process (BP) does by default.
-        ///// </summary>
-        //public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
-        //{
-        //	var retArgs = base.am_Update(inputArgs);
-        //	return retArgs;
-        //}
+        /// <summary>
+        /// Updates data. Can be overriden if the insert functionality for an entire module
+        /// should be different than what the parent Business Process (BP) does by default.
+        /// </summary>
+        public override AB_UpdateReturnArgs am_Update(AB_UpdateInputArgs inputArgs)
+        {
+			if (!this.AreDropdownCodesValid(inputArgs, out AB_UpdateReturnArgs error)) return error;
+			var retArgs = base.am_Update(inputArgs);
+			return retArgs;
+		}
 
         ///// <summary>
         ///// Deletes data. Can be overriden if the insert functionality for an entire module

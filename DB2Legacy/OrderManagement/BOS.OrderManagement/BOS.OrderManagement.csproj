@@ -53,6 +53,8 @@
   </Target>
   -->
   <ItemGroup Label="A4DNItems">
+    <Compile Include="Customer\CustomerRequiresValidInternalIDAttribute.cs" />
+    <Compile Include="DropdownsRequireValidCodes.cs" />
     <Compile Include="ExternalAPIs\IPAPIClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\DescriptionResource.resx">

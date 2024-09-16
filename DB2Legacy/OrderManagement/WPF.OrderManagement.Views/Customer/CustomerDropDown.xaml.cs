@@ -52,6 +52,15 @@ namespace WPF.Customer
 		}
 		public static readonly DependencyProperty ExcludeCustomerInternalIDProperty = DependencyProperty.Register("ExcludeCustomerInternalID", typeof(int?), typeof(CustomerDropDown), new PropertyMetadata(null));
 
+		public bool CustomerRequired
+		{
+			get { return (bool)GetValue(CustomerRequiredProperty); }
+			set { SetValue(CustomerRequiredProperty, value); }
+		}
+		public static readonly DependencyProperty CustomerRequiredProperty =  DependencyProperty.Register("CustomerRequired", typeof(bool), typeof(CustomerDropDown), new PropertyMetadata(true));
+
+			
+
 		/// <summary>
 		/// Sets properties to change the parent initialization. This method is called during the parent's constructor.
 		/// </summary>
@@ -97,7 +106,8 @@ namespace WPF.Customer
 
 		private void CustomerDropDown_Loaded(object sender, RoutedEventArgs e)
 		{
-			ctl_KeyField.ap_IsKeyFieldValueAllowedForNullEntity = (keyString) => keyString == "0" || string.IsNullOrWhiteSpace(keyString);
+			if (CustomerRequired) ctl_KeyField.ap_IsKeyFieldValueAllowedForNullEntity = (keyString) => string.IsNullOrWhiteSpace(keyString);
+			else ctl_KeyField.ap_IsKeyFieldValueAllowedForNullEntity = (keyString) => keyString == "0" || string.IsNullOrWhiteSpace(keyString);
 		}
 
 

@@ -12,6 +12,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using A4DN.Core.BOS.Base;
 using BOS.OrderManagement.Shared.Properties;
+using BOS.OrderManagement.Customer;
+
 #if !SILVERLIGHT
 using A4DN.Core.BOS.ValidationAttributes;  // Custom validation attributes
 #endif
@@ -63,6 +65,7 @@ namespace BOS.CustomerDataEntity
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
         [Display(Name = "PARENTCUSTOMERNUMBER", ResourceType = typeof(DescriptionResource))]
 		[AB_ValidationMethod(typeof(ValidateParentIsNotChild), ErrorMessage = "Customer cannot be a parent of itself", ap_ValidationTriggers = AB_ValidationTrigger.OnSave | AB_ValidationTrigger.OnLostFocus | AB_ValidationTrigger.OnTextChanged)]
+		[CustomerRequiresValidInternalID]
 		[AB_Length(8)]
         [DataMember]
         public int? ParentInternalID //Map Field: YD1CPTID

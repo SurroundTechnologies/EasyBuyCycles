@@ -143,7 +143,7 @@ namespace BOS.CustomerViewModel
 			{
 				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_IsReadOnly = true; 
 				inputArgs.ap_PropertyModelDictionary[CustomerEntity.ParentRelationshipProperty.ap_PropertyName].ap_DisplayRequiredStyle = false;
-				entity.ParentRelationship = null;
+				entity.ParentRelationship = string.Empty;
 			}
 			else
 			{

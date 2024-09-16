@@ -12,6 +12,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using A4DN.Core.BOS.Base;
 using BOS.OrderManagement.Shared.Properties;
+using BOS.OrderManagement.Customer;
+
 #if !SILVERLIGHT
 using A4DN.Core.BOS.ValidationAttributes;  // Custom validation attributes
 #endif
@@ -62,7 +64,8 @@ namespace BOS.ShippingAddressDataEntity
 
         [AB_ReceivedBroadcastDataMember("CustomerInternalID")]
         [Display(Name = "CUSTOMERNUMBER", ResourceType = typeof(DescriptionResource))]
-        [AB_Length(8)]
+		[CustomerRequiresValidInternalID]
+		[AB_Length(8)]
         [DataMember]
         [AB_RequiredField]
         public int? CustomerInternalID //Map Field: YD1S1CID
