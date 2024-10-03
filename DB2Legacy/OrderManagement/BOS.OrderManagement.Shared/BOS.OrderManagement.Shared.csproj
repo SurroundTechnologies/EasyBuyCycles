@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="A4DN.Core.BOS.DALBaseForSQL, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,5 +77,9 @@
       <SpecificVersion>True</SpecificVersion>
       <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>
     </Reference>
+	  <Reference Include="A4DN.Core.BOS.DALBaseForSQL, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+		  <SpecificVersion>True</SpecificVersion>
+		  <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.DALBaseForSQL.dll</HintPath>
+	  </Reference>
   </ItemGroup>
 </Project>
