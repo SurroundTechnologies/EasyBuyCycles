@@ -34,7 +34,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\NuGetPackages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="A4DN.Core.WPF.Base, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -134,6 +133,10 @@
     <Reference Include="A4DN.Core.BOS.FrameworkEntity, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
       <SpecificVersion>True</SpecificVersion>
       <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.FrameworkEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="A4DN.Core.WPF.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.WPF.Base.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj">
       <Project>{47CB41E7-9ABE-43CC-9B52-4BD67A9AA8A6}</Project>
