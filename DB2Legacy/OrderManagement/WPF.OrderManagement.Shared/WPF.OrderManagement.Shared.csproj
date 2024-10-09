@@ -34,7 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="A4DN.Core.SharedResources, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -262,6 +261,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup Label="A4DNReferences">
+    <Reference Include="A4DN.Core.SharedResources, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>$(A4DNCoreHintPath)A4DN.Core.SharedResources.dll</HintPath>
+    </Reference>
     <Reference Include="A4DN.Core.BOS.Base, Version=$(A4DNVersion), Culture=neutral, PublicKeyToken=a051f91c03e970af, processorArchitecture=MSIL">
       <SpecificVersion>True</SpecificVersion>
       <HintPath>$(A4DNCoreHintPath)A4DN.Core.BOS.Base.dll</HintPath>
