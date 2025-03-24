@@ -26,7 +26,7 @@
         <charting:Chart Name="chart"
                         BorderThickness="0">
             <charting:Chart.Series>
-                <charting:PieSeries ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type db:AB_DashboardPart}}, Path=OrderItems}"
+                <charting:PieSeries ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type db:AB_DashboardPart}}, Path=OrderItems, Mode=OneWay}"
                                     DependentValueBinding="{Binding Quantity}"
                                     IndependentValueBinding="{Binding ProductName}" />
             </charting:Chart.Series>
@@ -51,7 +51,7 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <System_Windows_Controls_DataVisualization_Charting_Primitives:EdgePanel x:Name="ChartArea"
-                                                                                                         Grid.Row="0"
+                                                                                                         Grid.Row="0" 
                                                                                                          Width="240"
                                                                                                          HorizontalAlignment="Stretch"
                                                                                                          VerticalAlignment="Stretch"

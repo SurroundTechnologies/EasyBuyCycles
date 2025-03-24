@@ -25,7 +25,7 @@ namespace WPF.Dashboard
             base.OnApplyTemplate();
         }
 
-        public ObservableCollection<OrderItemEntity> OrderItems { get; } = new ObservableCollection<OrderItemEntity>();
+        public AB_SmartCollection<OrderItemEntity> OrderItems { get; } = new AB_SmartCollection<OrderItemEntity>();
 
         public override void am_LoadData()
         {
@@ -60,10 +60,7 @@ namespace WPF.Dashboard
                     }
                     var results = retArgs.ap_OutputRecords.Cast<OrderItemEntity>();
 
-                    foreach (var result in results)
-                    {
-                        OrderItems.Add(result);
-                    }
+                    OrderItems.am_Reset(results);
 
                     LoadingSpinner.am_Stop();
                     LoadingSpinner.Visibility = Visibility.Collapsed;
@@ -73,7 +70,13 @@ namespace WPF.Dashboard
                 onError: (retArgs) =>
                 {
                     Utilities.MessageConsole.am_AddMessages(retArgs.ap_Messages, true, true);
-                });
+					LoadingSpinner.am_Stop();
+					LoadingSpinner.Visibility = Visibility.Collapsed;
+				},
+                onException: (e) =>
+                {
+					Utilities.MessageConsole.am_AddMessage(e.Message, true, true);
+				});
         }
     }
 }
