@@ -34,10 +34,15 @@
 	Properties="Configuration=Debug;Platform=AnyCPU"
 	ContinueOnError="true"
 />
+<MSBuild
+	Projects="@(Layer5_0)"
+	BuildInParallel="true"
+	Properties="Configuration=Debug;Platform=AnyCPU"
+	ContinueOnError="true"
+/>
 </Target>
 
 <ItemGroup>
-	<Layer0_0 Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj" />
 	<Layer0_0 Include="..\BOS.OrderManagement.Shared\BOS.OrderManagement.Shared.csproj" />
 </ItemGroup>
 <ItemGroup>
@@ -50,9 +55,12 @@
 </ItemGroup>
 <ItemGroup>
 	<Layer3_0 Include="..\MVC.OrderManagement\MVC.OrderManagement.csproj" />
-	<Layer3_0 Include="..\WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj" />
+	<Layer3_0 Include="..\WPF.OrderManagement.Shared\WPF.OrderManagement.Shared.csproj" />
 </ItemGroup>
 <ItemGroup>
-	<Layer4_0 Include="..\WPF.OrderManagement\WPF.OrderManagement.csproj" />
+	<Layer4_0 Include="..\WPF.OrderManagement.Views\WPF.OrderManagement.Views.csproj" />
+</ItemGroup>
+<ItemGroup>
+	<Layer5_0 Include="..\WPF.OrderManagement\WPF.OrderManagement.csproj" />
 </ItemGroup>
 </Project>
