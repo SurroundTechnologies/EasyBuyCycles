@@ -25,7 +25,7 @@ namespace WPF.Dashboard
             base.OnApplyTemplate();
         }
 
-        public AB_SmartCollection<OrderItemEntity> OrderItems { get; } = new AB_SmartCollection<OrderItemEntity>();
+        public ObservableCollection<OrderItemEntity> OrderItems { get; } = new ObservableCollection<OrderItemEntity>();
 
         public override void am_LoadData()
         {
@@ -49,18 +49,17 @@ namespace WPF.Dashboard
                         var query = searchEntity.am_BuildDefaultQuery();
                         query.am_AddOrderBy("YD1IQT", Sequence.Descending);
                         var inArgs = new AB_SelectInputArgs<OrderItemEntity>("YD1I", AB_SearchMethods.InitialSearch, searchEntity, query, 5, false);
-                        return vm.am_Select(inArgs);
-                    }
+                        return vm.am_Select(inArgs).am_Cast<OrderItemEntity>();
+					}
                 },
                 onSuccess: (retArgs) =>
                 {
-                    if (retArgs == null || retArgs.ap_OutputRecords == null || retArgs.ap_OutputRecords.Count == 0)
-                    {
-                        return;
-                    }
                     var results = retArgs.ap_OutputRecords.Cast<OrderItemEntity>();
 
-                    OrderItems.am_Reset(results);
+                    foreach (OrderItemEntity ent in results)
+                    {
+					    OrderItems.Add(ent);
+					}
 
                     LoadingSpinner.am_Stop();
                     LoadingSpinner.Visibility = Visibility.Collapsed;
